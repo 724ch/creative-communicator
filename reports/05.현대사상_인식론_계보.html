@@ -1,0 +1,2668 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>현대 사상·인식론 계보 — 데카르트 이후 400년 · Deep</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fdfcfa;
+    --bg-2: #f4f1ec;
+    --bg-card: #ffffff;
+    --bg-card-2: #f8f6f1;
+    --bg-code: #f4f1ec;
+    --text: #1a1a1a;
+    --text-soft: #4a4845;
+    --text-dim: #807e7a;
+    --text-faint: #c4c2bd;
+    --accent: #d9601f;
+    --accent-2: #e07530;
+    --accent-dim: #b54e15;
+    --teal: #2e8a7c;
+    --teal-dim: #1f5e54;
+    --green: #4a8e4a;
+    --purple: #7e5a98;
+    --pink: #c25787;
+    --blue: #4a72a8;
+    --yellow: #b8954a;
+    --red: #c14638;
+    --border: rgba(0,0,0,0.10);
+    --border-2: rgba(0,0,0,0.16);
+    --rule: rgba(0,0,0,0.12);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Sans KR', -apple-system, sans-serif;
+    font-weight: 400;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+
+  /* ============ HERO ============ */
+  .hero {
+    padding: 110px 60px 140px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-inner { max-width: 1120px; margin: 0 auto; position: relative; }
+  .hero-kicker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.35em;
+    color: var(--text-dim);
+    margin-bottom: 80px;
+  }
+  .hero h1 {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 900;
+    font-size: clamp(40px, 5.5vw, 72px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--accent);
+  }
+  .hero-lead {
+    max-width: 680px;
+    font-size: 16px;
+    color: var(--text-soft);
+    line-height: 1.8;
+    font-weight: 300;
+    margin-top: 36px;
+  }
+  .hero-meta {
+    margin-top: 120px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+  .hero-meta .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .hero-meta .value {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  /* ============ NAV ============ */
+  nav.sticky {
+    position: sticky; top: 0;
+    background: rgba(253,252,250,0.92);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--border);
+    z-index: 50;
+    padding: 14px 60px;
+  }
+  nav .nav-inner {
+    max-width: 1120px; margin: 0 auto;
+    display: flex; gap: 24px;
+    overflow-x: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  nav a {
+    color: var(--text-dim); text-decoration: none;
+    white-space: nowrap;
+    padding: 4px 0;
+    border-bottom: 1px solid transparent;
+    transition: all 0.2s;
+  }
+  nav a:hover { color: var(--accent); }
+
+  /* ============ SECTIONS ============ */
+  section { padding: 100px 60px; position: relative; }
+  .container { max-width: 1120px; margin: 0 auto; }
+
+  .sec-header { margin-bottom: 56px; display: flex; align-items: flex-start; gap: 32px; }
+  .sec-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 56px;
+    font-weight: 700;
+    color: var(--text-faint);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    flex-shrink: 0;
+  }
+  .sec-num.star { color: var(--accent); }
+  .sec-title-wrap { flex: 1; padding-top: 8px; }
+  h2 {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 900;
+    font-size: clamp(28px, 3.6vw, 44px);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-bottom: 16px;
+    color: var(--text);
+  }
+  h2 em {
+    font-style: normal;
+    color: var(--accent);
+  }
+  .sec-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-top: 6px;
+    margin-bottom: 22px;
+  }
+  .sec-lead {
+    font-size: 16px;
+    color: var(--text-soft);
+    max-width: 780px;
+    line-height: 1.8;
+    font-weight: 300;
+  }
+  .sec-lead strong { color: var(--text); font-weight: 600; }
+
+  /* ============ INTRO SECTION ============ */
+  .intro-why {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 36px 40px;
+    margin-top: 32px;
+  }
+  .intro-why h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    color: var(--text);
+  }
+  .intro-why h3 span {
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    margin-right: 10px;
+  }
+  .intro-why p {
+    font-size: 14px;
+    color: var(--text-soft);
+    line-height: 1.8;
+    margin-bottom: 10px;
+  }
+
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 40px;
+  }
+  .compare-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 32px 32px;
+  }
+  .compare-card h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .compare-card.old h4 { color: var(--text-dim); }
+  .compare-card.new h4 { color: var(--accent); }
+  .compare-card .punch {
+    font-size: 19px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    line-height: 1.4;
+  }
+  .compare-card.new .punch { color: var(--accent-2); }
+  .compare-card p {
+    font-size: 14px;
+    color: var(--text-soft);
+    line-height: 1.75;
+    margin-bottom: 8px;
+  }
+
+  /* ============ PHASE CONTAINER ============ */
+  .phase-hero {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    padding: 40px 44px;
+    margin-top: 48px;
+    margin-bottom: 44px;
+  }
+  .phase-hero.teal { border-left-color: var(--teal); }
+  .phase-hero.purple { border-left-color: var(--purple); }
+  .phase-hero.green { border-left-color: var(--green); }
+  .phase-hero.pink { border-left-color: var(--pink); }
+  .phase-hero.blue { border-left-color: var(--blue); }
+  .phase-hero.yellow { border-left-color: var(--yellow); }
+  .phase-era {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+  }
+  .phase-era .star { color: var(--accent); margin-left: 8px; font-weight: 700; }
+  .phase-hero h3 {
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1.3;
+    margin-bottom: 14px;
+    letter-spacing: -0.01em;
+  }
+  .phase-hero h3 em {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--accent);
+  }
+  .phase-hero p {
+    font-size: 15px;
+    color: var(--text-soft);
+    line-height: 1.8;
+    margin-bottom: 10px;
+  }
+  .phase-q {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: 24px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--border-2);
+    letter-spacing: 0.05em;
+    line-height: 1.7;
+  }
+  .phase-q strong { color: var(--accent-2); }
+
+  /* ============ THINKER CARD ============ */
+  .thinker {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    margin-bottom: 28px;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+  }
+  .thinker.teal { border-left-color: var(--teal); }
+  .thinker.purple { border-left-color: var(--purple); }
+  .thinker.green { border-left-color: var(--green); }
+  .thinker.pink { border-left-color: var(--pink); }
+  .thinker.blue { border-left-color: var(--blue); }
+  .thinker.yellow { border-left-color: var(--yellow); }
+  .thinker.red { border-left-color: var(--red); }
+
+  .thinker-top {
+    padding: 28px 36px 22px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: start;
+    border-bottom: 1px solid var(--border);
+  }
+  .thinker-id {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .thinker-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+  .thinker-ko {
+    font-size: 15px;
+    color: var(--text-dim);
+    font-weight: 400;
+  }
+  .thinker-years {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 0.15em;
+  }
+  .thinker-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    padding: 6px 12px;
+    background: rgba(217,96,31,0.10);
+    color: var(--accent);
+    text-transform: uppercase;
+    white-space: nowrap;
+    align-self: start;
+    border: 1px solid rgba(217,96,31,0.28);
+  }
+  .thinker.teal .thinker-tag { background: rgba(46,138,124,0.10); color: var(--teal); border-color: rgba(46,138,124,0.28);}
+  .thinker.purple .thinker-tag { background: rgba(126,90,152,0.10); color: var(--purple); border-color: rgba(126,90,152,0.28);}
+  .thinker.green .thinker-tag { background: rgba(74,142,74,0.10); color: var(--green); border-color: rgba(74,142,74,0.28);}
+  .thinker.pink .thinker-tag { background: rgba(194,87,135,0.10); color: var(--pink); border-color: rgba(194,87,135,0.28);}
+  .thinker.blue .thinker-tag { background: rgba(74,114,168,0.10); color: var(--blue); border-color: rgba(74,114,168,0.28);}
+  .thinker.yellow .thinker-tag { background: rgba(184,149,74,0.10); color: var(--yellow); border-color: rgba(184,149,74,0.28);}
+
+  .thinker-punch {
+    grid-column: 1 / -1;
+    margin-top: 8px;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.5;
+    letter-spacing: -0.005em;
+  }
+  .thinker-punch em {
+    font-style: normal;
+    color: var(--accent-2);
+    font-weight: 700;
+  }
+  .thinker.teal .thinker-punch em { color: var(--teal); }
+  .thinker.purple .thinker-punch em { color: var(--purple); }
+
+  .thinker-body { padding: 32px 36px 36px; }
+
+  .block {
+    margin-bottom: 36px;
+  }
+  .block:last-child { margin-bottom: 0; }
+  .block-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .block-label::before {
+    content: '';
+    width: 18px; height: 1px;
+    background: var(--accent);
+  }
+  .thinker.teal .block-label { color: var(--teal); }
+  .thinker.teal .block-label::before { background: var(--teal); }
+  .thinker.purple .block-label { color: var(--purple); }
+  .thinker.purple .block-label::before { background: var(--purple); }
+  .thinker.green .block-label { color: var(--green); }
+  .thinker.green .block-label::before { background: var(--green); }
+  .thinker.pink .block-label { color: var(--pink); }
+  .thinker.pink .block-label::before { background: var(--pink); }
+  .thinker.blue .block-label { color: var(--blue); }
+  .thinker.blue .block-label::before { background: var(--blue); }
+  .thinker.yellow .block-label { color: var(--yellow); }
+  .thinker.yellow .block-label::before { background: var(--yellow); }
+
+  .block p {
+    font-size: 14.5px;
+    color: var(--text-soft);
+    line-height: 1.85;
+    margin-bottom: 10px;
+  }
+  .block p strong { color: var(--text); font-weight: 600; }
+
+  /* Schema box (code-like visual) */
+  .schema {
+    background: var(--bg-code);
+    border: 1px solid var(--border);
+    padding: 28px 32px;
+    margin: 22px 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    line-height: 1.9;
+    color: var(--text-soft);
+    white-space: pre;
+    overflow-x: auto;
+  }
+  .schema .c-a { color: var(--accent); }
+  .schema .c-t { color: var(--teal); }
+  .schema .c-p { color: var(--purple); }
+  .schema .c-g { color: var(--green); }
+  .schema .c-b { color: var(--blue); }
+  .schema .c-y { color: var(--yellow); }
+  .schema .c-pk { color: var(--pink); }
+  .schema .c-d { color: var(--text-dim); }
+  .schema .c-hi { color: var(--text); font-weight: 600; }
+  .schema-cap {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 0.15em;
+    margin-top: 8px;
+    text-align: right;
+  }
+
+  /* Influence list — pillar style */
+  .influence {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 14px;
+  }
+  .inf-item {
+    padding: 16px 18px;
+    background: var(--bg-card-2);
+    border-left: 2px solid var(--accent);
+  }
+  .thinker.teal .inf-item { border-left-color: var(--teal); }
+  .thinker.purple .inf-item { border-left-color: var(--purple); }
+  .thinker.green .inf-item { border-left-color: var(--green); }
+  .thinker.pink .inf-item { border-left-color: var(--pink); }
+  .thinker.blue .inf-item { border-left-color: var(--blue); }
+  .thinker.yellow .inf-item { border-left-color: var(--yellow); }
+  .inf-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .inf-body {
+    font-size: 13px;
+    color: var(--text-soft);
+    line-height: 1.65;
+  }
+  .inf-body strong { color: var(--text); }
+
+  /* Today's echo */
+  .echo {
+    background: rgba(217,96,31,0.06);
+    border: 1px solid rgba(217,96,31,0.20);
+    padding: 22px 26px;
+    margin-top: 18px;
+  }
+  .thinker.teal .echo { background: rgba(46,138,124,0.07); border-color: rgba(46,138,124,0.22); }
+  .thinker.purple .echo { background: rgba(126,90,152,0.07); border-color: rgba(126,90,152,0.22); }
+  .thinker.green .echo { background: rgba(74,142,74,0.07); border-color: rgba(74,142,74,0.22); }
+  .thinker.pink .echo { background: rgba(194,87,135,0.07); border-color: rgba(194,87,135,0.22); }
+  .thinker.blue .echo { background: rgba(74,114,168,0.07); border-color: rgba(74,114,168,0.22); }
+  .echo-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .thinker.teal .echo-label { color: var(--teal); }
+  .thinker.purple .echo-label { color: var(--purple); }
+  .thinker.green .echo-label { color: var(--green); }
+  .thinker.pink .echo-label { color: var(--pink); }
+  .thinker.blue .echo-label { color: var(--blue); }
+  .echo-body {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  /* Quote */
+  .quote {
+    margin: 16px 0;
+    padding: 14px 0 14px 20px;
+    border-left: 3px solid var(--accent-dim);
+    font-family: 'Nanum Myeongjo', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--text);
+    line-height: 1.7;
+  }
+  .quote-src {
+    display: block;
+    margin-top: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-style: normal;
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 0.15em;
+  }
+
+  /* Concept chips */
+  .concepts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+  }
+  .concept-chip {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    padding: 6px 12px;
+    background: var(--bg-card-2);
+    border: 1px solid var(--border);
+    color: var(--text-soft);
+    letter-spacing: 0.02em;
+  }
+  .concept-chip strong {
+    color: var(--accent);
+    font-weight: 600;
+    margin-right: 6px;
+  }
+  .thinker.teal .concept-chip strong { color: var(--teal); }
+  .thinker.purple .concept-chip strong { color: var(--purple); }
+
+  /* ============ SIX THREADS (redesigned, deep) ============ */
+  .threads-intro {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 32px 36px;
+    margin-top: 28px;
+  }
+  .threads-intro p {
+    font-size: 15px;
+    color: var(--text-soft);
+    line-height: 1.8;
+  }
+  .threads-intro p strong { color: var(--accent); }
+
+  .threads-viz {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 40px;
+    margin-top: 24px;
+    overflow-x: auto;
+  }
+  .threads-viz svg { width: 100%; min-width: 900px; height: auto; display: block; }
+
+  .thread-detail {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    padding: 28px 32px;
+    margin-top: 20px;
+  }
+  .thread-detail.t1 { border-left-color: var(--teal); }
+  .thread-detail.t2 { border-left-color: var(--purple); }
+  .thread-detail.t3 { border-left-color: var(--accent); }
+  .thread-detail.t4 { border-left-color: var(--yellow); }
+  .thread-detail.t5 { border-left-color: var(--blue); }
+  .thread-detail.t6 { border-left-color: var(--green); }
+  .thread-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+  .thread-head .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--text-dim);
+  }
+  .thread-head h4 {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--text);
+  }
+  .thread-chain {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--text-soft);
+    margin-bottom: 14px;
+    line-height: 1.5;
+  }
+  .thread-body {
+    font-size: 14px;
+    color: var(--text-soft);
+    line-height: 1.8;
+  }
+  .thread-body strong { color: var(--text); }
+
+  /* ============ ART RESONANCE ============ */
+  .art-flow {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+    margin-top: 32px;
+  }
+  .art-step {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 24px 20px;
+    position: relative;
+  }
+  .art-step:nth-child(1) { border-top: 3px solid var(--purple); }
+  .art-step:nth-child(2) { border-top: 3px solid var(--accent); }
+  .art-step:nth-child(3) { border-top: 3px solid var(--teal); }
+  .art-step:nth-child(4) { border-top: 3px solid var(--yellow); }
+  .art-step:nth-child(5) { border-top: 3px solid var(--blue); }
+  .art-step .seq {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+  }
+  .art-step h4 {
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .art-step .art-sub {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 12px;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .art-step p {
+    font-size: 12.5px;
+    color: var(--text-soft);
+    line-height: 1.65;
+  }
+
+  .bauhaus-box {
+    margin-top: 36px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 44px;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+  .bauhaus-box h3 {
+    font-size: 24px;
+    font-weight: 800;
+    line-height: 1.35;
+    margin-bottom: 16px;
+    color: var(--text);
+  }
+  .bauhaus-box h3 em {
+    font-style: normal;
+    color: var(--accent);
+  }
+  .bauhaus-box p {
+    font-size: 14px;
+    color: var(--text-soft);
+    line-height: 1.8;
+    margin-bottom: 10px;
+  }
+  .bauhaus-eq {
+    font-family: 'JetBrains Mono', monospace;
+    padding: 28px;
+    background: var(--bg-code);
+    border: 1px solid var(--border);
+    font-size: 14px;
+    line-height: 2.2;
+    color: var(--text-soft);
+  }
+  .bauhaus-eq .h { color: var(--accent); font-weight: 600; }
+  .bauhaus-eq .o { color: var(--text); font-weight: 700; }
+  .bauhaus-eq .c { color: var(--text-dim); }
+
+  /* ============ ONE LINE ============ */
+  .oneline {
+    padding: 140px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .oneline::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(217,96,31,0.08), transparent 60%);
+  }
+  .oneline-inner { max-width: 900px; margin: 0 auto; position: relative; }
+  .oneline-k {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.4em;
+    color: var(--accent);
+    margin-bottom: 36px;
+  }
+  .oneline-main {
+    font-size: clamp(22px, 2.8vw, 32px);
+    font-weight: 700;
+    line-height: 1.5;
+    color: var(--text);
+  }
+  .oneline-main em {
+    font-style: normal;
+    color: var(--accent);
+  }
+  .oneline-sig {
+    margin-top: 44px;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: var(--text-soft);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* ============ NOW · APPLICATION ============ */
+  .app-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 40px;
+  }
+  .app-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 28px 30px;
+  }
+  .app-card .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .app-card h4 {
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 12px;
+    line-height: 1.4;
+  }
+  .app-card ul {
+    list-style: none;
+    padding: 0;
+  }
+  .app-card li {
+    font-size: 13px;
+    color: var(--text-soft);
+    padding: 6px 0;
+    border-bottom: 1px dashed var(--border);
+    line-height: 1.6;
+  }
+  .app-card li:last-child { border-bottom: none; }
+  .app-card li::before { content: '▸ '; color: var(--accent); margin-right: 4px; }
+
+  /* ============ FOOTER ============ */
+  footer {
+    background: var(--bg-2);
+    padding: 70px 60px 40px;
+    border-top: 1px solid var(--border);
+  }
+  footer .inner {
+    max-width: 1120px; margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 56px;
+  }
+  footer h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  footer p, footer li {
+    font-size: 13px;
+    color: var(--text-soft);
+    line-height: 1.8;
+  }
+  footer p strong { color: var(--text); }
+  footer ul { list-style: none; }
+  footer li { padding: 3px 0; }
+  footer li::before { content: '— '; color: var(--text-dim); }
+  footer .colophon {
+    max-width: 1120px;
+    margin: 52px auto 0;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--text-dim);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  @media (max-width: 960px) {
+    .hero, section, footer, nav.sticky { padding-left: 28px; padding-right: 28px; }
+    .sec-header { flex-direction: column; gap: 12px; }
+    .sec-num { font-size: 42px; }
+    .hero-meta { grid-template-columns: 1fr 1fr; }
+    .compare-grid, .bauhaus-box { grid-template-columns: 1fr; gap: 20px; }
+    .art-flow { grid-template-columns: repeat(2, 1fr); }
+    .app-grid, .influence { grid-template-columns: 1fr; }
+    footer .inner { grid-template-columns: 1fr; gap: 32px; }
+    .thinker-top { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-kicker">MODERN EPISTEMOLOGY LINEAGE · DEEP · 2026</div>
+    <h1>데카르트 이후 <em>400년</em>,<br/>"나"를 해체해온 여정</h1>
+    <p class="hero-lead">
+      데카르트는 "생각하는 나"를 발견했다. 그 이후 400년은 <strong style="color:var(--text)">그 "나"가 어떻게 구성되는가</strong>를 해체해온 긴 여정이다.
+      이 문서는 각 학자의 이름을 열거하지 않는다. 대신 그들이 던진 질문, 그들이 머릿속에 그린 스키마, 그리고 그 개념이 철학·심리학·예술·현대 인지과학으로 어떻게 번져갔는지 — 그 <strong style="color:var(--text)">인문학적 파동</strong>을 추적한다.
+    </p>
+    <div class="hero-meta">
+      <div><div class="label">Duration</div><div class="value">400 Years · 17C→21C</div></div>
+      <div><div class="label">Phases</div><div class="value">7 Epistemic Turns</div></div>
+      <div><div class="label">Threads</div><div class="value">6 Cross-Century Strands</div></div>
+      <div><div class="label">Series</div><div class="value">Part V · Creative Communicator</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ NAV ============ -->
+<nav class="sticky">
+  <div class="nav-inner">
+    <a href="#intro">00 · 들어가며</a>
+    <a href="#p1">01 · 합리론 vs 경험론</a>
+    <a href="#p2">02 · 칸트 ★</a>
+    <a href="#p3">03 · 3중 폭발</a>
+    <a href="#p4">04 · 현상학·게슈탈트</a>
+    <a href="#p5">05 · 인지 혁명</a>
+    <a href="#p6">06 · 체화 전환</a>
+    <a href="#p7">07 · 예측하는 뇌 ★</a>
+    <a href="#threads">08 · 6 스레드</a>
+    <a href="#art">09 · 예술사 공명</a>
+    <a href="#now">10 · 오늘의 적용</a>
+  </div>
+</nav>
+
+<!-- ============ 00 · INTRO ============ -->
+<section id="intro">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">00</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">WHY THIS LINEAGE</div>
+        <h2>왜 <em>이 계보</em>가 필요한가</h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      디학 시각기호학 세미나 6주차에서 "현대 미술 = 재현의 본질을 찾는 형식주의 전쟁, 현대 디자인 = 형태의 본질을 찾는 기능주의 전쟁"이라는 명제를 만났다.
+      이 문장이 성립하려면 <strong>그 전에 400년간 축적된 사상사가 먼저 있어야 한다.</strong> 예술은 사상의 맨 끝에서 피어나는 꽃이기 때문이다.
+    </p>
+
+    <div class="intro-why">
+      <h3><span>CORE QUESTION</span>이 계보가 답하려는 하나의 질문</h3>
+      <p><strong style="color:var(--text)">"마음은 감각을 어떻게 처리하는가 — 수동적으로 받는가, 능동적으로 구성하는가?"</strong></p>
+      <p>데카르트부터 오늘의 예측 뇌 이론까지, 400년 사상사의 국면 전환은 모두 이 질문에 대한 답을 달리한 결과다. 로크는 백지라 했고, 칸트는 선험적 구조가 있다 했고, 프로이트는 무의식이 작동한다 했고, Friston은 뇌가 통제된 환각을 생성한다고 했다.</p>
+      <p>이 계보를 안다는 것은 오늘 내가 만드는 카피·디자인·서사가 <strong style="color:var(--accent-2)">어떤 전제 위에 서 있는지</strong>를 아는 것과 같다.</p>
+    </div>
+
+    <div class="compare-grid">
+      <div class="compare-card old">
+        <h4>— 사상사를 모르고 만들 때</h4>
+        <div class="punch">크리에이티브는 직관으로만 돈다</div>
+        <p>좋은 게 나와도 왜 좋은지 설명하지 못한다. 다음에 또 좋은 걸 만들지 확신이 없다. 트렌드를 쫓거나 레퍼런스를 베낀다.</p>
+      </div>
+      <div class="compare-card new">
+        <h4>— 사상사 위에서 만들 때</h4>
+        <div class="punch">크리에이티브는 선택의 연쇄가 된다</div>
+        <p>"이 카피는 칸트식 능동적 구성을 자극한다", "이 비주얼은 게슈탈트 원리를 활용한다"처럼 결정의 근거가 있다. 왜 작동하는지 설명 가능한 작업이 된다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 01 · PHASE 1 ============ -->
+<section id="p1" style="background:var(--bg-2);">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">01</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">PHASE 01 · 17TH CENTURY</div>
+        <h2>합리론 <em>vs</em> 경험론 — 지식의 원천은 어디인가</h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      데카르트가 "생각하는 나"를 세운 후, 유럽은 두 진영으로 갈렸다. 대륙은 이성이 진리의 원천이라 했고, 영국은 경험이 그 원천이라 했다. 이 갈등이 칸트를 불러오고, 300년 뒤 뇌과학의 선천/후천 논쟁으로 이어진다.
+    </p>
+
+    <div class="phase-hero">
+      <div class="phase-era">PHASE 01 · 1637 → 1781</div>
+      <h3>국면 1 · <em>이성 vs 경험</em>의 대분할</h3>
+      <p>"내 머릿속에 이미 갖춰진 구조가 있는가(합리론), 아니면 감각 경험을 통해서만 채워지는가(경험론)?" 이 질문이 17세기를 양분했다. 양쪽 다 틀렸고 — 정확히는 둘 다 부분적으로 맞았다. 그 통합이 칸트에서 일어난다.</p>
+      <div class="phase-q">핵심 질문 <strong>→</strong> 마음에 선천적 구조가 있는가, 아니면 백지에 쓰이는가?</div>
+    </div>
+
+    <!-- Descartes -->
+    <article class="thinker">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Descartes</span>
+            <span class="thinker-ko">르네 데카르트</span>
+            <span class="thinker-years">1596–1650</span>
+          </div>
+          <div class="thinker-punch">의심할 수 없는 단 하나, <em>의심하고 있는 "나"</em>로부터 모든 지식의 토대를 세웠다.</div>
+        </div>
+        <span class="thinker-tag">Rationalism · Dualism</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p><strong>Cogito, ergo sum</strong> — "나는 생각한다, 고로 존재한다." 모든 것을 의심해도 의심하는 행위 자체는 의심할 수 없다. 여기서부터 재건축을 시작한다. 동시에 데카르트는 마음과 몸을 완전히 별개의 실체로 나눴다 — <strong>심신 이원론(mind-body dualism)</strong>. 마음은 사유(res cogitans), 몸은 연장(res extensa).</p>
+          <p>이 이원론은 400년간 서양 지성사의 기본 전제가 된다. 그리고 이 전제를 무너뜨리는 것이 다음 400년의 가장 큰 지적 과제가 된다.</p>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 머릿속 그림</div>
+<div class="schema"><span class="c-d"># 데카르트의 세계</span>
+
+  <span class="c-a">[마음 · res cogitans]</span>         <span class="c-d">←  사유 · 의심 · 확실성</span>
+        ║
+        ║  <span class="c-d">송과선(pineal gland)</span>
+        ║  <span class="c-d">— 둘이 만나는 유일한 지점</span>
+        ║
+  <span class="c-t">[몸  · res extensa]</span>          <span class="c-d">←  연장 · 기계 · 공간</span>
+
+<span class="c-d">규칙:</span> 마음과 몸은 <span class="c-hi">완전히 다른 종류의 실체</span>.
+     마음은 공간을 차지하지 않음. 몸은 생각하지 않음.</div>
+          <div class="schema-cap">DESCARTES · DUALISM</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Philosophy</div>
+              <div class="inf-body">근대 철학의 출발점. "주체-객체 분리", "내면-외부 분리"라는 도식이 데카르트 이후 표준이 됨. Locke·Hume·Kant 모두 이 도식 위에서 작업.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Science</div>
+              <div class="inf-body">몸을 기계로 보는 관점이 근대 의학·생리학의 토대. 해부학·생리학이 "몸=기계" 가정 위에서 폭발적으로 발전.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Art / Design</div>
+              <div class="inf-body">"관찰하는 주체 vs 관찰되는 대상" 도식은 원근법·정물화·과학 삽화의 철학적 근거. 뷰어는 세계 밖에서 세계를 본다.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              "정신 건강 vs 신체 건강"을 별개로 관리하는 것, "객관적 사실 vs 주관적 느낌"을 분리하는 습관 — 이 모든 일상 언어가 데카르트의 이원론 유산. Damasio의 『데카르트의 오류』(1994)는 이 분리가 왜 실제 뇌에서는 성립하지 않는지를 논증한 책.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Spinoza -->
+    <article class="thinker teal">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Spinoza</span>
+            <span class="thinker-ko">바뤼흐 스피노자</span>
+            <span class="thinker-years">1632–1677</span>
+          </div>
+          <div class="thinker-punch">심신은 두 실체가 아니라, <em>하나의 실체의 두 속성</em>이다 — 체화 인지의 300년 선구.</div>
+        </div>
+        <span class="thinker-tag">Parallelism · Monism</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p><strong>심신 평행론(psycho-physical parallelism)</strong>. 데카르트의 이원론을 거부하고, 마음과 몸은 하나의 실체(신=자연)가 두 가지 방식으로 나타나는 것이라고 봤다. 몸에서 일어나는 모든 일은 마음에서도 동시에 일어난다 — 두 개의 평행한 "번역"으로.</p>
+          <p>스피노자는 기쁨·슬픔·욕망 같은 정서를 몸의 작용력 증감으로 설명했다. 슬픔은 몸의 활동력이 감소하는 상태, 기쁨은 증가하는 상태. <strong>감정을 신체의 상태로 읽는다는 발상</strong>이 여기서 시작된다.</p>
+          <div class="quote">"인간 정신의 대상은 몸이다. 그 외에 다른 것이 아니다." <span class="quote-src">— 에티카 2부 정리 13</span></div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 머릿속 그림</div>
+<div class="schema"><span class="c-d"># 스피노자의 일원론 — 하나의 실체, 두 속성</span>
+
+                    <span class="c-hi">하나의 실체 (신 = 자연)</span>
+                              │
+              ┌───────────────┴───────────────┐
+              ▼                               ▼
+      <span class="c-t">속성 1 · 사유</span>                   <span class="c-a">속성 2 · 연장</span>
+      (mind · thought)               (body · extension)
+              │                               │
+         기쁨·슬픔·욕망       ═══════       활동력 증감
+              │    <span class="c-d">평행 (parallelism)</span>         │
+         명확한 관념                    구체적 몸의 변화
+
+<span class="c-d">핵심:</span> 둘은 <span class="c-hi">인과관계가 아니라 같은 사건의 두 표현</span>.</div>
+          <div class="schema-cap">SPINOZA · PARALLELISM</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Philosophy</div>
+              <div class="inf-body">데카르트 이원론의 최초 대안. 들뢰즈가 "철학의 왕자"라 부름. 20세기 체화 인지(embodied cognition)의 이론적 원형.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Neuroscience</div>
+              <div class="inf-body"><strong>Damasio</strong>는 『스피노자를 찾아서』(2003)에서 현대 정서 신경과학의 시작점으로 스피노자를 재발견. 정서=신체 상태라는 가설의 실증.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Humanities</div>
+              <div class="inf-body">"감정은 생각의 적"이 아니라 "생각의 일부"라는 재해석. 감정을 관리 대상이 아닌 정보로 읽는 현대 심리학의 토대.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              "몸이 먼저 안다"는 말이 과학적 의미를 가지는 이유. 신체 표지 가설(somatic marker hypothesis) · 제임스-랭 이론 · 체화 시뮬레이션이 모두 스피노자 평행론의 현대판. 요가·명상·소매틱 무브먼트의 철학적 근거도 여기에 있다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Hume -->
+    <article class="thinker purple">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Hume</span>
+            <span class="thinker-ko">데이비드 흄</span>
+            <span class="thinker-years">1711–1776</span>
+          </div>
+          <div class="thinker-punch">"나"는 실체가 아니라 <em>지각의 다발</em>이다. 인과조차 논리가 아니라 습관일 뿐이다.</div>
+        </div>
+        <span class="thinker-tag">Empiricism · Skepticism</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p><strong>번들 이론(bundle theory of self)</strong>. 내가 "나"라고 여기는 것은 사실 시시각각 흘러가는 지각들의 묶음일 뿐이다. 내성해봐도 "나"라는 고정된 것은 발견되지 않는다 — 발견되는 건 오직 지금 이 순간의 지각뿐. <strong>자아는 명사가 아니라 동사다.</strong></p>
+          <p>또한 흄은 인과관계를 해체했다. 당구공 A가 B를 맞추면 B가 움직인다 — 우리는 이것을 "원인 → 결과"라 부르지만, 실제 우리가 본 것은 "A 움직임 → B 움직임"의 반복된 연속일 뿐이다. 인과는 <strong>논리적 필연이 아니라 심리적 습관</strong>이다.</p>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 머릿속 그림</div>
+<div class="schema"><span class="c-d"># 흄의 자아 — 번들 이론</span>
+
+<span class="c-d">데카르트가 본 "나":</span>
+      ┌─────────────┐
+      │     나       │  <span class="c-d">← 고정된 실체 (substantial self)</span>
+      └─────────────┘
+
+<span class="c-d">흄이 본 "나":</span>
+      <span class="c-p">[지각]</span> <span class="c-p">[지각]</span> <span class="c-p">[지각]</span> <span class="c-p">[지각]</span> <span class="c-p">[지각]</span>
+         ↓    ↓    ↓    ↓    ↓
+      <span class="c-d">흘러가는 다발(bundle) — 묶는 끈은 없음</span>
+
+<span class="c-d">인과의 해체:</span>
+  본 것:  사건A → 사건B → <span class="c-d">(반복)</span> → 사건A → 사건B
+  느낀 것: "A는 B의 <span class="c-hi">원인</span>이다"
+  실제:   습관 + 기대 = 인과의 환상</div>
+          <div class="schema-cap">HUME · BUNDLE THEORY + CAUSATION</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Philosophy</div>
+              <div class="inf-body">칸트를 "독단의 잠에서 깨운 사람". 서양 철학 전체에 회의주의 전통을 남김. 후대 현상학·불교 철학(無我)과 직결.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Cognitive Science</div>
+              <div class="inf-body">"자아는 뇌의 구성물"이라는 현대 신경과학의 최초 철학적 근거. <strong>Anil Seth</strong>의 『Being You』(2021)는 흄의 현대 버전.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Narrative / Art</div>
+              <div class="inf-body">의식의 흐름(stream of consciousness) 소설(Joyce·Woolf)의 철학적 토대. 고정된 캐릭터가 아니라 흘러가는 지각의 연속으로 인물을 그리기.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              명상 수행에서 "나라는 감각을 관찰하라"는 가르침, 심리치료에서 "자아는 고정되지 않는다"는 전제, 스토리텔링에서 "캐릭터는 관계로 규정된다"는 원칙 — 모두 흄의 계보. 내가 싫어하는 나의 모습도 "번들의 일부"일 뿐이라는 치유의 언어도 여기서 나온다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ 02 · PHASE 2 · KANT ============ -->
+<section id="p2">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num star">02 ★</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">PHASE 02 · 18TH CENTURY · PIVOT</div>
+        <h2>칸트의 <em>코페르니쿠스적 전환</em></h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      이 계보에서 가장 중요한 한 사람. 합리론과 경험론의 대결을 뒤집어 해소했다. "대상이 마음에 따르는 것이 아니라, <strong>마음이 대상에 구조를 부여한다.</strong>" 인식의 주도권을 마음으로 옮긴 혁명.
+    </p>
+
+    <div class="phase-hero yellow">
+      <div class="phase-era">PHASE 02 · 1781 · PURE REASON<span class="star">★ PIVOT</span></div>
+      <h3>국면 2 · <em>인식은 수동 수신이 아닌 능동 구성</em></h3>
+      <p>칸트 이전의 모든 인식론은 "어떻게 마음이 세계를 정확히 반영하는가"를 물었다. 칸트는 질문을 뒤집었다. "세계를 우리는 정확히 반영하지 않는다. 우리는 우리의 마음 구조를 통해서만 세계를 만난다." 이 단일한 전환이 이후 250년 인식론의 방향을 결정한다.</p>
+      <div class="phase-q">핵심 질문 <strong>→</strong> 마음이 세계를 받는가, 아니면 마음이 세계를 구성하는가?</div>
+    </div>
+
+    <article class="thinker yellow">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Kant</span>
+            <span class="thinker-ko">임마누엘 칸트</span>
+            <span class="thinker-years">1724–1804</span>
+          </div>
+          <div class="thinker-punch">인식은 감각의 모사가 아니라 <em>선험적 범주에 의한 능동적 구성</em>이다. 현대 예측 뇌 이론의 250년 선배.</div>
+        </div>
+        <span class="thinker-tag">Transcendental Idealism</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>칸트는 인식을 두 층으로 나눴다. <strong>현상(Phenomena)</strong> — 우리에게 나타나는 것. <strong>물자체(Noumena)</strong> — 그 자체로 있는 것. 우리는 물자체를 직접 알 수 없다. 우리가 아는 것은 오직 현상, 즉 <strong>우리 마음이 구조화해 준 세계</strong>뿐이다.</p>
+          <p>어떻게 구조화하는가? 칸트는 마음에 <strong>선험적 범주(a priori categories)</strong>가 있다고 했다. 공간·시간이라는 감성 형식, 인과·실체·단일성 같은 오성 범주. 이것들은 경험에서 오는 게 아니라 경험을 가능하게 하는 조건이다.</p>
+          <div class="quote">"대상들이 우리 인식에 맞춰지는 것이 아니라, 우리 인식이 대상들에게 구조를 부여한다."<span class="quote-src">— 순수이성비판, 서문 (1781)</span></div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 머릿속 그림</div>
+<div class="schema"><span class="c-d"># 칸트의 인식 구조 — 능동적 구성</span>
+
+   <span class="c-d">[물자체 · Noumena]</span>   ← 우리가 직접 알 수 없는 것
+          │
+          │  감각 자극 (원재료)
+          ▼
+   ┌──────────────────────────┐
+   │   <span class="c-y">[감성 · Sensibility]</span>    │  공간 · 시간 (감성 형식)
+   │          ↓               │
+   │   <span class="c-y">[오성 · Understanding]</span>  │  인과 · 실체 · 양 · 질 ...
+   │          ↓               │     (12개 범주)
+   │   <span class="c-y">[이성 · Reason]</span>         │  통합된 경험
+   └──────────────────────────┘
+          │
+          ▼
+   <span class="c-hi">[현상 · Phenomena]</span>  ← 우리가 경험하는 "세계"
+
+<span class="c-d">핵심:</span> 세계는 주어지는 것이 아니라 <span class="c-hi">만들어지는 것</span>.
+      단, 제멋대로 만들어지는 것이 아니라 <span class="c-hi">선험적 구조에 따라</span>.</div>
+          <div class="schema-cap">KANT · COPERNICAN TURN</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">THE FLIP · 뒤집힌 것</div>
+          <p>경험론은 "감각이 먼저, 개념은 그 위에 쌓인다"고 했고, 합리론은 "개념이 먼저, 감각은 그것을 채운다"고 했다. 칸트는 이 대결을 <strong>"감각도 개념도 없이는 성립 안 된다"</strong>로 해소했다.</p>
+          <p class="quote" style="margin-top:14px;">"개념 없는 직관은 맹목이고, 직관 없는 개념은 공허하다."<span class="quote-src">— 순수이성비판</span></p>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Philosophy</div>
+              <div class="inf-body">독일 관념론(헤겔·피히테·셸링), 현상학(후설), 구조주의, 언어철학 — 모두 칸트의 "선험적 구조" 개념의 변주. 20세기 철학 대부분이 칸트의 자식.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Art / Aesthetics</div>
+              <div class="inf-body">『판단력 비판』(1790)은 현대 미학의 초석. "미는 대상의 속성이 아니라 주관적 판단의 보편성" — 현대 예술이 대상을 베끼지 않아도 되는 개념적 근거.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Cognitive Science</div>
+              <div class="inf-body"><strong>Predictive Processing의 직계 조상</strong>. 뇌의 선험적 모델이 감각 데이터를 해석한다는 현대 이론은 칸트를 신경과학으로 번역한 것.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">CONCEPTS · 파생 개념</div>
+          <div class="concepts">
+            <span class="concept-chip"><strong>선험적</strong>경험에 앞서는 구조</span>
+            <span class="concept-chip"><strong>현상/물자체</strong>나타나는 것 vs 그 자체</span>
+            <span class="concept-chip"><strong>범주</strong>12개의 판단 형식</span>
+            <span class="concept-chip"><strong>정언명령</strong>윤리학의 선험적 명령</span>
+            <span class="concept-chip"><strong>숭고</strong>이해를 초과하는 미적 경험</span>
+            <span class="concept-chip"><strong>자율성</strong>이성의 자기 입법</span>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              <strong>같은 제품을 보고도 사람마다 다르게 느끼는 이유</strong>를 설명하려면 칸트가 필요하다. 각자의 선험적 범주(프레임·스키마·문화적 조건)가 다르기 때문. 광고·UX·브랜딩에서 "프레임을 먼저 설계하라"는 원칙, 스토리텔링에서 "독자의 스키마에 올라타라"는 원칙, 모두 칸트의 후예. 그리고 더 근본적으로 — Andy Clark이 "뇌는 예측 기계"라 말할 때, 그는 칸트의 선험적 범주를 뉴런 수준에서 다시 쓰고 있는 것이다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ 03 · PHASE 3 · TRIPLE BLAST + HELMHOLTZ ============ -->
+<section id="p3" style="background:var(--bg-2);">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">03</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">PHASE 03 · 19TH CENTURY</div>
+        <h2>삼중 폭발 <em>+</em> 심리학의 과학화</h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      Darwin·Marx·Freud는 각자 다른 전장에서 같은 구조의 발견을 했다. <strong>"표면 뒤에 숨겨진 메커니즘이 표면을 만든다."</strong> 동시에 Helmholtz는 "지각 자체가 무의식적 추론이다"라고 선언하며 예측 뇌 이론의 직계 아버지가 된다.
+    </p>
+
+    <div class="phase-hero accent">
+      <div class="phase-era">PHASE 03 · 1859 → 1900</div>
+      <h3>국면 3 · <em>인간 자율성의 삼중 해체</em></h3>
+      <p>세 사람은 서로 몰랐지만 같은 일을 했다. 그 전까지 "인간은 합리적 주체"였다. 이 셋 이후로 인간은 <strong>(1) 진화에 의해 휩쓸리고 (2) 계급관계에 의해 규정되고 (3) 무의식에 의해 조종받는</strong> 존재가 되었다.</p>
+      <div class="phase-q">핵심 질문 <strong>→</strong> 내가 안다고 생각하는 "내 생각"은 정말 내 것인가?</div>
+    </div>
+
+    <!-- Darwin -->
+    <article class="thinker">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Darwin</span>
+            <span class="thinker-ko">찰스 다윈</span>
+            <span class="thinker-years">1809–1882</span>
+          </div>
+          <div class="thinker-punch">종은 고정되지 않았다 — <em>변이와 선택의 축적</em>이 형태를 만든다. 목적도 설계자도 없는 알고리즘.</div>
+        </div>
+        <span class="thinker-tag">Natural Selection</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p><strong>자연선택(natural selection)</strong>. (1) 개체들은 약간씩 다르다(변이). (2) 일부 변이는 생존·번식에 유리하다. (3) 유리한 변이는 다음 세대에 더 자주 전달된다. 이 세 가지만 있으면 — <strong>방향도 목적도 없이</strong> — 복잡한 형태가 자연히 발생한다.</p>
+          <p>이것은 단지 생물학 이론이 아니다. <strong>"복잡성은 설계자 없이도 발생한다"</strong>는 새로운 우주관이다. 신학적 목적론(teleology)의 종말.</p>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 머릿속 그림</div>
+<div class="schema"><span class="c-d"># 다윈의 알고리즘 — 설계자 없는 복잡성</span>
+
+  <span class="c-a">[세대 N]</span>  ●○●○●●○●●○●○●●○    ← <span class="c-d">변이 (개체차)</span>
+              │
+              ▼  <span class="c-d">환경 압력 (먹이·포식자·짝)</span>
+              │
+  <span class="c-a">[선택 필터]</span>  ●  ●  ●  ●  ●        ← <span class="c-d">살아남는 것들</span>
+              │
+              ▼  <span class="c-d">번식 → 유전</span>
+              │
+  <span class="c-a">[세대 N+1]</span> ●●●●●●●○●●○●●●●    ← <span class="c-d">평균값이 이동</span>
+
+<span class="c-d">누적 (N = 수백만):</span>
+       <span class="c-hi">단세포 → 물고기 → 포유류 → 인간</span>
+       목적 없음. 설계자 없음. 축적이 형태를 만듦.</div>
+          <div class="schema-cap">DARWIN · NATURAL SELECTION</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Philosophy</div>
+              <div class="inf-body">"인간은 특별한 창조물이 아니라 동물의 연속"이라는 탈인간중심주의. 니체의 "인간은 극복되어야 할 것"의 생물학적 배경.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Social / Economic</div>
+              <div class="inf-body">사회진화론(잘못된 확장), 진화경제학, 밈 이론(Dawkins). "경쟁 → 적응"이라는 모델이 생물 바깥으로 확장.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Art</div>
+              <div class="inf-body">인상파 — 순간의 변화·빛의 이동을 포착하려는 시도. "고정된 재현"에서 "변화의 포착"으로 예술의 문제의식 이동.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              Karl Friston의 <strong>자유에너지 원리(FEP)</strong>는 "뇌는 진화적으로 예측 오차를 최소화하도록 선택되었다"고 한다. 즉 다윈 알고리즘이 뇌의 작동 원리 자체가 된 것. 진화심리학, 유전자 알고리즘, 머신러닝의 진화 알고리즘 — 모두 "변이 + 선택"이라는 다윈 엔진의 변형.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Marx -->
+    <article class="thinker blue">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Marx</span>
+            <span class="thinker-ko">카를 마르크스</span>
+            <span class="thinker-years">1818–1883</span>
+          </div>
+          <div class="thinker-punch">개인의 생각은 자율적이지 않다 — <em>생산양식과 계급관계</em>가 의식을 결정한다.</div>
+        </div>
+        <span class="thinker-tag">Historical Materialism</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p><strong>유물사관(historical materialism)</strong>. 의식이 사회를 만드는 것이 아니라 <strong>사회 경제적 조건이 의식을 만든다</strong>. 한 시대의 사상·도덕·예술은 그 시대의 생산 관계(누가 생산수단을 소유하는가)의 반영이다.</p>
+          <p><strong>이데올로기(ideology)</strong>는 이 관계를 자연스러워 보이게 만드는 장치. 자본가의 이익이 "상식"으로 포장되는 순간, 이데올로기가 작동하고 있는 것이다. 노동자가 자기 착취 상태를 당연하게 받아들이는 것도 이데올로기의 효과.</p>
+          <div class="quote">"인간의 의식이 존재를 결정하는 것이 아니라, 사회적 존재가 의식을 결정한다."<span class="quote-src">— 정치경제학 비판 서문 (1859)</span></div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 머릿속 그림</div>
+<div class="schema"><span class="c-d"># 마르크스의 하부-상부 구조</span>
+
+          <span class="c-b">[상부구조 · Superstructure]</span>
+        ─────────────────────────
+          법 · 정치 · 종교 · 도덕
+          철학 · 예술 · 문화
+        ─────────────────────────
+                    ↑
+        ─────────────────────────
+          <span class="c-hi">[하부구조 · Base]</span>
+        ─────────────────────────
+          생산력 (기술·노동)
+            +
+          생산관계 (소유·계급)
+        ─────────────────────────
+
+<span class="c-d">핵심:</span> 상부는 하부의 <span class="c-hi">반영이자 정당화</span>.
+      하부가 바뀌어야 상부도 바뀐다.</div>
+          <div class="schema-cap">MARX · BASE-SUPERSTRUCTURE</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Philosophy</div>
+              <div class="inf-body">프랑크푸르트학파(아도르노·벤야민·하버마스), 구조주의, 문화 연구(cultural studies), 포스트콜로니얼리즘 — 20세기 비판 이론 전체의 토대.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Design / Architecture</div>
+              <div class="inf-body">디자인의 탄생 배경. 아르누보·데스틸·<strong>바우하우스</strong>·구성주의 — 모두 "예술은 개인 천재가 아니라 집단적 삶의 양식"이라는 전제에서 출발.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Media / Advertising</div>
+              <div class="inf-body">"상품의 물신화(commodity fetishism)" 개념은 브랜딩·소비문화 분석의 기초. 왜 같은 물건이 로고 하나로 10배 가격이 되는지 설명하는 도구.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              "플랫폼이 사용자를 착취하는 구조", "알고리즘이 취향을 규정하는 방식", "AI가 노동을 대체하는 정치경제" — 2020년대 가장 뜨거운 논의들이 모두 마르크스의 틀 안에서 돌아간다. 당신이 지금 쓰는 브랜드의 "감성"조차 그 브랜드의 소유 구조와 분리할 수 없다는 통찰도 여기서 온다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Freud -->
+    <article class="thinker purple">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Freud</span>
+            <span class="thinker-ko">지그문트 프로이트</span>
+            <span class="thinker-years">1856–1939</span>
+          </div>
+          <div class="thinker-punch">의식은 <em>빙산의 일각</em>이다. 내가 "내 의도"라고 믿는 것의 대부분은 무의식이 만든다.</div>
+        </div>
+        <span class="thinker-tag">Psychoanalysis · Unconscious</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p><strong>무의식(unconscious)</strong>. 정신 활동의 대부분은 의식 밖에서 일어난다. 의식은 표면이고, 그 아래 억압된 욕동·기억·갈등이 실제로 행동을 움직인다. 꿈·실언·증상은 이 무의식이 왜곡되어 떠오르는 통로.</p>
+          <p>프로이트는 정신을 세 층으로 나눴다. <strong>이드(Id)</strong> — 원초적 욕동. <strong>자아(Ego)</strong> — 현실과 타협하는 관리자. <strong>초자아(Superego)</strong> — 사회·부모가 내면화된 규범. 세 힘이 끊임없이 갈등하며 그 타협의 결과가 의식적 행동이다.</p>
+          <div class="quote">"자아는 자기 집의 주인이 아니다."<span class="quote-src">— 정신분석 입문 (1917)</span></div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 머릿속 그림</div>
+<div class="schema"><span class="c-d"># 프로이트의 정신 빙산</span>
+
+          ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~  <span class="c-d">← 수면 (의식 경계)</span>
+                    │
+              <span class="c-p">[의식]</span>              ← 지금 알아차리는 것
+                    │
+          ═════════════════════
+                    │
+              <span class="c-p">[전의식]</span>             ← 기억하려면 떠올릴 수 있는 것
+                    │
+          ─────────────────────
+                    │
+              <span class="c-hi">[무의식 · Unconscious]</span>   ← 정신의 90%
+                    │
+              ▼ 구조 (Structural Model) ▼
+          ┌───────────────────────┐
+          │ <span class="c-p">이드(Id)</span>       욕동·쾌락원리    │
+          │ <span class="c-p">자아(Ego)</span>      현실원리·중재     │
+          │ <span class="c-p">초자아(Superego)</span> 도덕·금지     │
+          └───────────────────────┘
+
+<span class="c-d">통로:</span> 꿈 · 실언 · 증상 · 농담 = 무의식의 메시지</div>
+          <div class="schema-cap">FREUD · TOPOGRAPHIC + STRUCTURAL MODEL</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Philosophy / Theory</div>
+              <div class="inf-body">라캉·크리스테바·지젝 등 정신분석 철학 전통. 데리다의 해체주의, 푸코의 권력/욕망 분석 모두 프로이트와 대화하며 형성.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Art</div>
+              <div class="inf-body">초현실주의(달리·마그리트·에른스트) · 표현주의(뭉크) — 무의식을 직접 그리려는 시도. 20세기 소설의 내적 독백 기법도 여기서.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Advertising</div>
+              <div class="inf-body">조카 <strong>에드워드 버네이스</strong>가 프로이트 이론을 광고에 적용 — "욕망을 자극하면 소비는 따라온다"는 현대 광고의 문법. 오길비도 여기서 출발.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              Kahneman의 <strong>System 1/2</strong>(빠르고 직관적인 무의식적 판단 vs 느리고 의식적인 추론)은 프로이트의 현대 과학 버전. 인지 심리학의 "암묵 기억(implicit memory)", Lakoff의 "인지적 무의식", 행동경제학의 넛지 — 모두 "의식은 정신 활동의 10%도 안 된다"는 프로이트 테제의 후예. 당신이 어떤 브랜드에 "왠지 끌리는" 이유를 과학적으로 설명할 수 있는 이유.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Helmholtz -->
+    <article class="thinker teal">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Helmholtz</span>
+            <span class="thinker-ko">헤르만 폰 헬름홀츠</span>
+            <span class="thinker-years">1821–1894</span>
+          </div>
+          <div class="thinker-punch">지각은 감각 데이터의 읽기가 아니라 <em>무의식적 추론(unconscious inference)</em>이다 — 예측 뇌 이론의 직계 아버지.</div>
+        </div>
+        <span class="thinker-tag">★ Unconscious Inference</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>프로이트보다 먼저, 생리학자 헬름홀츠는 시지각을 연구하며 하나의 결론에 도달했다. <strong>망막에 맺힌 2D 이미지만으로는 3D 세계가 복원되지 않는다.</strong> 뇌는 감각 데이터를 "읽는" 것이 아니라, 세계에 대한 가설을 세우고 그 가설을 감각으로 검증한다. 우리가 보는 것은 <strong>가장 그럴듯한 세계의 추론</strong>이다.</p>
+          <p>이 추론은 의식 아래에서 초고속으로 일어난다. 그래서 "무의식적 추론"이라 부른다. 당신이 "나는 지금 탁자를 본다"고 말할 때, 사실은 "탁자가 가장 그럴듯한 해석"이라는 뇌의 베팅 결과를 보고 있는 것.</p>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 머릿속 그림</div>
+<div class="schema"><span class="c-d"># 헬름홀츠의 지각 모델 — 예측 뇌의 원형</span>
+
+  <span class="c-d">상식적 모델 (틀림):</span>
+      [세계] → [감각] → [뇌] → <span class="c-hi">[지각]</span>
+              (수동적 수신)
+
+  <span class="c-d">헬름홀츠 모델 (맞음):</span>
+                     <span class="c-t">[뇌의 선험 모델]</span>
+                            │
+                            ▼  <span class="c-d">예측 생성</span>
+                      <span class="c-t">[가설된 세계]</span>
+                            │
+      ┌─────── 비교 ───────┤
+      ▼                      ▼
+  [감각 입력]            [예측]
+      │                      │
+      └──── 오차 (prediction error) ────┘
+                            │
+                            ▼
+                  <span class="c-hi">[지각 · 가장 그럴듯한 세계]</span>
+
+<span class="c-d">핵심:</span> 지각 = <span class="c-hi">예측 + 감각의 가중 평균</span>
+      의식 아래에서 일어나는 베이지안 추론.</div>
+          <div class="schema-cap">HELMHOLTZ · UNCONSCIOUS INFERENCE · 1867</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Psychology</div>
+              <div class="inf-body">게슈탈트 심리학의 직접적 선구 — "전체가 부분의 합 이상"이라는 명제는 "뇌가 부분들을 전체로 추론한다"는 헬름홀츠의 확장.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Philosophy</div>
+              <div class="inf-body">칸트의 "능동적 마음"을 과학적 가설로 번역. 현대 자연주의 인식론의 출발점.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Neuroscience</div>
+              <div class="inf-body"><strong>Friston·Clark·Seth</strong>의 현대 예측 처리 이론은 헬름홀츠의 발상을 뉴런 수준에서 구현한 것. 자유에너지 원리의 직계 조상.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              당신이 지금 이 글자들을 "읽는" 것도 헬름홀츠식 추론이다. 뇌는 다음 글자를 예측하고, 실제 글자가 오면 오차만 처리한다. 오타를 자주 못 보는 이유 — 예측이 너무 강해서. 착시가 생기는 이유 — 예측이 감각보다 강하게 이길 때. 디자인·UX 법칙의 대부분(일관성·예측성·어포던스)이 이 예측 뇌 원리의 응용.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ 04 · PHASE 4 · PHENOMENOLOGY + GESTALT ============ -->
+<section id="p4">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">04</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">PHASE 04 · EARLY 20TH CENTURY</div>
+        <h2>현상학과 게슈탈트 — <em>몸과 형태</em>의 복귀</h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      19세기 과학이 인간을 "원자의 집합"으로 환원하려 할 때, 현상학자들은 "사태 자체로 돌아가자"고 외쳤다. 동시에 게슈탈트 심리학자들은 실험으로 증명했다 — <strong>전체는 부분의 합보다 크다.</strong>
+    </p>
+
+    <div class="phase-hero green">
+      <div class="phase-era">PHASE 04 · 1900 → 1945</div>
+      <h3>국면 4 · <em>일인칭 경험</em>의 복권</h3>
+      <p>실증주의·행동주의가 인간을 "자극-반응 기계"로 환원하려 할 때, 이들은 말했다. "인간은 세계 <strong>안에</strong> 있는 존재다. 객관적 관찰 대상이 아니다. 경험을 그 자체로 설명해야 한다."</p>
+      <div class="phase-q">핵심 질문 <strong>→</strong> 세계를 경험하는 것은 어떤 것인가? (What is it like to...)</div>
+    </div>
+
+    <!-- Husserl -->
+    <article class="thinker green">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Husserl</span>
+            <span class="thinker-ko">에드문트 후설</span>
+            <span class="thinker-years">1859–1938</span>
+          </div>
+          <div class="thinker-punch">판단을 일단 괄호 치고(<em>epoché</em>), 경험 그 자체가 어떻게 주어지는지 기술하라 — 현상학의 방법.</div>
+        </div>
+        <span class="thinker-tag">Phenomenology</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p><strong>지향성(Intentionality)</strong>. 의식은 언제나 "무엇에 대한 의식"이다. 공허한 의식은 없다. 내가 커피를 볼 때, 내 의식은 커피를 향해 있다. 이 "향해 있음"이 의식의 본질 구조.</p>
+          <p><strong>현상학적 환원(epoché)</strong>. "이것이 실재하는가?"라는 판단을 괄호 친다. 대신 "나에게 어떻게 나타나는가"에만 주목한다. 이 방법으로 경험의 구조를 드러낸다.</p>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 머릿속 그림</div>
+<div class="schema"><span class="c-d"># 후설의 지향성 구조</span>
+
+          <span class="c-g">[의식 · Consciousness]</span>
+                  ║
+                  ║  <span class="c-g">──── 지향성 (intentionality) ────▶</span>
+                  ║
+          <span class="c-g">[대상 · Intentional Object]</span>
+
+<span class="c-d">두 극:</span>
+  <span class="c-g">Noesis</span>  — 의식 작용 (보는 방식)
+  <span class="c-g">Noema</span>   — 의식 내용 (보이는 것)
+
+<span class="c-d">방법 (epoché):</span>
+  ┌───────────────────────┐
+  │ "저 컵은 실재하는가?"  │  ← <span class="c-d">판단 중지</span>
+  └───────────────────────┘
+              ↓
+  ┌───────────────────────┐
+  │ "컵이 나에게 어떻게    │
+  │  주어지는가?"          │  ← <span class="c-hi">현상학적 기술</span>
+  └───────────────────────┘</div>
+          <div class="schema-cap">HUSSERL · INTENTIONALITY</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Philosophy</div>
+              <div class="inf-body">하이데거·사르트르·메를로-퐁티·레비나스 — 20세기 대륙 철학 전체의 스승. 분석 철학의 "의식의 감각질(qualia)" 논의도 여기서 이어짐.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Design / UX</div>
+              <div class="inf-body">"사용자 경험(UX)"의 철학적 토대. 객관적 제품 사양이 아니라 "사용자에게 어떻게 주어지는가"를 설계 대상으로 삼는 관점.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Cognitive Science</div>
+              <div class="inf-body">체화 인지의 철학적 배경. 1인칭 경험 과학(neurophenomenology) — Varela·Gallagher·Zahavi의 현재 프로젝트.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              "사용자 여정 맵(User Journey Map)"은 후설의 현상학을 UX 도구로 번역한 것. "고객은 어떻게 이 서비스를 경험하는가"를 기술하는 작업 자체가 현상학적. 브랜딩에서 "브랜드가 감각에 어떻게 주어지는가"를 설계할 때, 당신은 후설의 후예가 된다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Merleau-Ponty -->
+    <article class="thinker green">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Merleau-Ponty</span>
+            <span class="thinker-ko">모리스 메를로-퐁티</span>
+            <span class="thinker-years">1908–1961</span>
+          </div>
+          <div class="thinker-punch">나는 몸을 가진 것이 아니라 <em>몸 그 자체이다</em> — 데카르트를 몸으로 뒤집은 철학자.</div>
+        </div>
+        <span class="thinker-tag">Embodiment</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p><strong>몸-주체(le corps propre)</strong>. 데카르트의 "생각하는 나"는 몸에서 분리된 정신이었다. 메를로-퐁티는 뒤집었다 — 나의 인식과 경험은 <strong>몸 없이는 성립하지 않는다</strong>. 손을 뻗어 무언가를 잡을 때, "생각하는 나"와 "움직이는 몸"이 따로 있는 것이 아니다. 하나의 살아 있는 지향이다.</p>
+          <p><strong>상호신체성(intercorporeality)</strong>. 타인과의 관계도 마찬가지. 말로 소통하기 전에 몸으로 조응한다. 거울 뉴런의 발견(Rizzolatti, 1992)은 이 철학적 직관이 옳았음을 뒤늦게 입증했다.</p>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Philosophy</div>
+              <div class="inf-body">체화 인지의 중심 철학자. 들뢰즈·푸코의 몸 담론, 페미니즘 철학(이리가레이·버틀러)의 기반.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Dance / Somatics</div>
+              <div class="inf-body">무용학·신체 연극·소매틱 교육(Feldenkrais·Alexander)의 철학적 근거. "몸이 지능을 가진다"는 주장의 출처.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Neuroscience</div>
+              <div class="inf-body">거울 뉴런, 체성감각, 내수용감각(interoception) 연구의 개념적 선구. Damasio·Thompson이 직접 인용.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              "사용자는 머리로 디자인을 읽지 않고 몸으로 경험한다"는 UX 원칙. 버튼 위치·제스처·햅틱 — 이 모든 것이 메를로-퐁티의 "몸-주체"가 디자인에 들어온 결과. VR·AR 디자인은 그의 철학이 산업 표준이 된 분야.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Gestalt -->
+    <article class="thinker yellow">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Gestalt Trio</span>
+            <span class="thinker-ko">베르트하이머·쾰러·코프카</span>
+            <span class="thinker-years">1912–1945</span>
+          </div>
+          <div class="thinker-punch">지각은 부분의 산술이 아니다 — 뇌는 <em>형태 전체</em>를 단숨에 조직한다.</div>
+        </div>
+        <span class="thinker-tag">Gestalt Psychology</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>세 점이 찍혀 있으면 우리는 "점 세 개"가 아니라 "삼각형"을 본다. 이 단순한 관찰에서 게슈탈트 심리학이 출발한다. <strong>전체는 부분의 합보다 큰 무엇</strong>이며, 뇌는 감각 자극을 자동으로 의미 있는 형태(Gestalt)로 조직한다.</p>
+          <p>주요 원리들: <strong>근접성·유사성·연속성·폐쇄성·공통 운명·형-배경 분리</strong>. 모두 "뇌가 어떻게 형태를 자동 조직하는가"의 규칙들.</p>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 머릿속 그림</div>
+<div class="schema"><span class="c-d"># 게슈탈트 6원리 — 뇌의 자동 조직 법칙</span>
+
+  <span class="c-y">1. 근접성 (Proximity)</span>
+     • • •      • • •        → <span class="c-d">두 그룹으로 묶임</span>
+
+  <span class="c-y">2. 유사성 (Similarity)</span>
+     ● ○ ● ○ ● ○              → <span class="c-d">색깔별 그룹</span>
+
+  <span class="c-y">3. 연속성 (Continuity)</span>
+     →→→→ ↘↘↘↘                → <span class="c-d">흐름으로 읽힘</span>
+
+  <span class="c-y">4. 폐쇄성 (Closure)</span>
+     ⟨     ⟩                   → <span class="c-hi">원으로 보임 (빈 부분을 채움)</span>
+
+  <span class="c-y">5. 공통 운명 (Common Fate)</span>
+     움직이는 것들 = 한 덩어리
+
+  <span class="c-y">6. 형-배경 (Figure-Ground)</span>
+     같은 자극이라도 무엇을 "형"으로 볼지에 따라 장면이 달라짐
+
+<span class="c-d">핵심:</span> 지각은 <span class="c-hi">선택·조직·구성</span>이지 수동적 수용이 아니다.</div>
+          <div class="schema-cap">GESTALT · PRINCIPLES OF PERCEPTUAL ORGANIZATION</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Art History</div>
+              <div class="inf-body"><strong>곰브리치</strong>의 『서양미술사』 핵심 이론. 양식 변화를 "지각 심리의 법칙"으로 설명하는 방법론.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Design</div>
+              <div class="inf-body"><strong>바우하우스</strong>의 기초 교육 프로그램 — 요하네스 이텐·알버스의 형태·색채 교육이 게슈탈트 원리의 실천. 현대 그래픽 디자인의 문법.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">UX / UI</div>
+              <div class="inf-body">UI 디자인의 핵심 법칙. 그룹핑·계층·흐름·일관성 — 모두 게슈탈트 원리의 응용. 디터 람스의 10계명도 여기서.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              당신이 방금 본 웹사이트 레이아웃이 자연스럽게 읽혔다면 — 그건 게슈탈트 원리가 잘 적용된 결과다. Apple·IBM·Airbnb의 디자인 시스템이 통일감 있게 느껴지는 이유, 좋은 로고가 단숨에 기억되는 이유. 게슈탈트는 현대 시각 커뮤니케이션의 <strong>기초 문법</strong>이다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ 05 · PHASE 5 · COGNITIVE REVOLUTION ============ -->
+<section id="p5" style="background:var(--bg-2);">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">05</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">PHASE 05 · MID 20TH CENTURY</div>
+        <h2>인지 혁명 — <em>마음 = 정보처리</em></h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      1950년대, 컴퓨터의 등장과 함께 행동주의("마음은 블랙박스, 자극-반응만 보자")가 돌파되었다. 마음의 내부가 다시 열렸고, 그것을 <strong>정보를 처리하는 시스템</strong>으로 보기 시작했다.
+    </p>
+
+    <div class="phase-hero pink">
+      <div class="phase-era">PHASE 05 · 1932 → 1970</div>
+      <h3>국면 5 · <em>스키마·기억·언어</em>의 재발견</h3>
+      <p>Bartlett은 기억이 재생이 아니라 재구성임을 실험으로 보였고, Piaget는 스키마 개념으로 인지 발달을 그렸고, Chomsky는 언어의 타고난 구조를 주장했다. Simon·Newell은 마음을 컴퓨터처럼 모델링했다. 이 시대가 AI의 뿌리다.</p>
+      <div class="phase-q">핵심 질문 <strong>→</strong> 마음은 어떤 표상(representation)을 다루는가?</div>
+    </div>
+
+    <!-- Bartlett -->
+    <article class="thinker pink">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Bartlett</span>
+            <span class="thinker-ko">프레더릭 바틀렛</span>
+            <span class="thinker-years">1886–1969</span>
+          </div>
+          <div class="thinker-punch">기억은 테이프 재생이 아니라 <em>매번 재구성되는 서사</em>다 — 해마 이론의 뿌리.</div>
+        </div>
+        <span class="thinker-tag">★ Reconstructive Memory</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">THE EXPERIMENT · 결정적 실험</div>
+          <p><strong>"유령의 전쟁"(War of the Ghosts, 1932)</strong>. 영국 학생들에게 낯선 북미 원주민 설화를 들려준 뒤 시간차를 두고 반복적으로 회상시켰다. 결과 — 사람들은 이야기를 "정확히" 기억하지 않았다. 대신 자기 문화의 틀(schema)에 맞춰 세부를 바꾸고, 맞지 않는 요소는 삭제하고, 빈 곳은 채워 넣었다.</p>
+          <p>결론: <strong>기억은 저장된 데이터의 재생이 아니라, 매번 현재의 스키마 위에서 재구성되는 과정이다.</strong> 같은 기억도 시간이 지나며 조금씩 달라진다 — 이는 버그가 아니라 기억 시스템의 본질이다.</p>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 머릿속 그림</div>
+<div class="schema"><span class="c-d"># 바틀렛의 재구성 기억 모델</span>
+
+  <span class="c-d">상식적 모델 (틀림):</span>
+      원본 → <span class="c-pk">[저장]</span> → 재생 (똑같이 복원)
+
+  <span class="c-d">바틀렛 모델 (맞음):</span>
+      원본 경험
+         │
+         ▼  <span class="c-d">인코딩 (이미 스키마 영향)</span>
+      <span class="c-pk">[단편적 저장]</span>
+         │
+         ▼  <span class="c-d">회상 시점의 스키마·맥락·감정 개입</span>
+      ┌──────────────────────────┐
+      │ <span class="c-pk">재구성 (reconstruction)</span> │
+      │  - 유지: 중요 요소       │
+      │  - 변형: 스키마에 맞게    │
+      │  - 생성: 빈 곳 채움       │
+      │  - 삭제: 안 맞는 것       │
+      └──────────────────────────┘
+         │
+         ▼
+   <span class="c-hi">[회상된 기억 · 매번 조금 다름]</span>
+
+<span class="c-d">함의:</span> 기억 = 과거의 사실 복원이 아니라 <span class="c-hi">현재로부터의 서사 생성</span>.</div>
+          <div class="schema-cap">BARTLETT · RECONSTRUCTIVE MEMORY · 1932</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Psychology</div>
+              <div class="inf-body">인지심리학의 기초. "스키마" 개념이 여기서 출발해 Piaget·Neisser·Rumelhart로 확장. 목격자 증언의 신뢰성 연구(Loftus)의 출발.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Law / Trauma</div>
+              <div class="inf-body">"거짓 기억 증후군" 논쟁의 과학적 토대. PTSD 치료에서 기억 재구성 원리가 임상에 적용(EMDR 등).</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Neuroscience</div>
+              <div class="inf-body"><strong>해마 연구</strong>(O'Keefe·Moser·이인아)의 이론적 뿌리. "기억은 재생이 아니라 재구성"을 신경 수준에서 입증. Schacter·Addis의 "기억 = 상상"도 여기서.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              이인아 교수의 해마 강의에서 "기억은 개인의 고유한 해석 틀을 만든다"는 명제 — 바틀렛의 90년 된 실험이 신경과학으로 확장된 것. 당신이 쓰는 "감각일지", 과거를 회상할 때마다 조금씩 다른 해석, 브랜드가 고객에게 "일관된 경험"을 제공해야 하는 이유 — 모두 재구성 기억 이론의 현장 적용.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Piaget -->
+    <article class="thinker pink">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Piaget</span>
+            <span class="thinker-ko">장 피아제</span>
+            <span class="thinker-years">1896–1980</span>
+          </div>
+          <div class="thinker-punch">아이는 작은 어른이 아니다 — <em>스키마의 단계적 재구성</em>을 통해 사고가 자란다.</div>
+        </div>
+        <span class="thinker-tag">Genetic Epistemology</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p><strong>스키마(schema)</strong>. 세계를 이해하는 인지적 틀. 아이는 태어나면서부터 원초적 스키마(잡기·빨기)를 가지고, 경험을 통해 그것을 확장하거나(동화, assimilation) 수정하며(조절, accommodation) 자란다. 이 과정의 반복이 인지 발달.</p>
+          <p>피아제는 발달을 4단계로 구분했다: 감각운동기 → 전조작기 → 구체적 조작기 → 형식적 조작기. 각 단계는 질적으로 다른 사고 구조를 가진다.</p>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Education</div>
+              <div class="inf-body">몬테소리·발도르프·구성주의 교육의 이론적 토대. "학습자는 지식의 수동적 수신자가 아니라 능동적 구성자"라는 패러다임.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Cognitive Psychology</div>
+              <div class="inf-body">"스키마" 개념이 Bartlett → Piaget → Schank → Neisser로 이어져 현대 인지과학의 기본 어휘가 됨.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">AI / ML</div>
+              <div class="inf-body">"프레임(frame)", "스크립트(script)", "프로토타입(prototype)" — AI의 지식 표현 방식이 모두 스키마 개념의 변주.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              "사용자의 멘탈 모델에 맞춰 디자인하라"는 UX 원칙 = 피아제의 스키마 이론. 카피라이팅에서 "독자의 프레임에 올라타라"는 원칙도. 심지어 ChatGPT·Claude의 "프롬프트 엔지니어링"에서 "예시를 먼저 제공하라"는 팁조차 — 모두 스키마를 먼저 활성화한 뒤 동화를 유도하는 작업이다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Vygotsky -->
+    <article class="thinker blue">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Vygotsky</span>
+            <span class="thinker-ko">레프 비고츠키</span>
+            <span class="thinker-years">1896–1934</span>
+          </div>
+          <div class="thinker-punch">인지는 개인의 머릿속에서 자라는 것이 아니라 <em>사회·문화와의 대화</em>에서 자란다.</div>
+        </div>
+        <span class="thinker-tag">Sociocultural Cognition</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p><strong>근접발달영역(Zone of Proximal Development, ZPD)</strong>. 아이가 혼자 할 수 있는 것과, 도움받아 할 수 있는 것 사이의 영역. 학습은 이 영역에서 일어난다. 다른 사람(선생·친구·부모)의 매개가 인지 발달의 핵심.</p>
+          <p>언어는 사고의 도구다. 아이는 먼저 외부의 사회적 언어를 듣고, 그것을 "내면화"해 내부 언어(inner speech)로 삼는다. <strong>내 머릿속 목소리는 한때 타인의 목소리였다.</strong></p>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Education</div>
+              <div class="inf-body">협력 학습·비계(scaffolding) 교육법의 기초. 피아제의 "개인 구성주의"와 대비되는 "사회 구성주의" 교육 철학.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Cognitive Science</div>
+              <div class="inf-body">"분산 인지(distributed cognition)", "확장된 마음(extended mind, Clark)" — 인지가 개인 뇌를 넘어 도구·환경·타인으로 퍼져 있다는 현대 이론의 선구.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Culture Studies</div>
+              <div class="inf-body">"언어가 사고를 만든다" — 사피어-워프 가설, 언어상대성 논의의 토대. Bruner의 내러티브 심리학도 여기서.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              "멘토와의 대화가 성장을 만든다"는 경험의 이론적 근거. 커뮤니티 기반 학습(66DAYS 같은 것), 피어 리뷰, Claude 같은 AI와의 대화를 통한 사고 확장 — 모두 비고츠키의 ZPD가 도구를 갈아입고 나타난 것. 당신이 지금 이 문서를 읽으며 스키마가 확장되고 있다면, 그 확장은 비고츠키식 매개의 결과다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ 06 · PHASE 6 · EMBODIED TURN ============ -->
+<section id="p6">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">06</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">PHASE 06 · LATE 20TH CENTURY</div>
+        <h2>체화 전환 — <em>이성은 몸에서 온다</em></h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      1980년대, 인지 혁명의 "마음 = 컴퓨터" 모델에 한계가 드러났다. 감정·몸·문화가 인지의 "잡음"이 아니라 인지 그 자체의 구성 요소임이 드러났다. <strong>데카르트의 심신 이원론이 400년 만에 과학적으로 해체되는 순간.</strong>
+    </p>
+
+    <div class="phase-hero teal">
+      <div class="phase-era">PHASE 06 · 1980 → 2000</div>
+      <h3>국면 6 · <em>몸·감정·문화</em>의 귀환</h3>
+      <p>추상적 사고도 결국 몸의 경험에서 나온다. "이해하다(understand)"는 "밑에 서 있다"는 몸 은유. "파악하다"는 "손으로 잡다"는 몸 은유. 가장 추상적인 수학 개념조차 공간 감각에서 확장된 것이다.</p>
+      <div class="phase-q">핵심 질문 <strong>→</strong> 추상적 사고는 정말 몸에서 독립되어 있는가?</div>
+    </div>
+
+    <!-- Lakoff & Johnson -->
+    <article class="thinker teal">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Lakoff & Johnson</span>
+            <span class="thinker-ko">조지 레이코프 · 마크 존슨</span>
+            <span class="thinker-years">1980→</span>
+          </div>
+          <div class="thinker-punch">우리의 개념 체계는 <em>몸의 경험이 은유로 확장된 것</em>이다 — 추상적 이성은 없다.</div>
+        </div>
+        <span class="thinker-tag">★ Conceptual Metaphor</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>『삶으로서의 은유(Metaphors We Live By, 1980)』 — 은유는 수사적 장식이 아니라 <strong>사고의 기본 구조</strong>다. "시간은 돈이다"(시간을 쓰다·아끼다·낭비하다), "인생은 여행이다"(출발점·갈림길·도착), "논쟁은 전쟁이다"(공격·방어·이기다·지다). 우리는 추상적인 것을 언제나 구체적인 몸 경험을 통해 이해한다.</p>
+          <p>『몸의 철학(Philosophy in the Flesh, 1999)』에서 이들은 서양 철학 전체를 이 관점으로 다시 읽었다. 결론: <strong>"순수 이성"은 환상이다.</strong> 이성은 언제나 몸에서 태어나 몸을 통해 작동한다.</p>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 머릿속 그림</div>
+<div class="schema"><span class="c-d"># 레이코프의 개념적 은유 구조</span>
+
+  <span class="c-t">[근원 영역 · Source]</span>    <span class="c-d">(몸·물리적 경험)</span>
+         │
+         │  <span class="c-d">은유적 투사 (metaphorical mapping)</span>
+         ▼
+  <span class="c-t">[목표 영역 · Target]</span>    <span class="c-d">(추상 개념)</span>
+
+<span class="c-d">예시 매핑:</span>
+
+  <span class="c-t">시간은 돈이다</span>           <span class="c-t">논쟁은 전쟁이다</span>
+    쓰다·아끼다·낭비              공격·방어
+    투자·빚지다                    이기다·지다
+    절약·비용                      전략·진지
+
+  <span class="c-t">이해는 잡기다</span>           <span class="c-t">삶은 여행이다</span>
+    파악하다(grasp)                출발점·도착점
+    이해하다(understand)           갈림길·우회로
+    분명하다·흐릿하다              동반자·장애물
+
+<span class="c-d">핵심:</span> 이것들은 표현상의 은유가 아니라
+      <span class="c-hi">사고 그 자체의 구조</span>이다.</div>
+          <div class="schema-cap">LAKOFF & JOHNSON · CONCEPTUAL METAPHOR</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Linguistics</div>
+              <div class="inf-body">인지언어학(cognitive linguistics) 분야 창시. 촘스키의 형식주의 언어학에 대한 대안.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Politics</div>
+              <div class="inf-body">레이코프의 『코끼리는 생각하지 마』 — 정치 담론에서 프레임(frame)이 어떻게 작동하는지 분석. 현대 정치 커뮤니케이션의 교과서.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Copy / Branding</div>
+              <div class="inf-body">"은유를 만들어라, 설명하지 말라"는 카피라이팅 원칙의 과학적 근거. 좋은 브랜드 슬로건의 대부분이 개념적 은유 구조.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              Nike "Just Do It"이 작동하는 이유 — "결단은 행동이다"라는 몸 은유를 건드리기 때문. Apple의 "Think Different"가 각인되는 이유 — "사고는 방향이다"라는 공간 은유. 카피를 쓸 때 당신이 고르는 동사 하나하나가 어떤 은유적 세계를 활성화한다. 레이코프를 안다면 당신은 그 선택을 의식적으로 할 수 있다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Damasio -->
+    <article class="thinker teal">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Damasio</span>
+            <span class="thinker-ko">안토니오 다마지오</span>
+            <span class="thinker-years">1944–</span>
+          </div>
+          <div class="thinker-punch">감정 없이 합리적 결정은 불가능하다 — <em>신체 표지 가설</em>로 데카르트의 오류를 증명.</div>
+        </div>
+        <span class="thinker-tag">Somatic Marker</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">THE DISCOVERY · 결정적 발견</div>
+          <p>전두엽 손상으로 감정을 잃은 환자들(엘리엇 등)을 연구하던 다마지오는 역설을 발견했다. 이 환자들은 IQ가 정상이고 논리 능력도 멀쩡한데 — <strong>일상적 의사결정을 전혀 하지 못했다</strong>. 점심 메뉴 하나 고르는데 한 시간씩 걸렸다.</p>
+          <p>결론: 의사결정에는 감정이 필수다. 과거 경험이 몸의 감정 신호로 "표지(marker)"되어 있고, 우리는 그 표지를 무의식적으로 읽으며 빠르게 선택한다. 감정을 잃으면 이 표지를 읽을 수 없어 결정 불능에 빠진다. <strong>감정은 이성의 적이 아니라 이성의 전제조건이다.</strong></p>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Neuroscience</div>
+              <div class="inf-body">감정 신경과학(affective neuroscience)의 창시. Ledoux·Panksepp와 함께 21세기 뇌과학의 중심 축.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Behavioral Economics</div>
+              <div class="inf-body">Kahneman의 System 1/2, 직관적 판단 연구의 신경과학적 토대. "합리적 선택 이론"의 수정이 여기서 시작.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Philosophy</div>
+              <div class="inf-body">스피노자 재발견. 『스피노자를 찾아서』(2003)에서 17세기 일원론을 21세기 과학으로 부활.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              "직감을 따르라"가 과학적 조언이 된 이유. 사용자 리서치에서 "왜 좋은지 설명하기 어려운 것"을 무시하면 안 되는 이유 — 그 느낌 자체가 신체 표지다. 좋은 브랜딩이 "감정을 먼저 건드려야" 하는 이유도 여기. 당신의 느낌은 노이즈가 아니라 압축된 지식이다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ 07 · PHASE 7 · PREDICTIVE BRAIN ============ -->
+<section id="p7" style="background:var(--bg-2);">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num star">07 ★</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">PHASE 07 · 21ST CENTURY · NOW</div>
+        <h2>예측하는 뇌 · <em>구성하는 마음</em></h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      칸트의 "능동적 마음"이 마침내 신경 수준에서 증명된다. <strong>지각·기억·감정·자아 — 모두가 주어지는 것이 아니라 뇌가 끊임없이 구성하는 것이다.</strong> 400년 계보의 귀결이자 새 출발점.
+    </p>
+
+    <div class="phase-hero accent">
+      <div class="phase-era">PHASE 07 · 2005 → PRESENT<span class="star">★ NOW</span></div>
+      <h3>국면 7 · <em>통제된 환각</em>으로서의 지각</h3>
+      <p>뇌는 수동적 수신기가 아니다. 뇌는 끊임없이 세계 모델을 생성하고, 그 모델이 만든 예측과 감각 입력의 차이(예측 오차)만 처리한다. 지각은 "가장 그럴듯한 환각" — 감각에 의해 통제되는 환각이다.</p>
+      <div class="phase-q">핵심 질문 <strong>→</strong> 내가 "본다"는 것은 정확히 어떤 사건인가?</div>
+    </div>
+
+    <!-- Friston -->
+    <article class="thinker">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Friston</span>
+            <span class="thinker-ko">칼 프리스턴</span>
+            <span class="thinker-years">1959–</span>
+          </div>
+          <div class="thinker-punch">모든 살아있는 것은 <em>자유에너지(예측 오차)를 최소화</em>하기 위해 움직인다 — 단일 원리로 뇌를 설명하는 이론.</div>
+        </div>
+        <span class="thinker-tag">★ Free Energy Principle</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p><strong>자유에너지 원리(Free Energy Principle, FEP)</strong>. 뇌의 모든 활동 — 지각·행동·학습 — 을 하나의 수학적 원리로 통합하려는 시도. 핵심은 이것이다: 생명체는 환경과의 경계에서 "예상한 것"과 "감각된 것"의 차이(자유에너지)를 줄이도록 진화했다.</p>
+          <p>두 가지 방법으로 줄인다: <strong>(1) 모델을 업데이트한다</strong>(= 학습·지각), <strong>(2) 세계를 움직인다</strong>(= 행동). 본질적으로 같은 원리. 생각도 행동도 모두 예측 오차 최소화.</p>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 머릿속 그림</div>
+<div class="schema"><span class="c-d"># 프리스턴의 자유에너지 원리</span>
+
+               <span class="c-a">[생성 모델 · Generative Model]</span>
+                         │
+                         │  "세계는 이럴 것이다"
+                         ▼  예측 (prediction)
+                  <span class="c-a">[감각 기대]</span>
+                         │
+             ┌───── 비교 ─────┤
+             ▼                 ▼
+         [예측]             [실제 감각]
+             │                 │
+             └─────── 오차(error) ───┐
+                                     │
+                          ┌──────────┴──────────┐
+                          ▼                     ▼
+               <span class="c-a">[1. 모델 업데이트]</span>     <span class="c-a">[2. 행동]</span>
+                 지각·학습              세계를 바꿈
+               (belief change)        (act to fit)
+
+<span class="c-hi">목표:</span> 평생 자유에너지 = 예측 오차 평균을 최소화
+<span class="c-d">귀결:</span> 지각·행동·학습·항상성 모두가 같은 알고리즘.</div>
+          <div class="schema-cap">FRISTON · FREE ENERGY PRINCIPLE</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Neuroscience</div>
+              <div class="inf-body">21세기 뇌과학의 거대 통합 이론 후보. 조현병·자폐·우울증을 "예측 정밀도 조절 장애"로 재해석하는 새 프레임.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">AI</div>
+              <div class="inf-body">Active Inference — 강화학습의 새로운 패러다임. "예측 + 행동"을 하나의 목적 함수로 통합. AGI 연구에 직접 영향.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Philosophy</div>
+              <div class="inf-body">칸트 이후 250년 만의 철학적 귀결. "마음은 능동적 구성"이라는 명제가 수학적 원리로 환원됨.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              당신의 뇌가 지금 "다음 단어"를 예측하고 있다는 사실(LLM과 같은 원리). 명상이 "예측 모델의 과도한 확신을 느슨하게 하는" 훈련으로 재해석되는 것. 새로움(novelty)을 설계하는 것이 왜 크리에이티브의 핵심인가 — 뇌의 예측 시스템이 놀랐을 때만 진짜 학습이 일어나기 때문.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Anil Seth -->
+    <article class="thinker">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Seth</span>
+            <span class="thinker-ko">아닐 세스</span>
+            <span class="thinker-years">1972–</span>
+          </div>
+          <div class="thinker-punch">의식은 뇌가 만든 <em>통제된 환각</em>이다. "나"라는 감각조차 뇌의 예측적 구성이다.</div>
+        </div>
+        <span class="thinker-tag">Controlled Hallucination</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>『Being You』(2021). 세스는 의식을 "통제된 환각(controlled hallucination)"이라 부른다. 우리의 지각 경험은 외부 세계의 수동적 복사가 아니라 뇌가 만든 최선의 가설이며, 감각 데이터는 이 가설을 "통제"(수정)하는 역할을 할 뿐이다.</p>
+          <p>더 나아가 "자아(self)"도 예측적 구성이라 주장한다. 나의 몸 감각·사회적 자아·1인칭 관점 — 모두 뇌가 만들어 유지하는 <strong>"내가 나라는 모델"</strong>일 뿐이다. 흄의 번들 이론이 21세기 신경과학으로 귀환.</p>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Neuroscience</div>
+              <div class="inf-body">예측 처리 이론을 의식 연구로 확장. Anesthesia·환각제·이상의식 상태를 예측 모델의 변동으로 설명.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Philosophy of Mind</div>
+              <div class="inf-body">"어려운 문제(hard problem)"에 대한 새로운 접근 — "왜 경험이 있는가"가 아니라 "어떻게 구성되는가"로 문제를 재배치.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Mental Health</div>
+              <div class="inf-body">트랜스지엔더·해리성 장애·자아 경험의 다양성을 "자아 예측 모델의 다양성"으로 이해하는 새 프레임.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              당신이 지금 경험하는 "나"는 실체가 아니라 모델이다. 이 모델은 변할 수 있다. 당신의 정체성도, 당신의 감각도, 당신의 관점도 — 모두 업데이트 가능한 예측이다. 이 인식은 자유로움인 동시에 책임이다: <strong>당신은 당신이라는 모델을 함께 쓸 수 있다.</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Barrett -->
+    <article class="thinker pink">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Barrett</span>
+            <span class="thinker-ko">리사 펠드먼 배럿</span>
+            <span class="thinker-years">1963–</span>
+          </div>
+          <div class="thinker-punch">감정은 보편적 지문이 아니라 <em>뇌가 맥락 속에서 구성하는 것</em>이다.</div>
+        </div>
+        <span class="thinker-tag">Constructed Emotion</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>『How Emotions Are Made』(2017). 기존 통설은 "분노·슬픔·공포는 보편적이고 얼굴에 고유한 표정으로 나타난다"였다(에크만의 기본 감정 이론). 배럿은 수십 년 데이터로 이를 뒤집었다. <strong>감정은 보편적 지문이 없다.</strong></p>
+          <p>대신 뇌는 신체 신호(내수용 감각)와 맥락 정보를 가지고 <strong>매번 감정을 구성</strong>한다. 같은 심장 두근거림이 맥락에 따라 "사랑"도 되고 "공포"도 된다. 문화·언어·개인사가 감정의 "개념(concept)"을 만들고, 그 개념이 신체 신호를 해석하는 틀이 된다.</p>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Psychology</div>
+              <div class="inf-body">에크만의 기본 감정 이론에 대한 결정적 대안. 감정 이해·감정 노동 연구의 새 패러다임.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Cross-Cultural</div>
+              <div class="inf-body">"문화마다 감정 개념이 다르다"는 언어인류학의 과학적 재확인. 한국어 "정(情)"·독일어 "Sehnsucht"·일본어 "物の哀れ"의 신경과학적 지위.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Marketing / UX</div>
+              <div class="inf-body">"보편적 감정 반응을 디자인하라"는 낡은 가정의 해체. 맥락·문화·개인사에 따른 감정 구성 차이를 고려한 설계.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              내가 느끼는 "이 감정"은 필연이 아니라 구성물이라는 자각. 감정 어휘를 늘리면(granularity) 실제 감정 경험의 섬세함이 증가한다는 연구 — <strong>언어화가 감각을 바꾼다</strong>는 명제의 실증. 당신이 감각일지를 쓰며 감정을 정교하게 구분할 때, 당신의 뇌는 더 정교한 감정을 구성할 수 있는 틀을 만들고 있다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ 08 · SIX THREADS ============ -->
+<section id="threads">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">08</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">SIX CROSS-CENTURY THREADS</div>
+        <h2>400년을 관통하는 <em>여섯 개의 스레드</em></h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      앞의 7국면을 세로로 읽으면 시대사가 된다. <strong>가로로 읽으면</strong> 같은 질문이 세기를 넘어 이어져 온 여섯 개의 계보가 드러난다. 각 스레드는 오늘 당신이 마주한 어떤 문제에서 여전히 뛰고 있다.
+    </p>
+
+    <div class="threads-intro">
+      <p>스레드 하나는 <strong>하나의 질문</strong>이다. 그 질문에 세기마다 다른 사람이 다른 방식으로 답했고, 그 답들이 서로를 이어받으며 오늘에 이른다. 한 스레드를 따라 읽으면 같은 강의 여러 지류를 추적하는 느낌이 든다.</p>
+    </div>
+
+    <div class="threads-viz">
+      <svg viewBox="0 0 1100 460" xmlns="http://www.w3.org/2000/svg">
+        <g font-family="JetBrains Mono" font-size="10" letter-spacing="2" fill="#807e7a">
+          <text x="60" y="30">17C</text>
+          <text x="230" y="30">18C</text>
+          <text x="400" y="30">19C</text>
+          <text x="580" y="30">20C 초</text>
+          <text x="760" y="30">20C 말</text>
+          <text x="940" y="30">21C</text>
+        </g>
+        <g stroke="rgba(0,0,0,0.08)" stroke-width="1">
+          <line x1="60" y1="40" x2="60" y2="440"/>
+          <line x1="230" y1="40" x2="230" y2="440"/>
+          <line x1="400" y1="40" x2="400" y2="440"/>
+          <line x1="580" y1="40" x2="580" y2="440"/>
+          <line x1="760" y1="40" x2="760" y2="440"/>
+          <line x1="940" y1="40" x2="940" y2="440"/>
+        </g>
+
+        <path d="M 230 80 C 320 80, 360 80, 400 82 S 520 84, 580 84 S 700 86, 760 86 S 880 88, 1040 88" stroke="#2e8a7c" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <circle cx="230" cy="80" r="4" fill="#2e8a7c"/><circle cx="400" cy="82" r="4" fill="#2e8a7c"/><circle cx="580" cy="84" r="4" fill="#2e8a7c"/><circle cx="760" cy="86" r="4" fill="#2e8a7c"/><circle cx="940" cy="88" r="5" fill="#2e8a7c"/>
+        <text x="240" y="72" font-family="Playfair Display" font-size="11" font-style="italic" fill="#2e8a7c">Kant</text>
+        <text x="410" y="74" font-family="Playfair Display" font-size="11" font-style="italic" fill="#2e8a7c">Helmholtz</text>
+        <text x="590" y="76" font-family="Playfair Display" font-size="11" font-style="italic" fill="#2e8a7c">Gestalt</text>
+        <text x="770" y="78" font-family="Playfair Display" font-size="11" font-style="italic" fill="#2e8a7c">Bartlett</text>
+        <text x="950" y="80" font-family="Playfair Display" font-size="11" font-style="italic" fill="#2e8a7c">Friston</text>
+        <text x="1050" y="92" font-family="Noto Sans KR" font-size="11" font-weight="700" fill="#2e8a7c" text-anchor="end">능동적 마음</text>
+
+        <path d="M 60 140 C 200 140, 300 142, 400 144 S 700 146, 940 146" stroke="#7e5a98" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <circle cx="60" cy="140" r="4" fill="#7e5a98"/><circle cx="400" cy="144" r="4" fill="#7e5a98"/><circle cx="580" cy="144" r="4" fill="#7e5a98"/><circle cx="940" cy="146" r="5" fill="#7e5a98"/>
+        <text x="70" y="132" font-family="Playfair Display" font-size="11" font-style="italic" fill="#7e5a98">Hume</text>
+        <text x="410" y="136" font-family="Playfair Display" font-size="11" font-style="italic" fill="#7e5a98">Freud</text>
+        <text x="590" y="136" font-family="Playfair Display" font-size="11" font-style="italic" fill="#7e5a98">Bartlett</text>
+        <text x="950" y="138" font-family="Playfair Display" font-size="11" font-style="italic" fill="#7e5a98">Barrett·Seth</text>
+        <text x="1050" y="152" font-family="Noto Sans KR" font-size="11" font-weight="700" fill="#7e5a98" text-anchor="end">구성되는 자아</text>
+
+        <path d="M 60 200 C 200 200, 360 202, 580 204 S 820 210, 1040 210" stroke="#d9601f" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <circle cx="60" cy="200" r="4" fill="#d9601f"/><circle cx="580" cy="204" r="4" fill="#d9601f"/><circle cx="760" cy="208" r="4" fill="#d9601f"/><circle cx="940" cy="210" r="5" fill="#d9601f"/>
+        <text x="70" y="192" font-family="Playfair Display" font-size="11" font-style="italic" fill="#d9601f">Spinoza</text>
+        <text x="590" y="196" font-family="Playfair Display" font-size="11" font-style="italic" fill="#d9601f">Merleau-Ponty</text>
+        <text x="770" y="200" font-family="Playfair Display" font-size="11" font-style="italic" fill="#d9601f">Lakoff</text>
+        <text x="950" y="202" font-family="Playfair Display" font-size="11" font-style="italic" fill="#d9601f">Damasio</text>
+        <text x="1050" y="216" font-family="Noto Sans KR" font-size="11" font-weight="700" fill="#d9601f" text-anchor="end">몸의 복귀</text>
+
+        <path d="M 400 260 C 520 260, 640 264, 760 268 S 900 272, 1040 272" stroke="#b8954a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <circle cx="400" cy="260" r="4" fill="#b8954a"/><circle cx="580" cy="264" r="4" fill="#b8954a"/><circle cx="760" cy="268" r="4" fill="#b8954a"/><circle cx="940" cy="272" r="5" fill="#b8954a"/>
+        <text x="410" y="252" font-family="Playfair Display" font-size="11" font-style="italic" fill="#b8954a">Darwin</text>
+        <text x="590" y="256" font-family="Playfair Display" font-size="11" font-style="italic" fill="#b8954a">W. James</text>
+        <text x="770" y="260" font-family="Playfair Display" font-size="11" font-style="italic" fill="#b8954a">Edelman</text>
+        <text x="950" y="264" font-family="Playfair Display" font-size="11" font-style="italic" fill="#b8954a">Friston FEP</text>
+        <text x="1050" y="278" font-family="Noto Sans KR" font-size="11" font-weight="700" fill="#b8954a" text-anchor="end">진화하는 마음</text>
+
+        <path d="M 400 320 C 520 320, 640 322, 760 324 S 900 328, 1040 330" stroke="#4a72a8" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <circle cx="400" cy="320" r="4" fill="#4a72a8"/><circle cx="580" cy="322" r="4" fill="#4a72a8"/><circle cx="760" cy="324" r="4" fill="#4a72a8"/><circle cx="940" cy="330" r="5" fill="#4a72a8"/>
+        <text x="410" y="312" font-family="Playfair Display" font-size="11" font-style="italic" fill="#4a72a8">Marx</text>
+        <text x="590" y="314" font-family="Playfair Display" font-size="11" font-style="italic" fill="#4a72a8">Wittgenstein</text>
+        <text x="770" y="316" font-family="Playfair Display" font-size="11" font-style="italic" fill="#4a72a8">Vygotsky</text>
+        <text x="950" y="322" font-family="Playfair Display" font-size="11" font-style="italic" fill="#4a72a8">Bruner</text>
+        <text x="1050" y="336" font-family="Noto Sans KR" font-size="11" font-weight="700" fill="#4a72a8" text-anchor="end">언어·사회</text>
+
+        <path d="M 230 390 C 330 390, 400 390, 400 390 S 640 392, 760 394 S 900 398, 1040 398" stroke="#4a8e4a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <circle cx="230" cy="390" r="4" fill="#4a8e4a"/><circle cx="400" cy="390" r="4" fill="#4a8e4a"/><circle cx="760" cy="394" r="4" fill="#4a8e4a"/><circle cx="940" cy="398" r="5" fill="#4a8e4a"/>
+        <text x="240" y="382" font-family="Playfair Display" font-size="11" font-style="italic" fill="#4a8e4a">Leibniz</text>
+        <text x="410" y="382" font-family="Playfair Display" font-size="11" font-style="italic" fill="#4a8e4a">Freud</text>
+        <text x="770" y="386" font-family="Playfair Display" font-size="11" font-style="italic" fill="#4a8e4a">Lakoff (인지무의식)</text>
+        <text x="950" y="390" font-family="Playfair Display" font-size="11" font-style="italic" fill="#4a8e4a">Kahneman</text>
+        <text x="1050" y="404" font-family="Noto Sans KR" font-size="11" font-weight="700" fill="#4a8e4a" text-anchor="end">무의식의 확장</text>
+      </svg>
+    </div>
+
+    <article class="thread-detail t1">
+      <div class="thread-head"><span class="num">THREAD 01</span><h4>능동적 마음</h4></div>
+      <div class="thread-chain">Kant → Helmholtz → Gestalt → Bartlett → Friston · Clark</div>
+      <p class="thread-body">모든 스레드 중 가장 핵심. <strong>"마음은 감각을 수동적으로 받지 않고 능동적으로 조직한다"</strong>는 테제의 250년 여정. 칸트의 철학적 가설이 헬름홀츠에 의해 과학적 가설로, 게슈탈트에 의해 실험적 증명으로, 바틀렛에 의해 인지적 확장으로, 프리스턴에 의해 수학적 원리로 번역되었다. 오늘 당신이 디자인·카피·UX로 만드는 <strong>"사용자 예측 유도"</strong>는 모두 이 스레드의 실천이다.</p>
+    </article>
+
+    <article class="thread-detail t2">
+      <div class="thread-head"><span class="num">THREAD 02</span><h4>구성되는 자아·기억·감정</h4></div>
+      <div class="thread-chain">Hume → Freud → Bartlett → Barrett · Seth</div>
+      <p class="thread-body">"고정된 나" 개념의 해체사. 흄은 자아를 지각의 다발로, 프로이트는 무의식의 파생물로, 바틀렛은 재구성되는 기억으로, 배럿은 구성되는 감정으로, 세스는 예측적 모델로 재정의했다. <strong>"나는 이런 사람이다"라는 문장의 권위가 계속 약해져온 400년</strong>. 이 스레드를 따라 읽으면 개인 정체성이 유연한 디자인의 대상임을 알게 된다.</p>
+    </article>
+
+    <article class="thread-detail t3">
+      <div class="thread-head"><span class="num">THREAD 03</span><h4>몸의 복귀</h4></div>
+      <div class="thread-chain">Spinoza → Merleau-Ponty → Lakoff & Johnson → Damasio</div>
+      <p class="thread-body">데카르트의 심신 분리를 되돌리는 400년 작업. 스피노자가 17세기에 이미 평행론을 주장했지만 긴 침묵 끝에 메를로-퐁티가 20세기 중반에 몸-주체를 복권했고, 레이코프는 추상 사고가 몸에서 나옴을 보였고, 다마지오는 감정 없이 이성이 불가능함을 증명했다. <strong>"마음의 일"과 "몸의 일"이라는 일상 언어가 과학적으로 붕괴하는 과정.</strong></p>
+    </article>
+
+    <article class="thread-detail t4">
+      <div class="thread-head"><span class="num">THREAD 04</span><h4>진화하는 마음</h4></div>
+      <div class="thread-chain">Darwin → W. James → 진화심리학 → Edelman → Friston FEP</div>
+      <p class="thread-body">"마음은 살아남기 위해 진화한 기관"이라는 발상의 계보. 다윈이 몸에 적용한 변이-선택을 제임스가 의식에, 진화심리학이 욕망·사회성에, 에덜먼이 신경망에, 프리스턴이 뇌의 작동 원리 전체에 적용했다. 궁극적으로 "마음은 <strong>예측 기관이자 적응 기관</strong>"이라는 통일된 상으로 수렴 중이다.</p>
+    </article>
+
+    <article class="thread-detail t5">
+      <div class="thread-head"><span class="num">THREAD 05</span><h4>사회·언어·문화가 마음을 만든다</h4></div>
+      <div class="thread-chain">Marx → Wittgenstein → Vygotsky → Bruner → Lakoff</div>
+      <p class="thread-body">"개인의 마음은 집단의 매체다"라는 테제의 계보. 마르크스는 사회경제 조건이 의식을, 비트겐슈타인은 언어 게임이 의미를, 비고츠키는 타인과의 대화가 인지를, 브루너는 서사가 경험을, 레이코프는 정치 프레임이 판단을 만든다고 보았다. <strong>당신의 생각에서 "온전히 당신 것"은 얼마 없다</strong> — 이 깨달음이 불안이 아니라 자유가 될 수 있다.</p>
+    </article>
+
+    <article class="thread-detail t6">
+      <div class="thread-head"><span class="num">THREAD 06</span><h4>무의식의 확장</h4></div>
+      <div class="thread-chain">Leibniz → Freud → Lakoff (인지적 무의식) → Kahneman (System 1)</div>
+      <p class="thread-body">"의식은 정신 활동의 10%도 안 된다"는 테제의 누적. 라이프니츠의 미소 지각 → 프로이트의 억압된 욕동 → 레이코프의 자동적 은유 → 카너먼의 빠른 사고. 무의식의 형태가 시대마다 달라졌지만 <strong>"의식 아래에서 더 많은 것이 일어난다"</strong>는 핵심은 누적·강화되었다. UX·광고·행동경제학의 모든 "넛지" 설계가 이 스레드의 실천.</p>
+    </article>
+  </div>
+</section>
+
+<!-- ============ 09 · ART RESONANCE ============ -->
+<section id="art" style="background:var(--bg-2);">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">09</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">ART RESONANCE</div>
+        <h2>예술사와의 공명 — "묘사 → 촬영 → <em>구성</em>"</h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      디학 세미나 6주차의 핵심 전환 — 고전에서 현대로의 이행은 이 사상사 위에 올라 있다. 예술이 대상의 "재현"을 포기하고 지각의 "구성"을 주제로 삼게 된 이유를 5단계로 추적한다.
+    </p>
+
+    <div class="art-flow">
+      <div class="art-step">
+        <div class="seq">STAGE 01</div>
+        <h4>인식은 구성이다<span class="art-sub">Kant · 1781</span></h4>
+        <p>칸트 이후 "대상을 있는 그대로 재현"이라는 미학적 이상은 흔들리기 시작. 마음이 대상에 구조를 부여한다면, 그림이 대상을 정확히 옮길 필요가 없다는 이론적 허가.</p>
+      </div>
+      <div class="art-step">
+        <div class="seq">STAGE 02</div>
+        <h4>표면 뒤 메커니즘<span class="art-sub">Darwin · Marx · Freud</span></h4>
+        <p>세잔의 기하학적 분해, 피카소의 다중 시점, 칸딘스키의 음악적 추상, 몬드리안의 원리적 환원. "보이는 것 너머의 구조"를 그리려는 충동이 모두 3중 폭발의 귀결.</p>
+      </div>
+      <div class="art-step">
+        <div class="seq">STAGE 03</div>
+        <h4>전체 ≠ 부분의 합<span class="art-sub">Gestalt · 1912</span></h4>
+        <p>게슈탈트의 실험적 증명이 곰브리치 양식사의 방법론이 되고, 바우하우스 교육의 과학적 기반이 된다. 지각 심리의 법칙이 예술 생산의 원리로 편입.</p>
+      </div>
+      <div class="art-step">
+        <div class="seq">STAGE 04</div>
+        <h4>재현의 자동화<span class="art-sub">Photography · 1850</span></h4>
+        <p>사진이 묘사를 자동화하자 회화는 존재 이유를 재정의해야 했다. "인간만이 할 수 있는 것 = 구성·해석·편집"이라는 새 미션. 인상파·표현주의·추상 회화의 공통 배경.</p>
+      </div>
+      <div class="art-step">
+        <div class="seq">STAGE 05</div>
+        <h4>세 흐름의 통합<span class="art-sub">Bauhaus · 1919</span></h4>
+        <p>Marx(집단성) + Freud(개인 무의식) + Gestalt(형태 법칙)를 실제 교육·제작 시스템으로 통합. 현대 디자인·건축·타이포그래피의 원형이 여기서 탄생.</p>
+      </div>
+    </div>
+
+    <div class="bauhaus-box">
+      <div>
+        <h3>"현대 예술은 재현의 본질을, 현대 디자인은 형태의 본질을 찾는 <em>전쟁이었다.</em>"</h3>
+        <p>디학 세미나 필기의 핵심 정리. 현대 미술은 형식주의 전쟁, 현대 디자인은 기능주의 전쟁. 두 싸움 모두 <strong>"대상을 어떻게 재현할 것인가"를 버리고 "지각의 구조 그 자체를 파고드는"</strong> 방향으로 전환한 결과다.</p>
+        <p>MOMA의 『Cubism and Abstract Art』(1936) 지형도는 이 전환을 시각적으로 보여준다 — 1890~1935년 사이 서양 시각 예술이 어떻게 사상사와 공명하며 이동했는지의 기록.</p>
+      </div>
+      <div class="bauhaus-eq">
+<span class="h">// 바우하우스 통합 방정식</span>
+
+<span class="c">집단성 (Marx)</span>
+   <span class="o">+</span>
+<span class="c">개인 무의식 (Freud)</span>
+   <span class="o">+</span>
+<span class="c">형태 법칙 (Gestalt)</span>
+   <span class="o">━━━━━━━━━━━</span>
+<span class="h">Bauhaus</span> (1919)
+
+<span class="c">→ 현대 디자인의 DNA</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10 · NOW · APPLICATION ============ -->
+<section id="now">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">10</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">TODAY · APPLICATION</div>
+        <h2>오늘, 이 계보가 <em>당신의 작업</em>에 말하는 것</h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      400년 계보는 박물관 유물이 아니라 오늘의 실천 도구다. 크리에이티브 커뮤니케이터로서, 다음 세 영역에서 이 계보가 즉시 적용된다.
+    </p>
+
+    <div class="app-grid">
+      <div class="app-card">
+        <div class="tag">01 · COPYWRITING</div>
+        <h4>카피를 쓸 때</h4>
+        <ul>
+          <li>은유 선택은 개념 체계 선택이다 (Lakoff)</li>
+          <li>감각 동사는 신체 시뮬레이션을 트리거한다 (Spinoza·Damasio)</li>
+          <li>독자의 스키마 위에서 한 칸만 움직여라 (Piaget)</li>
+          <li>예측을 유도하고 한 번 배신하라 (Friston)</li>
+          <li>감정은 보편이 아니라 구성이다 — 맥락을 깔아라 (Barrett)</li>
+        </ul>
+      </div>
+      <div class="app-card">
+        <div class="tag">02 · DESIGN / VISUAL</div>
+        <h4>비주얼을 만들 때</h4>
+        <ul>
+          <li>게슈탈트 6원리를 체크리스트로 써라</li>
+          <li>전체-배경 관계가 메시지의 첫 번째 층이다</li>
+          <li>몸이 반응하는 디자인이 먼저, 머리가 읽는 디자인은 나중</li>
+          <li>일관성은 뇌의 예측 비용을 줄인다 (Helmholtz·Friston)</li>
+          <li>낯섦은 정확히 한 지점에만 — 나머지는 예측 가능하게</li>
+        </ul>
+      </div>
+      <div class="app-card">
+        <div class="tag">03 · NARRATIVE / STORY</div>
+        <h4>서사를 설계할 때</h4>
+        <ul>
+          <li>기억은 재구성된다 — 매번 다른 해석을 허락하는 여백을 남겨라 (Bartlett)</li>
+          <li>캐릭터는 실체가 아니라 관계의 묶음이다 (Hume)</li>
+          <li>무의식적 동기를 명시하지 말고 행동으로 드러내라 (Freud)</li>
+          <li>몸의 구체 경험 → 추상적 주제의 순서 (Lakoff)</li>
+          <li>독자의 예측 모델을 지도로 삼고, 그 지도를 업데이트하는 여정이 이야기다</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ONE LINE ============ -->
+<section class="oneline">
+  <div class="oneline-inner">
+    <div class="oneline-k">ONE LINE SUMMARY</div>
+    <p class="oneline-main">
+      데카르트는 <em>"생각하는 나"</em>를 발견했고,<br/>
+      그 이후 400년은 <em>"그 '나'가 어떻게 구성되는가"</em>를<br/>
+      해체해온 긴 여정이다.
+    </p>
+    <div class="oneline-sig">Darwin · Marx · Freud는 그 해체의 첫 큰 망치였고,<br/>지금의 예측 뇌 · 체화 인지 · 구성된 감정은 그 귀결이자 새 출발점이다.</div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="inner">
+    <div>
+      <h4>SERIES · CREATIVE COMMUNICATOR</h4>
+      <p>
+        <strong>Part I</strong> 광고사 & 카피 역사<br/>
+        <strong>Part II</strong> 카피라이팅 프레임워크<br/>
+        <strong>Part III</strong> 뇌과학·해마·이야기<br/>
+        <strong>Part IV</strong> 인식과 소통·움벨트<br/>
+        <strong>Part V</strong> 현대사상 인식론 계보 · Deep
+      </p>
+    </div>
+    <div>
+      <h4>READING · 개론</h4>
+      <ul>
+        <li>Russell, 『서양 철학사』</li>
+        <li>Kenny, 『A New History of Western Philosophy』</li>
+        <li>Makari, 『Soul Machine』</li>
+        <li>Watson, 『A Terrible Beauty』</li>
+        <li>Lakoff & Johnson, 『Philosophy in the Flesh』</li>
+      </ul>
+    </div>
+    <div>
+      <h4>READING · 현대 마음 과학</h4>
+      <ul>
+        <li>Clark, 『Surfing Uncertainty』</li>
+        <li>Seth, 『Being You』</li>
+        <li>Barrett, 『How Emotions Are Made』</li>
+        <li>Damasio, 『데카르트의 오류』</li>
+        <li>Fletcher, 『Storythinking』</li>
+      </ul>
+    </div>
+  </div>
+  <div class="colophon">
+    <span>© 2026 · 크리에이티브 커뮤니케이터 시리즈</span>
+    <span>PART V · DEEP · MODERN EPISTEMOLOGY LINEAGE</span>
+  </div>
+</footer>
+
+</body>
+</html>

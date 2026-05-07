@@ -1,0 +1,1695 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>숏폼·릴스 프레임워크 — 3초에서 60초까지의 설득 공학 · Deep</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fdfcfa; --bg-2: #f4f1ec; --bg-card: #ffffff; --bg-card-2: #f8f6f1; --bg-code: #f4f1ec;
+    --text: #1a1a1a; --text-soft: #4a4845; --text-dim: #807e7a; --text-faint: #c4c2bd;
+    --accent: #d9601f; --accent-2: #e07530; --accent-dim: #b54e15;
+    --teal: #2e8a7c; --teal-dim: #1f5e54;
+    --green: #4a8e4a; --purple: #7e5a98; --pink: #c25787; --blue: #4a72a8; --yellow: #b8954a; --red: #c14638;
+    --border: rgba(0,0,0,0.10); --border-2: rgba(0,0,0,0.16); --rule: rgba(0,0,0,0.12);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', -apple-system, sans-serif; font-weight: 400; line-height: 1.75; -webkit-font-smoothing: antialiased; }
+  a { color: var(--accent); text-decoration: none; }
+
+  .hero { padding: 110px 60px 140px; position: relative; overflow: hidden; border-bottom: 1px solid var(--border); }
+  .hero-inner { max-width: 1120px; margin: 0 auto; position: relative; }
+  .hero-kicker { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.35em; color: var(--text-dim); margin-bottom: 80px; }
+  .hero h1 { font-family: 'Noto Sans KR', sans-serif; font-weight: 900; font-size: clamp(40px, 5.5vw, 72px); line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 20px; }
+  .hero h1 em { font-style: normal; color: var(--accent); }
+  .hero-lead { max-width: 720px; font-size: 16px; color: var(--text-soft); line-height: 1.8; font-weight: 300; margin-top: 36px; }
+  .hero-lead strong { color: var(--text); font-weight: 500; }
+  .hero-meta { margin-top: 120px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; padding-top: 32px; border-top: 1px solid var(--border); }
+  .hero-meta .label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.25em; color: var(--text-dim); text-transform: uppercase; margin-bottom: 8px; }
+  .hero-meta .value { font-size: 17px; font-weight: 700; color: var(--text); }
+
+  nav.sticky { position: sticky; top: 0; background: rgba(253,252,250,0.92); backdrop-filter: blur(18px); border-bottom: 1px solid var(--border); z-index: 50; padding: 14px 60px; }
+  nav .nav-inner { max-width: 1120px; margin: 0 auto; display: flex; gap: 24px; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; }
+  nav a { color: var(--text-dim); text-decoration: none; white-space: nowrap; padding: 4px 0; border-bottom: 1px solid transparent; transition: all 0.2s; }
+  nav a:hover { color: var(--accent); }
+
+  section { padding: 100px 60px; position: relative; }
+  .container { max-width: 1120px; margin: 0 auto; }
+  .sec-header { margin-bottom: 56px; display: flex; align-items: flex-start; gap: 32px; }
+  .sec-num { font-family: 'JetBrains Mono', monospace; font-size: 56px; font-weight: 700; color: var(--text-faint); line-height: 1; letter-spacing: -0.02em; flex-shrink: 0; }
+  .sec-num.star { color: var(--accent); }
+  .sec-title-wrap { flex: 1; padding-top: 8px; }
+  h2 { font-family: 'Noto Sans KR', sans-serif; font-weight: 900; font-size: clamp(28px, 3.6vw, 44px); line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 16px; color: var(--text); }
+  h2 em { font-style: normal; color: var(--accent); }
+  .sec-sub { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.2em; color: var(--text-dim); text-transform: uppercase; margin-top: 6px; margin-bottom: 22px; }
+  .sec-lead { font-size: 16px; color: var(--text-soft); max-width: 820px; line-height: 1.8; font-weight: 300; }
+  .sec-lead strong { color: var(--text); font-weight: 600; }
+
+  .intro-why { background: var(--bg-card); border: 1px solid var(--border); padding: 36px 40px; margin-top: 32px; }
+  .intro-why h3 { font-size: 18px; font-weight: 700; margin-bottom: 14px; color: var(--text); }
+  .intro-why h3 span { color: var(--accent); font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; margin-right: 10px; }
+  .intro-why p { font-size: 14px; color: var(--text-soft); line-height: 1.8; margin-bottom: 10px; }
+
+  .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
+  .compare-card { background: var(--bg-card); border: 1px solid var(--border); padding: 32px; }
+  .compare-card h4 { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 14px; }
+  .compare-card.old h4 { color: var(--text-dim); }
+  .compare-card.new h4 { color: var(--accent); }
+  .compare-card .punch { font-size: 19px; font-weight: 700; margin-bottom: 14px; line-height: 1.4; }
+  .compare-card.new .punch { color: var(--accent-2); }
+  .compare-card p { font-size: 14px; color: var(--text-soft); line-height: 1.75; margin-bottom: 8px; }
+
+  .phase-hero { background: var(--bg-card); border: 1px solid var(--border); border-left: 4px solid var(--accent); padding: 36px 40px; margin-bottom: 36px; }
+  .phase-hero.teal { border-left-color: var(--teal); }
+  .phase-hero.purple { border-left-color: var(--purple); }
+  .phase-hero.green { border-left-color: var(--green); }
+  .phase-hero.pink { border-left-color: var(--pink); }
+  .phase-hero.blue { border-left-color: var(--blue); }
+  .phase-hero.yellow { border-left-color: var(--yellow); }
+  .phase-era { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.25em; color: var(--text-dim); margin-bottom: 10px; }
+  .phase-hero h3 { font-size: 26px; font-weight: 800; line-height: 1.3; margin-bottom: 14px; letter-spacing: -0.01em; }
+  .phase-hero h3 em { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; color: var(--accent); }
+  .phase-hero p { font-size: 15px; color: var(--text-soft); line-height: 1.8; margin-bottom: 10px; }
+  .phase-q { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-dim); margin-top: 16px; padding-top: 16px; border-top: 1px dashed var(--border-2); letter-spacing: 0.05em; }
+  .phase-q strong { color: var(--accent-2); }
+
+  /* framework card */
+  .fw { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--accent); margin-bottom: 20px; overflow: hidden; }
+  .fw.teal { border-left-color: var(--teal); }
+  .fw.purple { border-left-color: var(--purple); }
+  .fw.green { border-left-color: var(--green); }
+  .fw.pink { border-left-color: var(--pink); }
+  .fw.blue { border-left-color: var(--blue); }
+  .fw.yellow { border-left-color: var(--yellow); }
+
+  .fw-top { padding: 28px 36px 22px; display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: start; border-bottom: 1px solid var(--border); }
+  .fw-id { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+  .fw-name { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--text); letter-spacing: -0.01em; }
+  .fw-inventor { font-size: 14px; color: var(--text-dim); font-weight: 400; }
+  .fw-tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; padding: 6px 12px; background: rgba(217,96,31,0.12); color: var(--accent); text-transform: uppercase; white-space: nowrap; align-self: start; border: 1px solid rgba(217,96,31,0.25); }
+  .fw.teal .fw-tag { background: rgba(93,184,168,0.1); color: var(--teal); border-color: rgba(93,184,168,0.25);}
+  .fw.purple .fw-tag { background: rgba(176,140,201,0.1); color: var(--purple); border-color: rgba(176,140,201,0.25);}
+  .fw.green .fw-tag { background: rgba(122,194,122,0.1); color: var(--green); border-color: rgba(122,194,122,0.25);}
+  .fw.pink .fw-tag { background: rgba(224,140,176,0.1); color: var(--pink); border-color: rgba(224,140,176,0.25);}
+  .fw.blue .fw-tag { background: rgba(122,160,208,0.1); color: var(--blue); border-color: rgba(122,160,208,0.25);}
+  .fw.yellow .fw-tag { background: rgba(224,196,119,0.1); color: var(--yellow); border-color: rgba(224,196,119,0.25);}
+
+  .fw-meta { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+  .fw-pill { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.15em; padding: 4px 10px; background: var(--bg-card-2); border: 1px solid var(--border); color: var(--text-dim); text-transform: uppercase; }
+  .fw-pill.time { color: var(--accent); border-color: rgba(217,96,31,0.25); }
+  .fw-pill.plat { color: var(--teal); border-color: rgba(93,184,168,0.25); }
+
+  .fw-punch { grid-column: 1 / -1; margin-top: 8px; font-size: 17px; font-weight: 600; color: var(--text); line-height: 1.5; letter-spacing: -0.005em; }
+  .fw-punch em { font-style: normal; color: var(--accent-2); font-weight: 700; }
+  .fw.teal .fw-punch em { color: var(--teal); }
+  .fw.purple .fw-punch em { color: var(--purple); }
+  .fw.green .fw-punch em { color: var(--green); }
+  .fw.pink .fw-punch em { color: var(--pink); }
+  .fw.blue .fw-punch em { color: var(--blue); }
+  .fw.yellow .fw-punch em { color: var(--yellow); }
+
+  .fw-body { padding: 32px 36px 36px; }
+  .block { margin-bottom: 28px; }
+  .block:last-child { margin-bottom: 0; }
+  .block-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.25em; color: var(--accent); text-transform: uppercase; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+  .block-label::before { content: ''; width: 18px; height: 1px; background: var(--accent); }
+  .fw.teal .block-label { color: var(--teal); }
+  .fw.teal .block-label::before { background: var(--teal); }
+  .fw.purple .block-label { color: var(--purple); }
+  .fw.purple .block-label::before { background: var(--purple); }
+  .fw.green .block-label { color: var(--green); }
+  .fw.green .block-label::before { background: var(--green); }
+  .fw.pink .block-label { color: var(--pink); }
+  .fw.pink .block-label::before { background: var(--pink); }
+  .fw.blue .block-label { color: var(--blue); }
+  .fw.blue .block-label::before { background: var(--blue); }
+  .fw.yellow .block-label { color: var(--yellow); }
+  .fw.yellow .block-label::before { background: var(--yellow); }
+
+  .block p { font-size: 14.5px; color: var(--text-soft); line-height: 1.85; margin-bottom: 10px; }
+  .block p strong { color: var(--text); font-weight: 600; }
+
+  .schema { background: var(--bg-code); border: 1px solid var(--border); padding: 24px 28px; margin: 16px 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.9; color: var(--text-soft); white-space: pre; overflow-x: auto; }
+  .schema .c-a { color: var(--accent); } .schema .c-t { color: var(--teal); } .schema .c-p { color: var(--purple); } .schema .c-g { color: var(--green); } .schema .c-b { color: var(--blue); } .schema .c-y { color: var(--yellow); } .schema .c-pk { color: var(--pink); } .schema .c-r { color: var(--red); } .schema .c-d { color: var(--text-dim); } .schema .c-hi { color: var(--text); font-weight: 600; }
+  .schema-cap { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-dim); letter-spacing: 0.15em; margin-top: 8px; text-align: right; }
+
+  /* Research block — citations */
+  .research { background: rgba(122,160,208,0.05); border: 1px solid rgba(122,160,208,0.18); padding: 18px 22px; margin-top: 14px; }
+  .research-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.25em; color: var(--blue); text-transform: uppercase; margin-bottom: 10px; }
+  .research-body { font-size: 13.5px; color: var(--text-soft); line-height: 1.7; }
+  .research-body strong { color: var(--text); }
+  .research-body .cite { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--blue); background: rgba(122,160,208,0.08); padding: 1px 6px; border-radius: 3px; margin: 0 2px; }
+
+  .example { background: rgba(217,96,31,0.06); border: 1px solid rgba(217,96,31,0.18); padding: 18px 22px; margin-top: 14px; }
+  .fw.teal .example { background: rgba(93,184,168,0.06); border-color: rgba(93,184,168,0.18); }
+  .fw.purple .example { background: rgba(176,140,201,0.06); border-color: rgba(176,140,201,0.18); }
+  .fw.green .example { background: rgba(122,194,122,0.06); border-color: rgba(122,194,122,0.18); }
+  .fw.pink .example { background: rgba(224,140,176,0.06); border-color: rgba(224,140,176,0.18); }
+  .fw.blue .example { background: rgba(122,160,208,0.06); border-color: rgba(122,160,208,0.18); }
+  .fw.yellow .example { background: rgba(224,196,119,0.06); border-color: rgba(224,196,119,0.18); }
+  .example-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.25em; color: var(--accent); text-transform: uppercase; margin-bottom: 8px; }
+  .fw.teal .example-label { color: var(--teal); }
+  .fw.purple .example-label { color: var(--purple); }
+  .fw.green .example-label { color: var(--green); }
+  .fw.pink .example-label { color: var(--pink); }
+  .fw.blue .example-label { color: var(--blue); }
+  .fw.yellow .example-label { color: var(--yellow); }
+  .example-body { font-size: 14px; color: var(--text); line-height: 1.7; font-family: 'Nanum Myeongjo', serif; }
+  .example-body strong { color: var(--text); font-weight: 700; }
+
+  .quote { margin: 16px 0; padding: 14px 0 14px 20px; border-left: 3px solid var(--accent-dim); font-family: 'Nanum Myeongjo', serif; font-style: italic; font-size: 16px; color: var(--text); line-height: 1.7; }
+  .quote-src { display: block; margin-top: 8px; font-family: 'JetBrains Mono', monospace; font-style: normal; font-size: 10px; color: var(--text-dim); letter-spacing: 0.15em; }
+
+  /* 3-act layout */
+  .three-act { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 32px; }
+  .act-card { background: var(--bg-card); border: 1px solid var(--border); padding: 30px 32px; border-top: 3px solid var(--accent); }
+  .act-card:nth-child(1) { border-top-color: var(--accent); }
+  .act-card:nth-child(2) { border-top-color: var(--teal); }
+  .act-card:nth-child(3) { border-top-color: var(--yellow); }
+  .act-card .a-num { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.3em; color: var(--text-dim); margin-bottom: 10px; }
+  .act-card h4 { font-size: 22px; font-weight: 800; margin-bottom: 6px; }
+  .act-card h4 em { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; color: var(--accent); margin-left: 6px; font-size: 15px; }
+  .act-card .time { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-dim); margin-bottom: 12px; letter-spacing: 0.1em; }
+  .act-card p { font-size: 13.5px; color: var(--text-soft); line-height: 1.7; margin-bottom: 10px; }
+  .act-card .fw-list { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-dim); letter-spacing: 0.05em; line-height: 1.9; padding-top: 12px; border-top: 1px dashed var(--border); margin-top: 10px; }
+  .act-card .fw-list strong { color: var(--text); }
+
+  /* 13 hooks table */
+  .hooks-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 28px; }
+  .hook-row { background: var(--bg-card); border: 1px solid var(--border); padding: 18px 22px; border-left: 2px solid var(--accent); }
+  .hook-row .num { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.25em; color: var(--accent); margin-bottom: 6px; }
+  .hook-row h5 { font-size: 16px; font-weight: 800; margin-bottom: 6px; }
+  .hook-row h5 em { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; color: var(--accent); margin-left: 8px; font-size: 12px; }
+  .hook-row p { font-size: 13px; color: var(--text-soft); line-height: 1.65; margin-bottom: 6px; }
+  .hook-row .sci { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--blue); letter-spacing: 0.05em; }
+
+  /* Algorithm table */
+  .algo-table { width: 100%; border-collapse: collapse; margin-top: 32px; background: var(--bg-card); border: 1px solid var(--border); }
+  .algo-table th, .algo-table td { padding: 16px 20px; text-align: left; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .algo-table th { background: var(--bg-card-2); font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: var(--text-dim); text-transform: uppercase; font-weight: 600; }
+  .algo-table th:first-child { color: var(--accent); }
+  .algo-table tr:last-child td { border-bottom: none; }
+  .algo-table td:first-child { font-weight: 800; color: var(--text); font-size: 14px; width: 18%; }
+  .algo-table td { font-size: 13.5px; color: var(--text-soft); line-height: 1.7; }
+  .algo-table td strong { color: var(--text); }
+  .algo-table td .weight { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent); font-weight: 600; }
+
+  /* Format cards */
+  .format-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 32px; }
+  .format-card { background: var(--bg-card); border: 1px solid var(--border); padding: 28px 32px; border-top: 3px solid var(--accent); }
+  .format-card:nth-child(1) { border-top-color: var(--pink); }
+  .format-card:nth-child(2) { border-top-color: var(--teal); }
+  .format-card:nth-child(3) { border-top-color: var(--red); }
+  .format-card:nth-child(4) { border-top-color: var(--yellow); }
+  .format-card h4 { font-size: 22px; font-weight: 800; margin-bottom: 6px; }
+  .format-card .sub { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-dim); margin-bottom: 14px; letter-spacing: 0.1em; }
+  .format-card ul { list-style: none; padding: 0; }
+  .format-card li { font-size: 13.5px; padding: 6px 0; color: var(--text-soft); border-bottom: 1px dashed var(--border); line-height: 1.65; }
+  .format-card li:last-child { border-bottom: none; }
+  .format-card li::before { content: '▸ '; color: var(--accent); margin-right: 4px; }
+  .format-card li strong { color: var(--text); }
+
+  .workflow-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 28px; }
+  .wf-step { background: var(--bg-card); border: 1px solid var(--border); padding: 22px 20px; border-top: 3px solid var(--accent); position: relative; }
+  .wf-step:nth-child(1) { border-top-color: var(--accent); }
+  .wf-step:nth-child(2) { border-top-color: var(--teal); }
+  .wf-step:nth-child(3) { border-top-color: var(--yellow); }
+  .wf-step:nth-child(4) { border-top-color: var(--pink); }
+  .wf-step .num { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.3em; color: var(--text-dim); margin-bottom: 10px; }
+  .wf-step h4 { font-size: 17px; font-weight: 800; margin-bottom: 10px; line-height: 1.3; }
+  .wf-step p { font-size: 12.5px; color: var(--text-soft); line-height: 1.6; }
+
+  .practice-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 32px; }
+  .practice-card { background: var(--bg-card); border: 1px solid var(--border); padding: 28px 30px; border-top: 3px solid var(--accent); }
+  .practice-card:nth-child(1) { border-top-color: var(--accent); }
+  .practice-card:nth-child(2) { border-top-color: var(--teal); }
+  .practice-card:nth-child(3) { border-top-color: var(--purple); }
+  .practice-card:nth-child(4) { border-top-color: var(--yellow); }
+  .practice-card:nth-child(5) { border-top-color: var(--pink); }
+  .practice-card:nth-child(6) { border-top-color: var(--blue); }
+  .practice-card .tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.25em; color: var(--accent); text-transform: uppercase; margin-bottom: 12px; }
+  .practice-card h4 { font-size: 17px; font-weight: 800; margin-bottom: 10px; line-height: 1.35; }
+  .practice-card p { font-size: 13px; color: var(--text-soft); line-height: 1.7; }
+
+  .oneline { padding: 140px 60px; text-align: center; position: relative; overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .oneline::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(217,96,31,0.08), transparent 60%); }
+  .oneline-inner { max-width: 900px; margin: 0 auto; position: relative; }
+  .oneline-k { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.4em; color: var(--accent); margin-bottom: 36px; }
+  .oneline-main { font-size: clamp(22px, 2.8vw, 32px); font-weight: 700; line-height: 1.5; color: var(--text); }
+  .oneline-main em { font-style: normal; color: var(--accent); }
+  .oneline-sig { margin-top: 44px; font-family: 'Playfair Display', serif; font-style: italic; color: var(--text-soft); font-size: 16px; line-height: 1.7; }
+
+  footer { background: var(--bg-2); padding: 70px 60px 40px; border-top: 1px solid var(--border); }
+  footer .inner { max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 56px; }
+  footer h4 { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.25em; color: var(--accent); text-transform: uppercase; margin-bottom: 18px; }
+  footer p, footer li { font-size: 13px; color: var(--text-soft); line-height: 1.8; }
+  footer p strong { color: var(--text); }
+  footer ul { list-style: none; }
+  footer li { padding: 3px 0; }
+  footer li::before { content: '— '; color: var(--text-dim); }
+  footer .colophon { max-width: 1120px; margin: 52px auto 0; padding-top: 24px; border-top: 1px solid var(--border); font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--text-dim); display: flex; justify-content: space-between; }
+
+  @media (max-width: 960px) {
+    .hero, section, footer, nav.sticky { padding-left: 28px; padding-right: 28px; }
+    .sec-header { flex-direction: column; gap: 12px; }
+    .sec-num { font-size: 42px; }
+    .hero-meta { grid-template-columns: 1fr 1fr; }
+    .compare-grid, .three-act, .format-grid { grid-template-columns: 1fr; gap: 20px; }
+    .hooks-list, .workflow-grid, .practice-grid { grid-template-columns: 1fr; }
+    footer .inner { grid-template-columns: 1fr; gap: 32px; }
+    .fw-top { grid-template-columns: 1fr; }
+    .algo-table { font-size: 12px; }
+    .algo-table th, .algo-table td { padding: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-kicker">SHORTFORM FRAMEWORKS · PART XIV · 2026</div>
+    <h1>숏폼의 <em>설득 공학</em> — <br/>3초에서 60초까지 <em>15개 프레임워크</em></h1>
+    <p class="hero-lead">
+      숏폼은 카피라이팅 연장이 아니다. <strong>새로운 인지 조건 위의 새로운 설득 공학</strong>이다. 3초 안에 주의를 잡고, 30초간 리텐션을 유지하고, 엔딩에서 감정 정점·공유 트리거를 동시에 설계해야 한다.
+      이 문서는 그 공학을 15개 프레임워크로 조직한다 — Zeigarnik(1927)·Rescorla-Wagner(1972)·MrBeast retention graph·Kahneman Peak-End·Jonah Berger STEPPS 같은 <strong>권위 있는 연구·현장 데이터</strong>로 뼈대를 세우고, 한국 크리에이터 현장의 13 후킹 심리를 그 위에 얹었다.
+    </p>
+    <div class="hero-meta">
+      <div><div class="label">Frameworks</div><div class="value">15기</div></div>
+      <div><div class="label">Layers</div><div class="value">Hook · Retention · Payoff</div></div>
+      <div><div class="label">Platforms</div><div class="value">Reels · Shorts · TikTok</div></div>
+      <div><div class="label">Series</div><div class="value">Part VII · Creative Communicator</div></div>
+    </div>
+  </div>
+</header>
+
+<nav class="sticky">
+  <div class="nav-inner">
+    <a href="#intro">00 · 들어가며</a>
+    <a href="#s1">01 · 3-Act 엔진</a>
+    <a href="#s2">02 · HOOK (첫 3초)</a>
+    <a href="#s3">03 · RETENTION</a>
+    <a href="#s4">04 · PAYOFF</a>
+    <a href="#s5">05 · 13 후킹 심리</a>
+    <a href="#s6">06 · 알고리즘</a>
+    <a href="#s7">07 · 포맷별</a>
+    <a href="#s8">08 · 워크플로우</a>
+    <a href="#s9">09 · 6 실천</a>
+  </div>
+</nav>
+
+<!-- 00 INTRO -->
+<section id="intro">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">00</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">WHY SHORT-FORM NEEDS ITS OWN ENGINEERING</div>
+        <h2>숏폼은 왜 <em>카피라이팅의 연장</em>이 아닌가</h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      Part II의 AIDA·PAS·SB7은 여전히 유효하다. 다만 숏폼은 그 위에 <strong>두 가지 근본 조건</strong>을 더한다 — <strong>극단적 시간 압축(3초 만에 이탈 결정)과 알고리즘 중재(완시청률·공유가 노출을 결정)</strong>. 이 조건이 프레임워크 문법 자체를 바꾼다.
+    </p>
+
+    <div class="intro-why">
+      <h3><span>CORE THESIS</span>이 문서의 중심 명제</h3>
+      <p><strong style="color:var(--text)">"숏폼은 주의(Hook) × 유지(Retention) × 완결(Payoff)의 3층 공학이다. 세 층이 모두 작동해야 한 개의 콘텐츠가 성공하고, 동시에 알고리즘이 그다음 노출을 준다."</strong></p>
+      <p>카피라이팅이 "설득의 순서"를 다뤘다면, 숏폼은 "주의 예산의 배분"을 다룬다. 한 사람의 피드에서 당신의 콘텐츠에 배정된 시간은 <strong>평균 1.7초</strong>. 이 시간 안에 스크롤을 멈추고, 그다음 30초를 만들어낸 뒤, 엔딩에서 공유·저장을 유도해야 한다.</p>
+      <p>이것은 운이 아니라 <strong style="color:var(--accent-2)">공학</strong>이다. MrBeast가 매 영상마다 retention graph를 그려 최적화하는 이유, TikTok이 완시청률을 알고리즘 1번 가중치로 삼는 이유, 바이럴 숏폼에 <strong>예외 없이</strong> 같은 구조가 반복되는 이유 — 모두 공학이기 때문이다.</p>
+    </div>
+
+    <div class="compare-grid">
+      <div class="compare-card old">
+        <h4>— 전통 카피 프레임으로 숏폼 만들 때</h4>
+        <div class="punch">AIDA 4단계를 60초에 밀어넣는다</div>
+        <p>Attention→Interest→Desire→Action을 순차적으로 배열. 하지만 숏폼은 시청자가 <strong>3초 만에 이탈 결정</strong>하는 환경. 첫 3초에 Interest까지 안 가면 나머지 50초는 존재하지 않는 것과 같다. 기존 프레임의 "시간 가정"이 틀렸다.</p>
+      </div>
+      <div class="compare-card new">
+        <h4>— 숏폼 3-Act 엔진으로 만들 때</h4>
+        <div class="punch">주의·유지·완결 3층을 병렬로 설계</div>
+        <p><strong>HOOK(0-3s)</strong>에서 스크롤 멈춤 + 궁금증 발생 동시 달성. <strong>RETENTION(3-50s)</strong>에서 beat 단위로 시청자 뇌의 예측 오차를 계속 유발. <strong>PAYOFF(50-60s)</strong>에서 감정 정점 + 공유 트리거 동시 발동. 세 층이 독립적이면서 연동된다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 01 THE 3-ACT ENGINE -->
+<section id="s1" style="background:var(--bg-2);">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">01</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">THE MASTER FRAMEWORK</div>
+        <h2>3-Act 엔진 — <em>Hook · Retention · Payoff</em></h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      나머지 14개 프레임워크가 이 3층 엔진의 어느 층에 속한다. 먼저 이 마스터 프레임의 각 층이 <strong>무엇을 달성해야 하는가</strong>와 <strong>어떤 뇌 회로에 작용하는가</strong>를 분명히 한다.
+    </p>
+
+    <div class="three-act">
+      <div class="act-card">
+        <div class="a-num">ACT 01 · 첫 3초</div>
+        <h4>HOOK<em>주의 포획</em></h4>
+        <div class="time">0 — 3s · 이탈률 70% 결정 지점</div>
+        <p><strong>달성 과제:</strong> (1) 스크롤 정지 (2) 궁금증 생성 (3) 뇌의 "더 볼 이유" 생성. 세 가지가 3초 안에 동시에.</p>
+        <p><strong>작용 회로:</strong> 편도체(반사적 주의) · DMN 억제(몰입 진입) · 예측 오차 시스템(Surprise).</p>
+        <div class="fw-list">
+          <strong>Pattern Interrupt</strong> · <strong>Open Loop</strong> ·<br/>
+          <strong>Expectancy Violation</strong> · <strong>Problem Mirror</strong>
+        </div>
+      </div>
+      <div class="act-card">
+        <div class="a-num">ACT 02 · 3초~엔딩 직전</div>
+        <h4>RETENTION<em>주의 유지</em></h4>
+        <div class="time">3 — 50s · 알고리즘 노출의 핵심 변수</div>
+        <p><strong>달성 과제:</strong> 매 3-5초마다 새 자극 · 새 질문 · 새 정보. 시청자의 예측이 정체되는 순간 이탈.</p>
+        <p><strong>작용 회로:</strong> 도파민 예측 오차 루프(Schultz) · 해마 이야기 엔진(Tulving) · Variable Reward(Skinner).</p>
+        <div class="fw-list">
+          <strong>MrBeast Retention Graph</strong> · <strong>Beat Structure</strong> ·<br/>
+          <strong>Variable Reward</strong> · <strong>Cliffhanger Chain</strong> · <strong>Sound Sync</strong>
+        </div>
+      </div>
+      <div class="act-card">
+        <div class="a-num">ACT 03 · 엔딩 10초</div>
+        <h4>PAYOFF<em>완결 · 공유</em></h4>
+        <div class="time">50 — 60s · 알고리즘 2차 부스트</div>
+        <p><strong>달성 과제:</strong> (1) 감정 정점 (2) 공유·저장 유발 (3) CTA. Peak-End 효과로 전체 인상 결정.</p>
+        <p><strong>작용 회로:</strong> Peak-End Rule(Kahneman) · 감정 공고화(편도체-해마) · 사회적 평판 계산(mPFC).</p>
+        <div class="fw-list">
+          <strong>Peak-End Payoff</strong> · <strong>STEPPS</strong> ·<br/>
+          <strong>Value Gift</strong> · <strong>CTA Integration</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-hero" style="margin-top:40px;">
+      <div class="phase-era">CRITICAL RELATION</div>
+      <h3>3층의 <em>연쇄 실패 원칙</em></h3>
+      <p>세 층은 독립된 것이 아니라 <strong>AND 게이트</strong>다. HOOK 실패 → 나머지는 존재하지 않음. HOOK 성공 + RETENTION 실패 → 완시청률 낮음 → 알고리즘이 다음 노출 안 줌. 셋 다 성공 + PAYOFF 실패 → 공유·저장 0 → 바이럴 불가.</p>
+      <p>그래서 제작 순서도 <strong style="color:var(--accent-2)">Hook부터 거꾸로</strong> — 먼저 첫 3초를 집요하게 다듬고, 그 뒤 리텐션을 beat 단위로 짜고, 마지막에 Payoff를 설계. 역순 제작이 숏폼 장인의 표시.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 02 HOOK -->
+<section id="s2">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">02</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">ACT 01 · HOOK FRAMEWORKS</div>
+        <h2>HOOK — <em>첫 3초</em>의 과학</h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      주의는 한 사람이 가진 가장 희소한 자원. 스크롤 환경에서 뇌는 <strong>0.5초 안에 "더 볼지 말지"를 무의식적으로 판정</strong>한다. 이 판정을 뒤집는 네 가지 프레임워크 — 각각이 다른 뇌 회로를 건드린다.
+    </p>
+
+    <!-- Pattern Interrupt -->
+    <article class="fw">
+      <div class="fw-top">
+        <div>
+          <div class="fw-id">
+            <span class="fw-name">Pattern Interrupt</span>
+            <span class="fw-inventor">· Surprise-Based Attention Capture</span>
+          </div>
+          <div class="fw-meta">
+            <span class="fw-pill time">TIME · 0–1s</span>
+            <span class="fw-pill plat">ALL PLATFORMS</span>
+          </div>
+          <div class="fw-punch">예측 가능한 피드 흐름을 <em>깨뜨리는 순간</em>, 뇌는 반사적으로 집중한다 — 주의 전환의 가장 원초적 트리거.</div>
+        </div>
+        <span class="fw-tag">HOOK · ATTENTION</span>
+      </div>
+      <div class="fw-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>피드 스크롤은 본질적으로 <strong>예측 가능한 시각적 리듬</strong>이다. 사용자의 뇌는 "다음엔 또 비슷한 뭔가가 올 것"이라는 예측 위에서 엄지를 움직인다. <strong>Pattern Interrupt</strong>는 그 예측을 강하게 어긴다 — 갑작스러운 고대비·역동작·얼굴 클로즈업·예상 밖 구도.</p>
+          <p>핵심은 "눈에 띄는 것"이 아니라 <strong>"예측과 다른 것"</strong>. 같은 빨간색이라도 초록 피드 속에서만 작동한다. 맥락을 무시한 Interrupt는 Interrupt가 아니라 그냥 소음.</p>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 스크롤 예측 모델의 붕괴</div>
+<div class="schema"><span class="c-d"># 시각 피드의 예측-붕괴</span>
+
+  시청자 뇌의 예측 모델:
+  [다음 콘텐츠 ≈ 이전 콘텐츠의 평균]
+      │
+      ▼  스크롤
+      │
+  [당신 콘텐츠 등장]
+      │
+      ├── 예측과 일치 → <span class="c-d">무의식 통과 (이탈)</span>
+      │
+      └── 예측 <span class="c-hi">크게 어긋남</span> → <span class="c-a">주의 반사적 진입</span>
+              │
+              ▼
+         [뇌간 정위 반사 · orienting response]
+              │
+              ▼
+         <span class="c-hi">[다음 3초를 확인하려는 동기]</span>
+
+<span class="c-d">작동하는 Interrupt 유형:</span>
+  · 시각: 갑작스런 움직임 · 고대비 · 얼굴 · 역동작
+  · 청각: 이상한 소리 · 침묵 · 예상 밖 음악
+  · 구도: 깨진 3분할 · 극단 앵글 · 광각 왜곡
+  · 텍스트: 반전 카피 · 개인 호명</div>
+          <div class="schema-cap">PATTERN INTERRUPT · ORIENTING RESPONSE</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">RESEARCH · 학술 근거</div>
+          <div class="research">
+            <div class="research-label">Scientific Backing</div>
+            <div class="research-body">
+              <strong>정위 반사(Orienting Response)</strong> — 러시아 생리학자 <span class="cite">Sokolov (1963)</span>가 정식화한 뇌간 반사. 예상 밖 자극에 자동으로 주의가 향하는 무의식 메커니즘. 현대 주의 신경과학에서 <span class="cite">Corbetta & Shulman (2002)</span>의 <strong>"ventral attention network"</strong>로 이어짐 — 예측 오차가 크면 이 네트워크가 활성화되어 주의를 재배정. <span class="cite">Schultz (1997)</span>의 도파민 뉴런 연구는 예측 오차가 도파민 분출과 직결됨을 증명. 결론: Pattern Interrupt는 <strong>의지가 아닌 생리학적 반사</strong>이므로 거의 모든 시청자에게 작동한다.
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">EXAMPLE · 적용 사례</div>
+          <div class="example">
+            <div class="example-label">PATTERN INTERRUPT TECHNIQUES</div>
+            <div class="example-body">
+              • <strong>변장 등장</strong>(taoagou) — 캐릭터 복장 변화로 시각적 기대 깨기<br/>
+              • <strong>역동작 시작</strong> — 물이 거꾸로 흐르거나 손이 위로 접히는 등 물리적 기대 반전<br/>
+              • <strong>얼굴 초근접 클로즈업</strong> — 눈동자만 꽉 채우고 시작 → 인간 얼굴은 최강의 주의 자극<br/>
+              • <strong>"!!!" 텍스트 + 정지</strong> — 영상이 정지된 채 큰 텍스트만 → 리듬 깨기
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Open Loop / Zeigarnik -->
+    <article class="fw teal">
+      <div class="fw-top">
+        <div>
+          <div class="fw-id">
+            <span class="fw-name">Open Loop</span>
+            <span class="fw-inventor">· Zeigarnik Effect</span>
+          </div>
+          <div class="fw-meta">
+            <span class="fw-pill time">TIME · 0–3s</span>
+            <span class="fw-pill plat">ALL PLATFORMS</span>
+          </div>
+          <div class="fw-punch">미완결된 정보는 <em>뇌에 긴장을 남긴다</em> — 답이 없는 질문이 끝까지 시청하게 만드는 100년 된 심리 원리.</div>
+        </div>
+        <span class="fw-tag">★ HOOK · CURIOSITY</span>
+      </div>
+      <div class="fw-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>1927년 러시아 심리학자 Bluma Zeigarnik이 발견한 현상. 웨이터가 아직 지불되지 않은 주문은 완벽히 기억하지만 지불 즉시 잊는다는 관찰에서 출발. 실험으로 증명된 <strong>Zeigarnik 효과</strong> — 미완결 과제가 완결 과제보다 약 90% 더 잘 기억되고, 완결될 때까지 <strong>인지적 긴장(cognitive tension)</strong>이 유지된다.</p>
+          <p>숏폼에서의 응용: 첫 3초에 <strong>답이 없는 질문 · 시작만 된 이야기 · 반만 공개된 정보</strong>를 던진다. 뇌가 이 미완결을 "마무리하고 싶은" 본능으로 끝까지 시청하게 된다. MrBeast의 거의 모든 영상이 이 기법으로 시작 — "I buried myself alive for 50 hours"에 답은 절대 처음에 안 나온다.</p>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 미완결 긴장의 지속</div>
+<div class="schema"><span class="c-d"># Zeigarnik 효과의 숏폼 응용</span>
+
+  <span class="c-t">시작:</span> 미완결 질문 던지기
+    "내가 왜 이 돈을 버렸는지 아세요?"
+    "3초 뒤에 일어날 일이 상상 안 갈 겁니다"
+    "이걸 본 모두가 조용해졌습니다"
+        │
+        ▼
+  <span class="c-t">뇌의 반응:</span>
+    · 열린 고리(open loop)가 작업기억에 들어감
+    · 해소되기 전까지 <span class="c-hi">인지 긴장</span> 유지
+    · 이탈하려 해도 "답 궁금"이 지속
+        │
+        ▼
+  <span class="c-t">유지 전략:</span>
+    엔딩 직전까지 답을 주지 않고
+    중간에 <span class="c-hi">더 많은 질문</span>을 겹쳐 쌓는다
+
+  <span class="c-d">MrBeast 패턴:</span>
+    Q1 (0s) ────────── 답 (60s)
+       └ Q2 (8s) ──── 답 (50s)
+            └ Q3 (20s) ─ 답 (45s)
+        여러 loop 중첩 → 이탈 불가
+
+<span class="c-hi">규칙:</span> 한 영상에 최소 1개, 이상적으로 2-3개 열린 고리.</div>
+          <div class="schema-cap">ZEIGARNIK · OPEN LOOP CHAIN</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">RESEARCH · 학술 근거</div>
+          <div class="research">
+            <div class="research-label">Scientific Backing</div>
+            <div class="research-body">
+              <span class="cite">Zeigarnik (1927)</span>의 원 실험이 90년 넘게 재현됨. 대표적으로 <span class="cite">Kuhl (1981)</span>의 "행동 통제" 연구가 open loop의 작업기억 점유를 확인. 최근 <span class="cite">Savine et al. (2010)</span>의 fMRI 연구는 미완결 과제가 <strong>dorsolateral prefrontal cortex (dlPFC)의 지속적 활성</strong>을 유발함을 입증 — 즉 뇌가 "끝내지 못한 일"을 계속 돌리고 있음이 신경 영상으로 확인. <strong>Nir Eyal의 『Hooked』(2014)</strong>가 기술 제품 설계에 이 원리를 적용해 대중화.
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">EXAMPLE · 적용 사례</div>
+          <div class="example">
+            <div class="example-label">OPEN LOOP OPENERS</div>
+            <div class="example-body">
+              • "내가 어제 이 선택을 한 이유, 지금도 믿기지 않아요." → 답은 엔딩<br/>
+              • "이 3가지 중에 1개는 거짓말입니다. 어떤 거일까요?" → 결말까지 정체<br/>
+              • "이 사람이 왜 여기서 멈췄는지 아세요?" → 마지막에 공개<br/>
+              • "끝까지 보면 알게 될 거예요. 왜 모두가 이걸 하고 있는지." → 60초 내내 유지
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Expectancy Violation -->
+    <article class="fw purple">
+      <div class="fw-top">
+        <div>
+          <div class="fw-id">
+            <span class="fw-name">Expectancy Violation</span>
+            <span class="fw-inventor">· Prediction Error Engine</span>
+          </div>
+          <div class="fw-meta">
+            <span class="fw-pill time">TIME · 0–3s</span>
+            <span class="fw-pill plat">ALL PLATFORMS</span>
+          </div>
+          <div class="fw-punch">뇌는 <em>예측이 빗나갈 때</em>만 집중한다 — 상식 붕괴·반전 명제·숫자 충격이 작동하는 근본 원리.</div>
+        </div>
+        <span class="fw-tag">HOOK · PREDICTION ERROR</span>
+      </div>
+      <div class="fw-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>뇌는 끊임없이 "다음에 뭐가 올까"를 예측한다(Part III 참조 · Friston의 자유에너지 원리). 예측과 일치하면 주의 낭비할 이유가 없다. <strong>예측이 크게 빗나갈 때만</strong> 뇌가 "재학습이 필요"하다고 판단하고 집중을 배정한다. 이것이 <strong>Expectancy Violation</strong>이 숏폼에서 강력한 이유.</p>
+          <p>작동하는 세 변형:</p>
+          <p><strong>(1) 상식 붕괴</strong> — "고음 낼 때 힘 빼라? 그거 다 거짓말입니다." 널리 믿는 것을 부정.<br/>
+          <strong>(2) 반전 주장</strong> — "운동 열심히 할수록 근손실 심해집니다." 역방향 명제.<br/>
+          <strong>(3) 극단 비교</strong> — "$1 vs $3000 camera." 비교 대상의 격차가 예측 범위를 초과.</p>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 예측 오차 공식</div>
+<div class="schema"><span class="c-d"># Rescorla-Wagner 예측 오차 모델의 숏폼 적용</span>
+
+  <span class="c-p">δ</span> = (실제 자극) - (예측)
+     = <span class="c-hi">Prediction Error</span>
+
+  뇌의 주의 배정:
+     δ ≈ 0  →  무시 (기존 학습대로)
+     δ > 0  →  <span class="c-a">집중 + 재학습</span>
+     δ >> 0 →  <span class="c-hi">강한 몰입 + 기억 각인</span>
+
+  <span class="c-p">숏폼 후킹의 세 축:</span>
+
+  <span class="c-p">1. 상식 붕괴</span>
+     독자 예측: "힘 빼고 고음"
+     콘텐츠: "힘 빼면 망한다"
+     δ = 큼 → 주의 배정
+
+  <span class="c-p">2. 숫자 충격</span>
+     독자 예측: 평범한 수준의 수치
+     콘텐츠: "3주에 -15kg"
+     δ = 큼 → "정말?" 반응
+
+  <span class="c-p">3. 극단 비교</span>
+     독자 예측: 비슷한 두 대상
+     콘텐츠: "$1 vs $3000" · "초등학생 vs 전문가"
+     δ = 큼 → 격차 확인 욕구
+
+<span class="c-hi">주의:</span> δ가 <span class="c-a">너무 크면</span> "거짓말" 판정으로 역효과.
+       <span class="c-hi">믿을 만한 선에서 최대</span>가 최적점.</div>
+          <div class="schema-cap">RESCORLA-WAGNER · PREDICTION ERROR</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">RESEARCH · 학술 근거</div>
+          <div class="research">
+            <div class="research-label">Scientific Backing</div>
+            <div class="research-body">
+              <span class="cite">Rescorla & Wagner (1972)</span>의 <strong>연합 학습 모델</strong>이 주의·학습·기억의 핵심 변수가 "예측 오차"임을 수학적으로 정식화. 이후 <span class="cite">Schultz et al. (1997)</span>이 도파민 뉴런이 정확히 이 오차 신호를 전달함을 단일 뉴런 기록으로 증명 — <strong>Reward Prediction Error Hypothesis</strong>. 예측 오차가 클수록 도파민 분출 + 주의·기억 강화. <span class="cite">Friston (2010)</span>의 자유에너지 원리는 뇌 전체 활동을 예측 오차 최소화로 통합. <strong>결론:</strong> 상식 붕괴·반전 카피는 단순 수사 기법이 아니라 뇌의 핵심 학습 루프를 직접 자극하는 생리학적 개입.
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">EXAMPLE · 적용 사례</div>
+          <div class="example">
+            <div class="example-label">EXPECTANCY VIOLATION OPENERS</div>
+            <div class="example-body">
+              • "공복 유산소가 살 안 빼는 이유." → 널리 믿는 것을 뒤집음<br/>
+              • "성공한 사람 공통점이 '루틴'이라고요? 아닙니다." → 예상 부정<br/>
+              • "3초만에 레몬 껍질 벗기는 법." → 예상 시간 극단 압축<br/>
+              • "100만 원짜리 카메라 vs 아이폰. 결과 놀라움." → 격차 궁금증
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Problem Mirror -->
+    <article class="fw red">
+      <div class="fw-top">
+        <div>
+          <div class="fw-id">
+            <span class="fw-name">Problem Mirror</span>
+            <span class="fw-inventor">· Self-Recognition Hook</span>
+          </div>
+          <div class="fw-meta">
+            <span class="fw-pill time">TIME · 0–3s</span>
+            <span class="fw-pill plat">ALL PLATFORMS</span>
+          </div>
+          <div class="fw-punch">"이거 <em>내 얘기네</em>" 반응 — 시청자의 현재 고통을 거울처럼 비춰 즉각적 자기 동일시를 유도.</div>
+        </div>
+        <span class="fw-tag">HOOK · IDENTITY</span>
+      </div>
+      <div class="fw-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>예측 오차 계열 훅이 "낯섬"으로 주의를 잡는다면, Problem Mirror는 <strong>"너무 익숙해서"</strong> 주의를 잡는다. 시청자가 매일 겪는 고통·불편·짜증을 <strong>놀랍도록 구체적으로</strong> 묘사하면 뇌가 "이 사람이 내 마음을 읽었다"고 판정한다.</p>
+          <p>작동 키: <strong>구체성</strong>. "요즘 힘드시죠"는 안 먹힘. "출근길에 엘리베이터 오는 동안 스마트폰 꺼냈다가 결국 아무것도 안 하고 그냥 다시 넣은 적 있죠?"는 꽂힘. 보편적 감정을 <strong>아주 작은 특수한 장면</strong>으로 재생한다.</p>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 자기 동일시 스펙트럼</div>
+<div class="schema"><span class="c-d"># Problem Mirror 구체성 스펙트럼</span>
+
+  <span class="c-d">Level 1 (안 작동):</span>
+     "많은 분들이 집중이 어려우시죠"
+     → 보편적 · 추상적 · 너무 일반
+
+  <span class="c-d">Level 2 (조금 작동):</span>
+     "아침에 일어나면 폰부터 보시죠?"
+     → 구체적이지만 흔한 자각
+
+  <span class="c-r">Level 3 (강하게 작동):</span>
+     "커피 한 모금 하려다가 5분간
+      유튜브 본 거 자각한 순간 있으시죠?"
+     → 구체적 + 특수한 순간 + 이미 겪은 장면
+
+  <span class="c-r">Level 4 (각인):</span>
+     "샤워하다가 '아 그 일 어떻게 처리하지' 생각하고
+      나와서 10분 지나도 여전히 같은 생각하고 있죠?"
+     → 내가 경험한 그 자체 + 언어화 부재 부분 짚음
+
+<span class="c-hi">공식:</span> (보편 감정) × (극도로 작은 특수 장면) × (언어화 부재)
+     = 자기 동일시 강도
+
+<span class="c-d">독자 뇌의 반응:</span>
+  "이 사람 내 머릿속 카메라 가졌나?"
+  → 남은 시간 주의 배정 확정</div>
+          <div class="schema-cap">PROBLEM MIRROR · SPECIFICITY LADDER</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">RESEARCH · 학술 근거</div>
+          <div class="research">
+            <div class="research-label">Scientific Backing</div>
+            <div class="research-body">
+              자기 관련 자극(self-referential stimuli)은 뇌의 <strong>mPFC(medial prefrontal cortex)</strong>를 강하게 활성화한다 — <span class="cite">Northoff et al. (2006)</span>의 메타 분석. 이 활성은 주의 · 기억 · 감정 처리 모두를 강화. 또한 <span class="cite">Dunbar (1996)</span>의 사회적 뇌 가설은 인간 뇌 상당 부분이 타인과의 유사성 판정에 배정됨을 주장 — 자기 동일시가 작동하는 진화적 배경. <strong>카피 실무 근거:</strong> Eugene Schwartz(Part II)의 "독자의 대화에 들어가라(Enter the conversation already happening in reader's mind)" 원칙, <strong>Made to Stick(Heath brothers, 2007)</strong>의 SUCCES 중 "Concrete" 원리와 같은 계보.
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">EXAMPLE · 적용 사례</div>
+          <div class="example">
+            <div class="example-label">PROBLEM MIRROR OPENERS</div>
+            <div class="example-body">
+              • "책상 앞 앉아서 열심히 뭔가 하는데 저녁에 되돌아보면 뭘 했는지 모르겠던 하루, 아시죠?"<br/>
+              • "인스타 피드 스크롤하다가 '내가 뭐 보려고 들어왔지?' 한 적 있죠."<br/>
+              • "샤워하는데 가슴이 답답해서 '왜 답답하지'를 생각해도 원인 못 찾는 그 기분 아시죠."<br/>
+              • "오늘 밤 자기 전에 딱 한 영상만 보자 하고 1시간 지난 적, 오늘 아니에요?"
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- 03 RETENTION -->
+<section id="s3" style="background:var(--bg-2);">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">03</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">ACT 02 · RETENTION FRAMEWORKS</div>
+        <h2>RETENTION — <em>시청 곡선</em> 엔지니어링</h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      Hook에 성공해도 5초 뒤 이탈하면 의미 없다. Retention은 <strong>"매 3-5초마다 새 자극을 던지는 공학"</strong>. MrBeast가 모든 영상에 적용하고 TikTok 알고리즘이 1순위로 보는 값. 네 가지 프레임워크가 이를 달성한다.
+    </p>
+
+    <!-- MrBeast Retention Graph -->
+    <article class="fw yellow">
+      <div class="fw-top">
+        <div>
+          <div class="fw-id">
+            <span class="fw-name">Retention Graph</span>
+            <span class="fw-inventor">· MrBeast 방법론</span>
+          </div>
+          <div class="fw-meta">
+            <span class="fw-pill time">TIME · 3–50s</span>
+            <span class="fw-pill plat">YOUTUBE / SHORTS</span>
+          </div>
+          <div class="fw-punch">매 초마다 <em>리텐션 곡선</em>을 그려 이탈 지점을 집요하게 리라이트 — 세계 최대 유튜버가 매 영상에 적용하는 공정.</div>
+        </div>
+        <span class="fw-tag">★ RETENTION · METHODOLOGY</span>
+      </div>
+      <div class="fw-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>MrBeast(Jimmy Donaldson)가 여러 인터뷰에서 공개한 제작 공정의 핵심. 모든 영상을 촬영·편집 후 <strong>YouTube Analytics의 리텐션 곡선</strong>을 초 단위로 분석한다. 이탈률이 급증한 지점을 찾아 그 부분을 리라이트하거나 제거. 영상이 올라간 이후에도 썸네일·제목·편집을 계속 바꾸며 최적화.</p>
+          <p>MrBeast가 공개한 핵심 수치: <strong>70% 완시청률</strong>이 알고리즘 부스트의 임계점. 이 선 아래는 알고리즘이 거의 안 밀어준다. 또한 첫 <strong>30초 retention이 80% 이상</strong>이어야 "영상이 살았다"고 판단. 이 기준이 그의 모든 제작 판단의 중심.</p>
+          <div class="quote">"If people aren't watching, nothing else matters. Retention is everything."<span class="quote-src">— MrBeast, multiple interviews · 2021~</span></div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 리텐션 곡선 해독</div>
+<div class="schema"><span class="c-d"># 리텐션 곡선 분석 프레임</span>
+
+   retention (%)
+     ▲
+  100│╲
+     │ ╲
+   90│  ╲___
+     │      ╲___
+   80│          ╲______<span class="c-a">(여기가 좋음)</span>
+     │                 ╲___
+   70│═════════════════════╲═══ <span class="c-r">← 알고리즘 임계선</span>
+     │                        ╲
+   60│                         ╲_____
+     │                                ╲
+   50│  <span class="c-r">│</span>        <span class="c-r">│</span>              <span class="c-r">│</span>
+     │  <span class="c-r">이탈 점프 1</span>  <span class="c-r">이탈 점프 2</span>     <span class="c-r">이탈 점프 3</span>
+     │  지루함      약속 미달성       결론 애매
+     │
+     └─────────────────────────▶ time (s)
+
+<span class="c-d">진단 규칙 (MrBeast 공정):</span>
+  · 곡선이 급락한 지점 = 문제 지점
+  · 3% 이상 급락 = 반드시 리라이트
+  · 70% 아래로 떨어지면 알고리즘이 정지
+  · 끝까지 70% 위 유지하면 재추천 지속
+
+<span class="c-d">개선 액션:</span>
+  급락 지점 → 앞에 <span class="c-hi">새 훅</span> 삽입 (전환 · 질문 · 컷)
+  완만히 하강 → 중간에 <span class="c-hi">beat 강화</span>
+  평균 낮음 → <span class="c-hi">전체 구조</span> 재설계</div>
+          <div class="schema-cap">MRBEAST · RETENTION CURVE DEBUGGING</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">RESEARCH · 학술 근거</div>
+          <div class="research">
+            <div class="research-label">Industry Data</div>
+            <div class="research-body">
+              <strong>MrBeast 공개 자료</strong> — Colin & Samir·Rogan Podcast·YouTube 본인 채널 인터뷰(2021-2024). <strong>TikTok "For You Page" 공식 발표</strong> — 완시청률(watch time ratio)이 노출 결정의 최상위 가중치. <strong>Paddy Galloway</strong>(MrBeast·Rowan Atkinson 채널 컨설턴트)의 공개 리서치 — YouTube Shorts에서 70% 미만 완시청률 영상은 노출이 80% 감소. <strong>Neuroscience 쪽:</strong> <span class="cite">Berridge (2007)</span>의 "wanting" 도파민 시스템 연구 — 예측 가능한 보상은 도파민 분출이 약하고, 예측 오차가 있을 때만 분출. 따라서 retention 곡선의 "평평함"은 뇌에 도파민 분출 없음 = 이탈 조건.
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">EXAMPLE · 적용 사례</div>
+          <div class="example">
+            <div class="example-label">RETENTION CURVE DEBUGGING WORKFLOW</div>
+            <div class="example-body">
+              <strong>Step 1</strong> — 영상 업로드 24h 후 Analytics 리텐션 곡선 캡처<br/>
+              <strong>Step 2</strong> — 2% 이상 급락 지점 3개 찾기 (빨간 표시)<br/>
+              <strong>Step 3</strong> — 각 지점의 원인 진단: 지루함 · 약속 미달성 · 구성 실패<br/>
+              <strong>Step 4</strong> — 재편집: 급락 직전에 pattern interrupt 삽입 or 그 구간 제거<br/>
+              <strong>Step 5</strong> — 재업로드 (YouTube는 덮어쓰기, Reels는 재게시) · 재측정
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Beat Structure -->
+    <article class="fw yellow">
+      <div class="fw-top">
+        <div>
+          <div class="fw-id">
+            <span class="fw-name">Beat Structure</span>
+            <span class="fw-inventor">· Pacing & Micro-Payoff</span>
+          </div>
+          <div class="fw-meta">
+            <span class="fw-pill time">TIME · 3–50s</span>
+            <span class="fw-pill plat">ALL PLATFORMS</span>
+          </div>
+          <div class="fw-punch">매 <em>3-5초마다 beat</em> — 전환·컷·새 정보·새 질문. 평평한 구간이 5초 넘으면 이탈.</div>
+        </div>
+        <span class="fw-tag">RETENTION · PACING</span>
+      </div>
+      <div class="fw-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>시나리오 이론의 "beat"(장면 내 최소 단위 변화) 개념을 숏폼에 이식. 60초 영상에 <strong>최소 12-20개의 beat</strong>가 있어야 retention이 유지된다. 각 beat는 새로운 무언가를 도입해야 한다 — 새 질문, 새 정보, 새 각도, 새 인물, 새 음악, 새 시각 효과.</p>
+          <p>핵심 규칙: <strong>평평한 구간을 5초 이상 두지 말 것.</strong> 같은 샷·같은 말·같은 톤이 5초 이상 이어지면 뇌가 "다음 예측 가능" 판정 → 이탈. 숏폼 편집자가 컷을 "더 많이 넣는" 것이 직관이 아니라 공학.</p>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · Beat Mapping</div>
+<div class="schema"><span class="c-d"># 60초 영상의 beat 구조 예시</span>
+
+  Time │ Beat               │ 효과
+  ─────┼────────────────────┼────────────
+   0s  │ <span class="c-y">Hook 컷</span>             │ 주의 포획
+   2s  │ Q: "왜 실패했나?"    │ open loop
+   4s  │ 배경 전환             │ 공간 변화
+   7s  │ Zoom in (얼굴)        │ 감정 강조
+  10s  │ 텍스트 오버레이        │ 정보 추가
+  13s  │ 사운드 효과            │ 청각 beat
+  16s  │ 반전 정보              │ 예측 오차
+  20s  │ B-roll 삽입            │ 시각 변주
+  24s  │ 다른 인물 등장         │ 구성 변화
+  28s  │ 속도 변화              │ 리듬 beat
+  32s  │ Q 추가: "그런데..."    │ 2nd open loop
+  36s  │ 텍스트 강조            │ 핵심 주장
+  42s  │ 증거 · 스크린샷        │ 신뢰 beat
+  48s  │ 감정 정점              │ peak
+  54s  │ 답 공개 (open loop 해소)│ 미완결 해소
+  58s  │ CTA                  │ 행동 유도
+
+<span class="c-hi">규칙:</span> 비어 있는 구간이 5초 이상 = <span class="c-r">이탈 위험</span>
+        각 beat는 <span class="c-y">"이전과 다른 무언가"</span>여야 함
+
+<span class="c-d">측정:</span> 영상에서 5초 단위로 일시정지
+        그 순간 화면/소리에 변화가 있는지 체크
+        변화 없으면 → 재편집</div>
+          <div class="schema-cap">BEAT STRUCTURE · 12-20 BEATS / 60s</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">RESEARCH · 학술 근거</div>
+          <div class="research">
+            <div class="research-label">Scientific Backing</div>
+            <div class="research-body">
+              <strong>Variable Reward Schedule (Skinner, 1957)</strong> — 예측 불가능한 간격의 보상이 고정 간격보다 지속 행동을 훨씬 강하게 유발. 숏폼의 beat는 "언제 다음 새 자극이 올지 모르는" 보상 스케줄을 만든다. 뇌는 끊임없이 다음 beat를 기대하며 시청 유지. <span class="cite">Schultz (2016)</span>의 리뷰는 Variable Reward가 도파민 시스템의 "wanting" 회로를 고정 보상보다 4-7배 강하게 자극함을 정리. 영화 편집 이론에서 <strong>Walter Murch</strong>(Apocalypse Now 편집)의 "blink theory"는 인간이 평균 4-6초마다 눈을 깜빡이고, 그 주기에 맞춰 편집할 때 인지 부하가 낮아진다고 주장 — 숏폼 5초 beat 규칙의 또 다른 뿌리.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Variable Reward / Cliffhanger Chain -->
+    <article class="fw yellow">
+      <div class="fw-top">
+        <div>
+          <div class="fw-id">
+            <span class="fw-name">Cliffhanger Chain</span>
+            <span class="fw-inventor">· Multi-Loop Retention</span>
+          </div>
+          <div class="fw-meta">
+            <span class="fw-pill time">TIME · 10–50s</span>
+            <span class="fw-pill plat">ALL PLATFORMS</span>
+          </div>
+          <div class="fw-punch">하나의 open loop를 해소하기 전에 <em>다음 loop를 연다</em> — MrBeast·Alex Hormozi가 쓰는 다중 고리 기법.</div>
+        </div>
+        <span class="fw-tag">RETENTION · NESTED LOOPS</span>
+      </div>
+      <div class="fw-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>Zeigarnik 효과(Open Loop)를 단일로 쓰면 해소 지점에서 이탈 가능. 숙련된 크리에이터는 <strong>여러 loop를 중첩</strong>시킨다. Loop A를 해소하기 전 Loop B를 열고, B를 해소하기 전 Loop C를 여는 방식. 한 번에 2-3개 open loop가 작업기억에 걸려 있어 이탈 불가능해진다.</p>
+          <p>핵심 규칙: 새 loop는 기존 loop가 <strong>해소되기 전</strong>에 열어야 한다. 해소 뒤에 새로 열면 뇌가 "한 사이클 끝났다"고 판정 → 이탈 허용. Alex Hormozi가 유튜브 롱폼·숏폼 모두에서 강조하는 "<strong>Never close a loop until you've opened the next one</strong>" 원칙.</p>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 중첩 고리 구조</div>
+<div class="schema"><span class="c-d"># Cliffhanger Chain의 다중 고리</span>
+
+  시간 ─────────────────────────▶
+
+  <span class="c-y">Loop A:</span>  open ══════════════════════ close
+           (0s)                          (55s)
+
+  <span class="c-y">Loop B:</span>       open ═════════════ close
+                 (10s)             (45s)
+
+  <span class="c-y">Loop C:</span>              open ═══ close
+                        (20s)     (35s)
+
+  <span class="c-d">시청자 뇌 상태:</span>
+    0-10s:  A만 열림    → 집중
+   10-20s:  A+B 열림    → 더 집중 (2개 미완결)
+   20-35s:  A+B+C 열림  → <span class="c-hi">이탈 거의 불가능</span>
+   35-45s:  A+B만 남음  → 여전히 집중
+   45-55s:  A만 남음    → 마무리 감각
+     55s:  A 해소       → 만족
+
+<span class="c-d">실제 구현 (60s 영상):</span>
+  Loop A: "이 사람이 왜 1억을 버렸는지"
+          (영상 전체의 메인 질문)
+  Loop B: "그 전에 그가 시도한 3가지가 있는데..."
+          (중간에 열어서 중반 유지)
+  Loop C: "특히 두 번째가 충격이었는데..."
+          (후반 유지용 짧은 고리)
+
+<span class="c-hi">규칙:</span> 각 loop는 <span class="c-y">다른 강도</span>여야 함 (큰→중→작)
+       모든 loop가 같은 강도면 피로감 발생</div>
+          <div class="schema-cap">CLIFFHANGER CHAIN · NESTED OPEN LOOPS</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">RESEARCH · 학술 근거</div>
+          <div class="research">
+            <div class="research-label">Scientific Backing</div>
+            <div class="research-body">
+              작업기억 이론(<span class="cite">Baddeley, 1992</span>)에 따르면 인간은 평균 <strong>4±1개의 미완결 정보</strong>를 동시에 유지할 수 있다. 2-3개의 open loop는 작업기억 한계 아래이면서도 "충분히 걸림"의 최적 영역. 영화·TV 시나리오 이론(<span class="cite">McKee, "Story" 1997</span>)에서 모든 장면이 "A story · B story · C story" 다중 플롯을 병행하는 이유와 같다. HBO 드라마·Netflix 시리즈의 중독성 설계도 이 원리 — <span class="cite">Lotz (2014)</span>의 TV 시청 패턴 연구 확인.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Sound-Visual Sync -->
+    <article class="fw yellow">
+      <div class="fw-top">
+        <div>
+          <div class="fw-id">
+            <span class="fw-name">Sound-Visual Sync</span>
+            <span class="fw-inventor">· Multimodal Coherence</span>
+          </div>
+          <div class="fw-meta">
+            <span class="fw-pill time">TIME · 전체</span>
+            <span class="fw-pill plat">REELS / TIKTOK</span>
+          </div>
+          <div class="fw-punch">청각·시각이 <em>정확히 일치</em>할 때 몰입감 급상승 — 단순 BGM 시대의 종말, 고도화된 해외 숏폼의 표준.</div>
+        </div>
+        <span class="fw-tag">RETENTION · MULTIMODAL</span>
+      </div>
+      <div class="fw-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>초기 숏폼은 "영상 위에 BGM"이었다. 2024년 이후 최상위 크리에이터들은 이를 넘어 <strong>사운드와 영상의 완벽한 일체화</strong>로 이동. 효과음이 동작과 정확히 맞고, 음악 박자가 컷 전환과 일치하고, 음향 톤이 영상 무드와 통합된다. 이 multimodal 정합성이 시청자의 "몰입 깊이"를 결정.</p>
+          <p>뇌과학적 배경: 청각과 시각이 일치하면 <strong>McGurk 효과</strong>의 긍정 버전이 일어난다 — 두 감각의 동기화가 단일 사건으로 인식되어 처리 부담이 줄고 현실감이 증가. 반대로 어긋나면 뇌가 에너지를 써서 둘을 조정하려 하다가 피로해지고 이탈.</p>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 3 레이어 동기화</div>
+<div class="schema"><span class="c-d"># Sound-Visual 일체화의 3 레이어</span>
+
+  Layer 1 · <span class="c-y">박자 동기화 (Rhythm Sync)</span>
+     음악 비트 ─ 컷 전환이 정확히 일치
+     예: BPM 120 음악 → 0.5s마다 컷
+
+  Layer 2 · <span class="c-y">효과음 동기화 (SFX Sync)</span>
+     화면 동작 ─ 효과음이 정확히 맞음
+     예: 손가락 튕기기 → "띵!" 사운드
+         카메라 이동 → "스와이프" 사운드
+
+  Layer 3 · <span class="c-y">무드 동기화 (Mood Sync)</span>
+     영상 톤 ─ 음악 장르/색감이 일치
+     예: 어두운 서스펜스 영상 → 저음 드럼
+         밝은 DIY 영상 → 경쾌한 신스팝
+
+  <span class="c-d">실패 케이스 (흔함):</span>
+    · 인기 음악을 그냥 얹음 (무드 미일치)
+    · 효과음 없음 (동작의 "무게" 없음)
+    · 컷이 박자와 1프레임 어긋남 (미묘한 불편)
+
+  <span class="c-d">참고 사례 (해외):</span>
+    · bek_zufarr — 동물 행동 × 효과음 완벽 일치
+    · taoagou — 춤/동작 × 박자 × 텍스트 동기화
+    · varun.aditya — 자연 영상 × 무드 음악
+
+<span class="c-hi">측정법:</span> 소리 끄고 영상 보기 → 어색하면 동기화 성공
+         (화면이 음악에 맞춰져 있다는 뜻)</div>
+          <div class="schema-cap">MULTIMODAL COHERENCE · 3 LAYERS</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">RESEARCH · 학술 근거</div>
+          <div class="research">
+            <div class="research-label">Scientific Backing</div>
+            <div class="research-body">
+              <span class="cite">McGurk & MacDonald (1976)</span>의 McGurk 효과 — 청각과 시각 정보가 교차 통합되어 단일 지각을 형성. 이후 <span class="cite">Calvert et al. (2000)</span>의 fMRI 연구는 multimodal 정합성이 <strong>superior temporal sulcus (STS)</strong>의 강한 활성을 유발하고 인지 부담이 감소함을 확인. 음악 심리학에서 <span class="cite">Cohen (2001)</span>의 영화 음악 연구는 음악-영상 정합성이 감정 전이(emotional transfer) 효과를 60% 이상 증폭함을 정량화. <strong>실무 근거:</strong> TikTok 공식 발표 — 플랫폼 음악 사용 영상이 외부 음악 영상보다 평균 retention 17% 높음.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- 04 PAYOFF -->
+<section id="s4">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">04</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">ACT 03 · PAYOFF FRAMEWORKS</div>
+        <h2>PAYOFF — <em>감정 정점</em>과 공유 트리거</h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      완시청까지 도달했다고 끝이 아니다. <strong>마지막 10초의 감정 정점과 공유 트리거</strong>가 바이럴을 결정한다. Kahneman의 Peak-End Rule과 Jonah Berger의 STEPPS가 이 층의 핵심 과학.
+    </p>
+
+    <!-- Peak-End Rule -->
+    <article class="fw pink">
+      <div class="fw-top">
+        <div>
+          <div class="fw-id">
+            <span class="fw-name">Peak-End Payoff</span>
+            <span class="fw-inventor">· Kahneman Peak-End Rule</span>
+          </div>
+          <div class="fw-meta">
+            <span class="fw-pill time">TIME · 50–60s</span>
+            <span class="fw-pill plat">ALL PLATFORMS</span>
+          </div>
+          <div class="fw-punch">영상 전체의 인상은 <em>정점과 마지막</em> 두 순간으로 결정된다 — 중간은 기억되지 않는다.</div>
+        </div>
+        <span class="fw-tag">★ PAYOFF · MEMORY DESIGN</span>
+      </div>
+      <div class="fw-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>Daniel Kahneman이 1993년 발견한 <strong>Peak-End Rule</strong>. 인간은 경험 전체를 기억하지 않는다. <strong>가장 강한 순간(peak)과 마지막 순간(end) 두 지점</strong>으로 전체를 판정한다. 대장 내시경 고통 연구·휴가 만족도 연구 등 다수의 실험으로 재현.</p>
+          <p>숏폼 적용: 60초 전체를 균등하게 만들 필요 없다. <strong>중간에 감정 정점 1개</strong>를 반드시 설계하고, <strong>마지막 5초</strong>에 두 번째 정점 또는 강한 마무리를 배치. 이 두 지점이 "이 영상 어땠어요?"의 답 전체를 결정한다. 중간의 평범함은 기억에 거의 남지 않는다.</p>
+          <div class="quote">"Memory of experiences is dominated by the peak and the end — duration is almost irrelevant."<span class="quote-src">— Daniel Kahneman, Thinking, Fast and Slow (2011)</span></div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · Peak-End 설계</div>
+<div class="schema"><span class="c-d"># Peak-End Rule의 숏폼 적용</span>
+
+   감정 강도
+     ▲
+  100│
+     │                  <span class="c-pk">◆ Peak</span>
+   80│                 ╱ ╲
+     │                ╱   ╲
+   60│        <span class="c-d">plateau</span>  ╲_________         <span class="c-pk">◆ End</span>
+     │      ____  /                   ╱ ╲
+   40│  ___/    ╲/                   ╱   ╲
+     │_/                             ╱     ╲
+   20│    hook                      ╱
+     │
+      └──────────────────────────────────▶ time
+        0         25s        40s           60s
+
+  <span class="c-pk">Peak (25-40s):</span>
+    감정의 최고 지점 (웃음 · 놀라움 · 감동 · 충격)
+    전체 인상의 <span class="c-hi">50%를 결정</span>
+
+  <span class="c-pk">End (55-60s):</span>
+    마지막 강한 순간 · 반전 · 정답 공개
+    전체 인상의 <span class="c-hi">30%를 결정</span>
+
+  <span class="c-d">중간 (plateau):</span>
+    retention을 유지할 정도면 충분
+    기억의 20%만 기여
+
+<span class="c-hi">실수:</span> 많은 크리에이터가 전체를 동일 강도로 만들려 함.
+       → 평균 경험이 되어 "괜찮은데 기억 안 남음"
+
+<span class="c-d">공식:</span>
+  (Peak 강도) + (End 강도) >>> (평균 강도)</div>
+          <div class="schema-cap">PEAK-END · MEMORY CURVE</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">RESEARCH · 학술 근거</div>
+          <div class="research">
+            <div class="research-label">Scientific Backing</div>
+            <div class="research-body">
+              <span class="cite">Kahneman, Fredrickson, Schreiber, Redelmeier (1993)</span>의 원 논문 "When More Pain Is Preferred to Less" — 대장 내시경 환자 연구. 이후 <span class="cite">Kahneman (2000)</span>의 "Evaluation by Moments" 논문에서 이론화. 재현 연구 다수 (<span class="cite">Redelmeier & Kahneman, 1996</span>; <span class="cite">Do, Rupert, Wolford, 2008</span>). 마케팅 적용은 <span class="cite">Chip & Dan Heath, "The Power of Moments" (2017)</span> — 경험 설계에서 peak moment 의도적 생성의 가치. <strong>실무 데이터:</strong> YouTube 공식 Creator Academy 리서치에서 "강한 엔딩"이 있는 영상이 재시청률 2.3배, 공유율 1.8배 높음.
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">EXAMPLE · 적용 사례</div>
+          <div class="example">
+            <div class="example-label">PEAK-END STRUCTURE</div>
+            <div class="example-body">
+              <strong>교육형 (팁 공개):</strong> Peak = 가장 충격적 팁 하나 / End = "이거 하나만 기억하세요" 한 줄<br/>
+              <strong>스토리형:</strong> Peak = 가장 감정적 순간(반전 · 눈물 · 웃음) / End = 화자의 한 마디 · 조용한 여운<br/>
+              <strong>비교형:</strong> Peak = 격차가 가장 큰 비교 / End = 시청자에게 던지는 질문<br/>
+              <strong>DIY형:</strong> Peak = 결과물의 가장 놀라운 순간 / End = 완성품 클로즈업 + 만족스러운 사운드
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- STEPPS -->
+    <article class="fw pink">
+      <div class="fw-top">
+        <div>
+          <div class="fw-id">
+            <span class="fw-name">STEPPS</span>
+            <span class="fw-inventor">· Jonah Berger (2013)</span>
+          </div>
+          <div class="fw-meta">
+            <span class="fw-pill time">전체 + 엔딩</span>
+            <span class="fw-pill plat">바이럴</span>
+          </div>
+          <div class="fw-punch">공유를 유발하는 <em>6가지 트리거</em> — 사회적 화폐 · 계기 · 감정 · 공적 · 실용 · 스토리.</div>
+        </div>
+        <span class="fw-tag">★ PAYOFF · VIRAL</span>
+      </div>
+      <div class="fw-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>Wharton 경영대 Jonah Berger 교수의 『Contagious』(2013). 10년간 <strong>수천 개의 바이럴 콘텐츠를 분석</strong>해 공유를 유발하는 6가지 요소를 STEPPS로 정리. 한 콘텐츠에 <strong>최소 2-3개</strong>가 작동해야 바이럴이 가능하다는 결론.</p>
+          <p><strong>S · Social Currency</strong> (사회적 화폐) — 공유하면 공유자가 돋보이는가?<br/>
+          <strong>T · Triggers</strong> (계기) — 일상에서 자주 떠오르는 연결점이 있는가?<br/>
+          <strong>E · Emotion</strong> (감정) — 강한 감정(특히 경외·분노·흥분)을 유발하는가?<br/>
+          <strong>P · Public</strong> (공적 가시성) — 보여지는가, 따라하기 쉬운가?<br/>
+          <strong>P · Practical Value</strong> (실용 가치) — 공유 받은 사람에게 유용한가?<br/>
+          <strong>S · Stories</strong> (스토리) — 이야기로 담겨 있는가?</p>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 6 트리거 공유 엔진</div>
+<div class="schema"><span class="c-d"># STEPPS 바이럴 공식</span>
+
+     <span class="c-pk">S · Social Currency</span>
+        "이걸 공유하면 내가 똑똑해 보일까?"
+        → 희귀한 정보 · 나만 아는 팁 · 최신 트렌드
+
+     <span class="c-pk">T · Triggers</span>
+        "일상 어디서 이게 떠오를까?"
+        → 매일 쓰는 물건 · 습관 · 시간대와 연결
+
+     <span class="c-pk">E · Emotion (high-arousal)</span>
+        "이게 얼마나 강한 감정을 주나?"
+        → 경외 · 분노 · 흥분 · 웃음
+        (차분한 슬픔은 공유 안 됨)
+
+     <span class="c-pk">P · Public</span>
+        "남들이 하는 걸 내가 볼 수 있나?"
+        → 따라하기 챌린지 · 시각적 결과물
+
+     <span class="c-pk">P · Practical Value</span>
+        "받은 사람에게 유용한가?"
+        → 꿀팁 · 시간 절약 · 돈 절약 · 문제 해결
+
+     <span class="c-pk">S · Stories</span>
+        "이야기로 담겨 있나?"
+        → 사실 나열 X · 서사 구조 O
+
+<span class="c-hi">체크:</span> 내 콘텐츠에 최소 <span class="c-pk">3개 이상</span> 있어야 바이럴.
+       6개 다 있으면 bomb · 2개 이하면 죽은 콘텐츠.
+
+<span class="c-d">감정 중요:</span>
+  <span class="c-r">공유 잘 됨:</span> 경외(awe) · 분노 · 흥분 · 즐거움
+  <span class="c-d">공유 안 됨:</span> 차분한 슬픔 · 만족 · 지루함</div>
+          <div class="schema-cap">BERGER · STEPPS</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">RESEARCH · 학술 근거</div>
+          <div class="research">
+            <div class="research-label">Scientific Backing</div>
+            <div class="research-body">
+              <span class="cite">Berger & Milkman (2012)</span> "What Makes Online Content Viral?" — New York Times 기사 7000개 분석. 경외·분노·흥분 같은 <strong>high-arousal 감정</strong>이 공유를 유발. 슬픔·만족 같은 low-arousal은 공유 안 됨을 정량화. <span class="cite">Berger (2013)</span> 『Contagious』에서 6요소로 정리. 후속 연구 <span class="cite">Dobele et al. (2007)</span>이 바이럴 광고 분석에서 유사 결과. <strong>실무 데이터:</strong> BuzzSumo의 1억 콘텐츠 분석(2020)에서 공유율 상위 10% 콘텐츠는 평균 STEPPS 4개 이상, 하위 50%는 1개 이하.
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">EXAMPLE · 적용 사례</div>
+          <div class="example">
+            <div class="example-label">STEPPS 분석 · MrBeast "버려진 섬에서 100일"</div>
+            <div class="example-body">
+              <strong>S</strong> - Social: "이런 영상 봤어?" 대화 주제 · 사회적 화폐 ✓<br/>
+              <strong>T</strong> - Trigger: 해변 · 여행 → 이 영상 연상 ✓<br/>
+              <strong>E</strong> - Emotion: 경외 · 놀라움 · 긴장 ✓✓<br/>
+              <strong>P</strong> - Public: 챌린지 형식 따라하기 ✓<br/>
+              <strong>P</strong> - Practical: 직접 유용은 낮음 △<br/>
+              <strong>S</strong> - Story: 시작-위기-해결의 완전한 서사 ✓<br/>
+              → <strong>6/6 중 5개 강하게 작동</strong> = 바이럴 보증
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Value Gift -->
+    <article class="fw pink">
+      <div class="fw-top">
+        <div>
+          <div class="fw-id">
+            <span class="fw-name">Value Gift Close</span>
+            <span class="fw-inventor">· Reciprocity + Save Trigger</span>
+          </div>
+          <div class="fw-meta">
+            <span class="fw-pill time">TIME · 마지막 10s</span>
+            <span class="fw-pill plat">ALL PLATFORMS</span>
+          </div>
+          <div class="fw-punch">마지막에 <em>선물 같은 한 가지</em>를 주면 저장·팔로우가 폭발한다 — 상호성 원리의 숏폼 응용.</div>
+        </div>
+        <span class="fw-tag">PAYOFF · CTA</span>
+      </div>
+      <div class="fw-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>단순 CTA("구독하세요")는 작동 안 한다. 시청자는 이미 스크롤하려 엄지를 움직이는 중. 이 순간을 <strong>"선물 같은 가치"로 전환</strong>하는 것이 Value Gift Close. 마지막 10초에 명확한 실용 가치(구체 팁·템플릿·체크리스트·다음 단계)를 "선물"로 제시하면 저장·팔로우 율이 2-5배 증가.</p>
+          <p>작동 원리는 <strong>상호성 원리(reciprocity)</strong> — Robert Cialdini가 『Influence』(1984)에서 정리. 인간은 받은 것에 대해 돌려주려는 강한 심리적 경향이 있다. 숏폼에서 이 "돌려주기"가 저장·팔로우·댓글 형태로 나타난다.</p>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · Value Gift 구조</div>
+<div class="schema"><span class="c-d"># Value Gift Close의 4 단계</span>
+
+  [45-50s] · Peak 통과
+      │
+      ▼
+  [50-55s] · <span class="c-pk">선물 예고</span>
+     "이거 하나 더 알려드릴게요"
+     "가장 중요한 걸 마지막에 남겼는데"
+     → 시청자 기대 고조
+      │
+      ▼
+  [55-58s] · <span class="c-pk">가치 전달</span>
+     구체 팁 · 숫자 · 템플릿 · 체크리스트
+     "이 3가지만 하시면 됩니다"
+     "이 순서로 하세요: 1, 2, 3"
+     → 실용 가치 제공
+      │
+      ▼
+  [58-60s] · <span class="c-pk">Reciprocity CTA</span>
+     "저장해두세요"  (저장 유도)
+     "이런 거 더 받고 싶으면 팔로우"  (팔로우)
+     "친구한테 공유해주면 감사" (공유)
+     → 가치 받은 직후 → 행동률 폭발
+
+<span class="c-hi">핵심:</span> CTA가 <span class="c-pk">가치 제공 직후</span>에 나와야 함.
+       가치 없이 CTA만 → 무시됨.
+
+<span class="c-d">실패 패턴:</span>
+  · "구독 좋아요 부탁드려요" (가치 0)
+  · "더 궁금하시면 프로필로" (가치 불명확)
+  · 가치는 있는데 CTA가 없음 (저장 유도 실패)</div>
+          <div class="schema-cap">VALUE GIFT · RECIPROCITY CLOSE</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">RESEARCH · 학술 근거</div>
+          <div class="research">
+            <div class="research-label">Scientific Backing</div>
+            <div class="research-body">
+              <span class="cite">Cialdini (1984)</span> 『Influence: The Psychology of Persuasion』 — 상호성이 6가지 영향 원리 중 가장 강력. 진화심리학에서 <span class="cite">Trivers (1971)</span>의 "reciprocal altruism" 이론이 이를 뒷받침. 실무 데이터: <strong>Socialinsider 2023 리서치</strong> — Reels에서 "유용한 팁"을 마지막에 제공한 영상이 저장률 평균 4.2배, 팔로우 전환률 2.8배. 반대로 "구독해주세요"만 있는 영상은 저장률 평균 0.3%. <strong>저장 > 좋아요 > 공유 > 댓글</strong> 순으로 알고리즘 가중치가 높다는 Meta 공식 발표(2022)도 저장 유도의 중요성 강화.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- 05 HOOK 13 -->
+<section id="s5" style="background:var(--bg-2);">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">05</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">HOOK CATALOGUE</div>
+        <h2>13 후킹 심리 — <em>현장 패턴</em>과 학술 연결</h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      한국 최상위 크리에이터 현장에서 반복 검증된 <strong>13가지 후킹 심리 기법</strong>. 각 기법을 앞의 4개 Hook 프레임워크 중 하나에 매핑하면 구조가 보인다 — 새로운 것이 아니라 Expectancy Violation·Open Loop·Problem Mirror의 변형.
+    </p>
+
+    <div class="hooks-list">
+      <div class="hook-row">
+        <div class="num">HOOK 01</div>
+        <h5>상식 붕괴<em>Expectancy Violation</em></h5>
+        <p>"고음 낼 때 힘 빼라? 거짓말입니다." 널리 믿는 것을 정면 부정.</p>
+        <div class="sci">기반: Prediction Error Engine · Rescorla-Wagner</div>
+      </div>
+      <div class="hook-row">
+        <div class="num">HOOK 02</div>
+        <h5>수치 활용<em>Concrete Specificity</em></h5>
+        <p>"3주 -5kg" "5일에 +3키" 구체 숫자가 신뢰와 예측 범위 돌파 동시 달성.</p>
+        <div class="sci">기반: SUCCES의 Concrete · Prediction Error</div>
+      </div>
+      <div class="hook-row">
+        <div class="num">HOOK 03</div>
+        <h5>자존심 펀치<em>Problem Mirror (negative)</em></h5>
+        <p>"이 습관이면 평생 이대로." 아픈 지적으로 자기 동일시 + 반박 욕구.</p>
+        <div class="sci">기반: Self-referential mPFC activation · Loss aversion</div>
+      </div>
+      <div class="hook-row">
+        <div class="num">HOOK 04</div>
+        <h5>생존 위협<em>Loss Aversion</em></h5>
+        <p>"안 보면 큰 손해." 손실 회피 본능 자극.</p>
+        <div class="sci">기반: Kahneman Prospect Theory · 손실이 이득보다 2.5배 강함</div>
+      </div>
+      <div class="hook-row">
+        <div class="num">HOOK 05</div>
+        <h5>권위 부여<em>Authority Trust</em></h5>
+        <p>"하버드 연구" "BTS 트레이너" 신뢰 점프.</p>
+        <div class="sci">기반: Cialdini Authority · 인지적 지름길</div>
+      </div>
+      <div class="hook-row">
+        <div class="num">HOOK 06</div>
+        <h5>인지 충돌<em>Novel Term</em></h5>
+        <p>"Z-플로우 테크닉" "H-포인트" 신조어로 "나만 모르나?" 긴장 유발.</p>
+        <div class="sci">기반: Zeigarnik Effect + Social Currency</div>
+      </div>
+      <div class="hook-row">
+        <div class="num">HOOK 07</div>
+        <h5>선택 스트레스 해소<em>Decision Simplification</em></h5>
+        <p>"이 3가지만 하면 끝." 인지 부담 해소 제안.</p>
+        <div class="sci">기반: Choice Overload (Iyengar) · System 1 호환</div>
+      </div>
+      <div class="hook-row">
+        <div class="num">HOOK 08</div>
+        <h5>단기 효과 강조<em>Instant Gratification</em></h5>
+        <p>"5분에 효과 " "1주일 변화." 즉각 보상 예고.</p>
+        <div class="sci">기반: Hyperbolic Discounting · Present bias</div>
+      </div>
+      <div class="hook-row">
+        <div class="num">HOOK 09</div>
+        <h5>희소성 자극<em>Scarcity</em></h5>
+        <p>"100명만" "곧 삭제." 한정성 강조로 FOMO.</p>
+        <div class="sci">기반: Cialdini Scarcity · Commodity theory</div>
+      </div>
+      <div class="hook-row">
+        <div class="num">HOOK 10</div>
+        <h5>극단적 비교<em>Contrast Effect</em></h5>
+        <p>"$1 vs $3000" "Before vs After." 격차가 예측 오차 극대화.</p>
+        <div class="sci">기반: Contrast Principle · Prediction Error</div>
+      </div>
+      <div class="hook-row">
+        <div class="num">HOOK 11</div>
+        <h5>금기 깨기<em>Forbidden Information</em></h5>
+        <p>"원래 비밀인데" "공개하면 안 되는데." 금지 신호가 매력 증폭.</p>
+        <div class="sci">기반: Reactance Theory (Brehm) · 호기심 갭 이론</div>
+      </div>
+      <div class="hook-row">
+        <div class="num">HOOK 12</div>
+        <h5>나만 아는 비밀<em>Social Currency</em></h5>
+        <p>"이거 아는 사람 거의 없음." 공유자의 지위 상승 기대.</p>
+        <div class="sci">기반: Berger STEPPS의 S · Distinction 이론 (Bourdieu)</div>
+      </div>
+      <div class="hook-row">
+        <div class="num">HOOK 13</div>
+        <h5>복수·정의 욕구<em>Justice Emotion</em></h5>
+        <p>"무례한 사람에게 한 방에" 사이다 반응 유도.</p>
+        <div class="sci">기반: High-arousal Emotion (Berger) · Moral foundations (Haidt)</div>
+      </div>
+    </div>
+
+    <div class="phase-hero accent" style="margin-top:40px;">
+      <div class="phase-era">META INSIGHT</div>
+      <h3>13 기법 <em>→ 4 원리</em>로 압축</h3>
+      <p>13가지가 많아 보이지만 본질은 <strong>4개 뇌 메커니즘</strong>의 변주다. <strong>(1) 예측 오차</strong>(상식붕괴·수치·극단비교) <strong>(2) 개방 고리</strong>(인지충돌·금기·나만아는비밀) <strong>(3) 자기 참조</strong>(자존심펀치·생존위협·문제공감) <strong>(4) 사회적 계산</strong>(권위·희소성·정의욕구).</p>
+      <p>이 <strong style="color:var(--accent-2)">4개 메커니즘 중 2개 이상 겹쳐</strong> 쓰면 훅이 훨씬 강해진다. 예: "하버드 연구(권위) + 믿던 것 뒤집기(예측오차) + 3가지로 압축(선택해소)" = 트리플 훅.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 06 ALGORITHM -->
+<section id="s6">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">06</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">PLATFORM ALGORITHMS</div>
+        <h2>알고리즘 역설계 — <em>플랫폼별 가중치</em></h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      좋은 콘텐츠도 알고리즘이 안 밀어주면 사라진다. 플랫폼마다 다른 가중치를 이해하고 그에 맞게 콘텐츠를 최적화하는 것이 현대 크리에이터의 필수 작업.
+    </p>
+
+    <table class="algo-table">
+      <thead>
+        <tr>
+          <th>플랫폼</th>
+          <th>1순위 가중치</th>
+          <th>2순위 가중치</th>
+          <th>독특한 특징</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>TikTok</td>
+          <td><span class="weight">완시청률</span> (watch time ratio) · 첫 5초 retention 가장 결정적</td>
+          <td><strong>Re-watch</strong> > 공유 > 저장 > 좋아요 > 댓글</td>
+          <td>"For You Page" 강력한 개인화. 낯선 계정도 훅만 강하면 수백만 도달. 시청자 관심사 신호를 초 단위로 학습.</td>
+        </tr>
+        <tr>
+          <td>Instagram Reels</td>
+          <td><span class="weight">저장 (Saves)</span> + 공유 — 알고리즘 1·2위 가중치</td>
+          <td>완시청률 > 좋아요 > 댓글 > 프로필 클릭</td>
+          <td><strong>2페이지 노출 알고리즘</strong> (캐러셀) — 1페이지 스킵해도 다시 노출. Explore 피드가 주요 유입.</td>
+        </tr>
+        <tr>
+          <td>YouTube Shorts</td>
+          <td><span class="weight">Swipe-away rate</span> (낮을수록 좋음) · 완시청률</td>
+          <td>구독 전환 > 좋아요 > 댓글</td>
+          <td><strong>검색 유입 가능</strong> (유일). 제목·해시태그의 SEO 가치. 이후 긴 영상으로 연결 가능.</td>
+        </tr>
+        <tr>
+          <td>Carousel (Instagram)</td>
+          <td><span class="weight">저장</span> + 체류 시간 (슬라이드별)</td>
+          <td>공유 > 좋아요 > 댓글</td>
+          <td><strong>슬라이드 넘김 = 참여 신호</strong>. 릴스 시대에도 노출 강점 유지. 교육·브랜딩에 최적.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="phase-hero accent" style="margin-top:40px;">
+      <div class="phase-era">COMMON SIGNAL</div>
+      <h3>모든 플랫폼의 <em>공통 원리</em></h3>
+      <p>플랫폼별 차이가 있지만 <strong>하나는 공통</strong>: <strong>"콘텐츠를 끝까지 본 사람 수의 비율"</strong>(완시청률)이 모든 알고리즘의 1순위 신호. 이것이 높아야 나머지 지표도 증폭된다.</p>
+      <p>또 하나의 공통: <strong style="color:var(--accent-2)">저장 > 공유 > 댓글 > 좋아요 > 시청</strong> 순으로 알고리즘 가중치가 높다. 좋아요 100개 < 저장 10개. "유용해서 저장하고 싶은" 콘텐츠가 알고리즘 관점 최고급.</p>
+      <p>결론: 3-Act 엔진(Hook·Retention·Payoff)의 세 층이 모두 작동하면 어떤 플랫폼에서도 작동한다. 플랫폼 최적화는 그 <strong>위에</strong> 얹는 작업이지 <strong>아래</strong> 하는 작업이 아니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 07 FORMATS -->
+<section id="s7" style="background:var(--bg-2);">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">07</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">FORMAT-SPECIFIC APPLICATION</div>
+        <h2>포맷별 프레임워크 적용</h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      같은 3-Act 엔진이 포맷마다 다르게 구현된다. 4가지 대표 포맷의 특이점과 최적 프레임워크 조합.
+    </p>
+
+    <div class="format-grid">
+      <div class="format-card">
+        <h4>Instagram Reels</h4>
+        <div class="sub">Vertical · 15-90s · Sound-on</div>
+        <ul>
+          <li><strong>첫 1초에 얼굴 or 충격 시각</strong> — Explore 피드에서 썸네일 역할</li>
+          <li><strong>세로 구도 + 상단 1/3에 Hook 텍스트</strong> — 댓글·UI에 가려지지 않게</li>
+          <li><strong>플랫폼 내 음악 사용</strong> (+17% retention) · 외부 음악은 알고리즘 불리</li>
+          <li><strong>저장 유도 CTA</strong> 필수 — Reels의 1순위 가중치</li>
+          <li><strong>첫 3초 자막</strong> — 50% 이상이 무음 시청</li>
+          <li>추천 프레임: Pattern Interrupt + Beat Structure + Value Gift Close</li>
+        </ul>
+      </div>
+      <div class="format-card">
+        <h4>TikTok</h4>
+        <div class="sub">Vertical · 15-60s · Sound-first</div>
+        <ul>
+          <li><strong>첫 3초 집중 설계</strong> — FYP에서 swipe-away rate가 모든 것</li>
+          <li><strong>트렌드 사운드 활용</strong> — 알고리즘 부스트 명시적</li>
+          <li><strong>Re-watch 유발</strong> 설계 — 엔딩에서 "처음부터 다시 보면 알 수 있는" 반전</li>
+          <li><strong>댓글 유도 질문</strong> — 알고리즘 신호 중 하나</li>
+          <li><strong>챌린지·듀엣 친화적</strong> — STEPPS의 Public 극대화</li>
+          <li>추천 프레임: Expectancy Violation + Cliffhanger Chain + STEPPS</li>
+        </ul>
+      </div>
+      <div class="format-card">
+        <h4>YouTube Shorts</h4>
+        <div class="sub">Vertical · 15-60s · SEO-friendly</div>
+        <ul>
+          <li><strong>제목·해시태그 SEO</strong> — 유일한 검색 유입 숏폼 플랫폼</li>
+          <li><strong>Swipe-away rate 최적화</strong> — 첫 1초가 결정</li>
+          <li><strong>구독 전환 CTA</strong> — 긴 영상 채널로 연결</li>
+          <li><strong>긴 영상 teaser 전략</strong> — Shorts에서 궁금증, 롱폼에서 풀기</li>
+          <li><strong>영상 끝 루프</strong> — 마지막 프레임이 첫 프레임과 연결되면 re-watch</li>
+          <li>추천 프레임: Open Loop + MrBeast Retention Graph + Value Gift Close</li>
+        </ul>
+      </div>
+      <div class="format-card">
+        <h4>Instagram Carousel</h4>
+        <div class="sub">Vertical Slides · 2-20 pages · Silent-OK</div>
+        <ul>
+          <li><strong>1페이지 Hook</strong> — 단일 강력한 문장 + 시각</li>
+          <li><strong>2페이지 "약속"</strong> — 계속 넘기면 얻을 것 예고</li>
+          <li><strong>3-N 페이지 beat</strong> — 매 페이지마다 새 정보 · 짧을수록 완독률 ↑</li>
+          <li><strong>마지막 페이지 CTA + 저장 유도</strong></li>
+          <li><strong>2페이지 노출 알고리즘</strong> 활용 — 1페이지 스킵해도 2페이지부터 재노출</li>
+          <li>추천 프레임: Problem Mirror + Beat Structure (slide-wise) + Value Gift Close</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 WORKFLOW -->
+<section id="s8">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">08</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">PRODUCTION WORKFLOW</div>
+        <h2>제작 워크플로우 — <em>Hook부터 거꾸로</em></h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      숏폼 제작은 "처음부터 끝까지 순차"가 아니다. <strong>Hook에서 시작해 역순으로 설계</strong>하는 것이 장인의 방법. 전체 flow가 Hook의 약속을 지키도록 역설계.
+    </p>
+
+    <div class="workflow-grid">
+      <div class="wf-step">
+        <div class="num">STEP 01</div>
+        <h4>Hook 먼저 20개</h4>
+        <p>본 영상 기획 전 Hook 후보 20개 생성. 4 Hook 프레임(Pattern Interrupt · Open Loop · Expectancy Violation · Problem Mirror) 각 5개씩. 가장 강한 3개 추림.</p>
+      </div>
+      <div class="wf-step">
+        <div class="num">STEP 02</div>
+        <h4>Payoff 먼저 설계</h4>
+        <p>Hook이 정해지면 <strong>Payoff부터</strong> 설계. Peak moment 1개 + End moment 1개. Hook의 약속을 지키는 마지막. 중간은 마지막에 설계.</p>
+      </div>
+      <div class="wf-step">
+        <div class="num">STEP 03</div>
+        <h4>Beat 12개 배치</h4>
+        <p>Hook과 Payoff 사이에 12-20개 beat 배치. 5초에 1beat 원칙. 각 beat가 retention 유지할 변화 요소 포함.</p>
+      </div>
+      <div class="wf-step">
+        <div class="num">STEP 04</div>
+        <h4>촬영·편집·리텐션 분석</h4>
+        <p>업로드 24h 후 retention 곡선 확인. 급락 지점 3개 찾아 재편집. 60% 이하 지점은 즉시 리라이트. 2-3회 반복 최적화.</p>
+      </div>
+    </div>
+
+    <div class="phase-hero accent" style="margin-top:40px;">
+      <div class="phase-era">REVERSE ENGINEERING</div>
+      <h3>역순 설계의 <em>이유</em></h3>
+      <p>순방향 제작("시작부터 찍고 끝을 만든다")의 문제 — <strong>Hook이 약하거나 Payoff가 없는 영상</strong>이 나온다. 역방향 제작("Hook을 먼저 잠그고 그 약속을 지키는 Payoff를 설계한 뒤 사이를 채운다")은 영상의 골격부터 안정된다.</p>
+      <p><strong style="color:var(--accent-2)">MrBeast의 공개 인터뷰</strong>에서도 반복 강조 — "thumbnail과 hook을 먼저 잠그고 그것을 정당화하는 영상을 만든다." 역순 제작이 세계 최대 유튜버의 기본 공정이라는 뜻.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 09 PRACTICE -->
+<section id="s9" style="background:var(--bg-2);">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">09</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">APPLICATION · TODAY</div>
+        <h2>오늘부터의 <em>6 실천</em></h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      15개 프레임워크를 머리로 아는 것과 매 콘텐츠에 쓰는 것은 다르다. 이 여섯 실천이 "알기"에서 "쓰기"로 건너가게 한다.
+    </p>
+
+    <div class="practice-grid">
+      <div class="practice-card">
+        <div class="tag">PRACTICE 01</div>
+        <h4>Hook 20개 생성 룰</h4>
+        <p>본 콘텐츠 기획 전 4 Hook 프레임 각 5개씩 20개 생성. 가장 강한 3개에서 선택. 이 한 루틴이 숏폼 성과의 50%를 바꾼다.</p>
+      </div>
+      <div class="practice-card">
+        <div class="tag">PRACTICE 02</div>
+        <h4>Retention 곡선 주간 리뷰</h4>
+        <p>일주일에 한 번 지난 영상들의 retention 곡선 분석. 공통적으로 급락한 지점 찾기. 다음 주 콘텐츠에 그 패턴 피하기.</p>
+      </div>
+      <div class="practice-card">
+        <div class="tag">PRACTICE 03</div>
+        <h4>Peak-End 체크리스트</h4>
+        <p>업로드 전 "Peak 순간이 어디인가 / End 순간이 어디인가" 자문. 둘 다 명확하지 않으면 재편집. 중간 평균보다 극단점이 중요.</p>
+      </div>
+      <div class="practice-card">
+        <div class="tag">PRACTICE 04</div>
+        <h4>STEPPS 6 체크</h4>
+        <p>업로드 전 6가지 공유 트리거 체크. 3개 이상 안 걸리면 바이럴 불가. 부족한 축을 보강하거나 다른 콘셉으로 재구성.</p>
+      </div>
+      <div class="practice-card">
+        <div class="tag">PRACTICE 05</div>
+        <h4>Sound 끄고 보기</h4>
+        <p>편집 완료 후 소리 끄고 영상 보기. 이해 가능하면 자막·시각 설계 잘된 것. 반대로 화면 가리고 소리만 듣기 — 음향-영상 sync 체크.</p>
+      </div>
+      <div class="practice-card">
+        <div class="tag">PRACTICE 06</div>
+        <h4>"5초에 1 beat" 측정</h4>
+        <p>영상을 5초 단위로 일시정지. 각 지점에서 화면·소리·정보 중 하나라도 변화가 있나? 없으면 beat 부족 → 이탈 위험.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ONE LINE -->
+<section class="oneline">
+  <div class="oneline-inner">
+    <div class="oneline-k">ONE LINE SUMMARY</div>
+    <p class="oneline-main">
+      숏폼은 감각이 아니라 <em>3층 공학</em>이다 —<br/>
+      <em>Hook</em>에서 주의를 잡고, <em>Retention</em>으로 유지하고,<br/>
+      <em>Payoff</em>에서 감정 정점과 공유 트리거를 동시에.
+    </p>
+    <div class="oneline-sig">15개 프레임워크는 1927년 Zeigarnik 실험실에서<br/>2024년 MrBeast 편집실까지 100년 동안 누적된 설득 공학이다.</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="inner">
+    <div>
+      <h4>SERIES · CREATIVE COMMUNICATOR</h4>
+      <p>
+        <strong>Part I · Deep</strong> 광고사 · 거장의 스키마<br/>
+        <strong>Part II · Deep</strong> 카피라이팅 프레임워크<br/>
+        <strong>Part III · Deep</strong> 뇌과학 · 해마 · 이야기<br/>
+        <strong>Part IV · Deep</strong> 인식과 소통 · 움벨트<br/>
+        <strong>Part V · Deep</strong> 현대사상 인식론 계보<br/>
+        <strong>Part VII · Deep</strong> 숏폼·릴스 프레임워크 (본 문서)
+      </p>
+    </div>
+    <div>
+      <h4>ACADEMIC · 학술 근거</h4>
+      <ul>
+        <li>Zeigarnik (1927) Open Loop 원실험</li>
+        <li>Rescorla & Wagner (1972) Prediction Error</li>
+        <li>Cialdini (1984) Influence · Reciprocity</li>
+        <li>Kahneman (1993) Peak-End Rule</li>
+        <li>Berger & Milkman (2012) What Makes Viral · STEPPS</li>
+      </ul>
+    </div>
+    <div>
+      <h4>INDUSTRY · 현장 자료</h4>
+      <ul>
+        <li>MrBeast 공개 인터뷰 · 리텐션 방법론</li>
+        <li>Paddy Galloway YouTube 성장 리서치</li>
+        <li>Colin & Samir Creator Economy 분석</li>
+        <li>Jonah Berger, 『Contagious』 (2013)</li>
+        <li>Nir Eyal, 『Hooked』 (2014)</li>
+        <li>Chip & Dan Heath, 『Made to Stick』 (2007)</li>
+        <li>보통마케터, 『인스타그램 캐러셀 브랜딩』 (참조)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="colophon">
+    <span>© 2026 · 크리에이티브 커뮤니케이터 시리즈</span>
+    <span>PART VII · DEEP · SHORT-FORM FRAMEWORKS</span>
+  </div>
+</footer>
+
+</body>
+</html>

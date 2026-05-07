@@ -1,0 +1,1658 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>뇌과학 · 해마 · 이야기 — Deep</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fdfcfa;
+    --bg-2: #f4f1ec;
+    --bg-card: #ffffff;
+    --bg-card-2: #f8f6f1;
+    --bg-code: #f4f1ec;
+    --text: #1a1a1a;
+    --text-soft: #4a4845;
+    --text-dim: #807e7a;
+    --text-faint: #c4c2bd;
+    --accent: #d9601f;
+    --accent-2: #e07530;
+    --accent-dim: #b54e15;
+    --teal: #2e8a7c;
+    --teal-dim: #1f5e54;
+    --green: #4a8e4a;
+    --purple: #7e5a98;
+    --pink: #c25787;
+    --blue: #4a72a8;
+    --yellow: #b8954a;
+    --red: #c14638;
+    --border: rgba(0,0,0,0.10);
+    --border-2: rgba(0,0,0,0.16);
+    --rule: rgba(0,0,0,0.12);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Sans KR', -apple-system, sans-serif;
+    font-weight: 400;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+
+  .hero { padding: 110px 60px 140px; position: relative; overflow: hidden; border-bottom: 1px solid var(--border); }
+  .hero-inner { max-width: 1120px; margin: 0 auto; position: relative; }
+  .hero-kicker { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.35em; color: var(--text-dim); margin-bottom: 80px; }
+  .hero h1 { font-family: 'Noto Sans KR', sans-serif; font-weight: 900; font-size: clamp(40px, 5.5vw, 72px); line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 20px; }
+  .hero h1 em { font-style: normal; color: var(--accent); }
+  .hero-lead { max-width: 700px; font-size: 16px; color: var(--text-soft); line-height: 1.8; font-weight: 300; margin-top: 36px; }
+  .hero-lead strong { color: var(--text); font-weight: 500; }
+  .hero-meta { margin-top: 120px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; padding-top: 32px; border-top: 1px solid var(--border); }
+  .hero-meta .label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.25em; color: var(--text-dim); text-transform: uppercase; margin-bottom: 8px; }
+  .hero-meta .value { font-size: 17px; font-weight: 700; color: var(--text); }
+
+  nav.sticky { position: sticky; top: 0; background: rgba(253,252,250,0.92); backdrop-filter: blur(18px); border-bottom: 1px solid var(--border); z-index: 50; padding: 14px 60px; }
+  nav .nav-inner { max-width: 1120px; margin: 0 auto; display: flex; gap: 24px; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; }
+  nav a { color: var(--text-dim); text-decoration: none; white-space: nowrap; padding: 4px 0; border-bottom: 1px solid transparent; transition: all 0.2s; }
+  nav a:hover { color: var(--accent); }
+
+  section { padding: 100px 60px; position: relative; }
+  .container { max-width: 1120px; margin: 0 auto; }
+  .sec-header { margin-bottom: 56px; display: flex; align-items: flex-start; gap: 32px; }
+  .sec-num { font-family: 'JetBrains Mono', monospace; font-size: 56px; font-weight: 700; color: var(--text-faint); line-height: 1; letter-spacing: -0.02em; flex-shrink: 0; }
+  .sec-num.star { color: var(--accent); }
+  .sec-title-wrap { flex: 1; padding-top: 8px; }
+  h2 { font-family: 'Noto Sans KR', sans-serif; font-weight: 900; font-size: clamp(28px, 3.6vw, 44px); line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 16px; color: var(--text); }
+  h2 em { font-style: normal; color: var(--accent); }
+  .sec-sub { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.2em; color: var(--text-dim); text-transform: uppercase; margin-top: 6px; margin-bottom: 22px; }
+  .sec-lead { font-size: 16px; color: var(--text-soft); max-width: 800px; line-height: 1.8; font-weight: 300; }
+  .sec-lead strong { color: var(--text); font-weight: 600; }
+
+  .intro-why { background: var(--bg-card); border: 1px solid var(--border); padding: 36px 40px; margin-top: 32px; }
+  .intro-why h3 { font-size: 18px; font-weight: 700; margin-bottom: 14px; color: var(--text); }
+  .intro-why h3 span { color: var(--accent); font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; margin-right: 10px; }
+  .intro-why p { font-size: 14px; color: var(--text-soft); line-height: 1.8; margin-bottom: 10px; }
+
+  .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
+  .compare-card { background: var(--bg-card); border: 1px solid var(--border); padding: 32px; }
+  .compare-card h4 { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 14px; }
+  .compare-card.old h4 { color: var(--text-dim); }
+  .compare-card.new h4 { color: var(--accent); }
+  .compare-card .punch { font-size: 19px; font-weight: 700; margin-bottom: 14px; line-height: 1.4; }
+  .compare-card.new .punch { color: var(--accent-2); }
+  .compare-card p { font-size: 14px; color: var(--text-soft); line-height: 1.75; margin-bottom: 8px; }
+
+  .phase-hero { background: var(--bg-card); border: 1px solid var(--border); border-left: 4px solid var(--accent); padding: 40px 44px; margin-top: 48px; margin-bottom: 44px; }
+  .phase-hero.teal { border-left-color: var(--teal); }
+  .phase-hero.purple { border-left-color: var(--purple); }
+  .phase-hero.green { border-left-color: var(--green); }
+  .phase-hero.pink { border-left-color: var(--pink); }
+  .phase-hero.blue { border-left-color: var(--blue); }
+  .phase-hero.yellow { border-left-color: var(--yellow); }
+  .phase-era { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.25em; color: var(--text-dim); margin-bottom: 10px; }
+  .phase-era .star { color: var(--accent); margin-left: 8px; font-weight: 700; }
+  .phase-hero h3 { font-size: 26px; font-weight: 800; line-height: 1.3; margin-bottom: 14px; letter-spacing: -0.01em; }
+  .phase-hero h3 em { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; color: var(--accent); }
+  .phase-hero p { font-size: 15px; color: var(--text-soft); line-height: 1.8; margin-bottom: 10px; }
+  .phase-q { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-dim); margin-top: 24px; padding-top: 22px; border-top: 1px dashed var(--border-2); letter-spacing: 0.05em; }
+  .phase-q strong { color: var(--accent-2); }
+
+  .thinker { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--accent); margin-bottom: 28px; overflow: hidden; box-shadow: 0 1px 2px rgba(0,0,0,0.03); }
+  .thinker.teal { border-left-color: var(--teal); }
+  .thinker.purple { border-left-color: var(--purple); }
+  .thinker.green { border-left-color: var(--green); }
+  .thinker.pink { border-left-color: var(--pink); }
+  .thinker.blue { border-left-color: var(--blue); }
+  .thinker.yellow { border-left-color: var(--yellow); }
+  .thinker.red { border-left-color: var(--red); }
+
+  .thinker-top { padding: 28px 36px 22px; display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: start; border-bottom: 1px solid var(--border); }
+  .thinker-id { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+  .thinker-name { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--text); letter-spacing: -0.01em; }
+  .thinker-ko { font-size: 15px; color: var(--text-dim); font-weight: 400; }
+  .thinker-years { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-dim); letter-spacing: 0.15em; }
+  .thinker-tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; padding: 6px 12px; background: rgba(217,96,31,0.10); color: var(--accent); text-transform: uppercase; white-space: nowrap; align-self: start; border: 1px solid rgba(217,96,31,0.28); }
+  .thinker.teal .thinker-tag { background: rgba(46,138,124,0.10); color: var(--teal); border-color: rgba(46,138,124,0.28);}
+  .thinker.purple .thinker-tag { background: rgba(126,90,152,0.10); color: var(--purple); border-color: rgba(126,90,152,0.28);}
+  .thinker.green .thinker-tag { background: rgba(74,142,74,0.10); color: var(--green); border-color: rgba(74,142,74,0.28);}
+  .thinker.pink .thinker-tag { background: rgba(194,87,135,0.10); color: var(--pink); border-color: rgba(194,87,135,0.28);}
+  .thinker.blue .thinker-tag { background: rgba(74,114,168,0.10); color: var(--blue); border-color: rgba(74,114,168,0.28);}
+  .thinker.yellow .thinker-tag { background: rgba(184,149,74,0.10); color: var(--yellow); border-color: rgba(184,149,74,0.28);}
+
+  .thinker-punch { grid-column: 1 / -1; margin-top: 8px; font-size: 17px; font-weight: 600; color: var(--text); line-height: 1.5; letter-spacing: -0.005em; }
+  .thinker-punch em { font-style: normal; color: var(--accent-2); font-weight: 700; }
+  .thinker.teal .thinker-punch em { color: var(--teal); }
+  .thinker.purple .thinker-punch em { color: var(--purple); }
+  .thinker.green .thinker-punch em { color: var(--green); }
+  .thinker.pink .thinker-punch em { color: var(--pink); }
+  .thinker.blue .thinker-punch em { color: var(--blue); }
+  .thinker.yellow .thinker-punch em { color: var(--yellow); }
+
+  .thinker-body { padding: 32px 36px 36px; }
+  .block { margin-bottom: 36px; }
+  .block:last-child { margin-bottom: 0; }
+  .block-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.25em; color: var(--accent); text-transform: uppercase; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+  .block-label::before { content: ''; width: 18px; height: 1px; background: var(--accent); }
+  .thinker.teal .block-label { color: var(--teal); }
+  .thinker.teal .block-label::before { background: var(--teal); }
+  .thinker.purple .block-label { color: var(--purple); }
+  .thinker.purple .block-label::before { background: var(--purple); }
+  .thinker.green .block-label { color: var(--green); }
+  .thinker.green .block-label::before { background: var(--green); }
+  .thinker.pink .block-label { color: var(--pink); }
+  .thinker.pink .block-label::before { background: var(--pink); }
+  .thinker.blue .block-label { color: var(--blue); }
+  .thinker.blue .block-label::before { background: var(--blue); }
+  .thinker.yellow .block-label { color: var(--yellow); }
+  .thinker.yellow .block-label::before { background: var(--yellow); }
+
+  .block p { font-size: 14.5px; color: var(--text-soft); line-height: 1.85; margin-bottom: 10px; }
+  .block p strong { color: var(--text); font-weight: 600; }
+
+  .schema { background: var(--bg-code); border: 1px solid var(--border); padding: 28px 32px; margin: 22px 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.9; color: var(--text-soft); white-space: pre; overflow-x: auto; }
+  .schema .c-a { color: var(--accent); }
+  .schema .c-t { color: var(--teal); }
+  .schema .c-p { color: var(--purple); }
+  .schema .c-g { color: var(--green); }
+  .schema .c-b { color: var(--blue); }
+  .schema .c-y { color: var(--yellow); }
+  .schema .c-pk { color: var(--pink); }
+  .schema .c-r { color: var(--red); }
+  .schema .c-d { color: var(--text-dim); }
+  .schema .c-hi { color: var(--text); font-weight: 600; }
+  .schema-cap { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-dim); letter-spacing: 0.15em; margin-top: 8px; text-align: right; }
+
+  .influence { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 14px; }
+  .inf-item { padding: 16px 18px; background: var(--bg-card-2); border-left: 2px solid var(--accent); }
+  .thinker.teal .inf-item { border-left-color: var(--teal); }
+  .thinker.purple .inf-item { border-left-color: var(--purple); }
+  .thinker.green .inf-item { border-left-color: var(--green); }
+  .thinker.pink .inf-item { border-left-color: var(--pink); }
+  .thinker.blue .inf-item { border-left-color: var(--blue); }
+  .thinker.yellow .inf-item { border-left-color: var(--yellow); }
+  .inf-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--text-dim); text-transform: uppercase; margin-bottom: 6px; }
+  .inf-body { font-size: 13px; color: var(--text-soft); line-height: 1.65; }
+  .inf-body strong { color: var(--text); }
+
+  .echo { background: rgba(217,96,31,0.06); border: 1px solid rgba(217,96,31,0.20); padding: 22px 26px; margin-top: 18px; }
+  .thinker.teal .echo { background: rgba(46,138,124,0.07); border-color: rgba(46,138,124,0.22); }
+  .thinker.purple .echo { background: rgba(126,90,152,0.07); border-color: rgba(126,90,152,0.22); }
+  .thinker.green .echo { background: rgba(74,142,74,0.07); border-color: rgba(74,142,74,0.22); }
+  .thinker.pink .echo { background: rgba(194,87,135,0.07); border-color: rgba(194,87,135,0.22); }
+  .thinker.blue .echo { background: rgba(74,114,168,0.07); border-color: rgba(74,114,168,0.22); }
+  .thinker.yellow .echo { background: rgba(184,149,74,0.07); border-color: rgba(184,149,74,0.22); }
+  .echo-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.25em; color: var(--accent); text-transform: uppercase; margin-bottom: 8px; }
+  .thinker.teal .echo-label { color: var(--teal); }
+  .thinker.purple .echo-label { color: var(--purple); }
+  .thinker.green .echo-label { color: var(--green); }
+  .thinker.pink .echo-label { color: var(--pink); }
+  .thinker.blue .echo-label { color: var(--blue); }
+  .thinker.yellow .echo-label { color: var(--yellow); }
+  .echo-body { font-size: 14px; color: var(--text); line-height: 1.7; }
+
+  .quote { margin: 16px 0; padding: 14px 0 14px 20px; border-left: 3px solid var(--accent-dim); font-family: 'Nanum Myeongjo', serif; font-style: italic; font-size: 16px; color: var(--text); line-height: 1.7; }
+  .quote-src { display: block; margin-top: 8px; font-family: 'JetBrains Mono', monospace; font-style: normal; font-size: 10px; color: var(--text-dim); letter-spacing: 0.15em; }
+
+  .concepts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .concept-chip { font-family: 'JetBrains Mono', monospace; font-size: 11px; padding: 6px 12px; background: var(--bg-card-2); border: 1px solid var(--border); color: var(--text-soft); letter-spacing: 0.02em; }
+  .concept-chip strong { color: var(--accent); font-weight: 600; margin-right: 6px; }
+  .thinker.teal .concept-chip strong { color: var(--teal); }
+  .thinker.purple .concept-chip strong { color: var(--purple); }
+
+  /* FOUR ELEMENTS visual — Part III signature */
+  .four-elements {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 24px;
+  }
+  .fe-card {
+    background: var(--bg-code);
+    border: 1px solid var(--border);
+    padding: 28px 22px;
+    position: relative;
+    border-top: 3px solid var(--accent);
+  }
+  .fe-card:nth-child(1) { border-top-color: var(--teal); }
+  .fe-card:nth-child(2) { border-top-color: var(--yellow); }
+  .fe-card:nth-child(3) { border-top-color: var(--blue); }
+  .fe-card:nth-child(4) { border-top-color: var(--pink); }
+  .fe-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.3em; color: var(--text-dim); margin-bottom: 12px; }
+  .fe-card h4 { font-size: 20px; font-weight: 800; margin-bottom: 6px; color: var(--text); }
+  .fe-card .fe-en { font-family: 'Playfair Display', serif; font-style: italic; font-size: 13px; color: var(--accent); margin-bottom: 16px; }
+  .fe-card:nth-child(1) .fe-en { color: var(--teal); }
+  .fe-card:nth-child(2) .fe-en { color: var(--yellow); }
+  .fe-card:nth-child(3) .fe-en { color: var(--blue); }
+  .fe-card:nth-child(4) .fe-en { color: var(--pink); }
+  .fe-card .fe-to { font-size: 12.5px; color: var(--text-soft); padding-top: 14px; border-top: 1px dashed var(--border); line-height: 1.65; }
+  .fe-card .fe-to strong { color: var(--text); }
+
+  /* Human-vs-AI table */
+  .vs-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 32px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+  }
+  .vs-table th, .vs-table td {
+    padding: 18px 22px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .vs-table th { background: var(--bg-card-2); font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: var(--text-dim); text-transform: uppercase; font-weight: 600; }
+  .vs-table th:first-child { color: var(--accent); }
+  .vs-table tr:last-child td { border-bottom: none; }
+  .vs-table td:first-child { font-weight: 800; color: var(--text); font-size: 15px; width: 22%; }
+  .vs-table td:nth-child(2), .vs-table td:nth-child(3) { font-size: 13.5px; color: var(--text-soft); line-height: 1.7; }
+  .vs-table td:nth-child(2) { color: var(--accent-2); font-weight: 500; }
+  .vs-table td:nth-child(3) { color: var(--text-dim); }
+
+  /* Training cards */
+  .training-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-top: 32px;
+  }
+  .train-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    padding: 24px 26px;
+  }
+  .train-card:nth-child(1) { border-left-color: var(--accent); }
+  .train-card:nth-child(2) { border-left-color: var(--teal); }
+  .train-card:nth-child(3) { border-left-color: var(--yellow); }
+  .train-card:nth-child(4) { border-left-color: var(--purple); }
+  .train-card:nth-child(5) { border-left-color: var(--pink); }
+  .train-card:nth-child(6) { border-left-color: var(--blue); }
+  .train-card:nth-child(7) { border-left-color: var(--green); }
+  .train-card .t-num { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.3em; color: var(--text-dim); margin-bottom: 10px; }
+  .train-card h4 { font-size: 17px; font-weight: 800; margin-bottom: 10px; line-height: 1.35; }
+  .train-card p { font-size: 13px; color: var(--text-soft); line-height: 1.7; }
+
+  .attitude-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-top: 32px;
+  }
+  .att-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 24px 26px;
+    border-top: 3px solid var(--accent);
+  }
+  .att-card:nth-child(1) { border-top-color: var(--accent); }
+  .att-card:nth-child(2) { border-top-color: var(--teal); }
+  .att-card:nth-child(3) { border-top-color: var(--yellow); }
+  .att-card:nth-child(4) { border-top-color: var(--purple); }
+  .att-card:nth-child(5) { border-top-color: var(--pink); }
+  .att-card:nth-child(6) { border-top-color: var(--blue); }
+  .att-card .a-num { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.3em; color: var(--text-dim); margin-bottom: 10px; }
+  .att-card h4 { font-size: 17px; font-weight: 800; margin-bottom: 10px; line-height: 1.35; }
+  .att-card p { font-size: 13px; color: var(--text-soft); line-height: 1.7; }
+
+  .oneline { padding: 140px 60px; text-align: center; position: relative; overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .oneline::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(217,96,31,0.08), transparent 60%); }
+  .oneline-inner { max-width: 900px; margin: 0 auto; position: relative; }
+  .oneline-k { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.4em; color: var(--accent); margin-bottom: 36px; }
+  .oneline-main { font-size: clamp(22px, 2.8vw, 32px); font-weight: 700; line-height: 1.5; color: var(--text); }
+  .oneline-main em { font-style: normal; color: var(--accent); }
+  .oneline-sig { margin-top: 44px; font-family: 'Playfair Display', serif; font-style: italic; color: var(--text-soft); font-size: 16px; line-height: 1.7; }
+
+  footer { background: var(--bg-2); padding: 70px 60px 40px; border-top: 1px solid var(--border); }
+  footer .inner { max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 56px; }
+  footer h4 { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.25em; color: var(--accent); text-transform: uppercase; margin-bottom: 18px; }
+  footer p, footer li { font-size: 13px; color: var(--text-soft); line-height: 1.8; }
+  footer p strong { color: var(--text); }
+  footer ul { list-style: none; }
+  footer li { padding: 3px 0; }
+  footer li::before { content: '— '; color: var(--text-dim); }
+  footer .colophon { max-width: 1120px; margin: 52px auto 0; padding-top: 24px; border-top: 1px solid var(--border); font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--text-dim); display: flex; justify-content: space-between; }
+
+  @media (max-width: 960px) {
+    .hero, section, footer, nav.sticky { padding-left: 28px; padding-right: 28px; }
+    .sec-header { flex-direction: column; gap: 12px; }
+    .sec-num { font-size: 42px; }
+    .hero-meta { grid-template-columns: 1fr 1fr; }
+    .compare-grid { grid-template-columns: 1fr; gap: 20px; }
+    .four-elements { grid-template-columns: 1fr 1fr; }
+    .training-grid, .attitude-grid, .influence { grid-template-columns: 1fr; }
+    footer .inner { grid-template-columns: 1fr; gap: 32px; }
+    .thinker-top { grid-template-columns: 1fr; }
+    .vs-table { font-size: 12px; }
+    .vs-table th, .vs-table td { padding: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-kicker">BRAIN SCIENCE · HIPPOCAMPUS · STORY · DEEP · PART III</div>
+    <h1>해마는 <em>기억 장치가 아니다</em> —<br/>이야기를 짓는 <em>엔진</em>이다.</h1>
+    <p class="hero-lead">
+      20세기 내내 신경과학은 해마를 "파일 캐비닛"으로 봤다. 21세기가 뒤집었다. 해마는 <strong>과거를 재구성하고 미래를 시뮬레이션하는 단일 엔진</strong>이다.
+      이 발견이 크리에이티브 커뮤니케이션의 모든 공리를 바꾼다 — 서사가 왜 작동하는가, 왜 스펙 나열은 실패하는가, 왜 인간은 AI가 아직 못 하는 것을 하는가. 이 문서는 이 한 질문을 10명의 신경과학자를 관통해 답한다.
+    </p>
+    <div class="hero-meta">
+      <div><div class="label">Anchor</div><div class="value">Hippocampus</div></div>
+      <div><div class="label">Scholars</div><div class="value">10 신경과학자</div></div>
+      <div><div class="label">Core Shift</div><div class="value">저장 → 재구성</div></div>
+      <div><div class="label">Series</div><div class="value">Part III · Creative Communicator</div></div>
+    </div>
+  </div>
+</header>
+
+<nav class="sticky">
+  <div class="nav-inner">
+    <a href="#intro">00 · 들어가며</a>
+    <a href="#s1">01 · 해마의 발견</a>
+    <a href="#s2">02 · 재구성 기억</a>
+    <a href="#s3">03 · 4요소</a>
+    <a href="#s4">04 · 기억 = 상상</a>
+    <a href="#s5">05 · 공간 인지</a>
+    <a href="#s6">06 · 감정·수면</a>
+    <a href="#s7">07 · DMN</a>
+    <a href="#s8">08 · 인간 vs AI</a>
+    <a href="#s9">09 · 오늘의 적용</a>
+  </div>
+</nav>
+
+<!-- 00 INTRO -->
+<section id="intro">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">00</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">WHY NEUROSCIENCE</div>
+        <h2>왜 크리에이터에게 <em>뇌과학</em>인가</h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      기호학이 "의미의 문법"을 설명한다면, 뇌과학은 <strong>"그 의미가 왜 받아들여지는가"</strong>를 기전으로 설명한다. 감각·감정·직관·미학 — 크리에이터가 매일 의존하는 블랙박스들을 구조로 번역하는 도구다.
+    </p>
+
+    <div class="intro-why">
+      <h3><span>CORE THESIS</span>이 문서의 중심 명제</h3>
+      <p><strong style="color:var(--text)">"해마는 기억 저장 장치가 아니다. 과거의 재구성과 미래의 시뮬레이션을 동시에 담당하는 이야기 엔진이다."</strong></p>
+      <p>이 하나의 명제가 증명된 순간, 뇌과학은 크리에이티브의 언어로 번역 가능해졌다. 이야기가 왜 뼛속까지 박히고, 논리는 왜 휘발되는지. 감각일지가 왜 인지 모델을 확장시키고, 미래 일기가 왜 창의력을 키우는지. 이 모든 것이 <strong style="color:var(--accent-2)">해마의 구조 한 가지</strong>로 설명된다.</p>
+    </div>
+
+    <div class="compare-grid">
+      <div class="compare-card old">
+        <h4>— 뇌과학 없이 크리에이티브 할 때</h4>
+        <div class="punch">좋은 것이 왜 좋은지 설명 못 한다</div>
+        <p>"이건 그냥 감이 좋다"로 끝난다. 다음에 또 좋은 걸 만들 수 있을지 확신이 없다. 의뢰인에게 방어하기 어렵고, 동료에게 전수하기는 더 어렵다. 감각이 블랙박스 상태.</p>
+      </div>
+      <div class="compare-card new">
+        <h4>— 뇌과학 위에서 크리에이티브 할 때</h4>
+        <div class="punch">기전으로 설계하고 검증한다</div>
+        <p>"이 카피는 해마의 4요소를 갖췄다", "이 비주얼은 거울 뉴런을 자극한다", "이 구성은 DMN을 연다" — 결정이 근거를 가진다. <strong>감각이 공학이 되고, 직관이 반복 가능한 방법</strong>이 된다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 01 DISCOVERY -->
+<section id="s1" style="background:var(--bg-2);">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">01</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">STAGE 01 · THE DISCOVERY</div>
+        <h2>해마의 발견 — <em>하드웨어</em>로 본 기억의 집</h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      해마가 기억의 중심이라는 것은 오래전부터 짐작됐지만, <strong>정확히 어떤 기억을 어떻게 담당하는지</strong>는 20세기 중반 한 환자의 비극적 수술에서 드러났다. 여기부터 이 분야의 현대사가 시작된다.
+    </p>
+
+    <div class="phase-hero">
+      <div class="phase-era">STAGE 01 · HARDWARE</div>
+      <h3>시작 · <em>H.M.의 뇌</em>가 열어준 것</h3>
+      <p>1953년, 간질 치료를 위해 양쪽 해마가 제거된 환자 Henry Molaison(H.M.)은 그 순간부터 새 기억을 형성할 수 없게 되었다. 이 한 명의 환자를 평생 연구한 Brenda Milner가 <strong>"해마는 일화기억의 형성 장소"</strong>라는 명제를 확립했다. 그로부터 반세기 뒤 O'Keefe와 Moser가 해마 안의 "공간 세포"를 찾아내며 그 역할을 완성한다.</p>
+      <div class="phase-q">핵심 질문 <strong>→</strong> 해마가 없어지면 우리가 잃는 것은 정확히 무엇인가?</div>
+    </div>
+
+    <!-- Hebb -->
+    <article class="thinker">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Donald Hebb</span>
+            <span class="thinker-ko">도널드 헤브</span>
+            <span class="thinker-years">1904–1985</span>
+          </div>
+          <div class="thinker-punch">"<em>함께 발화하는 세포는 함께 연결된다</em>" — 학습의 신경 원리를 한 문장으로 요약한 현대 신경과학의 헌법.</div>
+        </div>
+        <span class="thinker-tag">Hebbian Learning · 1949</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>캐나다 심리학자 헤브가 1949년 제안한 원리. <strong>"Cells that fire together, wire together"</strong> — 두 뉴런이 시간적으로 가깝게 함께 발화하면 그 사이의 시냅스 연결이 강화된다. 이것이 학습의 신경 수준 메커니즘이다. 기억이란 특정 뉴런 그룹(cell assembly)의 연결 강도 패턴으로 저장된다.</p>
+          <p>이 원리는 50년 뒤 LTP(Long-Term Potentiation, 장기 강화) 현상의 실험적 발견으로 확증된다. 헤브는 관찰도 없이 이론적 추론만으로 옳은 답을 찾은 드문 사례.</p>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 헤브의 학습 원리</div>
+<div class="schema"><span class="c-d"># 시냅스 강화의 기본 원리</span>
+
+  <span class="c-d">시간 t1:</span>
+      뉴런 A  ●─────────●  뉴런 B
+                약한 연결
+
+  <span class="c-d">시간 t2 (A와 B가 함께 발화):</span>
+      뉴런 A  ●═════════●  뉴런 B
+      (firing)   ▲       (firing)
+                 └── 시냅스 강화 중
+
+  <span class="c-d">시간 t3 (반복 후):</span>
+      뉴런 A  ●━━━━━━━━━●  뉴런 B
+                강한 연결 (기억 형성)
+
+<span class="c-hi">규칙:</span> <span class="c-a">"Cells that fire together, wire together."</span>
+<span class="c-d">함의:</span> 기억 = 뉴런 그룹(cell assembly)의 연결 패턴.
+      학습 = 그 패턴의 누적·강화·재구성.</div>
+          <div class="schema-cap">HEBB · HEBBIAN LEARNING PRINCIPLE</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Neuroscience</div>
+              <div class="inf-body">현대 신경과학의 기본 공리. LTP 발견(Bliss & Lomo, 1973), Kandel의 분자 기전 규명(2000 Nobel)으로 완전 확증됨.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">AI · Deep Learning</div>
+              <div class="inf-body"><strong>인공 신경망의 수학적 기초</strong>. 현재 ChatGPT·Claude의 가중치 업데이트 규칙이 헤브 원리의 컴퓨터 구현. 딥러닝 전체의 출발.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Education</div>
+              <div class="inf-body">"반복이 학습을 강화한다"는 경험칙의 신경학적 근거. 간격 반복법(spaced repetition), 인출 연습(retrieval practice)이 모두 헤브 원리의 응용.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              "반복 + 감정"이 학습의 기본 공식인 이유. 브랜드 노출이 단독으로는 약하고 <strong>감정적 연결과 결합될 때 기억에 박히는</strong> 이유. 감각일지를 매일 쓰는 것이 인지 모델을 확장하는 메커니즘 — 같은 감각에 대해 뉴런 그룹을 반복적으로 함께 발화시키면 그 개념의 "선명도"가 올라간다. 훈련의 효과는 시간 × 강도의 함수.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Milner + H.M. -->
+    <article class="thinker teal">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Brenda Milner</span>
+            <span class="thinker-ko">브렌다 밀너 &amp; 환자 H.M.</span>
+            <span class="thinker-years">1918– · 1926–2008</span>
+          </div>
+          <div class="thinker-punch">한 환자의 비극이 <em>해마의 역할</em>을 확정했다 — "기억은 여러 종류이고, 해마는 일화기억 전담이다."</div>
+        </div>
+        <span class="thinker-tag">★ The Case of H.M.</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">THE CASE · 결정적 환자</div>
+          <p>1953년 9월, 27세 남성 Henry Molaison은 심각한 간질을 멈추기 위해 양쪽 측두엽 내측(해마 포함) 제거 수술을 받았다. 간질은 호전됐지만 대가가 컸다 — 그는 그 순간부터 새로운 일화기억을 형성할 수 없게 되었다. <strong>매일 처음 만나는 의사들, 방금 읽은 페이지를 기억하지 못하는 상태.</strong> 그러나 수술 이전 기억은 대부분 유지됐고, 지능·언어·운동 기술 학습은 놀랍도록 멀쩡했다.</p>
+          <p>몬트리올 신경학 연구소의 Brenda Milner가 H.M.을 50년 넘게 연구했다. 이 한 사례가 증명한 것:</p>
+          <p>1) <strong>기억은 단일 시스템이 아니다.</strong> 새 일화기억(episodic)은 못 만들지만, 거울 그리기 같은 절차 기억(procedural)은 학습 가능. 여러 기억 시스템이 독립적으로 존재.<br/>
+          2) <strong>해마는 일화기억 형성의 핵심 구조.</strong> 없으면 새 기억이 만들어지지 않는다.<br/>
+          3) <strong>해마는 저장소가 아니다.</strong> 오래된 기억은 해마 없이도 유지된다. 해마는 형성 → 대뇌피질 이관의 중개자.</p>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · H.M.의 기억 지도</div>
+<div class="schema"><span class="c-d"># H.M.이 증명한 기억 시스템의 분화</span>
+
+                    <span class="c-hi">[기억]</span>
+                      │
+        ┌─────────────┴─────────────┐
+        ▼                           ▼
+  <span class="c-t">명시적 (Explicit)</span>          <span class="c-a">암묵적 (Implicit)</span>
+  "의식적으로 떠올림"           "행동으로 나타남"
+        │                           │
+    ┌───┴───┐                   ┌───┴───┐
+    ▼       ▼                   ▼       ▼
+ 일화    의미                절차    조건화
+ 기억    기억                기억
+    │       │                   │       │
+  <span class="c-r">[해마]</span>  대뇌피질          선조체    소뇌
+
+  <span class="c-d">H.M.의 결과:</span>
+  ✗ 새 일화기억 형성 불가 (해마 제거)
+  ✓ 오래된 일화기억 유지 (이미 피질에 이관)
+  ✓ 의미기억 일부 유지 (피질)
+  ✓ 절차기억 학습 가능 (선조체·소뇌 무사)
+
+<span class="c-hi">결론:</span> 기억은 하나가 아니라 <span class="c-hi">여러 독립 시스템</span>.
+       해마는 <span class="c-hi">일화기억 형성 전담</span>.</div>
+          <div class="schema-cap">MILNER / H.M. · MEMORY SYSTEMS</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Neuroscience</div>
+              <div class="inf-body">현대 기억 연구 전체의 출발점. <strong>Larry Squire · Endel Tulving</strong>의 다중 기억 시스템 이론의 실증적 근거.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Neurology · Medicine</div>
+              <div class="inf-body">측두엽 간질 수술의 위험 평가 기준, 알츠하이머 초기 진단(일화기억 손상 패턴)의 토대.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Philosophy of Mind</div>
+              <div class="inf-body">"자아는 기억이다"라는 로크의 명제가 신경과학으로 재검증. H.M.은 과거의 자기를 기억했지만 새 자기를 형성하지 못한 상태에 50년 살았다.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              광고·브랜드 기억이 왜 "일화"로 심어야 하는지의 근거 — 스펙 나열은 의미기억에 가지만, 장면과 감정이 있는 이야기는 일화기억으로 들어간다. 일화기억이 회상성이 훨씬 강하고 정서적이다. 당신의 가장 생생한 브랜드 기억을 꺼내보라 — 대부분 <strong>구체적 장면</strong>이다. 그 장면은 H.M.이 잃은 것과 같은 구조.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- O'Keefe & Moser -->
+    <article class="thinker teal">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">O'Keefe · Moser</span>
+            <span class="thinker-ko">존 오키프 · 모저 부부</span>
+            <span class="thinker-years">1939– · 1962–</span>
+          </div>
+          <div class="thinker-punch">해마 안에 <em>실제 공간 지도</em>가 있다 — place cell과 grid cell, 2014년 노벨상이 확정한 발견.</div>
+        </div>
+        <span class="thinker-tag">★ Spatial Mapping · Nobel 2014</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">THE DISCOVERY · 결정적 발견</div>
+          <p><strong>1971년 O'Keefe</strong>: 쥐 해마의 특정 뉴런이 쥐가 방의 특정 위치에 있을 때만 발화한다는 것을 발견. 이 뉴런을 <strong>장소 세포(place cell)</strong>로 명명. 해마 안에 실제로 공간의 내적 지도가 있다는 충격적 증거.</p>
+          <p><strong>2005년 Moser 부부</strong>: 해마 옆 내후각피질(entorhinal cortex)에서 더 놀라운 뉴런을 찾았다. <strong>격자 세포(grid cell)</strong> — 공간을 정육각형 격자로 분할해, 쥐가 어떤 격자 꼭짓점에 올 때마다 발화하는 뉴런. 뇌 안에 수학적 좌표계가 있다는 발견.</p>
+          <p>결합: place cell이 특정 장소를, grid cell이 추상적 좌표를 담당하며 함께 "공간 인지 시스템"을 이룬다. 그리고 결정적 — <strong>이 시스템은 물리적 공간뿐 아니라 개념·사회 관계·시간 같은 추상 "공간"에도 쓰인다</strong>. 해마는 공간만이 아니라 <strong>모든 "관계의 위상"을 맵핑하는 기관</strong>임이 드러났다. 2014년 노벨 생리의학상.</p>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 장소 세포와 격자 세포</div>
+<div class="schema"><span class="c-d"># 해마-내후각피질의 공간 시스템</span>
+
+  <span class="c-t">Place cell (해마)</span>
+     쥐가 방의 A 위치에 있을 때만 발화하는 뉴런
+
+     ┌─────────────────┐
+     │ .       ● A     │   ← 쥐 위치
+     │          ●      │
+     │       ●         │   뉴런 발화 ▓▓▓▓
+     │  ●              │
+     │                 │
+     │      ●  C   ●   │
+     │  ● B            │
+     └─────────────────┘
+     각 위치마다 다른 뉴런이 담당
+
+  <span class="c-t">Grid cell (내후각피질)</span>
+     공간을 정육각형 격자로 분할
+
+       ●   ●   ●   ●   ●
+        ·   ·   ·   ·
+       ●   ●   ●   ●   ●     ← 쥐가 이 점들 중 아무 데나
+        ·   ·   ·   ·           오면 발화
+       ●   ●   ●   ●   ●
+        ·   ·   ·   ·
+       ●   ●   ●   ●   ●
+
+<span class="c-hi">놀라운 확장:</span>
+  같은 시스템이 <span class="c-a">개념 공간 · 사회 관계 · 시간 · 서사</span>
+  의 위상 매핑에도 쓰인다.
+  → 해마는 <span class="c-hi">"모든 것의 지도"</span>를 만드는 기관.</div>
+          <div class="schema-cap">O'KEEFE / MOSER · PLACE + GRID CELLS</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Cognitive Neuroscience</div>
+              <div class="inf-body">해마의 역할을 "공간 + 시간 + 관계의 통합 지도"로 재정의. <strong>Eichenbaum · Buzsáki</strong>의 "인지 지도(cognitive map)" 이론으로 확장.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">AI · Navigation</div>
+              <div class="inf-body">DeepMind가 grid cell 원리를 강화학습 에이전트에 구현(2018) — 공간 추론 능력 급상승. Map-like thinking의 AI 구현.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Architecture · UX</div>
+              <div class="inf-body"><strong>공간 경험의 설계</strong>가 인지와 직결된다는 과학적 근거. 건축·공간 디자인의 인지적 토대.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              이야기가 "어디서 일어났는가"로 시작하는 것이 우연이 아닌 이유 — 해마는 먼저 공간을 세팅하고 그 위에 사건을 쌓는다. <strong>"주 1회 한 번도 안 가본 장소에 가라"는 루틴</strong>이 왜 인지 확장에 효과적인가 — 새 공간이 해마에 새 맵을 그리게 하고, 이것이 다른 개념 공간 확장에도 쓰인다. 매일 같은 카페·같은 동선이 해마를 잠재우는 일인 이유.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- 02 RECONSTRUCTIVE MEMORY -->
+<section id="s2">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">02</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">STAGE 02 · RECONSTRUCTIVE MEMORY</div>
+        <h2>재구성 기억 — <em>기억은 재생이 아니다</em></h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      해마 안에 장소 세포가 있다고 해서 "기억 = 녹화 재생"이라는 결론은 나오지 않는다. 오히려 반대다. 해마는 매번 <strong>현재의 스키마·맥락·감정을 섞어 기억을 다시 쓴다</strong>. 이 사실을 1932년에 한 영국 심리학자가 먼저 발견했고, 21세기에 뇌 영상이 확증했다.
+    </p>
+
+    <div class="phase-hero purple">
+      <div class="phase-era">STAGE 02 · MEMORY AS RECONSTRUCTION</div>
+      <h3>혁명 · <em>기억은 매번 새로 쓰인다</em></h3>
+      <p>기억은 테이프가 아니다. 하드디스크도 아니다. 해마는 매번 부분 단서에서 출발해 <strong>현재 맥락에 맞는 "가장 그럴듯한 과거"</strong>를 재구성한다. 회상할 때마다 기억이 미묘하게 달라진다 — 이것은 시스템의 버그가 아니라 설계 자체다.</p>
+      <div class="phase-q">핵심 질문 <strong>→</strong> 만약 기억이 재생이 아니라면, 우리가 "과거"라 부르는 것은 정확히 무엇인가?</div>
+    </div>
+
+    <!-- Bartlett -->
+    <article class="thinker purple">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Frederic Bartlett</span>
+            <span class="thinker-ko">프레더릭 바틀렛</span>
+            <span class="thinker-years">1886–1969</span>
+          </div>
+          <div class="thinker-punch">"<em>War of the Ghosts</em>" 실험 — 1932년에 이미 증명했다. 기억은 저장이 아니라 매번 재구성되는 서사다.</div>
+        </div>
+        <span class="thinker-tag">Reconstructive Memory · 1932</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">THE EXPERIMENT · 결정적 실험</div>
+          <p>케임브리지의 심리학자 바틀렛이 영국 학생들에게 낯선 북미 원주민 설화 "유령의 전쟁(War of the Ghosts)"을 들려주고 시간차를 두고 여러 번 회상시켰다. 결과는 일관됐다 — 사람들은 이야기를 "정확히" 기억하지 않았다. 대신 자기 문화의 틀(스키마)에 맞춰 <strong>세부를 바꾸고, 맞지 않는 요소를 삭제하고, 빈 곳을 채워 넣고, 낯선 표현을 친숙하게 변형했다.</strong></p>
+          <p>회차가 거듭될수록 이야기는 점점 "영국 학생이 들을 법한 것"으로 바뀌어갔다. 원본과 멀어졌지만 회상자 본인은 자기가 "정확히 기억한다"고 믿었다. 기억의 재구성은 의식되지 않는다.</p>
+          <div class="quote">"기억은 과거의 사실을 복원하는 일이 아니다. 현재로부터 과거를 조립하는 작업이다."<span class="quote-src">— Remembering (1932)</span></div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 재구성의 네 작업</div>
+<div class="schema"><span class="c-d"># 바틀렛의 재구성 기억 모델</span>
+
+  <span class="c-d">상식 모델 (틀림):</span>
+      원본 ──▶ <span class="c-p">[저장]</span> ──▶ 재생 (=원본)
+
+  <span class="c-d">바틀렛 모델 (맞음):</span>
+
+      원본 경험
+         │
+         ▼  인코딩 (이미 스키마 작동)
+      <span class="c-p">[단편적 저장]</span>
+         │
+         │  <span class="c-d">회상 시점에:</span>
+         │    · 현재 스키마
+         │    · 현재 감정·동기
+         │    · 현재 맥락
+         ▼
+    ┌─────────────────────────────┐
+    │ <span class="c-p">재구성 (reconstruction) 4작업:</span> │
+    │                             │
+    │  ① 유지  · 중요 요소        │
+    │  ② 변형  · 스키마에 맞게     │
+    │  ③ 생성  · 빈 곳 채움        │
+    │  ④ 삭제  · 안 맞는 것        │
+    └─────────────────────────────┘
+         │
+         ▼
+    <span class="c-hi">[회상된 기억 · 매번 약간 다름]</span>
+
+<span class="c-d">핵심:</span> 기억은 <span class="c-hi">현재로부터의 과거 생성</span>.</div>
+          <div class="schema-cap">BARTLETT · RECONSTRUCTIVE MEMORY</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Psychology</div>
+              <div class="inf-body">인지심리학의 기초. "스키마" 개념이 Piaget·Neisser·Rumelhart로 확장. <strong>Elizabeth Loftus</strong>의 거짓 기억 연구도 여기서.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Law</div>
+              <div class="inf-body">목격자 증언의 신뢰성 문제. 법 심리학의 출발점. 유도 질문이 어떻게 새 기억을 만드는지의 실험적 근거.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Neuroscience</div>
+              <div class="inf-body"><strong>Schacter · Addis</strong>의 구성적 기억 이론의 직접 조상. 해마 재공고화(reconsolidation) 연구의 개념적 토대.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              이인아 교수가 "해마가 자신만의 해석 틀을 만든다"고 할 때 — 바틀렛의 90년 된 실험이 현대 신경과학으로 확장된 것. <strong>감각일지가 강력한 이유</strong> = 한 번 쓴 기록을 다시 읽을 때마다 인지 모델이 재편된다. 같은 경험에서 매번 다른 의미가 뽑혀 나온다. 반대로 같은 관점만 반복하면 그 스키마에 갇히게 된다. 새 입력이 과거 해석을 다시 쓰도록 <strong>허락하는 태도</strong>가 창의성의 전제.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Schacter -->
+    <article class="thinker purple">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Schacter</span>
+            <span class="thinker-ko">다니엘 샥터</span>
+            <span class="thinker-years">1952–</span>
+          </div>
+          <div class="thinker-punch">기억의 "일곱 오류"는 결함이 아니라 <em>생존에 유리한 설계의 부작용</em>이다.</div>
+        </div>
+        <span class="thinker-tag">Seven Sins of Memory</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>하버드 심리학자 샥터는 『The Seven Sins of Memory』(2001)에서 기억이 일으키는 7가지 "오류"를 체계화했다. <strong>Transience(사라짐)·Absent-mindedness(부주의)·Blocking(차단)·Misattribution(오인)·Suggestibility(암시성)·Bias(편향)·Persistence(집요함)</strong>. 이것들은 버그가 아니라 기억이 진화 과정에서 <strong>미래 예측을 최적화하는 과정에서 감수한 대가</strong>라는 것이 샥터의 주장.</p>
+          <p>특히 Misattribution — 출처 오인. A에게 들은 이야기를 B에게 들은 것으로 착각. 기억이 장면 단위가 아니라 조각 단위로 저장되기 때문에 재조립 시 출처가 섞인다. 이것이 바틀렛의 재구성 이론을 신경과학 수준에서 입증.</p>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Neuroscience</div>
+              <div class="inf-body"><strong>Constructive Memory Theory</strong>(Schacter & Addis, 2007)로 발전 — 기억과 상상이 같은 뇌 회로를 쓴다는 혁명적 발견.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Popular Science</div>
+              <div class="inf-body">기억에 대한 대중적 이해를 바꾼 저작. "내 기억은 정확하지 않을 수 있다"는 인식을 일반화.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Clinical</div>
+              <div class="inf-body">PTSD·우울증·치매의 기억 증상을 "7 오류" 프레임으로 재해석. 치료 전략 재설계의 토대.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              "내가 한 일인지 남이 한 일인지 헷갈릴 때가 있다"는 경험 — Misattribution. 결함이 아니라 뇌의 조립 방식의 자연스런 부작용. 중요한 것: <strong>기록이 기억을 이긴다.</strong> 감각일지·언어화실 기록이 재조립 오류를 줄인다. 크리에이티브 회의에서 "누가 처음 말했지?"가 항상 헷갈리는 이유, 그리고 회의록이 반드시 필요한 이유.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- 03 FOUR ELEMENTS -->
+<section id="s3" style="background:var(--bg-2);">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">03</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">STAGE 03 · THE FOUR ELEMENTS</div>
+        <h2>4요소 — 해마의 <em>이야기 문법</em></h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      Tulving이 일화기억을 발명했고, 이인아 교수가 그것을 4요소로 정식화했다. <strong>공간·시간·대상·가치/감정</strong> — 이 넷이 해마가 경험을 일화기억으로 저장할 때 쓰는 문법이다. 그리고 정확히 <strong>이야기의 문법</strong>과 일치한다.
+    </p>
+
+    <div class="phase-hero yellow">
+      <div class="phase-era">STAGE 03 · THE STORY GRAMMAR</div>
+      <h3>문법 · <em>서사 = 해마의 기본 포맷</em></h3>
+      <p>왜 스펙 나열은 기억에 안 남고 장면은 남는가. 왜 좋은 카피는 공간·시간·인물·감정을 갖추는가. 답은 하나. 이 넷이 <strong>해마가 경험을 저장하는 문법 자체</strong>이기 때문이다. 서사로 전달된 정보는 "기억하려고 애쓸" 필요가 없다. 해마가 원래 그 형태로 작동한다.</p>
+      <div class="phase-q">핵심 질문 <strong>→</strong> 모든 일화기억에 공통으로 들어가는 최소 요소는 무엇인가?</div>
+    </div>
+
+    <article class="thinker yellow">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Endel Tulving</span>
+            <span class="thinker-ko">엔델 털빙</span>
+            <span class="thinker-years">1927–2023</span>
+          </div>
+          <div class="thinker-punch">"일화기억"과 "의미기억"은 다른 시스템이다 — <em>개인적 경험</em>과 <em>일반 지식</em>은 뇌에서 분리되어 있다.</div>
+        </div>
+        <span class="thinker-tag">★ Episodic Memory · 1972</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>에스토니아 출신 캐나다 심리학자 털빙이 1972년에 제시한 결정적 구분. 그 전까지 "기억"은 단일 개념이었다. 털빙이 나눴다:</p>
+          <p><strong>일화기억(Episodic Memory)</strong> — "내가 어제 카페에서 커피를 마셨다." 언제·어디서·누구와·어떤 느낌이었는지가 붙어 있는 개인적 경험. <strong>자기 여행(self-travel)</strong>이 가능하다 — 그 순간으로 정신적으로 돌아갈 수 있다.</p>
+          <p><strong>의미기억(Semantic Memory)</strong> — "파리는 프랑스의 수도이다." 맥락 없이 존재하는 일반 지식. 내가 언제 어디서 배웠는지는 보통 기억나지 않는다.</p>
+          <p>털빙의 핵심 논점: 이 둘은 다른 뇌 시스템이다. H.M. 같은 환자가 증명했듯, 일화기억은 잃어도 의미기억은 유지될 수 있다. 그리고 결정적으로 — <strong>일화기억만이 해마를 요구한다.</strong></p>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 두 기억 시스템의 분화</div>
+<div class="schema"><span class="c-d"># 털빙의 기억 이분법</span>
+
+              <span class="c-hi">명시적 기억 (Declarative)</span>
+                        │
+        ┌───────────────┴───────────────┐
+        ▼                               ▼
+  <span class="c-y">일화기억 (Episodic)</span>         <span class="c-d">의미기억 (Semantic)</span>
+  "내가 경험한 것"               "일반적으로 참인 것"
+        │                               │
+  "어제 카페에서"               "파리는 프랑스 수도"
+  "첫 키스의 떨림"              "물은 H₂O"
+  "할머니 장례식"               "3 × 7 = 21"
+        │                               │
+  <span class="c-y">해마 전담</span>                  대뇌피질 분산
+        │                               │
+  <span class="c-y">자기 여행(self-travel)</span>      맥락 없음
+  시간 이동 가능                시제 없음
+
+<span class="c-hi">핵심:</span> 일화기억만이 <span class="c-y">"시간 여행"</span>을 허용한다.
+       과거로 가는 그 능력이 곧 <span class="c-hi">미래로 가는 능력</span>이 된다.</div>
+          <div class="schema-cap">TULVING · EPISODIC vs SEMANTIC</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Cognitive Science</div>
+              <div class="inf-body">현대 기억 연구의 틀을 만든 분류. 모든 기억 연구가 이 이분법 위에서 작업. Squire의 다중 기억 시스템 이론으로 확장.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Philosophy</div>
+              <div class="inf-body"><strong>자기(self)</strong>는 일화기억의 연속성에 의존한다는 철학적 명제의 신경과학적 근거. 로크 자아 이론의 과학적 완성.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Narrative Theory</div>
+              <div class="inf-body">스토리텔링 이론의 뇌과학적 기초. 소설·영화가 "일화적 디테일"을 요구하는 이유의 설명.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              "좋은 스펙"이 기억에 안 남고 "그 순간"이 남는 이유. 브랜드 비딩에서 <strong>"숫자를 장면으로 번역"</strong>해야 하는 이유 — "연 300만 명 방문"을 "매일 10,000명이 이 페이지를 처음 연다"로 쓸 때 일화기억 쪽으로 들어간다. Claude·AI에게 얘기할 때도 의미 지식은 풍부하지만 일화기억(내 개인 맥락)은 없다는 점을 기억하면 프롬프팅이 달라진다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="thinker yellow">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">이인아</span>
+            <span class="thinker-ko">Inah Lee · 서울대 뇌인지과학과</span>
+            <span class="thinker-years">—</span>
+          </div>
+          <div class="thinker-punch">해마 일화기억의 네 구성요소는 <em>공간·시간·대상·가치/감정</em> — 그리고 이것이 곧 이야기의 네 요소다.</div>
+        </div>
+        <span class="thinker-tag">★ The Four Elements</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>서울대 이인아 교수는 해마의 공간 기억과 맥락 처리를 연구한다. 그의 강의에서 반복되는 핵심 틀 — 해마가 일화기억을 구성할 때 쓰는 <strong>네 요소(공간·시간·대상·가치/감정)</strong>는 정확히 <strong>서사의 네 요소</strong>와 같다. 이것은 우연이 아니라 필연이다. 인간의 이야기 형식이 해마의 구조에서 나왔기 때문이다.</p>
+          <p>이인아 교수의 또 다른 핵심 주장: 해마는 <strong>"자신만의 고유한 해석 틀"</strong>을 만든다. 같은 사건을 겪어도 사람마다 다른 일화기억이 형성된다 — 그 사람의 과거 경험(스키마), 감정 상태, 맥락이 모두 인코딩에 개입하기 때문. 이 해석 틀의 누적이 곧 그 사람의 <strong>인지 모델이자 주관</strong>이다.</p>
+          <p>세 번째 주장: 인간은 <strong>움직여야 하는 동물</strong>이다. 멍게는 바위에 정착하면 뇌를 소화시킨다. 뇌는 움직이기 위해 있고, 해마는 그 움직임의 방향을 과거 경험에서 끌어내는 엔진이다.</p>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 해마의 4요소 = 이야기의 4요소</div>
+          <div class="four-elements">
+            <div class="fe-card">
+              <div class="fe-label">ELEMENT 01</div>
+              <h4>공간</h4>
+              <div class="fe-en">Space</div>
+              <div>기억에서: 어디서 일어났는가 — place cell이 인코딩하는 위치 좌표.</div>
+              <div class="fe-to"><strong>이야기에서:</strong> 배경·세팅. "옛날 옛적에 먼 나라에…"</div>
+            </div>
+            <div class="fe-card">
+              <div class="fe-label">ELEMENT 02</div>
+              <h4>시간</h4>
+              <div class="fe-en">Time</div>
+              <div>기억에서: 언제·얼마 동안 — time cell(최근 발견)이 시간 경과를 코딩.</div>
+              <div class="fe-to"><strong>이야기에서:</strong> 플롯·시퀀스. 인과 순서로 펼쳐지는 흐름.</div>
+            </div>
+            <div class="fe-card">
+              <div class="fe-label">ELEMENT 03</div>
+              <h4>대상</h4>
+              <div class="fe-en">Object</div>
+              <div>기억에서: 누가·무엇이 있었나 — 얼굴·사물·목소리의 감각 정보.</div>
+              <div class="fe-to"><strong>이야기에서:</strong> 캐릭터·오브젝트. 서사의 행위자들.</div>
+            </div>
+            <div class="fe-card">
+              <div class="fe-label">ELEMENT 04</div>
+              <h4>가치·감정</h4>
+              <div class="fe-en">Value / Emotion</div>
+              <div>기억에서: 어떻게 느꼈는가 — 편도체와 해마의 결합이 정서를 태그한다.</div>
+              <div class="fe-to"><strong>이야기에서:</strong> 주제·정서적 무게. 왜 이 이야기를 기억해야 하는가.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Neuroscience</div>
+              <div class="inf-body">한국 해마 연구의 중심 연구자. 공간-맥락 기억의 뇌 회로 규명 연구. 한국어로 이뤄진 대중 강연이 국내 인지과학 교양의 축.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Narrative Theory</div>
+              <div class="inf-body">Angus Fletcher의 Storythinking과 수렴 — "서사는 해마의 산물이다"라는 명제의 실험적 근거.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Education · UX</div>
+              <div class="inf-body">학습 설계·UX 스토리텔링에서 "4요소 체크리스트"로 적용 가능. 기억에 남는 교육 콘텐츠 설계의 뇌과학적 근거.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              <strong>감각일지를 "4요소"로 짜라는 원칙</strong>이 왜 강력한가 — 해마의 문법 그대로 쓰는 것이기 때문. 하루에 일어난 일을 공간·시간·대상·감정으로 구조화해 기록하면 일화기억이 선명해지고, 나중에 꺼내 쓰기 쉬워진다. 카피나 스토리를 쓸 때도 같은 체크리스트. <strong>"이 장면에 4요소가 다 있는가?"</strong> 하나라도 빠지면 기억에서 미끄러진다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- 04 MEMORY = IMAGINATION -->
+<section id="s4">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">04</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">STAGE 04 · MEMORY = IMAGINATION</div>
+        <h2>기억 = 상상 — <em>같은 회로, 다른 시간 방향</em></h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      이 섹션이 전체 문서의 축이다. 2007년 한 논문이 뇌과학을 뒤집었다. <strong>과거를 회상할 때와 미래를 상상할 때 해마와 DMN의 똑같은 부위가 활성화된다.</strong> 기억과 상상은 다른 능력이 아니라 같은 엔진의 두 모드다.
+    </p>
+
+    <article class="thinker green">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Schacter &amp; Addis</span>
+            <span class="thinker-ko">샥터 · 애디스</span>
+            <span class="thinker-years">2007</span>
+          </div>
+          <div class="thinker-punch">fMRI가 증명했다 — <em>기억과 상상은 같은 회로를 쓴다</em>. 일화기억이 풍부한 사람이 미래 시뮬레이션도 풍부한 이유.</div>
+        </div>
+        <span class="thinker-tag">★ Constructive Memory · 2007</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">THE FINDING · 결정적 발견</div>
+          <p>2007년 하버드의 Schacter와 Addis가 fMRI 연구로 기념비적 논문을 냈다. 피험자에게 (1) 과거 경험 회상 (2) 미래 장면 상상 두 과제를 시켰다. 결과: <strong>두 과제에서 활성화되는 뇌 부위가 거의 완전히 일치</strong>했다. 해마 · 내측전전두엽 · 후대상피질 · 두정엽 — DMN(Default Mode Network)의 핵심 노드들.</p>
+          <p>결론: 과거 회상과 미래 상상은 별개의 능력이 아니다. <strong>같은 재조립 엔진</strong>이 시간 방향만 바꿔 작동한다. 과거로 돌릴 때 우리는 "기억한다"고 하고, 미래로 돌릴 때 "상상한다"고 한다. 메커니즘은 동일.</p>
+          <p>이 발견을 뒤집어보면 놀라운 귀결이 나온다. <strong>일화기억이 풍부한 사람은 미래 시뮬레이션도 풍부하다.</strong> 같은 회로를 쓰니까. 반대로 해마 손상 환자는 기억도 잃지만 미래 상상도 잃는다. 임상적으로 확인됨.</p>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 같은 엔진의 양방향</div>
+<div class="schema"><span class="c-d"># Schacter & Addis의 구성적 기억 이론</span>
+
+                <span class="c-g">[해마 + DMN]</span>
+              (재조립 엔진)
+                    │
+           ◀ ─ ─ ─ ─┼─ ─ ─ ─▶
+         (과거)              (미래)
+        "기억한다"         "상상한다"
+                    │
+         ┌──────────┴──────────┐
+         ▼                     ▼
+   ┌─────────────┐      ┌─────────────┐
+   │ <span class="c-g">과거 회상</span>   │      │ <span class="c-g">미래 상상</span>   │
+   └─────────────┘      └─────────────┘
+     · 해마 활성          · 해마 활성
+     · DMN 활성           · DMN 활성
+     · 4요소 재조립        · 4요소 재조립
+       (같은 노드)          (같은 노드)
+
+<span class="c-hi">핵심 귀결:</span>
+  1. 기억과 상상은 <span class="c-hi">같은 회로</span>
+  2. 일화기억 풍부 = 미래 시뮬레이션 풍부
+  3. 해마 손상 = 기억과 상상 둘 다 잃음
+  4. <span class="c-a">감각일지 훈련 = 미래 일기 훈련과 같은 근육</span></div>
+          <div class="schema-cap">SCHACTER &amp; ADDIS · CONSTRUCTIVE MEMORY</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Neuroscience</div>
+              <div class="inf-body">현대 기억 연구의 새 패러다임. "기억 시스템 = 시뮬레이션 시스템" 관점이 표준이 됨.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Clinical</div>
+              <div class="inf-body">우울증의 "미래 실명증(foreshortened future)"이 해마 위축과 상관된다는 발견. 치료의 새 방향.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Creativity</div>
+              <div class="inf-body">창의성 연구의 뇌과학적 기초. Fletcher의 Storythinking, Damasio의 시뮬레이션 이론이 모두 이 발견에 의존.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              <strong>"미래 일기(prospective journaling)"</strong>가 가장 저평가된 창의성 루틴인 이유. 다가올 장면을 4요소로 상상해 기록하면 해마의 미래 시뮬레이션 회로가 직접 훈련된다. 동시에 감각일지로 과거를 재구성하면 같은 근육이 강해진다. 두 훈련은 <strong>하나의 회로를 양쪽에서 당기는 일</strong>. 과거 기록만 하는 건 근육의 반만 쓰는 것.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="thinker green">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Angus Fletcher</span>
+            <span class="thinker-ko">앵거스 플래처</span>
+            <span class="thinker-years">—</span>
+          </div>
+          <div class="thinker-punch">인간의 원초적 사고는 논리가 아니라 <em>이야기(storythinking)</em>다 — 서사가 먼저고 기호는 나중.</div>
+        </div>
+        <span class="thinker-tag">Storythinking · 2023</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>오하이오 주립대의 내러티브 과학자 Fletcher는 『Storythinking』(2023)에서 대담한 주장을 한다. <strong>인간의 타고난 사고 방식은 논리가 아니라 이야기다.</strong> 논리는 상대적으로 최근의 인위적 기술(고대 그리스 이후 약 2500년). 그 전에도 인간은 충분히 "생각"했다 — 이야기로.</p>
+          <p>이야기는 <strong>동사적·시공간적·체화된 사고</strong>. 주어-술어-목적어의 구조를 가지며 시간 속에서 움직이고 인과로 연결된다. 반면 기호·논리는 <strong>명사적·시공간 자유·추상적 사고</strong>. 둘은 다른 인지 도구이며, 다른 뇌 회로를 쓴다.</p>
+          <p>중요한 함의: <strong>논리로 해결할 수 없는 문제들이 많다.</strong> "이 사람과 결혼해야 할까", "이 프로젝트를 시작해야 할까", "위기에서 어떻게 행동할까" — 이런 판단은 시뮬레이션과 시나리오 생성을 요구하며, 그것이 바로 이야기 사고의 영역.</p>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 이야기 사고 vs 논리 사고</div>
+<div class="schema"><span class="c-d"># Fletcher의 두 사고 시스템</span>
+
+  <span class="c-g">이야기 사고 (Storythinking)</span>     <span class="c-d">논리 사고 (Logic)</span>
+        │                                │
+  동사적 · 시공간적 · 체화            명사적 · 추상 · 공간 독립
+        │                                │
+  "이 사람과 결혼하면                  "1 + 1 = 2"
+   어떤 일이 펼쳐질까"                 "X는 Y이다"
+        │                                │
+  시뮬레이션 · 상상                   증명 · 연역
+  불확실성에 강함                     확실성 영역에 강함
+        │                                │
+  <span class="c-g">해마 · DMN</span>                       <span class="c-d">전전두엽 · 작업기억</span>
+        │                                │
+  미래 행동 생성                      과거 결정 검증
+
+<span class="c-hi">핵심 명제:</span>
+  <span class="c-hi">이야기가 움직임을 만들고,</span>
+  <span class="c-hi">논리가 그 움직임을 검증한다.</span>
+
+  둘 다 필요하지만, <span class="c-a">원초는 이야기</span>.
+  논리는 이야기 위에 올라간 정제 장치.</div>
+          <div class="schema-cap">FLETCHER · STORYTHINKING vs LOGIC</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Narrative Science</div>
+              <div class="inf-body">"이야기 = 인지의 기본 도구"라는 새 연구 분야 Narrative Science의 중심 주장자. Project Narrative(오하이오 주립) 주도.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Leadership · Strategy</div>
+              <div class="inf-body">MBA·군사전략 분야에 "스토리씽킹"을 훈련법으로 도입. 불확실성이 높은 의사결정에서 논리보다 서사가 낫다는 실증.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">AI 차별화</div>
+              <div class="inf-body">AI가 논리 추론은 빠르게 따라잡지만 "스토리씽킹"은 약하다는 주장. 인간의 차별화 지점을 좁게 특정.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              <strong>"논리 없이 이야기만 = 충동. 이야기 없이 논리만 = 분석 마비. 좋은 커뮤니케이션 = 이야기가 움직임을 만들고 논리가 그것을 검증한다."</strong> 카피·기획·전략 모든 영역에서 양자 균형이 핵심. AI 시대에는 특히 — 논리 분석은 Claude에게 맡기고 <strong>이야기 시뮬레이션은 당신이 가져간다</strong>는 역할 분담이 경쟁 우위.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- 05 SPATIAL COGNITION -->
+<section id="s5" style="background:var(--bg-2);">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">05</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">STAGE 05 · SPATIAL COGNITION</div>
+        <h2>공간 인지 — <em>움직이는 동물</em>의 지도</h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      왜 해마는 "공간"과 "기억"을 동시에 담당할까. 우연이 아니다. 기억의 원형이 공간이다. 움직이는 동물에게 "어디에 무엇이 있었나"는 생존 그 자체다. 이 섹션은 공간이 어떻게 추상 인지의 모델이 됐는지 추적한다.
+    </p>
+
+    <article class="thinker blue">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Eleanor Maguire</span>
+            <span class="thinker-ko">엘리너 매과이어</span>
+            <span class="thinker-years">1970–</span>
+          </div>
+          <div class="thinker-punch">런던 택시 기사의 <em>해마가 물리적으로 커진다</em> — 경험이 뇌 구조를 바꾼다는 결정적 증거.</div>
+        </div>
+        <span class="thinker-tag">London Taxi Drivers · 2000</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">THE STUDY · 결정적 연구</div>
+          <p>2000년 University College London의 Eleanor Maguire가 런던 택시 기사 16명과 대조군의 뇌 MRI를 비교했다. 런던 택시 기사는 "The Knowledge"라는 2~4년짜리 시험을 통과해야 한다 — 런던의 2만 5천 개 거리와 2만 개 랜드마크를 암기하고 자유자재로 길을 뽑아내는 능력을 평가.</p>
+          <p>결과: 택시 기사의 <strong>해마 후부(posterior hippocampus)가 대조군보다 유의미하게 크다</strong>. 그리고 결정적으로 — <strong>경력이 길수록 더 크다</strong>. 인과 관계가 시사됨. 2011년 후속 종단 연구는 이를 확정적으로 증명했다. 훈련을 성공적으로 마친 지원자는 해마 후부가 자란다. 실패한 지원자는 자라지 않는다.</p>
+          <p>의미: <strong>성인 뇌가 경험에 의해 물리적으로 변한다(neuroplasticity).</strong> 공간 기억의 집약적 훈련이 해당 부위의 뉴런 증식·연결 강화를 일으킨다. 이 발견이 "성인 신경 생성(adult neurogenesis)" 연구의 결정타.</p>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Neuroscience</div>
+              <div class="inf-body"><strong>경험 의존 가소성(experience-dependent plasticity)</strong>의 가장 유명한 인간 증거. 교과서의 표준 사례.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Education</div>
+              <div class="inf-body">"훈련이 뇌를 바꾼다"는 명제의 대중적 증명. 평생 학습, 치매 예방 교육 설계의 이론적 토대.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Cognitive Aging</div>
+              <div class="inf-body">해마는 알츠하이머 초기 가장 먼저 위축되는 부위. 공간 인지 훈련이 해마 유지에 기여할 수 있다는 임상 연구의 근거.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              GPS 의존이 해마를 퇴화시킨다는 후속 연구들. <strong>길을 외우고 걷는 일이 뇌 건강의 실천</strong>이라는 근거. 크리에이터에게는 한 걸음 더 — 해마는 물리적 공간뿐 아니라 "개념 공간"의 지도도 담당한다. <strong>언어화실에서 용어들 사이 관계망을 지속적으로 재그리는 작업</strong>은 그 자체로 해마 훈련. 인지 모델 확장 = 해마의 지도 확장.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- 06 EMOTION + SLEEP -->
+<section id="s6">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">06</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">STAGE 06 · EMOTION + CONSOLIDATION</div>
+        <h2>강화 — <em>감정과 수면</em>이 기억을 만든다</h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      같은 장면도 어떤 것은 30년 뒤에도 생생하고 어떤 것은 30분 뒤에 사라진다. 차이를 만드는 것은 <strong>감정과 수면</strong> 두 가지. 편도체가 기억에 "중요도 태그"를 붙이고, 수면이 해마의 일화를 대뇌피질로 이관한다. 이 두 시스템이 기억의 진짜 공장이다.
+    </p>
+
+    <article class="thinker pink">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Eric Kandel</span>
+            <span class="thinker-ko">에릭 캔델</span>
+            <span class="thinker-years">1929–</span>
+          </div>
+          <div class="thinker-punch">학습은 시냅스 수준의 <em>분자 변화</em>다 — Aplysia 달팽이의 단순한 뉴런에서 헤브의 원리를 분자로 증명.</div>
+        </div>
+        <span class="thinker-tag">Molecular Memory · Nobel 2000</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>빈 출신 미국 신경과학자 Kandel은 50년에 걸쳐 <strong>바다달팽이 Aplysia</strong>를 연구했다. 이 달팽이는 뉴런이 수만 개밖에 없고 크기가 커서 개별 뉴런을 조작 가능. 단순한 반사 학습(습관화·민감화·조건화)을 뉴런 수준에서 분해했다.</p>
+          <p>발견: 단기 기억은 기존 시냅스의 화학적 변화로 이뤄지고, <strong>장기 기억은 새 단백질 합성과 시냅스 연결 자체의 구조적 변화</strong>를 요구한다. CREB라는 전사인자가 이 구조 변화의 스위치를 켠다. 헤브의 원리가 분자 수준에서 실증된 것.</p>
+          <p>후속 연구: <strong>감정적으로 강한 경험은 편도체에서 노르에피네프린 방출을 일으켜 해마의 장기 기억 형성을 강화한다.</strong> 왜 충격적 경험이 오래 남는지, 왜 무미건조한 정보는 쉽게 잊히는지의 분자적 답. 2000년 노벨 생리의학상.</p>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 단기 → 장기 기억의 분자 게이트</div>
+<div class="schema"><span class="c-d"># 캔델의 기억 분자 모델</span>
+
+  <span class="c-d">약한 자극 (단기 기억):</span>
+      시냅스 전막 ──▶ 신경전달물질 증가
+                  ──▶ 기존 수용체 활성화
+                  ──▶ <span class="c-pk">수분~수시간 유지</span>
+
+  <span class="c-d">반복된 자극 + 감정 (장기 기억):</span>
+                          │
+                          ▼
+              ┌───────────────────────┐
+              │ cAMP → PKA → CREB     │  <span class="c-d">← 스위치</span>
+              │       ↓                │
+              │ 핵으로 이동            │
+              │       ↓                │
+              │ <span class="c-hi">새 단백질 합성</span>       │
+              │       ↓                │
+              │ <span class="c-hi">새 시냅스 형성</span>       │
+              └───────────────────────┘
+                          ▼
+                <span class="c-pk">수년~평생 유지</span>
+
+<span class="c-hi">감정의 역할:</span>
+  편도체 활성 ──▶ 노르에피네프린 ──▶ 해마 강화
+  → <span class="c-a">감정 = 장기 기억의 게이트 키퍼</span>
+
+<span class="c-hi">수면의 역할:</span>
+  서파 수면 ──▶ 해마 리플 ──▶ 대뇌피질 이관
+  → <span class="c-a">잠자는 동안 기억이 굳는다</span></div>
+          <div class="schema-cap">KANDEL · MOLECULAR MEMORY</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Neuroscience</div>
+              <div class="inf-body">분자 신경과학 분야 자체를 창시. 시냅스 가소성의 분자 메커니즘 규명은 현대 뇌과학의 중심 축.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Alzheimer Research</div>
+              <div class="inf-body">기억 분자 기전 이해가 알츠하이머 치료제 개발의 직접 토대. 현재 타우·아밀로이드 타깃 치료의 과학적 배경.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Education · Therapy</div>
+              <div class="inf-body">"반복 + 감정 + 수면 = 학습"이라는 공식의 분자적 증명. 현대 교육학·EMDR 치료의 뇌과학적 근거.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              <strong>"저녁에 문제를 한 문장으로 세팅하고 자라"</strong>는 크리에이티브 루틴의 분자적 근거. 수면 중 서파 수면(SWS)에서 해마가 당일 일화를 대뇌피질로 이관하며 재조직한다. 아침에 새 연결이 생겨 있는 경험 — <strong>"일어나서 첫 20분이 가장 창의적"</strong>이라는 작가들 말의 뇌과학. 그리고 감정이 없는 브랜드 메시지가 왜 안 남는가 — 편도체 활성화가 없으면 CREB 스위치가 안 켜져 장기 기억 단백질이 합성되지 않기 때문.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- 07 DMN -->
+<section id="s7" style="background:var(--bg-2);">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">07</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">STAGE 07 · DEFAULT MODE NETWORK</div>
+        <h2>DMN — <em>멍때림</em>의 과학</h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      당신이 "아무것도 안 할 때" 뇌는 오히려 가장 활발하다. 과제 없을 때 활성화되는 Default Mode Network가 자기참조·상상·시뮬레이션·창의성의 본거지. 이 발견이 "지루함을 없애려는 습관"이 창의성에 얼마나 치명적인지를 설명한다.
+    </p>
+
+    <article class="thinker blue">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Marcus Raichle</span>
+            <span class="thinker-ko">마커스 라이클</span>
+            <span class="thinker-years">1937–</span>
+          </div>
+          <div class="thinker-punch">뇌는 <em>과제 없을 때 더 바쁘다</em> — DMN의 발견이 "아무것도 안 하는 시간"의 가치를 과학으로 바꿨다.</div>
+        </div>
+        <span class="thinker-tag">★ DMN Discovery · 2001</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">THE DISCOVERY · 우연한 발견</div>
+          <p>워싱턴대 라이클 팀은 2001년 PET/fMRI 실험에서 역설을 발견했다. 피험자가 특정 인지 과제(계산·기억·주의)를 할 때 비교용 "기준선(baseline)"이 필요했다. 보통은 "아무 생각도 하지 말라"는 상태를 기준으로 삼는다. 그런데 그 기준선에서 <strong>특정 뇌 네트워크가 오히려 강하게 활성화</strong>되어 있었다. 과제가 시작되면 그 네트워크가 "꺼졌다."</p>
+          <p>이 역설적 네트워크를 <strong>Default Mode Network(DMN)</strong>라 명명. 내측전전두엽·후대상피질·하두정소엽·해마. 모두 자기참조·과거 회상·미래 상상·타인 마음 추론에 관여하는 부위들.</p>
+          <p>결론: 뇌의 "기본 모드"는 외부 과제 처리가 아니라 <strong>내부 시뮬레이션</strong>이다. 외부 과제가 시작돼야 그걸 멈춘다. 멍때리는 시간 = 뇌가 DMN을 열어 자기·과거·미래를 재조립하는 시간.</p>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · DMN의 역설적 활성 패턴</div>
+<div class="schema"><span class="c-d"># DMN의 "반대로 켜지는" 패턴</span>
+
+  <span class="c-d">과제 상태 (task-positive):</span>
+        주의 집중 · 계산 · 외부 정보 처리
+          ┌──────────────────────┐
+          │  주의 네트워크 ON     │
+          │  <span class="c-b">DMN OFF</span>               │
+          └──────────────────────┘
+
+  <span class="c-d">쉬는 상태 (task-negative / 기본 모드):</span>
+        멍때림 · 걷기 · 샤워 · 산책
+          ┌──────────────────────┐
+          │  주의 네트워크 OFF    │
+          │  <span class="c-b">DMN ON</span>                │
+          │   ↓                   │
+          │   자기 참조           │
+          │   과거 회상           │
+          │   미래 상상           │
+          │   타인 마음 추론      │
+          │   관계망 재편         │
+          └──────────────────────┘
+
+<span class="c-hi">핵심:</span> DMN은 <span class="c-a">시간 여행·서사 생성·통찰</span>의 본거지.
+       그리고 <span class="c-hi">과제가 있으면 꺼진다</span>.
+       스마트폰·팟캐스트·유튜브는 DMN을 닫는다.</div>
+          <div class="schema-cap">RAICHLE · DEFAULT MODE NETWORK</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Neuroscience</div>
+              <div class="inf-body">21세기 뇌과학의 주요 패러다임 중 하나. 전 세계 뇌 영상 연구의 기준 네트워크.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Mental Health</div>
+              <div class="inf-body">우울증·조현병·자폐에서 DMN 기능 이상이 확인. "반추(rumination)"가 DMN 과활성 현상임이 밝혀짐.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Creativity Research</div>
+              <div class="inf-body">통찰(insight)·창의적 문제 해결이 DMN 활성과 강한 상관. <strong>"샤워에서 떠오른다"의 과학적 설명</strong>.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              <strong>"지루함을 자원으로 대우하라"</strong>는 크리에이터 수칙의 뇌과학. 엘리베이터 탈 때마다 스마트폰을 여는 순간, DMN은 꺼진다. 팟캐스트·유튜브로 "지루한 시간"을 채우면 시뮬레이션 회로가 작동할 틈이 없다. 샤워·산책·설거지·운전의 멍때림이 창의성 회로를 여는 실제 시간. <strong>지루함은 생산성의 적이 아니라 창의성의 친구</strong>. 일부러 비워둔 시간이 루틴에 있어야 한다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- 08 HUMAN vs AI -->
+<section id="s8">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">08</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">HUMAN vs AI</div>
+        <h2>인간 시뮬레이션의 <em>결정적 여섯 차이</em></h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      지금까지 추적한 해마·재구성·4요소·DMN이 모두 하나의 결론으로 수렴한다. <strong>인간의 시뮬레이션은 AI와 구조적으로 다르다.</strong> 이 차이를 알면 "AI 시대 인간 크리에이터의 좌표"가 드러난다.
+    </p>
+
+    <table class="vs-table">
+      <thead>
+        <tr>
+          <th>축</th>
+          <th>인간</th>
+          <th>현재 AI</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>체화</td>
+          <td>몸이 상시 입력 스트림. 호흡·자세·내장감각·온도가 실시간으로 인지에 참여</td>
+          <td>토큰만. 몸이 없어 "배고픔·피로·떨림·기분"이 없음</td>
+        </tr>
+        <tr>
+          <td>정서 우선</td>
+          <td>평가가 감정이라는 빠른 신호로 먼저 처리 (편도체). 논리는 나중</td>
+          <td>후행적 alignment로만 모사. 진짜 정서 반응은 없음</td>
+        </tr>
+        <tr>
+          <td>수면 · 공고화</td>
+          <td>잠자는 동안 해마→피질 이관. 다음 날 다시 쓰임이 업데이트됨</td>
+          <td>훈련 종료 후 고정. 사용자와의 대화가 모델을 안 바꿈</td>
+        </tr>
+        <tr>
+          <td>1-shot 범주 형성</td>
+          <td>한 번의 강렬한 경험으로 새 카테고리 생성. 일화기억 특권</td>
+          <td>수백~수천 사례 필요. Few-shot도 기존 카테고리 인접</td>
+        </tr>
+        <tr>
+          <td>비언어 신호 통합</td>
+          <td>표정·공간·분위기·침묵을 실시간 통합. 상호신체성</td>
+          <td>거의 불가. 멀티모달도 표면적</td>
+        </tr>
+        <tr>
+          <td>미학적 판단</td>
+          <td>"이게 맞다"를 설명 없이 아는 암묵지. 해마의 시뮬레이션 정확도</td>
+          <td>학습 데이터의 평균으로 수렴. 새로운 "진짜 좋음"은 못 만듦</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="phase-hero accent" style="margin-top:40px;">
+      <div class="phase-era">THE COORDINATE</div>
+      <h3>좌표 · <em>인간 우위의 지도</em></h3>
+      <p style="font-size:16px;">인간의 시뮬레이션: <strong style="color:var(--accent-2)">좁고 · 깊고 · 체화되어 있다.</strong></p>
+      <p style="font-size:16px;">AI의 시뮬레이션: <strong style="color:var(--text-dim)">넓고 · 얕고 · 언어적이다.</strong></p>
+      <p>AI는 정답 있는 영역, 이미 대량의 레퍼런스가 있는 영역에 탁월. 인간은 <strong>처음 보는 맥락, 정답 없는 판단, 미세 신호 읽기, 한 번의 특정 경험에서 카테고리를 뽑는 일</strong>에 강하다. 크리에이티브 커뮤니케이션은 정확히 후자의 좌표에 있다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 09 APPLICATION -->
+<section id="s9" style="background:var(--bg-2);">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">09</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">APPLICATION · TODAY</div>
+        <h2>오늘 <em>루틴</em>에 장착하는 법</h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      지금까지의 모든 이론은 하나의 실천 모둠으로 압축된다. <strong>가져갈 태도 여섯 + 구체 훈련법 일곱.</strong> 감각일지·미래일기·공간 루틴·대화 훈련이 왜 작동하는지 뇌 수준에서 이해한 상태로 다시 보면 각 루틴의 의미가 달라진다.
+    </p>
+
+    <h3 style="font-size:22px; font-weight:800; margin-top:20px; color:var(--text);">태도 여섯 <span style="color:var(--text-dim); font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.2em; margin-left:12px;">ATTITUDES</span></h3>
+
+    <div class="attitude-grid">
+      <div class="att-card">
+        <div class="a-num">ATTITUDE 01</div>
+        <h4>특수성을 존중하라</h4>
+        <p>일반론은 AI가 더 잘한다. 인간의 우위는 한 번의 특정한 경험에서 카테고리를 뽑아내는 능력. 장면을 아껴라.</p>
+      </div>
+      <div class="att-card">
+        <div class="a-num">ATTITUDE 02</div>
+        <h4>비데이터 신호를 1급 데이터로</h4>
+        <p>표정·공기·침묵·공간 배치. 언어화 가능한 사람이 AI 시대 최전선. 암묵지를 명시적으로 옮기는 훈련.</p>
+      </div>
+      <div class="att-card">
+        <div class="a-num">ATTITUDE 03</div>
+        <h4>몸을 신뢰하라</h4>
+        <p>판단이 막히면 걸어라. 해마는 공간 세포가 원형. 실제 이동이 인지 모델을 확장시킨다 — Maguire가 증명.</p>
+      </div>
+      <div class="att-card">
+        <div class="a-num">ATTITUDE 04</div>
+        <h4>지루함을 자원으로</h4>
+        <p>DMN은 멍때릴 때만 활성화. 팟캐스트로 지루함을 메우면 시뮬레이션 회로가 닫힌다. 의도적 공백 시간.</p>
+      </div>
+      <div class="att-card">
+        <div class="a-num">ATTITUDE 05</div>
+        <h4>재구성적 태도</h4>
+        <p>인지 모델은 고정 자산이 아니다. 새 경험이 과거 해석을 다시 쓰도록 허락하라 — Bartlett의 교훈.</p>
+      </div>
+      <div class="att-card">
+        <div class="a-num">ATTITUDE 06</div>
+        <h4>시뮬레이션 의식적으로</h4>
+        <p>많은 사람이 과거만 회상. 미래 상상도 해마의 절반의 회로. 루틴으로 굳혀야 그 회로가 강해진다.</p>
+      </div>
+    </div>
+
+    <h3 style="font-size:22px; font-weight:800; margin-top:60px; color:var(--text);">훈련 일곱 <span style="color:var(--text-dim); font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.2em; margin-left:12px;">TRAINING ROUTINES</span></h3>
+
+    <div class="training-grid">
+      <div class="train-card">
+        <div class="t-num">TRAINING 01</div>
+        <h4>감각일지 · 4요소로 짜기</h4>
+        <p>공간·시간·대상·가치/감정. 하루 한 장면을 4요소로 기록하면 해마의 일화기억 구조를 그대로 재현. 정보 나열이 아니라 장면.</p>
+      </div>
+      <div class="train-card">
+        <div class="t-num">TRAINING 02</div>
+        <h4>미래 일기 (Prospective)</h4>
+        <p>다가올 장면을 4요소로 상상해 기록. 일주일 뒤 실제와 비교. 해마 미래 시뮬레이션 회로 직접 훈련. 가장 저평가된 창의 루틴.</p>
+      </div>
+      <div class="train-card">
+        <div class="t-num">TRAINING 03</div>
+        <h4>새 공간 주 1회</h4>
+        <p>해마는 새로운 공간에서 실제로 뉴런 증식(adult neurogenesis). 같은 카페·동선은 해마를 재우는 일. 주 1회 한 번도 안 가본 장소.</p>
+      </div>
+      <div class="train-card">
+        <div class="t-num">TRAINING 04</div>
+        <h4>한 장면 → 이론 뽑기</h4>
+        <p>오늘 본 한 장면에서 하나의 일반 원리 추출. 1-shot 범주 형성 훈련 — AI가 가장 약한 부분. 언어화실과 직결.</p>
+      </div>
+      <div class="train-card">
+        <div class="t-num">TRAINING 05</div>
+        <h4>크로스 도메인 은유</h4>
+        <p>한 개념을 두 다른 영역으로 번역. "카피"를 "요리"로, 다시 "건축"으로. 은유 = 먼 시뮬레이션 연결 = 창의의 핵심.</p>
+      </div>
+      <div class="train-card">
+        <div class="t-num">TRAINING 06</div>
+        <h4>수면을 실행 도구로</h4>
+        <p>저녁에 문제를 한 문장으로 세팅하고 잔다. 수면 중 해마 → 피질 이관이 공고화. 아침 첫 20분은 SNS 금지, 펜 들기.</p>
+      </div>
+      <div class="train-card">
+        <div class="t-num">TRAINING 07</div>
+        <h4>대화형 시뮬레이션</h4>
+        <p>신뢰하는 상대와의 대화 = 외부화된 시뮬레이션. 내 인지 모델을 상대 모델과 부딪혀 보정. 멘토·피어 대화의 값어치.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ONE LINE -->
+<section class="oneline">
+  <div class="oneline-inner">
+    <div class="oneline-k">ONE LINE SUMMARY</div>
+    <p class="oneline-main">
+      해마는 기억 저장 장치가 아니라 <em>이야기 엔진</em>이다 —<br/>
+      <em>공간 · 시간 · 대상 · 감정</em>의 네 요소로<br/>
+      <em>과거를 재구성</em>하고 <em>미래를 시뮬레이션</em>한다.
+    </p>
+    <div class="oneline-sig">좋은 크리에이티브 커뮤니케이션은<br/>이 엔진의 문법을 그대로 쓴다.</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="inner">
+    <div>
+      <h4>SERIES · CREATIVE COMMUNICATOR</h4>
+      <p>
+        <strong>Part I</strong> 광고사 & 카피 역사<br/>
+        <strong>Part II</strong> 카피라이팅 프레임워크<br/>
+        <strong>Part III · Deep</strong> 뇌과학 · 해마 · 이야기<br/>
+        <strong>Part IV · Deep</strong> 인식과 소통 · 움벨트<br/>
+        <strong>Part V · Deep</strong> 현대사상 인식론 계보
+      </p>
+    </div>
+    <div>
+      <h4>CORE · 1차 문헌</h4>
+      <ul>
+        <li>Tulving (1972) Episodic Memory 창시 논문</li>
+        <li>Schacter & Addis (2007) Constructive Memory</li>
+        <li>O'Keefe & Moser (2014 Nobel Lecture)</li>
+        <li>Kandel, 『In Search of Memory』</li>
+        <li>Fletcher, 『Storythinking』 (2023)</li>
+      </ul>
+    </div>
+    <div>
+      <h4>POPULAR · 대중 입문</h4>
+      <ul>
+        <li>Schacter, 『The Seven Sins of Memory』</li>
+        <li>Damasio, 『The Feeling of What Happens』</li>
+        <li>Barrett, 『How Emotions Are Made』</li>
+        <li>Buzsáki, 『The Brain from Inside Out』</li>
+        <li>이인아 교수 강의 (유튜브 · 팟캐스트)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="colophon">
+    <span>© 2026 · 크리에이티브 커뮤니케이터 시리즈</span>
+    <span>PART III · DEEP · BRAIN SCIENCE + STORY</span>
+  </div>
+</footer>
+
+</body>
+</html>

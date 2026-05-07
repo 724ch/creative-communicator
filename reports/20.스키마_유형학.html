@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>스키마 유형학: 도식적 사고의 완전한 지도</title>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;700&display=swap');
+
+:root {
+  --bg: #fdfcfa;
+  --surface: #f4f1ec;
+  --card: #ffffff;
+  --card-hover: #f8f6f1;
+  --accent: #d9601f;
+  --accent-dim: #b54e15;
+  --accent-rgb: 217,96,31;
+  --white: #1a1a1a;
+  --text: #4a4845;
+  --text-dim: #807e7a;
+  --border: rgba(0,0,0,0.10);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Noto Sans KR', -apple-system, sans-serif;
+  font-weight: 300;
+  line-height: 1.9;
+  -webkit-font-smoothing: antialiased;
+  padding: 0;
+}
+
+/* === LAYOUT === */
+.report-wrapper {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 80px 32px 120px;
+}
+
+/* === HERO === */
+.hero-section {
+  text-align: center;
+  padding: 100px 20px 80px;
+  background: radial-gradient(ellipse at 35% 45%, rgba(var(--accent-rgb), 0.06) 0%, transparent 55%);
+  margin-bottom: 60px;
+  border-bottom: 1px solid var(--border);
+}
+
+.hero-section .label {
+  font-size: 11px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 32px;
+}
+
+/* === TYPOGRAPHY === */
+h1 {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: clamp(28px, 4.5vw, 48px);
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1.35;
+  margin-bottom: 24px;
+  letter-spacing: -0.5px;
+}
+
+h2 {
+  font-size: clamp(22px, 3.5vw, 34px);
+  font-weight: 900;
+  color: var(--white);
+  margin-top: 80px;
+  margin-bottom: 24px;
+  padding-top: 48px;
+  border-top: 1px solid var(--border);
+  line-height: 1.35;
+}
+
+h3 {
+  font-size: clamp(18px, 2.5vw, 24px);
+  font-weight: 700;
+  color: var(--white);
+  margin-top: 48px;
+  margin-bottom: 16px;
+  line-height: 1.4;
+}
+
+h4 {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-top: 32px;
+  margin-bottom: 12px;
+}
+
+h5, h6 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--white);
+  margin-top: 24px;
+  margin-bottom: 8px;
+}
+
+p {
+  margin-bottom: 18px;
+  font-size: 15px;
+}
+
+strong {
+  color: var(--white);
+  font-weight: 500;
+}
+
+em {
+  font-style: italic;
+  color: var(--text);
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(var(--accent-rgb), 0.3);
+  transition: border-color 0.2s;
+}
+
+a:hover {
+  border-color: var(--accent);
+}
+
+/* === HORIZONTAL RULES === */
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 48px 0;
+}
+
+/* === BLOCKQUOTES === */
+blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 20px 24px;
+  margin: 28px 0;
+  background: rgba(var(--accent-rgb), 0.04);
+  border-radius: 0 10px 10px 0;
+  font-style: italic;
+  color: var(--text);
+  font-size: 14px;
+}
+
+blockquote p {
+  margin-bottom: 8px;
+}
+
+blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+blockquote strong {
+  color: var(--white);
+}
+
+/* === TABLES === */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 28px 0;
+  font-size: 13px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  margin: 28px 0;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+
+.table-wrapper table {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+}
+
+thead th {
+  background: var(--card);
+  padding: 12px 14px;
+  text-align: left;
+  font-weight: 500;
+  color: var(--accent);
+  font-size: 11px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+td {
+  padding: 11px 14px;
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+  vertical-align: top;
+  color: var(--text);
+}
+
+tbody tr:hover {
+  background: rgba(0,0,0,0.04);
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* === LISTS === */
+ul, ol {
+  margin: 16px 0;
+  padding-left: 24px;
+}
+
+li {
+  margin-bottom: 8px;
+  font-size: 15px;
+}
+
+li strong {
+  color: var(--white);
+}
+
+/* === CODE === */
+code {
+  background: var(--surface);
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--accent);
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  border: 1px solid var(--border);
+}
+
+pre {
+  background: var(--surface);
+  padding: 20px 24px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  overflow-x: auto;
+  margin: 24px 0;
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--text-dim);
+}
+
+pre code {
+  background: transparent;
+  padding: 0;
+  border: none;
+  color: var(--text-dim);
+}
+
+/* === IMAGES === */
+img {
+  max-width: 100%;
+  border-radius: 10px;
+  margin: 24px 0;
+}
+
+/* === YAML FRONTMATTER (hidden) === */
+.frontmatter {
+  display: none;
+}
+
+/* === FOOTNOTES AND REFERENCES === */
+.report-wrapper > ul:last-child li,
+.report-wrapper > ul:nth-last-child(-n+3) li {
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.7;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 640px) {
+  .report-wrapper {
+    padding: 40px 16px 80px;
+  }
+  .hero-section {
+    padding: 60px 16px 48px;
+  }
+  table {
+    font-size: 12px;
+  }
+  td, th {
+    padding: 8px 10px;
+  }
+}
+
+/* === SCROLLBAR === */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #444;
+}
+
+</style>
+</head>
+<body>
+
+<div class="hero-section">
+  <div class="label">Schema Typology · Design Thinking Frameworks</div>
+</div>
+
+<div class="report-wrapper">
+<h1>스키마 유형학: 도식적 사고의 완전한 지도</h1>
+<p><strong>부제: 디자인을 위한 스키마 구성 방식 총정리</strong></p>
+<hr>
+<blockquote>
+<p>"도식(schema)은 사고의 형태이며, 형태는 이미 하나의 주장이다."<br>
+— 이 보고서의 핵심 전제</p>
+</blockquote>
+<hr>
+<h2>서론</h2>
+<p>교수님이 수업에서 이분법(binary opposition), 삼원론(triadism), 마름모꼴(rhombus/diamond) 같은 도식적 사고 구조를 가르치셨습니다. 이 보고서는 그러한 스키마(schema) 구성 방식을 체계적으로 유형화하고자 합니다. 서양 철학, 동양 철학, 시각적 사고 프레임워크(visual thinking framework), 그리고 메타-스키마(meta-schema) 이론까지 포괄하는 종합적 지도를 제시합니다.</p>
+<p>스키마란 무엇입니까? 가장 넓은 의미에서 스키마는 <strong>관계를 조직하는 패턴</strong>입니다. 인지과학자 마크 존슨(Mark Johnson)은 이를 "신체 경험에서 발생하는 전개념적(pre-conceptual) 구조"라고 정의하였습니다. 철학자 임마누엘 칸트(Immanuel Kant)는 스키마를 "개념과 직관을 매개하는 제3의 항"으로 보았습니다. 디자이너에게 스키마는 더 실용적인 의미를 지닙니다. 스키마는 복잡한 현실을 가시화하고, 소통 가능하게 만들며, 행동을 안내하는 <strong>인지적 도구</strong>입니다.</p>
+<p>이 보고서는 네 개의 주요 부분으로 구성됩니다. 첫째, 요소의 수(n)에 따른 분류. 둘째, 위상학적 형태(topology)에 따른 분류. 셋째, 동양 철학 스키마의 체계적 정리. 넷째, 메타-스키마 이론 — 왜 스키마는 이런 형태를 취하는가에 대한 이론적 탐구입니다.</p>
+<hr>
+<h2>I. 숫자별 분류: 요소의 수에 따른 스키마</h2>
+<p>스키마를 구성하는 요소의 수(n)는 자의적이지 않습니다. 각각의 수는 특정한 논리적 구조를 가능하게 하며, 동시에 특정한 사고 방식을 제약합니다. 이원(n=2)은 대립을 가능하게 하고, 삼원(n=3)은 매개를 가능하게 하며, 사원(n=4)은 완전성을 주장합니다.</p>
+<hr>
+<h3>1. 이원적 구조 (Dyadic/Binary, n=2)</h3>
+<p>이원적 구조는 인간 사고의 가장 기본적인 단위입니다. 그러나 "이원"이라는 말 아래에는 매우 다른 논리들이 존재합니다.</p>
+<h4>음양(陰陽): 상보적 극성</h4>
+<pre><code>        ╭──────────╮
+       ╱  ●  흑(陰) ╲
+      │    ╭──╮      │
+      │    │  │      │
+      │    ╰──╯      │
+       ╲  ○  백(陽) ╱
+        ╰──────────╯
+
+  A는 not-A를 포함하고
+  not-A는 A를 포함한다
+  (뫼비우스적 상호 내포)
+</code></pre>
+<p>음양(陰陽)은 서양의 이원론(dualism)과 근본적으로 다릅니다. 서양 이원론이 두 항을 <strong>분리</strong>하고 <strong>대립</strong>시킨다면, 음양은 두 항이 <strong>상호 내포</strong>하고 <strong>순환</strong>한다고 봅니다. 음 안에 양의 씨앗이 있고, 양 안에 음의 씨앗이 있습니다. 이것은 단순한 이원이 아니라 <strong>생성적 이원(generative dyad)</strong>입니다.</p>
+<p>디자인적 함의: 음양 스키마는 "흑/백", "여백/채움", "정적/동적"을 단순한 대립이 아니라 상호 생성적 관계로 볼 것을 요청합니다.</p>
+<h4>소쉬르(Saussure)의 이항 대립</h4>
+<p>페르디낭 드 소쉬르(Ferdinand de Saussure)는 언어 기호를 기표(signifiant)/기의(signifié)의 이항으로 분석하였습니다. 그의 핵심 주장은 <strong>의미는 관계적</strong>이라는 것입니다. "개"라는 단어가 의미를 갖는 것은 "개"라는 소리 자체 때문이 아니라, "고양이", "늑대", "소"와의 <strong>차이</strong> 때문입니다. 최소 관계 단위는 2입니다.</p>
+<p>랑그(langue, 언어 체계)/파롤(parole, 개별 발화)의 이항도 중요합니다. 이것은 구조/사건, 체계/실천의 이항 구조를 언어학에 도입한 것입니다.</p>
+<h4>레비-스트로스(Lévi-Strauss)의 구조적 대립</h4>
+<p>클로드 레비-스트로스(Claude Lévi-Strauss)는 신화 분석에서 이항 대립이 <strong>인간 사고의 하드웨어</strong>라고 주장하였습니다. 자연(nature)/문화(culture), 날것(raw)/익힌것(cooked), 성(sacred)/속(profane) — 이러한 이항 대립들이 신화의 심층 구조를 이룬다는 것입니다.</p>
+<h4>데리다(Derrida)의 해체: 숨겨진 위계</h4>
+<p>자크 데리다(Jacques Derrida)는 모든 이항 대립에는 <strong>숨겨진 위계</strong>가 있다고 주장하였습니다. 이성/감성, 남성/여성, 현존/부재 — 이 쌍들에서 어느 항이 특권화됩니까? 해체(deconstruction)는 이 위계를 드러내고 전복하는 작업입니다.</p>
+<p>데리다의 차연(différance) 개념은 의미가 항상 <strong>지연(deferral)</strong>되고 <strong>차이남(difference)</strong>을 주장합니다. 이것은 뫼비우스(Möbius) 구조입니다 — 안과 밖이 연속적으로 이어지는.</p>
+<pre><code>이원 대립의 세 가지 유형:
+
+  [서양 이원론]    [소쉬르]      [음양]
+    A | B          A ↔ B        A ⊃ B
+    ─────          차이적        B ⊃ A
+   분리/대립       관계적        상호내포
+</code></pre>
+<hr>
+<h3>2. 삼원적 구조 (Triadic, n=3)</h3>
+<p>삼원 구조는 이원의 긴장을 <strong>매개(mediation)</strong>함으로써 해소합니다. 그러나 단순한 해소가 아니라 새로운 차원으로의 <strong>격상(Aufhebung)</strong>입니다.</p>
+<h4>헤겔(Hegel)의 변증법</h4>
+<pre><code>        합(Synthesis)
+       An-und-fuer-sich
+           ╱╲
+          ╱  ╲
+         ╱    ╲
+        ╱  ↑   ╲
+       ╱Aufhebung╲
+      ╱────────────╲
+  정(Thesis)    반(Antithesis)
+  An-sich      Fuer-sich
+
+  실제로는 나선형:
+  정 → 반 → 합₁ → 반₁ → 합₂ → ...
+</code></pre>
+<p>게오르크 빌헬름 프리드리히 헤겔(Georg Wilhelm Friedrich Hegel)의 변증법(dialectic)은 정(An-sich, 즉자)/반(Fuer-sich, 대자)/합(An-und-fuer-sich, 즉자대자)의 삼원 구조입니다. 아우프헤붕(Aufhebung)은 세 가지를 동시에 의미합니다: 취소(cancel), 보존(preserve), 격상(elevate). 변증법은 이원적 긴장에 의해 구동되는 삼원적 구조입니다.</p>
+<h4>퍼스(Peirce)의 삼원적 기호학</h4>
+<p>찰스 샌더스 퍼스(Charles Sanders Peirce)는 수학적으로 이원 관계만으로는 진정한 기호작용(semiosis)이 불가능함을 증명하였습니다. 기호는 반드시 세 항을 필요로 합니다:</p>
+<pre><code>  표상체(Representamen)
+         │
+         │ 기호 관계
+         ↓
+      대상(Object) ←──── 해석체(Interpretant)
+         ↑                      │
+         └──────────────────────┘
+              의미 생성의 순환
+</code></pre>
+<p>퍼스의 기호 유형론: 도상(Icon)/지표(Index)/상징(Symbol). 존재 양식: 일차성(Firstness)/이차성(Secondness)/삼차성(Thirdness). 삼원은 의미의 최소 구조입니다.</p>
+<h4>프로이트(Freud)의 구조 모델</h4>
+<p>지그문트 프로이트(Sigmund Freud)의 이드(Es)/자아(Ich)/초자아(Über-Ich) 삼원 구조에서 자아는 이드의 충동과 초자아의 금지 사이를 <strong>매개하는 셋째</strong>입니다. 삼자 갈등이 심리적 역동을 만들어냅니다.</p>
+<h4>라캉(Lacan)의 RSI</h4>
+<p>자크 라캉(Jacques Lacan)의 실재(Real)/상징(Symbolic)/상상(Imaginary) 삼원 구조는 보로메오 매듭(Borromean knot)으로 표현됩니다. 세 고리 중 어느 하나를 제거하면 나머지 둘도 분리됩니다. 어느 것도 일차적이지 않습니다.</p>
+<h4>아리스토텔레스(Aristotle)의 수사학 삼원</h4>
+<p>로고스(logos, 논리)/에토스(ethos, 인격)/파토스(pathos, 감정)의 삼각형. 진정한 설득에는 세 가지 모두 필요합니다. 디자인에서: 기능적 논리(로고스) + 브랜드 신뢰(에토스) + 감정적 공명(파토스).</p>
+<h4>수파리(守破離)</h4>
+<p>일본의 발달적 삼원 구조입니다. 지키기(Shu, 守) → 깨기(Ha, 破) → 떠나기(Ri, 離). 초월은 이전 단계를 버리는 것이 아니라 <strong>내면화</strong>하는 것입니다. Ri는 Shu를 포함합니다.</p>
+<hr>
+<h3>3. 사원적 구조 (Quaternary/Fourfold, n=4)</h3>
+<p>사원 구조는 <strong>완전성(completeness)</strong>을 주장합니다. 두 축의 교차가 논리적 공간을 완전히 커버한다는 주장입니다.</p>
+<h4>하이데거(Heidegger)의 게비어트(Geviert)</h4>
+<pre><code>        하늘(Sky)
+           │
+대지(Earth)─┼─신성(Divinities)
+           │
+      필멸자(Mortals)
+
+  마름모꼴(다이아몬드) 구조:
+  두 축의 교차가 세계를 구성
+</code></pre>
+<p>마르틴 하이데거(Martin Heidegger)의 사방(Geviert)은 대지/하늘/필멸자/신성의 사원 구조입니다. 이것은 단순한 분류가 아니라 <strong>세계의 존재론적 구조</strong>입니다. 각 항은 다른 세 항과의 관계 속에서만 의미를 가집니다.</p>
+<h4>융(Jung)의 네 기능</h4>
+<p>카를 구스타프 융(Carl Gustav Jung)의 심리 유형론은 사고(Thinking)/감정(Feeling)/감각(Sensation)/직관(Intuition)의 사원 구조입니다. 십자형 배치에서 대각선에 위치한 기능들은 서로 대립합니다. 열등 기능(inferior function)은 그림자(shadow)가 됩니다.</p>
+<h4>그레마스(Greimas)의 기호 사각형</h4>
+<pre><code>      A ─────────── B
+      │  대립       │
+      │             │
+  not-B ─────── not-A
+      │  대립       │
+      │             │
+      A ─────────── B
+
+  A: 긍정항
+  B: 부정항(A의 반대)
+  not-A: A의 모순
+  not-B: B의 모순
+</code></pre>
+<p>알지르다스 줄리앙 그레마스(Algirdas Julien Greimas)의 기호 사각형(semiotic square)은 이항 대립의 논리적 공간을 완성합니다. A/B/not-A/not-B의 네 위치가 의미의 전체 공간을 구성합니다. 가장 흥미로운 것은 <strong>숨겨진 위치</strong> — 기존 담론이 점유하지 않은 사분면입니다.</p>
+<h4>아리스토텔레스의 네 원인</h4>
+<p>질료인(material cause)/형상인(formal cause)/작용인(efficient cause)/목적인(final cause). 완전한 설명은 4개 차원 모두를 필요로 합니다. 디자인에서: 재료(질료인) + 형태(형상인) + 제작 과정(작용인) + 사용 목적(목적인).</p>
+<h4>조하리 창(Johari Window)</h4>
+<p>자기에게 알려진/모르는 × 타인에게 알려진/모르는 = 4칸. 공개 영역/맹점/숨겨진 영역/미지 영역. 자기 인식과 타인 인식의 교차가 만드는 완전한 자아 지도.</p>
+<hr>
+<h3>4. 오원 이상 (Pentadic+)</h3>
+<p>요소가 5개 이상이 되면 스키마는 <strong>복잡성(complexity)</strong>을 다루기 시작합니다. 단순한 대립이나 매개가 아니라, 다중 변수의 상호작용을 포착합니다.</p>
+<h4>버크(Burke)의 극적 오원</h4>
+<p>케네스 버크(Kenneth Burke)의 극적 오원(dramatistic pentad): 행위(act)/장면(scene)/행위자(agent)/수단(agency)/목적(purpose). 5개 비율(ratio)이 이데올로기를 드러냅니다. 어떤 항을 강조하느냐에 따라 다른 세계관이 나타납니다.</p>
+<h4>야콥슨(Jakobson)의 커뮤니케이션 육원</h4>
+<p>로만 야콥슨(Roman Jakobson)의 커뮤니케이션 모델: 맥락(context)/발신자(addresser)/메시지(message)/수신자(addressee)/접촉(contact)/코드(code) → 6가지 언어 기능(지시적/표현적/시적/능동적/친교적/메타언어적).</p>
+<h4>밀러의 수 7±2</h4>
+<p>조지 밀러(George Miller)의 "마법의 수 7±2"는 작업 기억(working memory)의 인지적 한계입니다. 스키마의 요소가 7개를 넘으면 청킹(chunking)이 필요합니다.</p>
+<h4>팔괘(八卦)</h4>
+<p>이진 조합 2³=8. 64괘 = 완전한 상황 유형학. 팔괘는 인류 최초의 체계적 이진법(binary system) 사용입니다.</p>
+<hr>
+<h2>II. 형태별 분류: 위상학에 따른 스키마</h2>
+<p>요소의 수와 독립적으로, 스키마는 <strong>형태(topology)</strong>에 따라 분류될 수 있습니다. 같은 수의 요소도 선형으로 배치되느냐, 순환으로 배치되느냐, 위계로 배치되느냐에 따라 전혀 다른 논리를 표현합니다.</p>
+<hr>
+<h3>1. 선형 구조 (Linear)</h3>
+<pre><code>  A ──→ B ──→ C ──→ D
+  시작          끝
+  (순차적, 방향성, 비가역적)
+</code></pre>
+<p>선형 구조는 <strong>순서(sequence)</strong>와 <strong>인과(causality)</strong>를 표현합니다. 시간의 화살표를 전제합니다.</p>
+<ul>
+<li><strong>순서도(Flowchart)</strong>: 순차적 논리 + 분기(branching). 프랭크 길브레스(Frank Gilbreth, 1921)가 공정 분석을 위해 개발하였습니다.</li>
+<li><strong>타임라인/간트 차트(Gantt Chart)</strong>: 시간축 위의 작업 배치. 헨리 간트(Henry Gantt, 1916). 프로젝트 관리의 기본 스키마.</li>
+<li><strong>스토리보드(Storyboard)</strong>: 시간적 서사의 이산적(discrete) 프레임. 월트 디즈니(Walt Disney) 스튜디오(1930년대). 영화, UX, 서비스 디자인에 적용.</li>
+<li><strong>여정 지도(Journey Map)</strong>: 사용자 경험의 시간적 전개. 감정 곡선을 포함하는 선형 구조.</li>
+<li><strong>산키 다이어그램(Sankey Diagram)</strong>: 흐름 너비 = 수량. 매튜 헨리 피니어스 리얼 산키(Matthew Henry Phineas Riall Sankey, 1898). 에너지/물질/정보의 흐름 시각화.</li>
+</ul>
+<hr>
+<h3>2. 순환 구조 (Circular/Cyclical)</h3>
+<pre><code>     ╭──────────╮
+     │          ↓
+     A          B
+     ↑          │
+     │          ↓
+     D ←─────── C
+  (순환적, 반복적, 시작/끝 없음)
+</code></pre>
+<p>순환 구조는 <strong>반복(repetition)</strong>과 <strong>피드백(feedback)</strong>을 표현합니다. 선형 구조와 달리 시작과 끝이 없습니다.</p>
+<ul>
+<li><strong>해석학적 순환(Hermeneutic Circle)</strong>: 부분↔전체. 프리드리히 슐라이어마허(Friedrich Schleiermacher) → 한스-게오르크 가다머(Hans-Georg Gadamer). 텍스트를 이해하려면 전체를 알아야 하고, 전체를 알려면 부분을 이해해야 합니다. 나선형으로 심화됩니다.</li>
+<li><strong>PDCA 순환</strong>: 계획(Plan)→실행(Do)→확인(Check)→조치(Act). 에드워즈 데밍(W. Edwards Deming)/월터 슈하트(Walter Shewhart). 지속적 개선의 스키마.</li>
+<li><strong>더블 다이아몬드(Double Diamond)</strong>: 발산(diverge)→수렴(converge)→발산→수렴. 영국 디자인 카운슬(Design Council, 2005). 발견→정의→개발→전달.</li>
+<li><strong>OODA 루프</strong>: 관찰(Observe)→방향잡기(Orient)→결정(Decide)→행동(Act). 존 보이드(John Boyd). "방향잡기"가 핵심 — 정신 모델이 지각을 필터링합니다.</li>
+<li><strong>콜브(Kolb)의 학습 순환</strong>: 구체적 경험(Concrete Experience)→성찰적 관찰(Reflective Observation)→추상적 개념화(Abstract Conceptualization)→능동적 실험(Active Experimentation). 데이비드 콜브(David Kolb, 1984).</li>
+<li><strong>스파이럴 다이내믹스(Spiral Dynamics)</strong>: 발달 단계의 나선. 클레어 그레이브스(Clare Graves)/돈 벡(Don Beck). 초월하되 포함(transcend and include).</li>
+<li><strong>십이연기(十二因緣)</strong>: 12개 고리의 순환적 인과. 무명(無明)→행(行)→식(識)→명색(名色)→육처(六處)→촉(觸)→수(受)→애(愛)→취(取)→유(有)→생(生)→노사(老死)→무명. 고통의 발생과 소멸의 완전한 지도.</li>
+</ul>
+<hr>
+<h3>3. 위계 구조 (Hierarchical)</h3>
+<pre><code>           [루트]
+          ╱      ╲
+       [A]          [B]
+      ╱   ╲        ╱   ╲
+    [A1]  [A2]  [B1]  [B2]
+  (단일 부모, 분기, 포함 관계)
+</code></pre>
+<p>위계 구조는 <strong>포함(containment)</strong>과 <strong>종속(subordination)</strong>을 표현합니다. 상위 범주가 하위 범주를 포함합니다.</p>
+<ul>
+<li><strong>트리 다이어그램(Tree Diagram)</strong>: 단일 부모, 분기. 카를 폰 린네(Carl von Linné)의 생물 분류 체계. 정보 아키텍처(IA)의 기본 스키마.</li>
+<li><strong>마인드맵(Mind Map)</strong>: 중심에서 방사형 분기. 토니 부잔(Tony Buzan, 1974). 연상적(associative) 사고의 시각화.</li>
+<li><strong>개념맵(Concept Map)</strong>: 라벨이 붙은 방향성 연결. 조지프 노박(Joseph Novak, 1984). 명제적(propositional) 지식의 구조화.</li>
+<li><strong>블룸(Bloom)의 택소노미(Taxonomy)</strong>: 기억(Remember)→이해(Understand)→적용(Apply)→분석(Analyze)→평가(Evaluate)→창조(Create). 교육 목표의 인지적 위계.</li>
+<li><strong>매슬로(Maslow)의 피라미드</strong>: 생리→안전→소속→존경→자아실현. 주의: 피라미드 형태는 매슬로 본인의 것이 아닙니다. 그는 위계를 주장했지만 피라미드로 그리지 않았습니다.</li>
+<li><strong>빙산 모델(Iceberg Model)</strong>: 사건(Events)→패턴(Patterns)→구조(Structures)→정신 모델(Mental Models). 피터 센게(Peter Senge). 분석의 깊이를 나타내는 위계.</li>
+<li><strong>양파 다이어그램(Onion Diagram)</strong>: 동심원. 중심=핵심, 외곽=표피. 헤이르트 호프스테더(Geert Hofstede)의 문화 모델.</li>
+</ul>
+<hr>
+<h3>4. 매트릭스 구조 (Matrix/Grid)</h3>
+<pre><code>         축 B
+         │
+    II   │   I
+         │
+─────────┼─────────  축 A
+         │
+    III  │   IV
+         │
+  (두 축의 교차, 사분면, MECE)
+</code></pre>
+<p>매트릭스 구조는 <strong>두 변수의 조합(combination)</strong>으로 논리적 공간을 완전히 커버합니다. MECE(Mutually Exclusive, Collectively Exhaustive) 원칙의 시각적 구현입니다.</p>
+<ul>
+<li><strong>2×2 매트릭스</strong>: BCG 매트릭스(성장률/시장점유율), 아이젠하워 매트릭스(긴급성/중요성), 조하리 창. "빈 사분면"이 가장 흥미롭습니다 — 아직 점유되지 않은 가능성의 공간.</li>
+<li><strong>SWOT</strong>: 내부/외부 × 긍정/부정 = 4칸. 강점(Strengths)/약점(Weaknesses)/기회(Opportunities)/위협(Threats).</li>
+<li><strong>형태학적 상자(Morphological Box)</strong>: 프리츠 츠비키(Fritz Zwicky). 다차원 매트릭스. 조합적(combinatorial) 탐색. 모든 가능한 조합을 체계적으로 탐색합니다.</li>
+<li><strong>그레마스 기호 사각형</strong>: A/B/not-A/not-B의 논리적 직사각형. 이항 대립의 논리적 공간 완성.</li>
+<li><strong>키비아트/레이더 차트(Kiviat/Radar Chart)</strong>: 다차원 프로필의 다각형 시각화. 5-10차원의 동시 비교.</li>
+</ul>
+<hr>
+<h3>5. 네트워크 구조 (Network/Relational)</h3>
+<pre><code>  [A]──[B]
+   │╲   │
+   │ ╲  │
+   │  ╲ │
+  [C]──[D]──[E]
+       │
+      [F]
+  (다중 연결, 비위계, 창발적)
+</code></pre>
+<p>네트워크 구조는 <strong>관계(relation)</strong>와 <strong>창발(emergence)</strong>을 표현합니다. 위계 없이 모든 노드가 동등한 가능성을 가집니다.</p>
+<ul>
+<li><strong>인드라의 그물(Indra's Net)</strong>: 각 노드가 전체를 반영하는 홀로그래픽(holographic) 네트워크. 화엄불교(華嚴佛敎). 각 보석이 다른 모든 보석을 반영합니다.</li>
+<li><strong>리좀(Rhizome)</strong>: 질 들뢰즈(Gilles Deleuze) &amp; 펠릭스 가타리(Félix Guattari). 반-위계. 6원칙: 연결(connection), 이질성(heterogeneity), 다수성(multiplicity), 비기의적 단절(asignifying rupture), 지도제작(cartography), 전사(decalcomania).</li>
+<li><strong>비트겐슈타인(Wittgenstein)의 가족 유사성(Family Resemblance)</strong>: 공유된 본질 없이 겹치는 유사성. 범주는 그릇이 아니라 네트워크입니다.</li>
+<li><strong>행위자-네트워크 이론(Actor-Network Theory, ANT)</strong>: 브뤼노 라투르(Bruno Latour). 인간/비인간 평면 네트워크. 번역(translation)이 네트워크를 구성합니다.</li>
+<li><strong>시스템 맵/인과 루프(Causal Loop Diagram)</strong>: 강화(Reinforcing, R)/균형(Balancing, B) 피드백 루프. 피터 센게(Peter Senge), 도넬라 메도우스(Donella Meadows).</li>
+<li><strong>친화도/KJ법(Affinity Diagram)</strong>: 상향식(bottom-up) 클러스터링. 가와키타 지로(Kawakita Jiro, 1967). 귀납적 종합.</li>
+</ul>
+<hr>
+<h3>6. 위상학적 구조 (Topological)</h3>
+<p>위상학적 구조는 기하학적 형태보다 <strong>연결성(connectivity)</strong>과 <strong>경계(boundary)</strong>에 주목합니다.</p>
+<ul>
+<li><strong>벤 다이어그램(Venn Diagram)</strong>: 집합의 교집합. 존 벤(John Venn, 1880). "스윗 스팟(sweet spot)" — 두 집합의 교차 영역.</li>
+<li><strong>좌표계/포지셔닝 맵(Positioning Map)</strong>: 2축의 연속 공간에 항목 배치. 경쟁 분석, 퍼셉션 맵.</li>
+<li><strong>스펙트럼/연속체(Spectrum/Continuum)</strong>: 단일 축, 양극. 이원 대립을 연속적으로 재구성.</li>
+<li><strong>뫼비우스 띠(Möbius Strip)</strong>: 안/밖 구분 없는 단면 곡면. 라캉 — 의식/무의식의 연속성. 표면이 하나인 구조.</li>
+</ul>
+<pre><code>  뫼비우스 띠:
+  ╭──────────────────╮
+  │  의식(Conscious) │
+  │                  │
+  ╰──────────────────╯
+  (뒤집으면 무의식이 됨 — 경계 없음)
+</code></pre>
+<ul>
+<li><strong>클라인 병(Klein Bottle)</strong>: 안/밖이 없는 곡면. 라캉 — 주이상스(jouissance)의 구조. 4차원에서만 자기 교차 없이 존재합니다.</li>
+<li><strong>교차(Chiasmus)</strong>: X-구조. 하이데거의 존재(Sein) 위에 X를 그어 지움으로써 지시합니다. 지움을 통한 지시(indication through erasure).</li>
+</ul>
+<hr>
+<h2>III. 동양 철학 스키마</h2>
+<p>서양 철학이 스키마를 <strong>분석적 도구</strong>로 사용하는 경향이 있다면, 동양 철학은 스키마를 <strong>존재론적 지도</strong>로 사용하는 경향이 있습니다. 이 구분 자체가 하나의 이원 대립이므로 주의가 필요하지만, 방법론적 차이는 분명히 존재합니다.</p>
+<hr>
+<h3>1. 중국 철학 스키마</h3>
+<h4>태극(太極): 프랙탈 생성 스키마</h4>
+<pre><code>  무극(無極, 0) → 태극(太極, 1) → 양의(兩儀, 2)
+       → 사상(四象, 4) → 팔괘(八卦, 8) → 만물(萬物, ∞)
+
+  생성의 논리: 1 → 2 → 4 → 8 → ...
+  (이진 분기의 반복 = 프랙탈 구조)
+</code></pre>
+<p>태극은 단순한 원이 아닙니다. 그것은 <strong>생성의 알고리즘</strong>입니다. 무극(無極, 아무것도 없음)에서 태극(太極, 하나)이 나오고, 태극에서 음양(兩儀, 둘)이 나오고, 음양에서 사상(四象, 넷)이 나오고, 사상에서 팔괘(八卦, 여덟)가 나옵니다. 이것은 이진 분기(binary branching)의 반복 — 현대 컴퓨터 과학의 기초와 동일한 논리입니다.</p>
+<h4>오행(五行): 이중 조절 스키마</h4>
+<pre><code>       목(木)
+      ╱    ╲
+  수(水)    화(火)
+    │  ╲  ╱  │
+    │   ╲╱   │
+    │   ╱╲   │
+    │  ╱  ╲  │
+  금(金)    토(土)
+      ╲    ╱
+       (순환)
+
+  상생(相生): 목→화→토→금→수→목
+  상극(相剋): 목→토→수→화→금→목
+</code></pre>
+<p>오행(五行)은 단순한 5원소론이 아닙니다. 상생(相生, 서로 낳음)과 상극(相剋, 서로 억제함)의 <strong>이중 조절 메커니즘</strong>이 항상성(homeostasis)을 만들어냅니다. 디자인 적용: 5색 팔레트, 5단계 워크플로우, 브랜드 터치포인트 순환.</p>
+<h4>팔괘(八卦)와 64괘</h4>
+<p>팔괘는 인류 최초의 체계적 이진법 사용입니다. 음효(⚋)/양효(⚊)의 이진 조합 2³=8이 8가지 기본 상황을 표현합니다. 64괘(2⁶=64)는 완전한 상황 유형학입니다. 이것은 <strong>조합론적 완전성(combinatorial completeness)</strong>의 추구입니다.</p>
+<h4>도(道): 반-스키마 스키마</h4>
+<p>노자(老子)의 도(道)는 역설적으로 <strong>스키마에 저항하는 스키마</strong>입니다. "도를 말할 수 있으면 그것은 영원한 도가 아니다(道可道，非常道)." 디자인적 함의: 안 하기(negative space), 출현(emergence), 최소 개입(minimal intervention). 가장 강력한 디자인은 때로 아무것도 하지 않는 것입니다.</p>
+<hr>
+<h3>2. 불교 스키마</h3>
+<h4>사성제(四聖諦): 실용적 사원 구조</h4>
+<pre><code>  고(苦, Dukkha)     ─── 진단(Diagnosis)
+  집(集, Samudaya)   ─── 병인(Etiology)
+  멸(滅, Nirodha)    ─── 예후(Prognosis)
+  도(道, Magga)      ─── 치방(Treatment)
+</code></pre>
+<p>사성제는 의료적 사원 구조입니다. 붓다는 의사처럼 사고하였습니다: 증상 진단 → 원인 파악 → 치유 가능성 확인 → 치료 방법 제시. 이것은 <strong>문제 해결의 보편적 스키마</strong>입니다.</p>
+<h4>팔정도(八正道): 동시적 실천 스키마</h4>
+<p>팔정도는 순차적 단계가 아닙니다. 8가지 실천(정견/정사유/정어/정업/정명/정정진/정념/정정)은 <strong>동시에, 상호 지지하며</strong> 실천됩니다. 이것은 선형 스키마가 아니라 네트워크 스키마입니다.</p>
+<h4>공(空, Śūnyatā): 반-스키마</h4>
+<p>나가르주나(Nāgārjuna)의 공(空) 개념은 모든 스키마에 대한 근본적 도전입니다. 어떤 것도 자성(svabhāva, 독립적 본질)을 가지지 않습니다. 의미는 관계에서만 발생합니다. 디자인적 함의: 의미는 사물에 있지 않고 관계에 있습니다. 제품이 아니라 경험을 디자인하십시오.</p>
+<h4>이제(二諦): 메타-인식론적 스키마</h4>
+<p>세속제(世俗諦, 기능적 현실)/승의제(勝義諦, 궁극적 진리)의 이원 구조는 <strong>두 수준의 진리가 동시에 유효</strong>하다는 메타-인식론적 주장입니다. 스키마는 세속제 수준에서 유효하지만, 승의제 수준에서는 공(空)합니다.</p>
+<h4>인드라의 그물(Indra's Net): 홀로그래픽 네트워크</h4>
+<pre><code>  [보석A]──[보석B]──[보석C]
+     │    ╲   │   ╱   │
+     │     ╲  │  ╱    │
+  [보석D]──[보석E]──[보석F]
+     │    ╱   │   ╲   │
+     │   ╱    │    ╲  │
+  [보석G]──[보석H]──[보석I]
+
+  각 보석은 다른 모든 보석을 반영
+  (홀로그래픽 상호 반영)
+</code></pre>
+<hr>
+<h3>3. 한국 철학 스키마</h3>
+<h4>정(情): 관계적 정동 스키마</h4>
+<p>한국의 정(情) 개념은 서양 철학에 대응하는 개념이 없습니다. 정은 <strong>축적적(cumulative)</strong>, <strong>비자발적(involuntary)</strong>, <strong>양방향적(bidirectional)</strong>입니다. 정은 개인 안에 있지 않고 <strong>"사이 공간"</strong>에 존재합니다. 디자인적 함의: 사용자와 제품 사이의 정을 어떻게 디자인할 것인가?</p>
+<h4>기(氣): 장-과정 스키마</h4>
+<p>기(氣)는 물질도 정신도 아닌 <strong>동적 매체(dynamic medium)</strong>입니다. 기는 흐르고, 모이고, 흩어집니다. 이것은 <strong>장(field) 스키마</strong> — 개별 요소보다 장의 상태가 우선합니다. 디자인에서: 개별 요소보다 전체적 분위기(atmosphere)를 먼저 설계하십시오.</p>
+<h4>사단칠정(四端七情): 도덕-자연 정서 스키마</h4>
+<pre><code>  사단(四端, 도덕 정서):
+    측은지심(惻隱之心) — 공감
+    수오지심(羞惡之心) — 수치/혐오
+    사양지심(辭讓之心) — 겸양
+    시비지심(是非之心) — 옳고 그름
+
+  칠정(七情, 자연 정서):
+    희(喜)/노(怒)/애(哀)/구(懼)/애(愛)/오(惡)/욕(欲)
+</code></pre>
+<p>퇴계(退溪) 이황(李滉)은 사단은 리(理)에서, 칠정은 기(氣)에서 발한다고 주장하였습니다. 율곡(栗谷) 이이(李珥)는 둘 다 기에서 발하되, 차이는 리와의 정렬 여부라고 주장하였습니다. 이 논쟁은 <strong>도덕 정서와 자연 정서의 관계</strong>에 대한 깊은 탐구입니다. 디자인적 함의: 도덕적 감정(사단)을 배양하는 디자인 vs 자연적 감정(칠정)을 촉발하는 디자인.</p>
+<h4>풍류(風流): 참여적 미학 스키마</h4>
+<p>풍류는 자연 + 예술 + 몸의 통합적 참여 미학입니다. 관조(contemplation)가 아니라 <strong>참여(participation)</strong>. 디자인에서: 사용자를 관찰자가 아니라 참여자로 만드는 디자인.</p>
+<hr>
+<h3>4. 일본 미학 스키마</h3>
+<h4>간(間, Ma): 사이의 구조</h4>
+<pre><code>  [요소A]     [요소B]
+         ↑
+         │
+       간(間)
+    (양의 구조 요소)
+</code></pre>
+<p>간(間, Ma)은 사이/여백을 <strong>양(+)의 구조 요소</strong>로 봅니다. "간은 디자인이다." 공간적 간(건축의 여백), 시간적 간(음악의 침묵), 관계적 간(대화의 여운), 미학적 간(여운). 서양 디자인이 요소를 채우는 것에 집중한다면, 간의 미학은 <strong>비움을 통한 충만</strong>을 추구합니다.</p>
+<h4>와비사비(侘寂): 불완전의 미학</h4>
+<p>와비사비(wabi-sabi)는 불완전(imperfection), 무상(impermanence), 미완(incompleteness)의 미학입니다. 킨쓰기(金継ぎ, kintsugi) — 금으로 파손을 수리하는 기법 — 에서 파손의 역사가 가장 아름다운 부분이 됩니다. 디자인적 함의: 완벽한 제품보다 사용의 흔적이 아름다운 제품.</p>
+<h4>수파리(守破離): 발달적 삼원 구조</h4>
+<p>지키기(Shu, 守) → 깨기(Ha, 破) → 떠나기(Ri, 離). 초월은 이전 단계를 버리는 것이 아닙니다. Ri는 Shu를 내면화하고 포함합니다. 이것은 헤겔의 아우프헤붕(Aufhebung)과 구조적으로 동일합니다.</p>
+<hr>
+<h3>5. 인도 철학 스키마</h3>
+<h4>삼신(三身, Trikāya): 위계적 현현 스키마</h4>
+<p>법신(Dharmakāya, 궁극적 실재) → 보신(Sambhogakāya, 원형적 형태) → 화신(Nirmāṇakāya, 구체적 현현). 디자인 시스템에 적용: 원칙(Principles) → 토큰(Tokens) → 구현(Implementation).</p>
+<h4>라사(Rasa) 이론: 9가지 미적 감정</h4>
+<p>바라타 무니(Bharata Muni)의 나티야샤스트라(Nāṭyaśāstra)는 9가지 라사(rasa, 미적 감정)를 정의합니다: 사랑(Śṛṅgāra)/유머(Hāsya)/비애(Karuṇa)/분노(Raudra)/영웅(Vīra)/공포(Bhayānaka)/혐오(Bībhatsa)/경이(Adbhuta)/평온(Śānta). 예술은 일상 감정(bhāva)을 미적 경험(rasa)으로 변환합니다. 디자인: 특정 라사를 위한 디자인.</p>
+<h4>코샤(Kośa): 5겹 존재 스키마</h4>
+<pre><code>  ╭─────────────────────────────╮
+  │  환희(Ānandamaya)           │
+  │  ╭───────────────────────╮  │
+  │  │  지혜(Vijñānamaya)    │  │
+  │  │  ╭─────────────────╮  │  │
+  │  │  │  정신(Manomaya) │  │  │
+  │  │  │  ╭───────────╮  │  │  │
+  │  │  │  │에너지(Prāṇa)│  │  │
+  │  │  │  │╭─────────╮│  │  │  │
+  │  │  │  ││물질(Anna)││  │  │  │
+  │  │  │  │╰─────────╯│  │  │  │
+  │  │  │  ╰───────────╯  │  │  │
+  │  │  ╰─────────────────╯  │  │
+  │  ╰───────────────────────╯  │
+  ╰─────────────────────────────╯
+  (동심원적 존재론)
+</code></pre>
+<p>물질(Annamaya) → 에너지(Prāṇamaya) → 정신(Manomaya) → 지혜(Vijñānamaya) → 환희(Ānandamaya). 사용자 경험 디자인에서: 물리적 인터페이스 → 기능적 흐름 → 인지적 모델 → 가치 정렬 → 의미 경험.</p>
+<hr>
+<h2>IV. 메타-스키마 이론: 왜 스키마는 이런 형태를 취하는가</h2>
+<p>스키마의 유형학을 완성하려면 메타적 질문을 던져야 합니다. 왜 인간은 이원, 삼원, 사원 구조를 반복적으로 발명합니까? 왜 선형, 순환, 위계, 네트워크 형태가 반복적으로 등장합니까? 이 질문에 답하기 위해 수학적, 인지과학적, 철학적 기초를 탐구합니다.</p>
+<hr>
+<h3>1. 수학적 기초</h3>
+<h4>대칭 이론 (Symmetry Theory)</h4>
+<p>스키마는 <strong>변환에 대한 불변성(invariance under transformation)</strong>으로 정의될 수 있습니다. 위계 구조는 축소(scaling)에 불변합니다 — 어느 수준에서 보아도 같은 구조가 반복됩니다(프랙탈). 순환 구조는 회전(rotation)에 불변합니다 — 어디서 시작해도 같은 순환입니다.</p>
+<h4>위상학 (Topology)</h4>
+<p>위상학에서 연결성(connectivity)은 기하학적 형태보다 우선합니다. 트리는 단순 연결(simply connected, 루프 없음)입니다. 네트워크는 다중 연결(multiply connected)입니다. 뫼비우스 띠는 비방향성(non-orientable) 곡면입니다. 스키마의 위상학적 속성이 그것이 표현할 수 있는 관계의 유형을 결정합니다.</p>
+<h4>그래프 이론 (Graph Theory)</h4>
+<p>모든 스키마는 그래프(graph)입니다. 노드(node) 수, 간선(edge) 수, 차수(degree) 분포, 지름(diameter)이 스키마 유형을 결정합니다. 트리는 n-1개의 간선을 가진 n개의 노드입니다. 완전 그래프는 n(n-1)/2개의 간선을 가집니다.</p>
+<h4>조합론 (Combinatorics)</h4>
+<p>요소의 수(n)가 가능한 관계의 수를 결정합니다:<br>
+- n=1: 단일(unity), 관계 없음<br>
+- n=2: 대립(opposition), 1개의 관계<br>
+- n=3: 매개(mediation), 3개의 관계<br>
+- n=4: 완전성(completeness), 6개의 관계<br>
+- n=7±2: 인지 한계, 청킹(chunking) 필요</p>
+<hr>
+<h3>2. 인지과학적 기초</h3>
+<h4>마크 존슨(Mark Johnson)의 이미지 스키마</h4>
+<p>마크 존슨은 스키마가 <strong>신체 경험에서 발생하는 전개념적(pre-conceptual) 패턴</strong>이라고 주장하였습니다. 주요 이미지 스키마:</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>이미지 스키마</th>
+<th>신체 경험</th>
+<th>개념적 적용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>포함(CONTAINMENT)</td>
+<td>그릇에 담기</td>
+<td>범주, 집합</td>
+</tr>
+<tr>
+<td>경로(PATH)</td>
+<td>걷기, 이동</td>
+<td>목표, 과정</td>
+</tr>
+<tr>
+<td>힘(FORCE)</td>
+<td>밀기, 당기기</td>
+<td>인과, 동기</td>
+</tr>
+<tr>
+<td>수직(VERTICALITY)</td>
+<td>서기, 쓰러지기</td>
+<td>위계, 가치</td>
+</tr>
+<tr>
+<td>중심-주변(CENTER-PERIPHERY)</td>
+<td>몸의 중심</td>
+<td>핵심-부수</td>
+</tr>
+<tr>
+<td>연결(LINK)</td>
+<td>잡기, 묶기</td>
+<td>관계, 의존</td>
+</tr>
+<tr>
+<td>부분-전체(PART-WHOLE)</td>
+<td>신체 부위</td>
+<td>구성, 분해</td>
+</tr>
+<tr>
+<td>균형(BALANCE)</td>
+<td>서기, 균형잡기</td>
+<td>대칭, 조화</td>
+</tr>
+<tr>
+<td>순환(CYCLE)</td>
+<td>호흡, 수면</td>
+<td>반복, 리듬</td>
+</tr>
+</tbody>
+</table></div>
+<h4>조지 레이코프(George Lakoff)의 개념적 은유</h4>
+<p>레이코프는 스키마 선택이 곧 <strong>은유 선택</strong>이며, 은유에는 함의(entailment)가 따른다고 주장하였습니다:</p>
+<ul>
+<li>위계 스키마 = "조직은 나무(ORGANIZATIONS ARE TREES)" → 뿌리가 기초, 가지가 파생, 잎이 말단</li>
+<li>벤 다이어그램 = "범주는 그릇(CATEGORIES ARE CONTAINERS)" → 멤버십은 이진적, 경계는 명확</li>
+<li>네트워크 스키마 = "관계는 연결(RELATIONS ARE LINKS)" → 강도 다양, 경로 존재, 중심 없음</li>
+</ul>
+<p>스키마를 선택하는 것은 세계를 보는 방식을 선택하는 것입니다.</p>
+<h4>바버라 트버스키(Barbara Tversky)의 공간 인지</h4>
+<p>트버스키는 공간 인지의 7가지 기본 도구를 제안하였습니다: 점(point), 선(line), 영역(region), 배열(array), 네트워크(network), 위계(hierarchy), 다이어그램(diagram). 이 7가지가 모든 시각적 스키마의 기본 어휘입니다.</p>
+<h4>게슈탈트(Gestalt) 원리</h4>
+<p>게슈탈트 심리학은 스키마 지각의 기초를 제공합니다:<br>
+- 근접성(Proximity) → 그룹핑(grouping)<br>
+- 유사성(Similarity) → 범주화(categorization)<br>
+- 연속성(Continuity) → 경로 지각(path perception)<br>
+- 폐합(Closure) → 그릇 지각(container perception)<br>
+- 대칭(Symmetry) → 균형 지각(balance perception)</p>
+<hr>
+<h3>3. 각 숫자가 "제공하는(afford)" 것</h3>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>n</th>
+<th>수학적 명칭</th>
+<th>스키마적 역능</th>
+<th>핵심 철학적 논리</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>모나드(Monad)</td>
+<td>정체성, 통일, 미분화</td>
+<td>라이프니츠: 단자는 창 없는 실체</td>
+</tr>
+<tr>
+<td>2</td>
+<td>다이아드(Dyad)</td>
+<td>대립, 비교, 긴장</td>
+<td>소쉬르: 기호는 차이에 의해 의미함</td>
+</tr>
+<tr>
+<td>3</td>
+<td>트라이아드(Triad)</td>
+<td>매개, 종합, 동적 안정</td>
+<td>퍼스: 진정한 기호작용에는 해석체 필요</td>
+</tr>
+<tr>
+<td>4</td>
+<td>테트라드(Tetrad)</td>
+<td>완전성, 사방, MECE 커버리지</td>
+<td>융: 심리는 사원적 전체를 추구</td>
+</tr>
+<tr>
+<td>5</td>
+<td>펜타드(Pentad)</td>
+<td>복잡성, 비대칭, 황금비</td>
+<td>버크: 동기에는 5개 항 필요</td>
+</tr>
+<tr>
+<td>6</td>
+<td>헥사드(Hexad)</td>
+<td>최적 효율, 벌집 구조</td>
+<td>야콥슨: 커뮤니케이션에 6가지 기능</td>
+</tr>
+<tr>
+<td>7±2</td>
+<td>밀러의 수</td>
+<td>인지적 한계, 청킹 필요</td>
+<td>밀러: 작업 기억의 용량</td>
+</tr>
+<tr>
+<td>8</td>
+<td>옥타드(Octad)</td>
+<td>이진 완전성, 2³</td>
+<td>팔괘: 기본 상황의 완전한 조합</td>
+</tr>
+<tr>
+<td>12</td>
+<td>도데카드(Dodecad)</td>
+<td>시간적 완전성</td>
+<td>십이연기: 인과의 완전한 순환</td>
+</tr>
+<tr>
+<td>64</td>
+<td>—</td>
+<td>조합적 완전성</td>
+<td>64괘: 모든 상황의 완전한 유형학</td>
+</tr>
+</tbody>
+</table></div>
+<hr>
+<h3>4. 스키마 선택 가이드</h3>
+<pre><code>데이터의 관계 유형은 무엇입니까?
+│
+├── 비교(Comparison)
+│     → 막대 차트, 점 차트, 매트릭스
+│
+├── 구성(Composition)
+│     → 파이 차트, 트리맵, 산키 다이어그램
+│
+├── 분포(Distribution)
+│     → 히스토그램, 박스 플롯, 바이올린 플롯
+│
+├── 상관(Correlation)
+│     → 산점도, 버블 차트, 히트맵
+│
+├── 시간적 변화(Change over Time)
+│     → 라인 차트, 영역 차트, 타임라인
+│
+├── 부분-전체(Part-to-Whole)
+│     → 트리맵, 선버스트, 산키 다이어그램
+│
+├── 네트워크(Network)
+│     → 노드-링크 다이어그램, 매트릭스 다이어그램
+│
+└── 지리적(Geographic)
+      → 지도, 코로플레스, 카토그램
+</code></pre>
+<hr>
+<h3>5. 동서양 스키마 비교</h3>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>차원</th>
+<th>서양 스키마</th>
+<th>동양 스키마</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>기본 단위</td>
+<td>개체(entity)</td>
+<td>관계(relation)/과정(process)</td>
+</tr>
+<tr>
+<td>시간관</td>
+<td>선형(linear)</td>
+<td>순환(cyclical)</td>
+</tr>
+<tr>
+<td>이원 구조</td>
+<td>대립(opposition)</td>
+<td>상보(complementarity)</td>
+</tr>
+<tr>
+<td>완전성 기준</td>
+<td>논리적 MECE</td>
+<td>생성적 균형</td>
+</tr>
+<tr>
+<td>스키마의 지위</td>
+<td>분석 도구</td>
+<td>존재론적 지도</td>
+</tr>
+<tr>
+<td>변화 모델</td>
+<td>인과적(causal)</td>
+<td>공명적(resonant)</td>
+</tr>
+<tr>
+<td>경계</td>
+<td>명확(sharp)</td>
+<td>흐릿(fuzzy)/투과적(permeable)</td>
+</tr>
+</tbody>
+</table></div>
+<hr>
+<h3>6. 디자이너를 위한 5가지 핵심 원리</h3>
+<h4>원리 1: 숫자는 자의적이지 않다</h4>
+<p>각 스키마의 요소 수는 현상의 최소 구조에 대한 <strong>철학적 주장</strong>입니다. 퍼스가 기호를 삼원으로 분석한 것은 취향이 아닙니다. 그는 이원 관계만으로는 의미 생성이 불가능함을 수학적으로 증명하였습니다. 디자이너가 2×2 매트릭스를 선택할 때, 그것은 "이 현상은 두 변수로 완전히 설명된다"는 주장입니다. 그 주장이 정당한지 물어야 합니다.</p>
+<h4>원리 2: 형태가 논리를 담는다</h4>
+<p>스키마의 형태는 중립적이지 않습니다. 각 형태는 특정한 논리를 <strong>체현(embody)</strong>합니다:</p>
+<pre><code>  선(Line)      → 대립/순서/인과
+  삼각형         → 매개/긴장/안정
+  사각형         → 완전성/축/MECE
+  원(Circle)    → 순환/회귀/포함
+  나선(Spiral)  → 발전/반복/심화
+  네트워크       → 창발/분산/비위계
+  뫼비우스       → 연속/역설/경계 해소
+</code></pre>
+<p>형태를 선택하는 것은 논리를 선택하는 것입니다.</p>
+<h4>원리 3: 모든 스키마에는 숨겨진 정치가 있다</h4>
+<p>데리다의 통찰을 스키마 일반에 적용하면: 모든 스키마는 특정 항을 <strong>특권화(privilege)</strong>합니다. 이원 스키마는 한 항을 특권화합니다(어느 항이 먼저 나옵니까?). 삼원 스키마는 매개 항을 특권화합니다(합이 정과 반보다 우월합니까?). 사원 스키마는 완전성을 주장합니다(정말 4개로 충분합니까?). 스키마를 사용하기 전에 그것이 무엇을 보이게 하고 무엇을 <strong>보이지 않게</strong> 하는지 물어야 합니다.</p>
+<h4>원리 4: 스키마는 진리가 아니라 도구다</h4>
+<p>퍼스의 삼원 기호학은 현실의 구조가 아닙니다. 그것은 기호 분석의 <strong>생산적 도구</strong>입니다. 매슬로의 피라미드는 인간 동기의 진리가 아닙니다. 그것은 특정 맥락에서 유용한 휴리스틱(heuristic)입니다. 스키마를 진리로 오해하는 순간, 그것은 사고를 확장하는 도구에서 사고를 제약하는 감옥이 됩니다.</p>
+<h4>원리 5: 가장 강력한 스키마는 자기 반영적이다</h4>
+<p>해석학적 순환은 자기 자신에 적용됩니다 — 이 보고서를 이해하려면 전체를 알아야 하고, 전체를 알려면 이 보고서를 읽어야 합니다. 리좀은 그 자체로 리좀적입니다 — 리좀 개념은 위계 없이 다른 개념들과 연결됩니다. 공(空) 개념은 자기 자신에도 적용됩니다 — 공도 공합니다(空空). 자기 반영적 스키마는 자신의 한계를 내부에서 지시합니다. 이것이 가장 정직한 스키마입니다.</p>
+<hr>
+<h2>결론</h2>
+<p>이 보고서는 스키마를 숫자별(n=2부터 n=64까지), 형태별(선형, 순환, 위계, 매트릭스, 네트워크, 위상학적), 문화별(서양, 중국, 불교, 한국, 일본, 인도)로 유형화하였습니다. 그리고 메타-스키마 이론을 통해 왜 이러한 스키마들이 반복적으로 등장하는지를 수학적, 인지과학적, 철학적으로 설명하였습니다.</p>
+<p>핵심 결론은 다음과 같습니다: <strong>스키마는 현실의 반영이 아니라 현실을 구성하는 도구입니다.</strong> 우리가 어떤 스키마를 선택하느냐에 따라 우리가 보는 현실이 달라집니다. 디자이너는 스키마의 소비자가 아니라 <strong>스키마의 생산자</strong>여야 합니다. 기존 스키마를 비판적으로 사용하고, 필요할 때 새로운 스키마를 발명하며, 항상 스키마가 무엇을 보이게 하고 무엇을 숨기는지를 의식해야 합니다.</p>
+<p>마지막으로, 이 보고서 자체가 하나의 스키마입니다. 그것은 숫자/형태/문화/메타의 사원 구조를 취하고 있습니다. 이 구조가 스키마 유형학의 완전한 지도입니까? 아마도 아닐 것입니다. 그러나 그것은 유용한 출발점입니다.</p>
+<hr>
+<h2>참고문헌</h2>
+<h3>서양 철학 스키마</h3>
+<ol>
+<li>Hegel, G.W.F. (1807). <em>Phänomenologie des Geistes</em> [Phenomenology of Spirit]. Bamberg: Goebhardt.</li>
+<li>Peirce, C.S. (1931-1958). <em>Collected Papers of Charles Sanders Peirce</em> (Vols. 1-8). Cambridge: Harvard University Press.</li>
+<li>Saussure, F. de (1916). <em>Cours de linguistique générale</em> [Course in General Linguistics]. Lausanne: Payot.</li>
+<li>Lévi-Strauss, C. (1964). <em>Le Cru et le Cuit</em> [The Raw and the Cooked]. Paris: Plon.</li>
+<li>Derrida, J. (1967). <em>De la grammatologie</em> [Of Grammatology]. Paris: Minuit.</li>
+<li>Lacan, J. (1953-1980). <em>Séminaires</em> [Seminars]. Paris: Seuil.</li>
+<li>Aristotle. <em>Rhetorica</em> [Rhetoric]; <em>Physica</em> [Physics]; <em>Metaphysica</em> [Metaphysics]; <em>Ethica Nicomachea</em> [Nicomachean Ethics].</li>
+<li>Heidegger, M. (1971). <em>Poetry, Language, Thought</em> (A. Hofstadter, Trans.). New York: Harper &amp; Row.</li>
+<li>Jung, C.G. (1921). <em>Psychologische Typen</em> [Psychological Types]. Zürich: Rascher.</li>
+<li>Greimas, A.J. (1966). <em>Sémantique structurale</em> [Structural Semantics]. Paris: Larousse.</li>
+<li>Burke, K. (1945). <em>A Grammar of Motives</em>. New York: Prentice-Hall.</li>
+<li>Jakobson, R. (1960). "Linguistics and Poetics." In T. Sebeok (Ed.), <em>Style in Language</em> (pp. 350-377). Cambridge: MIT Press.</li>
+<li>Deleuze, G. &amp; Guattari, F. (1980). <em>Mille Plateaux</em> [A Thousand Plateaus]. Paris: Minuit.</li>
+<li>Gadamer, H.-G. (1960). <em>Wahrheit und Methode</em> [Truth and Method]. Tübingen: Mohr.</li>
+<li>Freud, S. (1923). <em>Das Ich und das Es</em> [The Ego and the Id]. Leipzig: Internationaler Psychoanalytischer Verlag.</li>
+</ol>
+<h3>동양 철학 스키마</h3>
+<ol start="16">
+<li><em>易經</em> [I Ching / Book of Changes]. (전통 문헌)</li>
+<li>老子 [Laozi]. <em>道德經</em> [Daodejing / Tao Te Ching].</li>
+<li>Nāgārjuna. <em>Mūlamadhyamakakārikā</em> [Fundamental Verses on the Middle Way].</li>
+<li>Bharata Muni. <em>Nāṭyaśāstra</em> [Treatise on Dramaturgy].</li>
+<li>이황(李滉) [Toegye]. (1568). <em>성학십도(聖學十圖)</em> [Ten Diagrams on Sage Learning].</li>
+<li>이이(李珥) [Yulgok]. (1577). <em>격몽요결(擊蒙要訣)</em> [Essential Teachings for Enlightening the Ignorant].</li>
+<li>世阿弥 [Zeami]. <em>風姿花伝</em> [Fūshikaden / Teachings on Style and the Flower].</li>
+</ol>
+<h3>시각적 사고 및 메타-스키마</h3>
+<ol start="23">
+<li>Bertin, J. (1967). <em>Sémiologie graphique</em> [Semiology of Graphics]. Paris: Gauthier-Villars.</li>
+<li>Tufte, E. (1983). <em>The Visual Display of Quantitative Information</em>. Cheshire: Graphics Press.</li>
+<li>Tversky, B. (2019). <em>Mind in Motion: How Action Shapes Thought</em>. New York: Basic Books.</li>
+<li>Johnson, M. (1987). <em>The Body in the Mind: The Bodily Basis of Meaning, Imagination, and Reason</em>. Chicago: University of Chicago Press.</li>
+<li>Lakoff, G. &amp; Johnson, M. (1980). <em>Metaphors We Live By</em>. Chicago: University of Chicago Press.</li>
+<li>Foucault, M. (1966). <em>Les Mots et les Choses</em> [The Order of Things]. Paris: Gallimard.</li>
+<li>Wittgenstein, L. (1953). <em>Philosophische Untersuchungen</em> [Philosophical Investigations]. Oxford: Blackwell.</li>
+<li>Rosch, E. (1978). "Principles of Categorization." In E. Rosch &amp; B.B. Lloyd (Eds.), <em>Cognition and Categorization</em> (pp. 27-48). Hillsdale: Erlbaum.</li>
+<li>Novak, J. &amp; Gowin, D.B. (1984). <em>Learning How to Learn</em>. Cambridge: Cambridge University Press.</li>
+<li>Buzan, T. (1993). <em>The Mind Map Book</em>. London: BBC Books.</li>
+<li>Senge, P. (1990). <em>The Fifth Discipline: The Art and Practice of the Learning Organization</em>. New York: Doubleday.</li>
+<li>Zwicky, F. (1969). <em>Discovery, Invention, Research Through the Morphological Approach</em>. New York: Macmillan.</li>
+<li>Miller, G.A. (1956). "The Magical Number Seven, Plus or Minus Two: Some Limits on Our Capacity for Processing Information." <em>Psychological Review</em>, 63(2), 81-97.</li>
+<li>Kolb, D.A. (1984). <em>Experiential Learning: Experience as the Source of Learning and Development</em>. Englewood Cliffs: Prentice-Hall.</li>
+<li>Meadows, D. (2008). <em>Thinking in Systems: A Primer</em>. White River Junction: Chelsea Green.</li>
+</ol>
+<hr>
+<p><em>이 보고서는 2026년 3월에 작성되었습니다. 스키마 유형학은 열린 탐구 영역이며, 이 보고서는 완결된 지도가 아니라 탐구의 출발점으로 의도되었습니다.</em></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visual Literacy — 시각적 리터러시 종합 연구</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&family=Noto+Serif+KR:wght@400;600;700&family=Source+Code+Pro:wght@400;500&display=swap');
+
+:root {
+  --bg-primary: #fdfcfa;
+  --bg-secondary: #f4f1ec;
+  --bg-tertiary: #f8f6f1;
+  --bg-card: #ffffff;
+  --border-color: rgba(0,0,0,0.10);
+  --border-accent: rgba(0,0,0,0.16);
+  --text-primary: #1a1a1a;
+  --text-secondary: #4a4845;
+  --text-muted: #807e7a;
+  --accent-warm: #d9601f;
+  --accent-warm-dim: #b54e15;
+  --accent-gold: #b8954a;
+  --accent-blue: #4a72a8;
+  --highlight-bg: rgba(217, 96, 31, 0.06);
+  --code-bg: #f4f1ec;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Noto Sans KR', -apple-system, sans-serif;
+  line-height: 1.85;
+  font-weight: 400;
+}
+
+.page-wrapper {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 60px 40px 100px;
+}
+
+/* ──── COVER SECTION ──── */
+.cover {
+  padding: 80px 0 60px;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 50px;
+}
+
+.cover .doc-type {
+  font-size: 0.7rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--accent-warm);
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+.cover h1 {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+  letter-spacing: -0.5px;
+}
+
+.cover .subtitle {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 600px;
+}
+
+.cover .meta {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.cover .meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ──── TOC ──── */
+.toc {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 32px 36px;
+  margin-bottom: 50px;
+}
+
+.toc-title {
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent-warm);
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+.toc ul {
+  list-style: none;
+  counter-reset: toc-counter;
+}
+
+.toc li {
+  counter-increment: toc-counter;
+  padding: 6px 0;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+
+.toc li::before {
+  content: counter(toc-counter, decimal-leading-zero);
+  color: var(--accent-warm-dim);
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-right: 12px;
+  font-family: 'Source Code Pro', monospace;
+}
+
+.toc li:last-child { border-bottom: none; }
+
+/* ──── HEADINGS ──── */
+h1 {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 56px 0 24px;
+  padding-top: 40px;
+  border-top: 1px solid var(--border-color);
+  line-height: 1.4;
+}
+
+h2 {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 48px 0 18px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border-color);
+  line-height: 1.4;
+}
+
+h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--accent-gold);
+  margin: 36px 0 14px;
+  line-height: 1.4;
+}
+
+h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin: 28px 0 10px;
+}
+
+/* first heading - no top border */
+.content > h1:first-child {
+  border-top: none;
+  padding-top: 0;
+  margin-top: 0;
+}
+
+/* ──── PARAGRAPHS ──── */
+p {
+  margin-bottom: 16px;
+  color: var(--text-primary);
+  font-weight: 300;
+}
+
+/* ──── STRONG / EM ──── */
+strong {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+em {
+  font-style: italic;
+  color: var(--text-secondary);
+}
+
+/* ──── LINKS ──── */
+a {
+  color: var(--accent-blue);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+a:hover { border-bottom-color: var(--accent-blue); }
+
+/* ──── BLOCKQUOTES ──── */
+blockquote {
+  margin: 24px 0;
+  padding: 20px 24px;
+  background: var(--highlight-bg);
+  border-left: 3px solid var(--accent-warm);
+  border-radius: 0 6px 6px 0;
+  font-family: 'Noto Serif KR', serif;
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+blockquote p {
+  margin-bottom: 8px;
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+blockquote p:last-child { margin-bottom: 0; }
+
+blockquote em {
+  color: var(--text-secondary);
+}
+
+/* ──── TABLES ──── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.88rem;
+}
+
+thead {
+  background: var(--bg-tertiary);
+}
+
+th {
+  text-align: left;
+  padding: 12px 16px;
+  font-weight: 600;
+  color: var(--accent-gold);
+  border-bottom: 2px solid var(--border-accent);
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+td {
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-weight: 300;
+  vertical-align: top;
+  line-height: 1.65;
+}
+
+tr:last-child td { border-bottom: none; }
+
+tr:hover td {
+  background: rgba(0,0,0,0.02);
+}
+
+/* ──── CODE ──── */
+code {
+  font-family: 'Source Code Pro', monospace;
+  font-size: 0.85em;
+  background: var(--code-bg);
+  color: var(--accent-warm);
+  padding: 2px 6px;
+  border-radius: 3px;
+  border: 1px solid var(--border-color);
+}
+
+pre {
+  background: var(--code-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 24px;
+  overflow-x: auto;
+  margin: 24px 0;
+  line-height: 1.6;
+}
+
+pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+}
+
+/* ──── LISTS ──── */
+ul, ol {
+  margin: 16px 0;
+  padding-left: 24px;
+}
+
+li {
+  margin-bottom: 8px;
+  color: var(--text-primary);
+  font-weight: 300;
+  line-height: 1.75;
+}
+
+li::marker {
+  color: var(--accent-warm-dim);
+}
+
+/* ──── HR ──── */
+hr {
+  border: none;
+  border-top: 1px solid var(--border-color);
+  margin: 40px 0;
+}
+
+/* ──── MARK / HIGHLIGHT ──── */
+mark {
+  background: rgba(196, 119, 90, 0.2);
+  color: var(--text-primary);
+  padding: 1px 4px;
+  border-radius: 2px;
+}
+
+/* ──── PRINT STYLES ──── */
+@media print {
+  body {
+    background: #fff;
+  }
+  
+  .page-wrapper {
+    max-width: 100%;
+    padding: 20px;
+  }
+  
+  .cover { page-break-after: always; }
+  h1, h2 { page-break-after: avoid; }
+  table, pre { page-break-inside: avoid; }
+  table { font-size: 0.8rem; }
+}
+
+@media (max-width: 640px) {
+  .page-wrapper { padding: 30px 20px 60px; }
+  .cover h1 { font-size: 1.6rem; }
+  h1 { font-size: 1.4rem; }
+  h2 { font-size: 1.15rem; }
+  table { font-size: 0.8rem; }
+  th, td { padding: 8px 10px; }
+}
+
+/* ──── FOOTER ──── */
+.site-footer {
+  margin-top: 80px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border-color);
+  text-align: center;
+}
+
+.site-footer .copyright {
+  font-size: 0.75rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent-warm-dim);
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.site-footer .contact {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+}
+
+.site-footer .contact a {
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border-color);
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.site-footer .contact a:hover {
+  color: var(--text-secondary);
+  border-bottom-color: var(--text-secondary);
+}
+
+.site-footer .divider {
+  color: var(--border-accent);
+  margin: 0 8px;
+}
+
+@media print {
+  .site-footer .copyright { color: #888; }
+  .site-footer .contact { color: #999; }
+  .site-footer .contact a { color: #999; }
+}
+
+</style>
+</head>
+<body>
+<div class="page-wrapper">
+<div class="cover">
+  <div class="doc-type">RESEARCH REPORT · 2026</div>
+  <h1>Visual Literacy — 시각적 리터러시 종합 연구</h1>
+  <div class="subtitle">이미지와 시각 매체를 읽고, 해석하고, 평가하고, 창조하는 능력의 총체에 대한 학제적 분석</div>
+  <div class="meta"><span>2026-03-25</span><span>study · visual-literacy · design-theory · methodology</span></div>
+</div>
+<div class="content">
+<div class="toc">
+  <div class="toc-title">목차</div>
+  <ul>
+    <li>1. 개요: 시각적 리터러시란 무엇인가</li>
+    <li>2. 역사적 맥락</li>
+    <li>3. 핵심 사상가들</li>
+    <li>4. 시각적 리터러시의 핵심 구성요소</li>
+    <li>5. 프레임워크와 모델</li>
+    <li>6. 훈련 방법 — 시각적 리터러시를 개발하는 법</li>
+    <li>7. 동시대적 맥락</li>
+    <li>8. 추천 도서 — 단계별 학습</li>
+  </ul>
+</div><blockquote>
+<p><em>&ldquo;Seeing comes before words. The child looks and recognizes before it can speak.&rdquo;</em>
+— John Berger, <em>Ways of Seeing</em> (1972)</p>
+<p><em>&ldquo;Visual perception is visual thinking.&rdquo;</em>
+— Rudolf Arnheim, <em>Visual Thinking</em> (1969)</p>
+</blockquote>
+<hr />
+<h2>1. 개요: 시각적 리터러시란 무엇인가</h2>
+<p><strong>Visual Literacy</strong>란 이미지와 시각 매체를 <strong>읽고(read)</strong>, <strong>해석하고(interpret)</strong>, <strong>평가하고(evaluate)</strong>, <strong>창조하는(create)</strong> 능력의 총체이다.</p>
+<p>문자를 읽고 쓰는 능력이 textual literacy라면, 이미지와 시각적 형식을 통해 사고하고 소통하는 능력이 visual literacy이다. 이것은 타고나는 것이 아니라 <strong>학습하고 훈련할 수 있는</strong> 역량이다.</p>
+<p>ACRL(Association of College and Research Libraries)의 공식 정의:</p>
+<blockquote>
+<p>&ldquo;Visual literacy is a set of abilities that enables an individual to effectively find, interpret, evaluate, use, and create images and visual media.&rdquo;</p>
+</blockquote>
+<hr />
+<h2>2. 역사적 맥락</h2>
+<h3>용어의 탄생</h3>
+<p>&ldquo;Visual Literacy&rdquo;라는 용어는 Eastman Kodak Company의 <strong>John Debes</strong>가 <strong>1969년</strong>에 공식 제안했다. 같은 해 <strong>International Visual Literacy Association (IVLA)</strong>이 설립되어 이 분야의 학문적 기반을 다졌다.</p>
+<h3>지적 뿌리</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">시기</th>
+<th style="text-align: left;">흐름</th>
+<th style="text-align: left;">핵심 인물</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">1910~20s</td>
+<td style="text-align: left;"><strong>게슈탈트 심리학</strong> — 지각은 감각의 합이 아니라 패턴 인식의 능동적 과정</td>
+<td style="text-align: left;">Wertheimer, Kohler, Koffka</td>
+</tr>
+<tr>
+<td style="text-align: left;">1919~33</td>
+<td style="text-align: left;"><strong>바우하우스</strong> — 시각 언어의 체계적 문법 교육</td>
+<td style="text-align: left;">Itten, Kandinsky, Klee, Moholy-Nagy</td>
+</tr>
+<tr>
+<td style="text-align: left;">1944</td>
+<td style="text-align: left;"><strong>Kepes, <em>Language of Vision</em></strong> — 시각적 커뮤니케이션이 문법을 가진 &ldquo;언어&rdquo;임을 체계화</td>
+<td style="text-align: left;">Gyorgy Kepes</td>
+</tr>
+<tr>
+<td style="text-align: left;">1954</td>
+<td style="text-align: left;"><strong>Arnheim, <em>Art and Visual Perception</em></strong> — 시각적 지각의 심리학적 분석</td>
+<td style="text-align: left;">Rudolf Arnheim</td>
+</tr>
+<tr>
+<td style="text-align: left;">1969</td>
+<td style="text-align: left;"><strong>Arnheim, <em>Visual Thinking</em></strong> — &ldquo;지각은 사고이다&rdquo;라는 혁명적 주장</td>
+<td style="text-align: left;">Rudolf Arnheim</td>
+</tr>
+<tr>
+<td style="text-align: left;">1972</td>
+<td style="text-align: left;"><strong>Berger, <em>Ways of Seeing</em></strong> — 보는 것은 문화적으로 구성된다</td>
+<td style="text-align: left;">John Berger</td>
+</tr>
+<tr>
+<td style="text-align: left;">1973</td>
+<td style="text-align: left;"><strong>Dondis, <em>A Primer of Visual Literacy</em></strong> — 가장 체계적인 교육 프레임워크</td>
+<td style="text-align: left;">Donis A. Dondis</td>
+</tr>
+</tbody>
+</table>
+<h3>왜 20세기에 부상했는가</h3>
+<ul>
+<li><strong>사진의 대중화</strong> → 기계적 복제 이미지의 &ldquo;진실성&rdquo; 문제</li>
+<li><strong>영화</strong> → 몽타주, 프레이밍 등 시각적 내러티브의 문법 탄생</li>
+<li><strong>텔레비전</strong> → 가정에 침투한 시각 매체, McLuhan의 &ldquo;the medium is the message&rdquo;</li>
+<li><strong>광고 산업</strong> → 이미지를 통한 욕망 조작의 정교화</li>
+<li><strong>그래픽 디자인의 전문화</strong> → 시각적 커뮤니케이션 원리의 체계화 필요</li>
+<li><strong>디지털 혁명</strong> → GUI, 인터넷, 소셜 미디어의 시각 문화</li>
+</ul>
+<hr />
+<h2>3. 핵심 사상가들</h2>
+<h3>Donis A. Dondis (1924–1984)</h3>
+<p><strong>주저</strong>: <em>A Primer of Visual Literacy</em> (1973)
+<strong>위치</strong>: Boston University 커뮤니케이션학부 교수</p>
+<p><strong>핵심 주장</strong>: 시각적 커뮤니케이션에는 문자 언어와 마찬가지로 배울 수 있는 <strong>문법(grammar)</strong>과 <strong>구문(syntax)</strong>이 존재한다.</p>
+<p><strong>시각적 기본 요소</strong> — 시각 언어의 &ldquo;알파벳&rdquo;:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">#</th>
+<th style="text-align: left;">요소</th>
+<th style="text-align: left;">영어</th>
+<th style="text-align: left;">설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;"><strong>점</strong></td>
+<td style="text-align: left;">Dot</td>
+<td style="text-align: left;">시각적 위치의 최소 단위, 주의를 끄는 초점</td>
+</tr>
+<tr>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;"><strong>선</strong></td>
+<td style="text-align: left;">Line</td>
+<td style="text-align: left;">점의 이동 궤적, 방향성과 에너지</td>
+</tr>
+<tr>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;"><strong>형태</strong></td>
+<td style="text-align: left;">Shape</td>
+<td style="text-align: left;">원, 사각형, 삼각형 — 세 가지 기본 형태</td>
+</tr>
+<tr>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;"><strong>방향</strong></td>
+<td style="text-align: left;">Direction</td>
+<td style="text-align: left;">수평(안정), 수직(균형), 대각선(역동)</td>
+</tr>
+<tr>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;"><strong>톤</strong></td>
+<td style="text-align: left;">Tone</td>
+<td style="text-align: left;">밝음과 어둠의 관계, 빛의 시뮬레이션</td>
+</tr>
+<tr>
+<td style="text-align: left;">6</td>
+<td style="text-align: left;"><strong>색채</strong></td>
+<td style="text-align: left;">Color</td>
+<td style="text-align: left;">hue, saturation, brightness의 세 차원</td>
+</tr>
+<tr>
+<td style="text-align: left;">7</td>
+<td style="text-align: left;"><strong>질감</strong></td>
+<td style="text-align: left;">Texture</td>
+<td style="text-align: left;">표면의 촉각적/시각적 특성</td>
+</tr>
+<tr>
+<td style="text-align: left;">8</td>
+<td style="text-align: left;"><strong>스케일</strong></td>
+<td style="text-align: left;">Scale</td>
+<td style="text-align: left;">상대적 크기 관계</td>
+</tr>
+<tr>
+<td style="text-align: left;">9</td>
+<td style="text-align: left;"><strong>차원</strong></td>
+<td style="text-align: left;">Dimension</td>
+<td style="text-align: left;">2D 표면에서의 깊이 환영(illusion)</td>
+</tr>
+<tr>
+<td style="text-align: left;">10</td>
+<td style="text-align: left;"><strong>움직임</strong></td>
+<td style="text-align: left;">Movement</td>
+<td style="text-align: left;">시각적 역동성, 암시된 운동</td>
+</tr>
+</tbody>
+</table>
+<p><strong>시각적 기법 — 대비적 쌍(Contrasting Technique Pairs)</strong>:</p>
+<p>Dondis는 시각적 구성에서 작동하는 20쌍의 대비적 기법을 제시했다:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">기법 A</th>
+<th style="text-align: left;">기법 B</th>
+<th style="text-align: left;"></th>
+<th style="text-align: left;">기법 A</th>
+<th style="text-align: left;">기법 B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">조화 Harmony</td>
+<td style="text-align: left;">대비 Contrast</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">능동 Activeness</td>
+<td style="text-align: left;">정지 Stasis</td>
+</tr>
+<tr>
+<td style="text-align: left;">균형 Balance</td>
+<td style="text-align: left;">불안정 Instability</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">미묘 Subtlety</td>
+<td style="text-align: left;">대담 Boldness</td>
+</tr>
+<tr>
+<td style="text-align: left;">대칭 Symmetry</td>
+<td style="text-align: left;">비대칭 Asymmetry</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">중립 Neutrality</td>
+<td style="text-align: left;">강조 Accent</td>
+</tr>
+<tr>
+<td style="text-align: left;">규칙 Regularity</td>
+<td style="text-align: left;">불규칙 Irregularity</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">투명 Transparency</td>
+<td style="text-align: left;">불투명 Opacity</td>
+</tr>
+<tr>
+<td style="text-align: left;">단순 Simplicity</td>
+<td style="text-align: left;">복잡 Complexity</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">일관 Consistency</td>
+<td style="text-align: left;">변화 Variation</td>
+</tr>
+<tr>
+<td style="text-align: left;">통일 Unity</td>
+<td style="text-align: left;">분절 Fragmentation</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">정확 Accuracy</td>
+<td style="text-align: left;">왜곡 Distortion</td>
+</tr>
+<tr>
+<td style="text-align: left;">절제 Economy</td>
+<td style="text-align: left;">정교 Intricacy</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">평면 Flatness</td>
+<td style="text-align: left;">깊이 Depth</td>
+</tr>
+<tr>
+<td style="text-align: left;">절제된 표현 Understatement</td>
+<td style="text-align: left;">과장 Exaggeration</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">단일 Singularity</td>
+<td style="text-align: left;">병치 Juxtaposition</td>
+</tr>
+<tr>
+<td style="text-align: left;">예측가능 Predictability</td>
+<td style="text-align: left;">자발성 Spontaneity</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">순차 Sequentiality</td>
+<td style="text-align: left;">임의 Randomness</td>
+</tr>
+<tr>
+<td style="text-align: left;">선명 Sharpness</td>
+<td style="text-align: left;">확산 Diffusion</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">반복 Repetition</td>
+<td style="text-align: left;">일회성 Episodicity</td>
+</tr>
+</tbody>
+</table>
+<p><strong>세 가지 메시지 수준</strong>:
+1. <strong>재현적(Representational)</strong> — 눈으로 보고 경험하는 것의 직접적 재현
+2. <strong>추상적(Abstract)</strong> — 기본 시각 요소로 환원된 순수 형태적 메시지
+3. <strong>상징적(Symbolic)</strong> — 문화적으로 약속된 의미 체계 (십자가, 국기 등)</p>
+<p><strong>Dondis의 공헌</strong>: 시각적 리터러시를 <strong>실천 가능한 교육 과정</strong>으로 체계화했다. 예술적 재능이 아니라 <strong>시각적 판단력(visual judgment)</strong>을 기르는 것이 목표.</p>
+<hr />
+<h3>George Nelson (1908–1986)</h3>
+<p><strong>주저</strong>: <em>How to See: Visual Adventures in a World God Never Made</em> (1977), <em>Problems of Design</em> (1957)
+<strong>위치</strong>: Herman Miller 디자인 디렉터, 산업 디자이너, 저술가, 교육자</p>
+<p>Nelson은 Charles Eames를 발탁한 인물이자, 20세기 미국 산업 디자인의 핵심 인물이다.</p>
+<p><strong>시각적 리터러시에 대한 옹호</strong>:</p>
+<p><em>How to See</em>에서 Nelson은 대부분의 사람들이 <strong>&ldquo;보지만 보지 못한다(they look but don&rsquo;t see)&rdquo;</strong>고 주장했다. 시각적 환경을 의식적으로, 비판적으로 관찰하는 능력은 훈련을 통해 개발해야 한다.</p>
+<ul>
+<li>현대 도시 환경의 <strong>시각적 혼란(visual chaos)</strong> — 간판, 건축, 광고, 제품 디자인 — 에 대한 비판적 시각이 시민적 역량이다</li>
+<li><strong>좋은 디자인은 좋은 시각적 사고에서 나온다.</strong> 디자이너만이 아니라 모든 사람이 시각적으로 사고하는 능력을 키워야 한다</li>
+<li>디자이너는 시각적 환경의 질에 대한 <strong>사회적 책임</strong>이 있다</li>
+</ul>
+<p>Nelson의 글쓰기 자체가 &ldquo;디자이너가 왜 시각적 리터러시를 사회에 전파해야 하는가&rdquo;에 대한 실천이었다.</p>
+<hr />
+<h3>Rudolf Arnheim (1904–2007)</h3>
+<p><strong>주저</strong>: <em>Art and Visual Perception: A Psychology of the Creative Eye</em> (1954), <em>Visual Thinking</em> (1969)
+<strong>위치</strong>: 게슈탈트 심리학자, 미학 이론가</p>
+<p><strong>혁명적 주장 — &ldquo;지각은 사고이다(Perception IS Thinking)&rdquo;</strong>:</p>
+<p>서구 철학의 오래된 이분법 — 감각 vs 이성, 지각 vs 사고 — 에 대한 정면 도전:</p>
+<ul>
+<li><strong>시각적 지각은 수동적 기록이 아니라 능동적 탐색이다.</strong> 보는 행위 자체가 선택, 추출, 단순화, 추상화, 분석, 종합, 완성, 교정, 비교, 문제 해결을 포함</li>
+<li><strong>이러한 지각 활동은 &ldquo;사고&rdquo;의 모든 특성을 갖추고 있다.</strong> 시각적 지각은 인지의 하위 범주가 아니라 인지 <strong>그 자체</strong>의 핵심 형태</li>
+<li><strong>추상적 사고도 감각적 기반 위에서 작동한다.</strong> 가장 고도의 이론적 사고조차 시각적/감각적 이미지와 패턴을 통해 이루어진다</li>
+</ul>
+<p>Arnheim은 게슈탈트 원리를 예술 작품 분석에 체계적으로 적용하여, visual literacy에 <strong>과학적 정당성</strong>을 부여했다.</p>
+<hr />
+<h3>John Berger (1926–2017)</h3>
+<p><strong>주저</strong>: <em>Ways of Seeing</em> (1972)
+<strong>위치</strong>: 미술 비평가, 소설가, 화가</p>
+<p><strong>핵심 — 보는 것은 문화적으로 구성된다</strong>:</p>
+<ul>
+<li>우리가 세계를 &ldquo;보는 방식&rdquo;은 우리가 알고 있는 것, 믿고 있는 것에 의해 끊임없이 영향받는다</li>
+<li><strong>이미지의 기계적 복제</strong>는 보는 방식을 근본적으로 바꾸었다 (Walter Benjamin을 계승)</li>
+<li><strong>&ldquo;Men look at women. Women watch themselves being looked at.&rdquo;</strong> — 유럽 유화 전통에서 여성 누드가 &ldquo;남성의 시선(male gaze)&rdquo;을 위해 구성된 방식을 폭로</li>
+<li>유럽 유화 전통의 <strong>소유(possession)의 논리</strong>가 현대 광고에 직접 계승됨</li>
+</ul>
+<p>Berger의 공헌: visual literacy에 <strong>이데올로기 비판</strong>과 <strong>권력 분석</strong>의 차원을 도입.</p>
+<hr />
+<h3>Gyorgy Kepes (1906–2001)</h3>
+<p><strong>주저</strong>: <em>Language of Vision</em> (1944), <em>Vision + Value</em> 시리즈(6권, 1965–66)
+<strong>위치</strong>: 바우하우스 출신, MIT Center for Advanced Visual Studies 설립자</p>
+<p>Moholy-Nagy의 조수로 출발, 시카고 New Bauhaus → MIT에서 예술·과학·기술의 융합을 추구.</p>
+<p><strong>핵심 — 시각적 커뮤니케이션은 하나의 &ldquo;언어&rdquo;이다</strong>:
+- 시각적 이미지에는 <strong>문법적 질서(grammatical order)</strong>가 존재한다
+- 이 질서는 게슈탈트 심리학 원리에 기반하며, 공간적 관계를 통해 의미를 생성
+- <strong>예술적 비전과 과학적 비전은 통합될 수 있고, 통합되어야 한다</strong></p>
+<hr />
+<h3>Wassily Kandinsky (1866–1944)</h3>
+<p><strong>주저</strong>: <em>Concerning the Spiritual in Art</em> (1911), <em>Point and Line to Plane</em> (1926)
+<strong>위치</strong>: 바우하우스 교수, 추상 미술의 개척자</p>
+<p><strong>추상 시각 문법의 체계화</strong>:</p>
+<ul>
+<li><strong>점(Point)</strong>: 내적 긴장(inner tension)을 가진 최소 단위. 침묵의 형태</li>
+<li><strong>선(Line)</strong>: 점에 힘이 가해져 이동한 궤적. 직선, 곡선, 꺾인선 각각이 고유한 정서적/역동적 특성</li>
+<li><strong>면(Plane)</strong>: 구성이 펼쳐지는 기본 평면. 상하좌우의 각 영역이 서로 다른 &ldquo;무게&rdquo;와 &ldquo;온도&rdquo;</li>
+</ul>
+<p>형태-색채 연합: 원-파랑, 사각형-빨강, 삼각형-노랑. 시각적 요소들이 <strong>내적 필연성(inner necessity)</strong>에 따라 고유한 표현적 가치를 가진다.</p>
+<hr />
+<h3>Paul Klee (1879–1940)</h3>
+<p><strong>주저</strong>: <em>Pedagogical Sketchbook</em> (1925), <em>Notebooks</em> (사후 출판)
+<strong>위치</strong>: 바우하우스 교수</p>
+<p><strong>시각적 사고의 교육학</strong>:
+- <strong>능동적 선(Active Line)</strong>: 자유롭게 산책하는 선, 형태를 구성하는 선
+- <strong>차원의 전환</strong>: 1D(선) → 2D(면) → 3D
+- <strong>자연에서의 시각적 구조</strong>: 물, 대기, 식물에서 추출한 시각적 원리</p>
+<blockquote>
+<p><em>&ldquo;Art does not reproduce the visible; rather, it makes visible.&rdquo;</em></p>
+</blockquote>
+<p>Visual literacy의 궁극적 목표: 단순한 재현이 아니라, <strong>보이지 않는 구조와 관계를 시각적으로 드러내는 것</strong>.</p>
+<hr />
+<h3>Johannes Itten (1888–1967)</h3>
+<p><strong>위치</strong>: 바우하우스 예비 과정(Vorkurs) 설계자</p>
+<p><strong>시각적 기초 교육의 체계화</strong>:
+- <strong>대비의 이론(Theory of Contrasts)</strong>: 시각적 경험의 근본에 대비가 있다
+- <strong>7가지 색채 대비</strong>: 색상 대비, 명도 대비, 한난 대비, 보색 대비, 동시 대비, 채도 대비, 면적 대비
+- <strong>전인적 접근</strong>: 수업 전 호흡 운동과 명상 실시 — 시각적 훈련에 신체적·정신적 준비가 필요</p>
+<p>Itten의 Vorkurs = <strong>분야에 관계없이 모든 학생이 거쳐야 하는 시각적 기초 교육</strong>. 현대 디자인 Foundation Course의 원형.</p>
+<hr />
+<h3>Laszlo Moholy-Nagy (1895–1946)</h3>
+<p><strong>주저</strong>: <em>The New Vision</em> (1928/1938), <em>Vision in Motion</em> (1947)
+<strong>위치</strong>: 바우하우스 교수, 시카고 New Bauhaus 설립자</p>
+<p><strong>&ldquo;New Vision&rdquo; — 기술이 여는 새로운 시각</strong>:
+- 사진, 영화, X-레이, 현미경 등이 인간의 눈이 볼 수 없는 것을 보게 해준다
+- <strong>포토그램(Photogram)</strong>: 카메라 없이 빛 자체를 조형 매체로 탐구
+- <strong>Vision in Motion</strong>: 정적 시각이 아니라 <strong>운동 중의 시각</strong> — 시간, 공간, 운동의 통합적 경험이 현대 시각적 리터러시의 핵심
+- 모든 감각을 통합하는 <strong>전인적(holistic) 교육</strong> 주창</p>
+<hr />
+<h3>Edward Tufte (1942– )</h3>
+<p><strong>주저</strong>: <em>The Visual Display of Quantitative Information</em> (1983), <em>Envisioning Information</em> (1990), <em>Visual Explanations</em> (1997)
+<strong>위치</strong>: 예일대 교수, 정보 디자인의 거장</p>
+<p><strong>정보 시각화의 원리와 윤리</strong>:
+- <strong>Chartjunk 비판</strong>: 장식적이지만 정보를 왜곡하는 시각적 요소들 배격
+- <strong>Data-Ink Ratio</strong>: 데이터 전달 잉크 비율 최대화, 비데이터 잉크 최소화
+- <strong>Small Multiples</strong>: 동일 구조 반복 + 데이터만 변화시켜 비교와 변화를 보여주는 기법
+- <strong>&ldquo;Above all else, show the data.&rdquo;</strong></p>
+<p>Tufte의 공헌: visual literacy를 <strong>정보의 정직한 전달(integrity)</strong>이라는 윤리적 차원과 연결. 나쁜 시각화는 못생긴 것이 아니라 <strong>거짓말하는 것</strong>이다.</p>
+<hr />
+<h3>Roland Barthes (1915–1980)</h3>
+<p><strong>주저</strong>: <em>Mythologies</em> (1957), <em>Image-Music-Text</em> (1977), <em>Camera Lucida</em> (1980)
+<strong>위치</strong>: 프랑스 문학 비평가, 기호학자</p>
+<p><strong>이미지의 기호학적 분석 도구</strong>:</p>
+<p>&ldquo;The Rhetoric of the Image&rdquo;에서 광고 이미지의 세 가지 메시지 층위:
+1. <strong>언어적 메시지(Linguistic Message)</strong> — 텍스트, 캡션
+2. <strong>코드화된 도상적 메시지(Connotation)</strong> — 문화적으로 학습된 의미
+3. <strong>코드화되지 않은 도상적 메시지(Denotation)</strong> — 문자 그대로의 대상 인식</p>
+<p><strong>스투디움과 푼크툼</strong> (<em>Camera Lucida</em>):
+- <strong>Studium</strong>: 문화적 관심, 일반적 관여. 사진의 맥락과 의도를 파악하는 교양적 반응
+- <strong>Punctum</strong>: 찔림. 사진에서 개인적으로 나를 찌르는, 의도되지 않은 세부. 코드화할 수 없는 사적 경험</p>
+<hr />
+<h3>Susan Sontag (1933–2004)</h3>
+<p><strong>주저</strong>: <em>On Photography</em> (1977), <em>Regarding the Pain of Others</em> (2003)</p>
+<p><strong>사진과 이미지의 비판적 분석</strong>:
+- 사진 찍기는 세계와의 관계를 규정하는 방식이며, 일종의 <strong>&ldquo;소유&rdquo;</strong>의 형태
+- <strong>이미지의 과잉(surfeit of images)</strong>: 이미지의 홍수 속에서 이미지는 점점 현실을 대체한다
+- <strong>마비 효과(anaesthetic effect)</strong>: 충격적 이미지에 반복 노출되면 감수성이 둔화된다
+- 타인의 고통을 담은 이미지를 보는 행위의 <strong>윤리적 문제</strong></p>
+<p>Visual literacy에 <strong>윤리적 성찰</strong>의 차원을 추가.</p>
+<hr />
+<h3>W.J.T. Mitchell (1942– )</h3>
+<p><strong>주저</strong>: <em>Picture Theory</em> (1994), <em>What Do Pictures Want?</em> (2005)
+<strong>위치</strong>: 시카고대 영문학/미술사 교수</p>
+<p><strong>&ldquo;Pictorial Turn&rdquo; — 그림적 전환</strong>:</p>
+<p>Richard Rorty의 &ldquo;언어적 전환(linguistic turn)&rdquo; 이후, 시각적 이미지가 텍스트에 종속된 부차적 매체가 아니라 <strong>독자적인 분석 대상이자 문화적 힘</strong>으로 부상했다는 선언.</p>
+<p><strong>&ldquo;What Do Pictures Want?&rdquo;</strong>: 이미지를 소통 도구가 아니라, 마치 욕망과 생명을 가진 <strong>&ldquo;살아있는 존재&rdquo;</strong>처럼 다룰 것을 제안. 이미지의 <strong>에이전시(agency)</strong> — 이미지가 우리에게 행사하는 힘 — 에 대한 탐구.</p>
+<hr />
+<h3>Massimo Vignelli (1931–2014)</h3>
+<p><strong>주저</strong>: <em>The Vignelli Canon</em> (2009, 무료 PDF 배포)</p>
+<p><strong>시각적 규율(visual discipline)의 체계</strong>:
+- <strong>&ldquo;If you can design one thing, you can design everything.&rdquo;</strong> — 디자인의 원리는 보편적
+- Intangibles(의미론, 통사론, 화용론, 규율, 적절성, 시대초월, 책임 등)와 Tangibles(종이, 그리드, 서체, 여백 등)
+- <strong>제한된 서체 사용</strong>: 소수의 뛰어난 서체(Helvetica, Bodoni, Garamond 등)로 거의 모든 문제 해결 가능 — <strong>절제(economy)와 일관성(consistency)</strong>의 가치</p>
+<hr />
+<h3>Bruno Munari (1907–1998)</h3>
+<p><strong>주저</strong>: <em>Design as Art</em> (1966)</p>
+<ul>
+<li>디자인과 순수 예술의 인위적 구분 거부</li>
+<li><strong>&ldquo;Complicating is easy; simplifying is difficult.&rdquo;</strong> — 복잡한 것을 단순하게 만드는 능력이 시각적 사고의 핵심</li>
+<li>어린이의 창의성과 시각적 감수성 개발에 깊은 관심 — 놀이(play)를 통한 시각적 탐구</li>
+</ul>
+<hr />
+<h3>Ellen Lupton (1963– )</h3>
+<p><strong>주저</strong>: <em>Thinking with Type</em> (2004/2010), <em>Design Is Storytelling</em> (2017)
+<strong>위치</strong>: Cooper Hewitt 큐레이터, MICA 교수</p>
+<ul>
+<li><strong>타이포그래피의 시각적 리터러시</strong>: 글자, 텍스트, 그리드의 세 차원에서 타이포그래피 원리를 체계화</li>
+<li>디자인 원리를 전문가뿐 아니라 일반 대중에게도 접근 가능하게 만드는 데 기여</li>
+</ul>
+<hr />
+<h3>사상가 계보도</h3>
+<pre><code>[지각 심리학]                    [바우하우스 교육]
+  게슈탈트 심리학                   Itten (Vorkurs/색채론)
+       ↓                          Kandinsky (점·선·면)
+  Arnheim (지각=사고)               Klee (교육적 스케치북)
+       ↓                          Moholy-Nagy (New Vision)
+       ↓                               ↓
+       └───────────┐          ┌────────┘
+                   ↓          ↓
+              Kepes (Language of Vision, 1944)
+                   ↓
+              Dondis (A Primer of Visual Literacy, 1973)
+              Nelson (How to See, 1977)
+
+[비판적 시각 이론]              [기호학]
+  Berger (Ways of Seeing)        Barthes (이미지의 수사학)
+  Sontag (On Photography)        Eco (기호학과 일상)
+       ↓                              ↓
+       └───────────┐          ┌────────┘
+                   ↓          ↓
+              Mitchell (Pictorial Turn, 1994)
+
+[디자인 실천]                   [정보 디자인]
+  Vignelli (Vignelli Canon)      Tufte (정보의 정직한 시각화)
+  Munari (Design as Art)
+  Lupton (Thinking with Type)
+</code></pre>
+<hr />
+<h2>4. 시각적 리터러시의 핵심 구성요소</h2>
+<h3>게슈탈트 원리 (Gestalt Principles)</h3>
+<p>인간이 시각적 정보를 조직하는 보편적 원리:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">원리</th>
+<th style="text-align: left;">영어</th>
+<th style="text-align: left;">설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>근접성</strong></td>
+<td style="text-align: left;">Proximity</td>
+<td style="text-align: left;">가까이 있는 요소는 하나의 그룹으로 지각</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>유사성</strong></td>
+<td style="text-align: left;">Similarity</td>
+<td style="text-align: left;">비슷한 요소는 하나의 그룹으로 지각</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>폐합</strong></td>
+<td style="text-align: left;">Closure</td>
+<td style="text-align: left;">불완전한 형태를 완결된 것으로 인식하려는 경향</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>연속성</strong></td>
+<td style="text-align: left;">Continuity</td>
+<td style="text-align: left;">매끄러운 방향을 따른 배열은 하나의 연속체로 지각</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>전경-배경</strong></td>
+<td style="text-align: left;">Figure-Ground</td>
+<td style="text-align: left;">시각적 장을 전경과 배경으로 분리하여 지각</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>공통 운명</strong></td>
+<td style="text-align: left;">Common Fate</td>
+<td style="text-align: left;">같은 방향으로 움직이는 요소는 하나의 그룹</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>간결성</strong></td>
+<td style="text-align: left;">Praegnanz</td>
+<td style="text-align: left;">지각은 가장 단순하고 안정적인 해석을 선호</td>
+</tr>
+</tbody>
+</table>
+<h3>구성 원리 (Composition Principles)</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">원리</th>
+<th style="text-align: left;">설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>균형 (Balance)</strong></td>
+<td style="text-align: left;">시각적 &ldquo;무게&rdquo;의 분배. 대칭/비대칭 균형</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>대비 (Contrast)</strong></td>
+<td style="text-align: left;">시각적 흥미와 계층 구조를 만드는 가장 강력한 도구</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>통일 (Unity)</strong></td>
+<td style="text-align: left;">전체적 조화와 일관성</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>다양성 (Variety)</strong></td>
+<td style="text-align: left;">시각적 흥미를 유지하기 위한 변화</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>강조 (Emphasis)</strong></td>
+<td style="text-align: left;">시각적 초점. 대비, 격리, 위치로 생성</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>비례 (Proportion)</strong></td>
+<td style="text-align: left;">부분과 전체의 크기 관계</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>리듬 (Rhythm)</strong></td>
+<td style="text-align: left;">시각적 요소의 반복과 변화의 패턴</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>시각적 계층 (Visual Hierarchy)</strong></td>
+<td style="text-align: left;">크기, 색, 대비, 위치로 정보의 중요도 전달</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>여백 (White Space)</strong></td>
+<td style="text-align: left;">비어있는 공간도 적극적 시각 요소</td>
+</tr>
+</tbody>
+</table>
+<h3>색채 이론의 기초</h3>
+<p><strong>Itten의 7가지 색채 대비</strong>:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">#</th>
+<th style="text-align: left;">대비</th>
+<th style="text-align: left;">설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">색상 대비 (Contrast of Hue)</td>
+<td style="text-align: left;">순색 간의 대비</td>
+</tr>
+<tr>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">명도 대비 (Light-Dark)</td>
+<td style="text-align: left;">밝음과 어둠의 대비</td>
+</tr>
+<tr>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">한난 대비 (Cold-Warm)</td>
+<td style="text-align: left;">차가운 색과 따뜻한 색의 대비</td>
+</tr>
+<tr>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">보색 대비 (Complementary)</td>
+<td style="text-align: left;">색상환 반대편 색의 대비</td>
+</tr>
+<tr>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">동시 대비 (Simultaneous)</td>
+<td style="text-align: left;">한 색이 주변 색에 의해 보색 방향으로 왜곡되는 현상</td>
+</tr>
+<tr>
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">채도 대비 (Saturation)</td>
+<td style="text-align: left;">순색과 탁색의 대비</td>
+</tr>
+<tr>
+<td style="text-align: left;">7</td>
+<td style="text-align: left;">면적 대비 (Extension)</td>
+<td style="text-align: left;">색의 면적 비례에 따른 대비</td>
+</tr>
+</tbody>
+</table>
+<h3>형태와 의미의 관계</h3>
+<ul>
+<li><strong>모든 시각적 선택은 의미를 생성한다.</strong> &ldquo;중립적&rdquo; 형태란 존재하지 않음</li>
+<li><strong>외연(Denotation)과 내포(Connotation)</strong>: 이미지의 문자적 의미와 문화적으로 학습된 의미 (Barthes)</li>
+<li><strong>시각적 수사학(Visual Rhetoric)</strong>: 은유, 환유, 과장, 반복 등 언어적 수사법의 시각적 등가물</li>
+<li><strong>형식과 내용의 불가분성</strong>: 같은 내용도 다른 형식으로 표현하면 다른 의미</li>
+</ul>
+<hr />
+<h2>5. 프레임워크와 모델</h2>
+<h3>Dondis의 시각적 구문 프레임워크</h3>
+<pre><code>1층: 시각적 요소 (Visual Elements) — 시각 언어의 어휘
+     점, 선, 형태, 방향, 톤, 색채, 질감, 스케일, 차원, 움직임
+
+2층: 시각적 기법 (Visual Techniques) — 시각 언어의 문법
+     20쌍의 대비적 기법 (조화↔대비, 균형↔불안정 등)
+
+3층: 메시지 수준 (Message Levels) — 의미 전달의 전략
+     재현적, 추상적, 상징적
+</code></pre>
+<h3>Arnheim의 지각 심리학 프레임워크</h3>
+<ul>
+<li><strong>시각적 힘(Visual Forces)</strong>: 모든 시각적 구성 안에 작용하는 방향, 긴장, 끌어당김</li>
+<li><strong>시각적 무게(Visual Weight)</strong>: 크기, 색, 밀도, 위치에 의해 결정</li>
+<li><strong>시각적 균형(Visual Balance)</strong>: 시각적 힘들의 평형 상태</li>
+<li><strong>구조적 뼈대(Structural Skeleton)</strong>: 모든 프레임 안의 보이지 않는 힘의 패턴 — 중심, 대각선, 축</li>
+<li><strong>단순화 경향(Praegnanz)</strong>: 가장 단순한 구조를 추구</li>
+</ul>
+<h3>ACRL Visual Literacy Competency Standards (2011)</h3>
+<p>7가지 역량 기준:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">#</th>
+<th style="text-align: left;">역량</th>
+<th style="text-align: left;">핵심</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">필요성 결정</td>
+<td style="text-align: left;">시각적 정보가 필요한 상황 인식</td>
+</tr>
+<tr>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">찾기 및 접근</td>
+<td style="text-align: left;">다양한 소스에서 이미지 검색·탐색·접근</td>
+</tr>
+<tr>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">해석 및 분석</td>
+<td style="text-align: left;">외연적·내포적 의미, 미적·기술적 특성 분석</td>
+</tr>
+<tr>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">평가</td>
+<td style="text-align: left;">품질, 정확성, 출처 신뢰성 비판적 평가</td>
+</tr>
+<tr>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">효과적 사용</td>
+<td style="text-align: left;">커뮤니케이션 목적에 맞게 활용</td>
+</tr>
+<tr>
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">의미 있는 창작</td>
+<td style="text-align: left;">시각적 요소와 원리를 적용한 창작</td>
+</tr>
+<tr>
+<td style="text-align: left;">7</td>
+<td style="text-align: left;">윤리적·법적·사회적 이해</td>
+<td style="text-align: left;">저작권, 이미지 조작, 재현의 정치학</td>
+</tr>
+</tbody>
+</table>
+<h3>Visual Literacy의 6차원 통합 모델</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">차원</th>
+<th style="text-align: left;">핵심 질문</th>
+<th style="text-align: left;">대표 사상가</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>형식적 분석</strong></td>
+<td style="text-align: left;">어떻게 구성되었는가?</td>
+<td style="text-align: left;">Dondis, Arnheim, Kandinsky, Klee, Itten</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>지각 심리학</strong></td>
+<td style="text-align: left;">눈과 뇌는 어떻게 처리하는가?</td>
+<td style="text-align: left;">Arnheim, 게슈탈트 심리학</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>기호학적 분석</strong></td>
+<td style="text-align: left;">어떻게 의미를 만드는가?</td>
+<td style="text-align: left;">Barthes, Peirce</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>비판적 분석</strong></td>
+<td style="text-align: left;">누구의 관점? 무엇이 배제?</td>
+<td style="text-align: left;">Berger, Sontag, Mitchell</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>디자인 실천</strong></td>
+<td style="text-align: left;">어떻게 효과적으로 만들 것인가?</td>
+<td style="text-align: left;">Kepes, Vignelli, Lupton, Tufte, Munari</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>시각 문화 이론</strong></td>
+<td style="text-align: left;">이미지는 사회에서 어떤 역할?</td>
+<td style="text-align: left;">Mitchell, Berger, Sontag, Barthes</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>6. 훈련 방법 — 시각적 리터러시를 개발하는 법</h2>
+<h3>관찰 훈련</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">연습</th>
+<th style="text-align: left;">방법</th>
+<th style="text-align: left;">목적</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>일상 환경 관찰</strong></td>
+<td style="text-align: left;">Nelson의 방법 — 매일 의식적으로 시각적 환경을 관찰</td>
+<td style="text-align: left;">&ldquo;보지만 보지 못하는&rdquo; 상태에서 벗어나기</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>스케치 습관</strong></td>
+<td style="text-align: left;">매일 관찰한 것을 스케치. 정확한 묘사가 아니라 관찰의 깊이가 목적</td>
+<td style="text-align: left;">눈과 손의 연결 강화</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>사진 연습</strong></td>
+<td style="text-align: left;">특정 주제(빛/그림자, 패턴, 텍스처, 색채)에 집중하여 의식적으로 촬영</td>
+<td style="text-align: left;">선택적 주의력</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>느린 관찰(Slow Looking)</strong></td>
+<td style="text-align: left;">미술관에서 한 작품 앞에 최소 10~15분</td>
+<td style="text-align: left;">첫인상 이후에 드러나는 것들 발견</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>타이포그래피 산책</strong></td>
+<td style="text-align: left;">도시를 걸으며 서체를 관찰, 기록</td>
+<td style="text-align: left;">시각적 환경의 디자인 판단력</td>
+</tr>
+</tbody>
+</table>
+<h3>분석 훈련</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">연습</th>
+<th style="text-align: left;">방법</th>
+<th style="text-align: left;">적용 프레임워크</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>이미지 분석 일지</strong></td>
+<td style="text-align: left;">매주 1개 이미지를 선택해 체계적으로 분석</td>
+<td style="text-align: left;">Dondis 요소+기법, Barthes 외연/내포</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>광고 해체</strong></td>
+<td style="text-align: left;">광고 이미지를 기호학적으로 분해</td>
+<td style="text-align: left;">Barthes의 세 메시지 층위</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>영화 프레임 분석</strong></td>
+<td style="text-align: left;">영화의 특정 장면 정지 → 구성, 조명, 색채, 앵글 분석</td>
+<td style="text-align: left;">Arnheim의 시각적 힘</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>비교 분석</strong></td>
+<td style="text-align: left;">같은 주제의 서로 다른 이미지를 비교</td>
+<td style="text-align: left;">시각적 선택이 만드는 의미 차이</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>그리드 분석</strong></td>
+<td style="text-align: left;">좋은 디자인의 기저 그리드 구조 추출</td>
+<td style="text-align: left;">보이지 않는 구조선 찾기</td>
+</tr>
+</tbody>
+</table>
+<h3>실천 훈련</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">연습</th>
+<th style="text-align: left;">방법</th>
+<th style="text-align: left;">개발 역량</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>형태 축소</strong></td>
+<td style="text-align: left;">복잡한 대상을 원, 사각, 삼각으로 환원</td>
+<td style="text-align: left;">추상화 능력</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>톤/명도 연습</strong></td>
+<td style="text-align: left;">흑백만으로 작업</td>
+<td style="text-align: left;">빛, 형태, 구성의 본질</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>색채 제한</strong></td>
+<td style="text-align: left;">2~3색만으로 작업</td>
+<td style="text-align: left;">색채 관계의 심층 이해</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>대비 쌍 연습</strong></td>
+<td style="text-align: left;">Dondis의 대비 쌍을 각각 적용한 두 구성 만들기</td>
+<td style="text-align: left;">시각적 기법의 체험적 이해</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>시각적 변환</strong></td>
+<td style="text-align: left;">음악→시각, 시→시각으로 전환</td>
+<td style="text-align: left;">감각 간 번역 능력</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>모작(Master Copy)</strong></td>
+<td style="text-align: left;">존경하는 작업을 정밀하게 재현</td>
+<td style="text-align: left;">원작의 시각적 결정을 체험적으로 이해</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>콜라주</strong></td>
+<td style="text-align: left;">기존 이미지를 재배치하여 새 의미 생성</td>
+<td style="text-align: left;">시각적 구문의 체험적 이해</td>
+</tr>
+</tbody>
+</table>
+<h3>디자인 크리틱의 4단계</h3>
+<pre><code>1. 기술적 분석 (Descriptive)
+   → 무엇이 보이는가? 판단 이전에 관찰.
+
+2. 해석적 분석 (Interpretive)
+   → 이것은 무엇을 의미하는가? 시각적 선택이 전달하는 메시지.
+
+3. 평가적 분석 (Evaluative)
+   → 이것은 효과적인가? 의도한 목적을 달성하는가?
+
+4. 맥락적 분석 (Contextual)
+   → 누가, 왜, 어떤 맥락에서 만들었는가?
+</code></pre>
+<hr />
+<h2>7. 동시대적 맥락</h2>
+<h3>AI 시대의 Visual Literacy</h3>
+<ul>
+<li><strong>AI 생성 이미지(DALL-E, Midjourney 등)의 진위 판별</strong> → 비판적 시각적 판단 능력이 필수</li>
+<li><strong>프롬프트 리터러시 + Visual Literacy의 결합</strong>: AI 이미지 생성 도구를 효과적으로 사용하려면, 시각적 요소와 원리를 <strong>언어로 정확히 기술</strong>할 수 있어야 한다</li>
+<li>AI가 이미지를 생성하는 시대에, 인간의 고유한 역할은 <strong>시각적 판단(visual judgment)</strong> — 무엇이 좋은 이미지인가, 이 이미지가 적절한가, 이 이미지가 진실한가를 판단하는 능력</li>
+</ul>
+<h3>왜 지금 더 중요한가</h3>
+<ol>
+<li><strong>이미지의 폭발적 증가</strong> — 매일 수십억 장의 이미지가 생산·소비</li>
+<li><strong>이미지 조작의 민주화</strong> — &ldquo;보이는 것이 진실인가?&rdquo;를 판단하는 능력이 시민적 필수 역량</li>
+<li><strong>주의 경제(Attention Economy)</strong> — 이미지는 주의를 끌고 감정을 조작하고 행동을 유도하는 가장 강력한 도구. 이 메커니즘을 이해하는 것은 <strong>자기 방어</strong></li>
+<li><strong>시각적 커뮤니케이션의 보편화</strong> — 소셜 미디어, 프레젠테이션, 데이터 시각화에서 시각적 소통 능력 요구</li>
+</ol>
+<hr />
+<h2>8. 추천 도서 — 단계별 학습</h2>
+<h3>입문</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">#</th>
+<th style="text-align: left;">책</th>
+<th style="text-align: left;">저자</th>
+<th style="text-align: left;">핵심</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;"><strong><em>A Primer of Visual Literacy</em></strong></td>
+<td style="text-align: left;">Dondis (1973)</td>
+<td style="text-align: left;">시각적 리터러시의 기본 교재 ← <strong>지금 읽고 있는 책</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;"><em>Ways of Seeing</em></td>
+<td style="text-align: left;">Berger (1972)</td>
+<td style="text-align: left;">비판적 시각의 출발점</td>
+</tr>
+<tr>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;"><em>How to See</em></td>
+<td style="text-align: left;">Nelson (1977)</td>
+<td style="text-align: left;">일상의 시각적 환경을 보는 눈 훈련</td>
+</tr>
+<tr>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;"><em>Understanding Comics</em></td>
+<td style="text-align: left;">McCloud (1993)</td>
+<td style="text-align: left;">시각적 내러티브의 원리를 만화로 설명하는 탁월한 입문서</td>
+</tr>
+</tbody>
+</table>
+<h3>중급</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">#</th>
+<th style="text-align: left;">책</th>
+<th style="text-align: left;">저자</th>
+<th style="text-align: left;">핵심</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;"><em>Art and Visual Perception</em></td>
+<td style="text-align: left;">Arnheim (1954/1974)</td>
+<td style="text-align: left;">시각적 지각의 심리학적 분석</td>
+</tr>
+<tr>
+<td style="text-align: left;">6</td>
+<td style="text-align: left;"><em>Thinking with Type</em></td>
+<td style="text-align: left;">Lupton (2004/2010)</td>
+<td style="text-align: left;">타이포그래피의 시각적 원리</td>
+</tr>
+<tr>
+<td style="text-align: left;">7</td>
+<td style="text-align: left;"><em>Language of Vision</em></td>
+<td style="text-align: left;">Kepes (1944)</td>
+<td style="text-align: left;">시각 언어의 체계적 탐구</td>
+</tr>
+<tr>
+<td style="text-align: left;">8</td>
+<td style="text-align: left;"><em>Point and Line to Plane</em></td>
+<td style="text-align: left;">Kandinsky (1926)</td>
+<td style="text-align: left;">추상적 시각 문법</td>
+</tr>
+<tr>
+<td style="text-align: left;">9</td>
+<td style="text-align: left;"><em>Design as Art</em></td>
+<td style="text-align: left;">Munari (1966)</td>
+<td style="text-align: left;">디자인과 시각적 커뮤니케이션</td>
+</tr>
+<tr>
+<td style="text-align: left;">10</td>
+<td style="text-align: left;"><em>The Visual Display of Quantitative Information</em></td>
+<td style="text-align: left;">Tufte (1983)</td>
+<td style="text-align: left;">정보 시각화의 원리</td>
+</tr>
+<tr>
+<td style="text-align: left;">11</td>
+<td style="text-align: left;"><em>The Vignelli Canon</em></td>
+<td style="text-align: left;">Vignelli (2009)</td>
+<td style="text-align: left;">디자인 규율의 체계 (무료 PDF)</td>
+</tr>
+</tbody>
+</table>
+<h3>심화</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">#</th>
+<th style="text-align: left;">책</th>
+<th style="text-align: left;">저자</th>
+<th style="text-align: left;">핵심</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">12</td>
+<td style="text-align: left;"><em>Visual Thinking</em></td>
+<td style="text-align: left;">Arnheim (1969)</td>
+<td style="text-align: left;">&ldquo;지각은 사고이다&rdquo;의 핵심 논의</td>
+</tr>
+<tr>
+<td style="text-align: left;">13</td>
+<td style="text-align: left;"><em>Image-Music-Text</em></td>
+<td style="text-align: left;">Barthes (1977)</td>
+<td style="text-align: left;">이미지의 기호학적 분석</td>
+</tr>
+<tr>
+<td style="text-align: left;">14</td>
+<td style="text-align: left;"><em>On Photography</em></td>
+<td style="text-align: left;">Sontag (1977)</td>
+<td style="text-align: left;">사진 매체의 비판적 분석</td>
+</tr>
+<tr>
+<td style="text-align: left;">15</td>
+<td style="text-align: left;"><em>Camera Lucida</em></td>
+<td style="text-align: left;">Barthes (1980)</td>
+<td style="text-align: left;">사진의 본질에 대한 성찰</td>
+</tr>
+<tr>
+<td style="text-align: left;">16</td>
+<td style="text-align: left;"><em>Picture Theory</em></td>
+<td style="text-align: left;">Mitchell (1994)</td>
+<td style="text-align: left;">&ldquo;Pictorial Turn&rdquo;과 시각 문화 이론</td>
+</tr>
+<tr>
+<td style="text-align: left;">17</td>
+<td style="text-align: left;"><em>Vision in Motion</em></td>
+<td style="text-align: left;">Moholy-Nagy (1947)</td>
+<td style="text-align: left;">기술 시대의 시각적 사고</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<blockquote>
+<p><em>&ldquo;Complicating is easy; simplifying is difficult.&rdquo;</em> — Bruno Munari</p>
+<p><em>&ldquo;Art does not reproduce the visible; rather, it makes visible.&rdquo;</em> — Paul Klee</p>
+</blockquote>
+<footer class="site-footer">
+  <div class="copyright">&copy; HWI</div>
+  <div class="contact">
+    <a href="mailto:724ch@naver.com">724ch@naver.com</a>
+    <span class="divider">·</span>
+    <a href="https://instagram.com/7.24_ch" target="_blank">@7.24_ch</a>
+  </div>
+</footer>
+</div>
+</div>
+</body>
+</html>

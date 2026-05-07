@@ -1,0 +1,1736 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>인식과 소통 — 움벨트에서 지평 융합까지 · Deep</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fdfcfa;
+    --bg-2: #f4f1ec;
+    --bg-card: #ffffff;
+    --bg-card-2: #f8f6f1;
+    --bg-code: #f4f1ec;
+    --text: #1a1a1a;
+    --text-soft: #4a4845;
+    --text-dim: #807e7a;
+    --text-faint: #c4c2bd;
+    --accent: #d9601f;
+    --accent-2: #e07530;
+    --accent-dim: #b54e15;
+    --teal: #2e8a7c;
+    --teal-dim: #1f5e54;
+    --green: #4a8e4a;
+    --purple: #7e5a98;
+    --pink: #c25787;
+    --blue: #4a72a8;
+    --yellow: #b8954a;
+    --red: #c14638;
+    --border: rgba(0,0,0,0.10);
+    --border-2: rgba(0,0,0,0.16);
+    --rule: rgba(0,0,0,0.12);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Sans KR', -apple-system, sans-serif;
+    font-weight: 400;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+
+  .hero { padding: 110px 60px 140px; position: relative; overflow: hidden; border-bottom: 1px solid var(--border); }
+  .hero-inner { max-width: 1120px; margin: 0 auto; position: relative; }
+  .hero-kicker { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.35em; color: var(--text-dim); margin-bottom: 80px; }
+  .hero h1 { font-family: 'Noto Sans KR', sans-serif; font-weight: 900; font-size: clamp(40px, 5.5vw, 72px); line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 20px; }
+  .hero h1 em { font-style: normal; color: var(--accent); }
+  .hero-lead { max-width: 680px; font-size: 16px; color: var(--text-soft); line-height: 1.8; font-weight: 300; margin-top: 36px; }
+  .hero-lead strong { color: var(--text); font-weight: 500; }
+  .hero-meta { margin-top: 120px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; padding-top: 32px; border-top: 1px solid var(--border); }
+  .hero-meta .label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.25em; color: var(--text-dim); text-transform: uppercase; margin-bottom: 8px; }
+  .hero-meta .value { font-size: 17px; font-weight: 700; color: var(--text); }
+
+  nav.sticky { position: sticky; top: 0; background: rgba(253,252,250,0.92); backdrop-filter: blur(18px); border-bottom: 1px solid var(--border); z-index: 50; padding: 14px 60px; }
+  nav .nav-inner { max-width: 1120px; margin: 0 auto; display: flex; gap: 24px; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; }
+  nav a { color: var(--text-dim); text-decoration: none; white-space: nowrap; padding: 4px 0; border-bottom: 1px solid transparent; transition: all 0.2s; }
+  nav a:hover { color: var(--accent); }
+
+  section { padding: 100px 60px; position: relative; }
+  .container { max-width: 1120px; margin: 0 auto; }
+  .sec-header { margin-bottom: 56px; display: flex; align-items: flex-start; gap: 32px; }
+  .sec-num { font-family: 'JetBrains Mono', monospace; font-size: 56px; font-weight: 700; color: var(--text-faint); line-height: 1; letter-spacing: -0.02em; flex-shrink: 0; }
+  .sec-num.star { color: var(--accent); }
+  .sec-title-wrap { flex: 1; padding-top: 8px; }
+  h2 { font-family: 'Noto Sans KR', sans-serif; font-weight: 900; font-size: clamp(28px, 3.6vw, 44px); line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 16px; color: var(--text); }
+  h2 em { font-style: normal; color: var(--accent); }
+  .sec-sub { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.2em; color: var(--text-dim); text-transform: uppercase; margin-top: 6px; margin-bottom: 22px; }
+  .sec-lead { font-size: 16px; color: var(--text-soft); max-width: 780px; line-height: 1.8; font-weight: 300; }
+  .sec-lead strong { color: var(--text); font-weight: 600; }
+
+  .intro-why { background: var(--bg-card); border: 1px solid var(--border); padding: 36px 40px; margin-top: 32px; }
+  .intro-why h3 { font-size: 18px; font-weight: 700; margin-bottom: 14px; color: var(--text); }
+  .intro-why h3 span { color: var(--accent); font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; margin-right: 10px; }
+  .intro-why p { font-size: 14px; color: var(--text-soft); line-height: 1.8; margin-bottom: 10px; }
+
+  .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
+  .compare-card { background: var(--bg-card); border: 1px solid var(--border); padding: 32px; }
+  .compare-card h4 { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 14px; }
+  .compare-card.old h4 { color: var(--text-dim); }
+  .compare-card.new h4 { color: var(--accent); }
+  .compare-card .punch { font-size: 19px; font-weight: 700; margin-bottom: 14px; line-height: 1.4; }
+  .compare-card.new .punch { color: var(--accent-2); }
+  .compare-card p { font-size: 14px; color: var(--text-soft); line-height: 1.75; margin-bottom: 8px; }
+
+  .phase-hero { background: var(--bg-card); border: 1px solid var(--border); border-left: 4px solid var(--accent); padding: 40px 44px; margin-top: 48px; margin-bottom: 44px; }
+  .phase-hero.teal { border-left-color: var(--teal); }
+  .phase-hero.purple { border-left-color: var(--purple); }
+  .phase-hero.green { border-left-color: var(--green); }
+  .phase-hero.pink { border-left-color: var(--pink); }
+  .phase-hero.blue { border-left-color: var(--blue); }
+  .phase-hero.yellow { border-left-color: var(--yellow); }
+  .phase-era { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.25em; color: var(--text-dim); margin-bottom: 10px; }
+  .phase-era .star { color: var(--accent); margin-left: 8px; font-weight: 700; }
+  .phase-hero h3 { font-size: 26px; font-weight: 800; line-height: 1.3; margin-bottom: 14px; letter-spacing: -0.01em; }
+  .phase-hero h3 em { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; color: var(--accent); }
+  .phase-hero p { font-size: 15px; color: var(--text-soft); line-height: 1.8; margin-bottom: 10px; }
+  .phase-q { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-dim); margin-top: 24px; padding-top: 22px; border-top: 1px dashed var(--border-2); letter-spacing: 0.05em; }
+  .phase-q strong { color: var(--accent-2); }
+
+  .thinker { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--accent); margin-bottom: 28px; overflow: hidden; box-shadow: 0 1px 2px rgba(0,0,0,0.03); }
+  .thinker.teal { border-left-color: var(--teal); }
+  .thinker.purple { border-left-color: var(--purple); }
+  .thinker.green { border-left-color: var(--green); }
+  .thinker.pink { border-left-color: var(--pink); }
+  .thinker.blue { border-left-color: var(--blue); }
+  .thinker.yellow { border-left-color: var(--yellow); }
+  .thinker.red { border-left-color: var(--red); }
+
+  .thinker-top { padding: 28px 36px 22px; display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: start; border-bottom: 1px solid var(--border); }
+  .thinker-id { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+  .thinker-name { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--text); letter-spacing: -0.01em; }
+  .thinker-ko { font-size: 15px; color: var(--text-dim); font-weight: 400; }
+  .thinker-years { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-dim); letter-spacing: 0.15em; }
+  .thinker-tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; padding: 6px 12px; background: rgba(217,96,31,0.10); color: var(--accent); text-transform: uppercase; white-space: nowrap; align-self: start; border: 1px solid rgba(217,96,31,0.28); }
+  .thinker.teal .thinker-tag { background: rgba(46,138,124,0.10); color: var(--teal); border-color: rgba(46,138,124,0.28);}
+  .thinker.purple .thinker-tag { background: rgba(126,90,152,0.10); color: var(--purple); border-color: rgba(126,90,152,0.28);}
+  .thinker.green .thinker-tag { background: rgba(74,142,74,0.10); color: var(--green); border-color: rgba(74,142,74,0.28);}
+  .thinker.pink .thinker-tag { background: rgba(194,87,135,0.10); color: var(--pink); border-color: rgba(194,87,135,0.28);}
+  .thinker.blue .thinker-tag { background: rgba(74,114,168,0.10); color: var(--blue); border-color: rgba(74,114,168,0.28);}
+  .thinker.yellow .thinker-tag { background: rgba(184,149,74,0.10); color: var(--yellow); border-color: rgba(184,149,74,0.28);}
+
+  .thinker-punch { grid-column: 1 / -1; margin-top: 8px; font-size: 17px; font-weight: 600; color: var(--text); line-height: 1.5; letter-spacing: -0.005em; }
+  .thinker-punch em { font-style: normal; color: var(--accent-2); font-weight: 700; }
+  .thinker.teal .thinker-punch em { color: var(--teal); }
+  .thinker.purple .thinker-punch em { color: var(--purple); }
+  .thinker.green .thinker-punch em { color: var(--green); }
+  .thinker.pink .thinker-punch em { color: var(--pink); }
+  .thinker.blue .thinker-punch em { color: var(--blue); }
+  .thinker.yellow .thinker-punch em { color: var(--yellow); }
+
+  .thinker-body { padding: 32px 36px 36px; }
+  .block { margin-bottom: 36px; }
+  .block:last-child { margin-bottom: 0; }
+  .block-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.25em; color: var(--accent); text-transform: uppercase; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+  .block-label::before { content: ''; width: 18px; height: 1px; background: var(--accent); }
+  .thinker.teal .block-label { color: var(--teal); }
+  .thinker.teal .block-label::before { background: var(--teal); }
+  .thinker.purple .block-label { color: var(--purple); }
+  .thinker.purple .block-label::before { background: var(--purple); }
+  .thinker.green .block-label { color: var(--green); }
+  .thinker.green .block-label::before { background: var(--green); }
+  .thinker.pink .block-label { color: var(--pink); }
+  .thinker.pink .block-label::before { background: var(--pink); }
+  .thinker.blue .block-label { color: var(--blue); }
+  .thinker.blue .block-label::before { background: var(--blue); }
+  .thinker.yellow .block-label { color: var(--yellow); }
+  .thinker.yellow .block-label::before { background: var(--yellow); }
+
+  .block p { font-size: 14.5px; color: var(--text-soft); line-height: 1.85; margin-bottom: 10px; }
+  .block p strong { color: var(--text); font-weight: 600; }
+
+  .schema { background: var(--bg-code); border: 1px solid var(--border); padding: 28px 32px; margin: 22px 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.9; color: var(--text-soft); white-space: pre; overflow-x: auto; }
+  .schema .c-a { color: var(--accent); }
+  .schema .c-t { color: var(--teal); }
+  .schema .c-p { color: var(--purple); }
+  .schema .c-g { color: var(--green); }
+  .schema .c-b { color: var(--blue); }
+  .schema .c-y { color: var(--yellow); }
+  .schema .c-pk { color: var(--pink); }
+  .schema .c-d { color: var(--text-dim); }
+  .schema .c-hi { color: var(--text); font-weight: 600; }
+  .schema-cap { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-dim); letter-spacing: 0.15em; margin-top: 8px; text-align: right; }
+
+  .influence { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 14px; }
+  .inf-item { padding: 16px 18px; background: var(--bg-card-2); border-left: 2px solid var(--accent); }
+  .thinker.teal .inf-item { border-left-color: var(--teal); }
+  .thinker.purple .inf-item { border-left-color: var(--purple); }
+  .thinker.green .inf-item { border-left-color: var(--green); }
+  .thinker.pink .inf-item { border-left-color: var(--pink); }
+  .thinker.blue .inf-item { border-left-color: var(--blue); }
+  .thinker.yellow .inf-item { border-left-color: var(--yellow); }
+  .inf-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--text-dim); text-transform: uppercase; margin-bottom: 6px; }
+  .inf-body { font-size: 13px; color: var(--text-soft); line-height: 1.65; }
+  .inf-body strong { color: var(--text); }
+
+  .echo { background: rgba(217,96,31,0.06); border: 1px solid rgba(217,96,31,0.20); padding: 22px 26px; margin-top: 18px; }
+  .thinker.teal .echo { background: rgba(46,138,124,0.07); border-color: rgba(46,138,124,0.22); }
+  .thinker.purple .echo { background: rgba(126,90,152,0.07); border-color: rgba(126,90,152,0.22); }
+  .thinker.green .echo { background: rgba(74,142,74,0.07); border-color: rgba(74,142,74,0.22); }
+  .thinker.pink .echo { background: rgba(194,87,135,0.07); border-color: rgba(194,87,135,0.22); }
+  .thinker.blue .echo { background: rgba(74,114,168,0.07); border-color: rgba(74,114,168,0.22); }
+  .thinker.yellow .echo { background: rgba(184,149,74,0.07); border-color: rgba(184,149,74,0.22); }
+  .echo-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.25em; color: var(--accent); text-transform: uppercase; margin-bottom: 8px; }
+  .thinker.teal .echo-label { color: var(--teal); }
+  .thinker.purple .echo-label { color: var(--purple); }
+  .thinker.green .echo-label { color: var(--green); }
+  .thinker.pink .echo-label { color: var(--pink); }
+  .thinker.blue .echo-label { color: var(--blue); }
+  .thinker.yellow .echo-label { color: var(--yellow); }
+  .echo-body { font-size: 14px; color: var(--text); line-height: 1.7; }
+
+  .quote { margin: 16px 0; padding: 14px 0 14px 20px; border-left: 3px solid var(--accent-dim); font-family: 'Nanum Myeongjo', serif; font-style: italic; font-size: 16px; color: var(--text); line-height: 1.7; }
+  .quote-src { display: block; margin-top: 8px; font-family: 'JetBrains Mono', monospace; font-style: normal; font-size: 10px; color: var(--text-dim); letter-spacing: 0.15em; }
+
+  .concepts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .concept-chip { font-family: 'JetBrains Mono', monospace; font-size: 11px; padding: 6px 12px; background: var(--bg-card-2); border: 1px solid var(--border); color: var(--text-soft); letter-spacing: 0.02em; }
+  .concept-chip strong { color: var(--accent); font-weight: 600; margin-right: 6px; }
+  .thinker.teal .concept-chip strong { color: var(--teal); }
+  .thinker.purple .concept-chip strong { color: var(--purple); }
+  .thinker.green .concept-chip strong { color: var(--green); }
+
+  /* Umwelt creatures custom — Part IV signature */
+  .umwelt-creatures {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 24px;
+  }
+  .creature {
+    background: var(--bg-code);
+    border: 1px solid var(--border);
+    padding: 28px 24px;
+    text-align: center;
+  }
+  .creature-bubble {
+    width: 140px; height: 140px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 42px;
+    position: relative;
+  }
+  .creature.tick .creature-bubble { border-color: var(--accent); color: var(--accent); background: rgba(217,96,31,0.06); }
+  .creature.bee .creature-bubble { border-color: var(--yellow); color: var(--yellow); background: rgba(184,149,74,0.07); }
+  .creature.human .creature-bubble { border-color: var(--teal); color: var(--teal); background: rgba(46,138,124,0.07); }
+  .creature-name { font-family: 'Nanum Myeongjo', serif; font-size: 20px; font-weight: 800; color: var(--text); margin-bottom: 4px; }
+  .creature-en { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--text-dim); margin-bottom: 16px; }
+  .creature ul { list-style: none; text-align: left; padding-left: 8px; }
+  .creature ul li { padding: 5px 0; font-size: 13px; color: var(--text-soft); border-bottom: 1px dashed var(--border); }
+  .creature ul li:last-child { border-bottom: none; }
+  .creature ul li::before { content: '— '; color: var(--text-dim); }
+
+  /* Five-pillar grid for commonalities */
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin-top: 32px;
+  }
+  .pillar {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 24px 20px;
+    border-top: 3px solid var(--accent);
+  }
+  .pillar:nth-child(1) { border-top-color: var(--accent); }
+  .pillar:nth-child(2) { border-top-color: var(--teal); }
+  .pillar:nth-child(3) { border-top-color: var(--purple); }
+  .pillar:nth-child(4) { border-top-color: var(--yellow); }
+  .pillar:nth-child(5) { border-top-color: var(--pink); }
+  .pillar .p-num { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.3em; color: var(--text-dim); margin-bottom: 10px; }
+  .pillar h4 { font-size: 16px; font-weight: 800; line-height: 1.3; margin-bottom: 8px; }
+  .pillar p { font-size: 12.5px; color: var(--text-soft); line-height: 1.6; }
+
+  /* Loss-of-translation list */
+  .loss-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 32px;
+  }
+  .loss-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 24px 26px;
+    border-left: 3px solid var(--red);
+  }
+  .loss-card h4 { font-size: 17px; font-weight: 800; margin-bottom: 8px; color: var(--text); }
+  .loss-card h4 em { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--red); font-style: normal; margin-right: 10px; }
+  .loss-card p { font-size: 13.5px; color: var(--text-soft); line-height: 1.7; }
+
+  /* Practice checklist */
+  .practice-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 40px;
+  }
+  .practice-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 28px 30px;
+  }
+  .practice-card .tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.25em; color: var(--accent); text-transform: uppercase; margin-bottom: 12px; }
+  .practice-card h4 { font-size: 18px; font-weight: 800; margin-bottom: 12px; line-height: 1.4; }
+  .practice-card ul { list-style: none; padding: 0; }
+  .practice-card li { font-size: 13px; color: var(--text-soft); padding: 6px 0; border-bottom: 1px dashed var(--border); line-height: 1.6; }
+  .practice-card li:last-child { border-bottom: none; }
+  .practice-card li::before { content: '▸ '; color: var(--accent); margin-right: 4px; }
+
+  /* Art overlap section */
+  .art-overlap {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 44px;
+    margin-top: 32px;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+  .art-overlap h3 { font-size: 24px; font-weight: 800; line-height: 1.35; margin-bottom: 16px; color: var(--text); }
+  .art-overlap h3 em { font-style: normal; color: var(--accent); }
+  .art-overlap p { font-size: 14px; color: var(--text-soft); line-height: 1.8; margin-bottom: 10px; }
+  .art-overlap .schema { margin: 0; }
+
+  .oneline { padding: 140px 60px; text-align: center; position: relative; overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .oneline::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(217,96,31,0.08), transparent 60%); }
+  .oneline-inner { max-width: 900px; margin: 0 auto; position: relative; }
+  .oneline-k { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.4em; color: var(--accent); margin-bottom: 36px; }
+  .oneline-main { font-size: clamp(22px, 2.8vw, 32px); font-weight: 700; line-height: 1.5; color: var(--text); }
+  .oneline-main em { font-style: normal; color: var(--accent); }
+  .oneline-sig { margin-top: 44px; font-family: 'Playfair Display', serif; font-style: italic; color: var(--text-soft); font-size: 16px; line-height: 1.7; }
+
+  footer { background: var(--bg-2); padding: 70px 60px 40px; border-top: 1px solid var(--border); }
+  footer .inner { max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 56px; }
+  footer h4 { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.25em; color: var(--accent); text-transform: uppercase; margin-bottom: 18px; }
+  footer p, footer li { font-size: 13px; color: var(--text-soft); line-height: 1.8; }
+  footer p strong { color: var(--text); }
+  footer ul { list-style: none; }
+  footer li { padding: 3px 0; }
+  footer li::before { content: '— '; color: var(--text-dim); }
+  footer .colophon { max-width: 1120px; margin: 52px auto 0; padding-top: 24px; border-top: 1px solid var(--border); font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--text-dim); display: flex; justify-content: space-between; }
+
+  @media (max-width: 960px) {
+    .hero, section, footer, nav.sticky { padding-left: 28px; padding-right: 28px; }
+    .sec-header { flex-direction: column; gap: 12px; }
+    .sec-num { font-size: 42px; }
+    .hero-meta { grid-template-columns: 1fr 1fr; }
+    .compare-grid, .art-overlap { grid-template-columns: 1fr; gap: 20px; }
+    .umwelt-creatures, .pillars { grid-template-columns: 1fr; }
+    .practice-grid, .influence, .loss-list { grid-template-columns: 1fr; }
+    footer .inner { grid-template-columns: 1fr; gap: 32px; }
+    .thinker-top { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-kicker">PERCEPTION & COMMUNICATION · DEEP · PART IV</div>
+    <h1>각자의 <em>움벨트</em>에 갇혀 있으면서도,<br/>우리는 <em>어떻게</em> 서로를 이해하는가</h1>
+    <p class="hero-lead">
+      같은 방에 있어도 진드기·꿀벌·인간은 서로 다른 우주를 산다. 인간끼리도 마찬가지다 — 각자의 예측 모델, 각자의 몸 경험, 각자의 언어 게임. 그럼에도 소통은 일어난다.
+      이 문서는 <strong>"왜 소통이 이토록 어려우면서 동시에 왜 가능한가"</strong>를 움벨트·예측 뇌·체화 인지·해석학·언어철학·기호학 여섯 지류에서 끌어모아 한 장의 지도로 만든다.
+    </p>
+    <div class="hero-meta">
+      <div><div class="label">Framing</div><div class="value">Umwelt → Horizon</div></div>
+      <div><div class="label">Stages</div><div class="value">6 프로세스</div></div>
+      <div><div class="label">Thinkers</div><div class="value">10+ 거장</div></div>
+      <div><div class="label">Series</div><div class="value">Part IV · Creative Communicator</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav class="sticky">
+  <div class="nav-inner">
+    <a href="#intro">00 · 들어가며</a>
+    <a href="#s1">01 · 움벨트</a>
+    <a href="#s2">02 · 지각</a>
+    <a href="#s3">03 · 이해</a>
+    <a href="#s4">04 · 언어화</a>
+    <a href="#s5">05 · 공유</a>
+    <a href="#s6">06 · 역설</a>
+    <a href="#s7">07 · 번역의 손실</a>
+    <a href="#s8">08 · 예술의 역할</a>
+    <a href="#s9">09 · 오늘의 적용</a>
+  </div>
+</nav>
+
+<!-- 00 INTRO -->
+<section id="intro">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">00</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">WHY THIS MAP</div>
+        <h2>왜 이 지도가 <em>필요한가</em></h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      크리에이티브 커뮤니케이션은 "메시지를 정확히 전달"하는 일이 아니다. 서로 다른 움벨트에 사는 두 사람 사이에 <strong>다리를 놓는 일</strong>이다. 그 다리가 어떻게 놓이는지 알려면, 먼저 우리 각자가 어떤 감옥에 갇혀 있는지부터 알아야 한다.
+    </p>
+
+    <div class="intro-why">
+      <h3><span>CORE QUESTION</span>이 문서가 답하려는 하나의 질문</h3>
+      <p><strong style="color:var(--text)">"각자의 감각 세계에 갇힌 우리가, 서로 다른 예측 모델·몸·언어를 가진 채, 어떻게 서로를 이해할 수 있는가?"</strong></p>
+      <p>이 질문은 철학의 "타자 문제", 인지과학의 "상호주관성", 소통 이론의 "송수신 모델 한계"라는 세 축이 만나는 교차점이다. 여기에 답하지 않으면 우리가 하는 모든 커뮤니케이션 작업은 맹목이 된다.</p>
+      <p>이 문서의 가정: <strong style="color:var(--accent-2)">완벽한 번역은 불가능하다. 충분한 겹침은 언제나 가능하다. 소통은 그 겹침을 넓히는 일이다.</strong></p>
+    </div>
+
+    <div class="compare-grid">
+      <div class="compare-card old">
+        <h4>— 이 지도 없이 소통할 때</h4>
+        <div class="punch">송신자 모델로 돈다</div>
+        <p>"내가 잘 전달했는데 왜 못 알아듣지?" 소통 실패는 상대의 문제가 된다. 상대의 움벨트를 복원하려는 노력이 없다. 카피·디자인·대화가 자기 투영으로 끝난다.</p>
+      </div>
+      <div class="compare-card new">
+        <h4>— 지도 위에서 소통할 때</h4>
+        <div class="punch">두 움벨트의 지평을 설계한다</div>
+        <p>"상대의 예측 모델은 어떤 경험에서 형성됐을까?"를 먼저 묻는다. 내 메시지를 상대의 움벨트에 착륙시키는 방법을 역설계한다. 소통은 정보 전송이 아니라 <strong>두 지평이 겹쳐지는 사건</strong>으로 재정의된다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 01 UMWELT -->
+<section id="s1" style="background:var(--bg-2);">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">01</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">STAGE 01 · UMWELT</div>
+        <h2>움벨트 — <em>각자의 감각 세계</em>에 산다</h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      에스토니아 생물학자 윅스퀼은 1934년에 놀라운 주장을 했다. <strong>"객관적 환경(Umgebung)은 하나일지 몰라도, 생물들이 실제로 경험하는 세계(Umwelt)는 종마다 다 다르다."</strong> 이 단순한 명제가 철학·언어학·UX·AI까지 흔든다.
+    </p>
+
+    <div class="phase-hero">
+      <div class="phase-era">STAGE 01 · THE CONDITION OF BEING TRAPPED</div>
+      <h3>조건 · <em>객관 환경 ≠ 경험 세계</em></h3>
+      <p>움벨트 개념은 소통의 출발 조건을 규정한다. 우리는 "같은 세계에 살고 있다"는 암묵적 가정 위에서 대화하지만, 이 가정 자체가 틀렸다. 정확히 말하면 — 같은 물리적 공간에 있을 뿐, 같은 의미 공간에 있지 않다.</p>
+      <div class="phase-q">핵심 질문 <strong>→</strong> 당신이 "세계"라 부르는 것은 정확히 누구의 세계인가?</div>
+    </div>
+
+    <!-- Uexküll -->
+    <article class="thinker">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Jakob von Uexküll</span>
+            <span class="thinker-ko">야콥 폰 윅스퀼</span>
+            <span class="thinker-years">1864–1944</span>
+          </div>
+          <div class="thinker-punch">모든 생물은 <em>자기 감각 체계가 허락한 세계</em> 안에서만 산다 — 보편적 환경 같은 것은 경험되지 않는다.</div>
+        </div>
+        <span class="thinker-tag">★ Biosemiotics · Umwelt</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>윅스퀼은 두 개의 독일어 단어를 구분했다. <strong>움게붕(Umgebung)</strong> — 객관적 물리 환경. <strong>움벨트(Umwelt)</strong> — 생물이 실제로 지각하고 의미화하는 주관적 세계. 진드기에게 숲은 털과 체온과 부티르산 냄새의 공간이고, 꿀벌에게 숲은 자외선과 편광 패턴의 공간이다. 셋 다 같은 숲에 있지만, 세 숲을 산다.</p>
+          <p>더 중요한 발견: <strong>움벨트는 감각만의 문제가 아니다.</strong> 각 종은 자기에게 "의미 있는 신호(Bedeutungsträger)"만을 추출한다. 진드기의 세계에 다람쥐는 존재하지 않는다 — 그것은 진드기의 움벨트에 신호로 들어오지 않는다. 우리가 "본다"고 여기는 세계도 실은 우리 종이 의미 있다고 판정한 것들만의 세계다.</p>
+          <div class="quote">"우리가 알지 못하는 환경 속에서 우리와 전혀 다른 세계에 사는 동물을 만날 때, 우리는 그의 Umwelt를 구성해보는 시도를 해야만 한다." <span class="quote-src">— A Foray into the Worlds of Animals and Humans (1934)</span></div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 세 생물의 움벨트</div>
+          <div class="umwelt-creatures">
+            <div class="creature tick">
+              <div class="creature-bubble">Ixodes</div>
+              <div class="creature-name">진드기</div>
+              <div class="creature-en">TICK</div>
+              <ul>
+                <li>부티르산 냄새 (피지)</li>
+                <li>섭씨 37도 온기</li>
+                <li>털의 촉각</li>
+                <li style="color:var(--accent);">오직 이 셋이 세계의 전부</li>
+              </ul>
+            </div>
+            <div class="creature bee">
+              <div class="creature-bubble">Apis</div>
+              <div class="creature-name">꿀벌</div>
+              <div class="creature-en">BEE</div>
+              <ul>
+                <li>자외선 스펙트럼</li>
+                <li>편광 패턴 (태양 나침반)</li>
+                <li>꽃의 전기 신호</li>
+                <li style="color:var(--yellow);">춤으로 위치 공유</li>
+              </ul>
+            </div>
+            <div class="creature human">
+              <div class="creature-bubble">Homo</div>
+              <div class="creature-name">인간</div>
+              <div class="creature-en">HUMAN</div>
+              <ul>
+                <li>가시광선 · 공기 진동</li>
+                <li>언어 · 기호 · 서사</li>
+                <li>문화 · 가치 · 역사</li>
+                <li style="color:var(--teal);">의미의 층이 움벨트를 확장 + 감옥화</li>
+              </ul>
+            </div>
+          </div>
+<div class="schema"><span class="c-d"># 움벨트 중첩 구조</span>
+
+                <span class="c-d">[Umgebung · 객관 환경]</span>
+                          │
+        ┌─────────────────┼─────────────────┐
+        ▼                 ▼                 ▼
+   <span class="c-a">[Tick Umwelt]</span>   <span class="c-y">[Bee Umwelt]</span>    <span class="c-t">[Human Umwelt]</span>
+     3개 신호           자외선/편광       감각 + 의미 층
+        │                 │                 │
+     교집합 없음     교집합 일부      서로 부분 겹침
+
+<span class="c-hi">핵심:</span> 움벨트는 <span class="c-hi">감각의 한계 + 의미화의 한계</span>.
+       의미 없는 자극은 지각되지도 않는다.</div>
+          <div class="schema-cap">UEXKÜLL · UMWELT</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Philosophy</div>
+              <div class="inf-body"><strong>하이데거</strong>의 "세계-내-존재"에 직접 영향. 메를로-퐁티의 체화 현상학도 이 계보. 들뢰즈·과타리의 『천 개의 고원』 생성 개념에 스며들었다.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Biosemiotics</div>
+              <div class="inf-body"><strong>Thomas Sebeok · Kalevi Kull</strong>이 윅스퀼을 재발견해 생물기호학(biosemiotics) 분야를 창시. "생명 = 기호 작용"이라는 21세기 패러다임.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Cognitive Science</div>
+              <div class="inf-body"><strong>Maturana & Varela</strong>의 자기생성(autopoiesis), 체화 인지 학파 전체의 개념적 출발점. 현재의 Active Inference 이론도 움벨트 개념과 수렴 중.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              UX 리서치에서 <strong>"사용자 움벨트 매핑"</strong>이 핵심 기법이 된 이유. 개발자가 만든 인터페이스가 사용자에게 "왜 이게 어렵지?"로 실패하는 대부분의 경우, 두 사람이 서로 다른 움벨트를 산다는 사실을 무시했기 때문. LLM이 "모든 걸 아는 것처럼 보이지만 본질은 모른다"는 느낌도 움벨트 관점에서 설명된다 — AI는 인간 움벨트의 텍스트 표면만 산다. 당신이 감각일지를 쓰는 이유는 자기 움벨트를 타자화해서 볼 수 있게 만드는 훈련이다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- 02 PERCEPTION -->
+<section id="s2">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">02</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">STAGE 02 · PERCEPTION</div>
+        <h2>지각 — <em>뇌는 수동적 수신기가 아니다</em></h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      우리가 "본다"고 느끼는 것은 감각 데이터의 복원이 아니라 <strong>뇌가 만든 가장 그럴듯한 가설</strong>이다. 200년 전 헬름홀츠가 제기했고, 최근 20년 사이 Friston·Clark이 수학과 임상 데이터로 확증했다. 움벨트의 내부 엔진이 바로 이 예측 처리다.
+    </p>
+
+    <div class="phase-hero teal">
+      <div class="phase-era">STAGE 02 · PREDICTIVE PROCESSING</div>
+      <h3>엔진 · <em>뇌는 예측기다</em></h3>
+      <p>감각 → 뇌 → 지각이라는 화살표 방향이 뒤집혔다. 현대 신경과학의 표준 모델은 이렇다: 뇌가 먼저 세계에 대한 예측을 보내고, 감각은 그 예측의 오차만 업데이트한다. 당신이 세계를 "본다"는 경험은 뇌의 예측과 감각의 가중 평균이다.</p>
+      <div class="phase-q">핵심 질문 <strong>→</strong> 당신이 "실재"라 부르는 것은 정확히 누구의 예측인가?</div>
+    </div>
+
+    <!-- Helmholtz -->
+    <article class="thinker teal">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Helmholtz</span>
+            <span class="thinker-ko">헤르만 폰 헬름홀츠</span>
+            <span class="thinker-years">1821–1894</span>
+          </div>
+          <div class="thinker-punch">지각은 감각 데이터의 읽기가 아니라 <em>무의식적 추론</em>이다 — 이 한 문장이 예측 처리 이론의 씨앗.</div>
+        </div>
+        <span class="thinker-tag">Unconscious Inference · 1867</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>19세기 생리학자 헬름홀츠는 시각을 연구하다가 역설을 발견했다. <strong>망막에 맺힌 2D 이미지만으로는 3D 세계가 복원되지 않는다.</strong> 같은 2D 이미지가 무수히 많은 3D 세계와 양립할 수 있기 때문이다. 그런데 우리는 명확하게 3D 세계를 본다. 어떻게?</p>
+          <p>답: 뇌는 과거 경험을 바탕으로 "가장 그럴듯한 3D 세계"를 <strong>추론</strong>한다. 이 추론은 의식 아래에서 초고속으로 일어나기 때문에 우리는 추론을 인식하지 못하고 "그냥 본다"고 느낀다. 헬름홀츠는 이를 <strong>무의식적 추론(unconscious inference)</strong>이라 불렀다.</p>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 역문제로서의 지각</div>
+<div class="schema"><span class="c-d"># 헬름홀츠의 역문제 (Inverse Problem)</span>
+
+  <span class="c-d">순방향 (물리 · 쉬움):</span>
+    3D 장면 ─────▶ 빛 경로 ─────▶ 2D 망막 이미지
+      (세계)       (광학)         (감각)
+
+  <span class="c-d">역방향 (지각 · 수학적 불완전):</span>
+    2D 망막 이미지 ──?──▶ 3D 장면 (무수히 많은 해 중 하나)
+         │
+         │ <span class="c-t">+ 과거 경험 (prior)</span>
+         ▼
+    <span class="c-hi">[가장 그럴듯한 세계 · 무의식적 추론]</span>
+
+<span class="c-d">의미:</span> 지각은 데이터에서 답을 읽어내는 것이 아니라,
+      <span class="c-hi">베이지안 가설 선택</span>이다.</div>
+          <div class="schema-cap">HELMHOLTZ · THE INVERSE PROBLEM</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Philosophy</div>
+              <div class="inf-body">칸트의 "능동적 마음"을 생리학적 가설로 번역. 현상학 · 게슈탈트 · 인지주의가 모두 이 다리 위에 섰다.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Psychology</div>
+              <div class="inf-body"><strong>Gestalt 심리학</strong>의 직접적 선구. "전체가 부분의 합 이상"이라는 명제는 "뇌가 부분들을 전체로 추론한다"의 결과.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Modern AI</div>
+              <div class="inf-body"><strong>베이지안 뇌 가설</strong>의 원형. 헬름홀츠 머신(Hinton, 1995)은 그의 이름을 딴 신경망 모델. 오늘의 확률적 기계 학습 계보의 시조.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              당신이 지금 이 텍스트를 "읽는다"는 경험이 헬름홀츠식 추론이다. 뇌는 다음 글자를 예측하고 실제 글자가 오면 오차만 처리한다. 오타를 자주 못 보는 이유 — 예측이 너무 강해서. 디자인·UX 법칙의 대부분(일관성·어포던스·예측성)이 이 200년 된 통찰의 응용이다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Friston -->
+    <article class="thinker teal">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Karl Friston</span>
+            <span class="thinker-ko">칼 프리스턴</span>
+            <span class="thinker-years">1959–</span>
+          </div>
+          <div class="thinker-punch">뇌의 모든 활동은 <em>자유에너지(예측 오차)를 최소화</em>하는 단일 원리로 통합된다.</div>
+        </div>
+        <span class="thinker-tag">★ Free Energy Principle</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>프리스턴은 UCL의 신경과학자로 지난 20년간 뇌과학에서 가장 많이 인용된 인물. 그의 <strong>자유에너지 원리(Free Energy Principle, FEP)</strong>는 지각·행동·학습·항상성을 하나의 수학 원리로 통합하려는 시도. 핵심은 이렇다: 생명체는 환경 경계에서 "예측한 것"과 "감각된 것"의 차이(=자유에너지)를 줄이도록 진화했다.</p>
+          <p>오차를 줄이는 방법은 둘뿐이다. <strong>(1) 모델을 업데이트한다</strong> — 이게 지각·학습. <strong>(2) 세계를 바꾼다</strong> — 이게 행동. 본질적으로 같은 원리의 두 얼굴. 심지어 항상성(체온·혈당 조절)도 같은 원리로 설명된다. 통일 이론의 야심.</p>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 자유에너지 최소화 루프</div>
+<div class="schema"><span class="c-d"># 프리스턴의 Free Energy Principle</span>
+
+               <span class="c-t">[생성 모델 · Generative Model]</span>
+                        │
+                        │  "세계는 이럴 것이다" (prior)
+                        ▼
+                  <span class="c-t">[예측된 감각]</span>
+                        │
+          ┌────── 비교 ──────┤
+          ▼                  ▼
+      [실제 감각]         [예측]
+          │                  │
+          └── 오차 (ε) ──────┘
+                     │
+          ┌──────────┴──────────┐
+          ▼                     ▼
+   <span class="c-t">[1. 지각 · 학습]</span>          <span class="c-t">[2. 행동]</span>
+     모델 업데이트            세계를 수정
+     (belief change)         (act on world)
+
+<span class="c-hi">목표함수:</span>  minimize ∫ ε² dt   (평생 예측 오차)
+<span class="c-d">귀결:</span> 지각·행동·학습·생존 = 같은 알고리즘의 변주.</div>
+          <div class="schema-cap">FRISTON · FREE ENERGY PRINCIPLE</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Neuroscience</div>
+              <div class="inf-body">조현병·자폐·우울증을 "예측 정밀도 조절 장애"로 재해석하는 새 패러다임. Computational Psychiatry의 토대.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">AI</div>
+              <div class="inf-body"><strong>Active Inference</strong> — 강화학습의 대안 패러다임. 지각과 행동을 하나의 목적함수로 통합. AGI 연구 방향 중 하나.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Philosophy</div>
+              <div class="inf-body">칸트 이후 250년 만의 귀결 — "마음은 능동적 구성"이라는 철학적 명제가 수학 원리로 환원됨. Andy Clark이 철학적으로 해석.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              왜 새로움(novelty) 설계가 크리에이티브의 핵심인가 — 뇌의 예측 시스템이 놀랐을 때만 진짜 학습과 감정 반응이 일어나기 때문. 반대로 왜 일관성이 중요한가 — 예측이 쉬워야 사용자의 자유에너지가 낮아져 편안함을 느끼기 때문. 좋은 카피·디자인은 <strong>예측 가능성(편안함)과 예측 오차(인상) 사이의 정밀한 조율</strong>이다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Clark -->
+    <article class="thinker teal">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Andy Clark</span>
+            <span class="thinker-ko">앤디 클라크</span>
+            <span class="thinker-years">1957–</span>
+          </div>
+          <div class="thinker-punch">지각 경험은 <em>통제된 환각(controlled hallucination)</em>이다 — 감각이 수정해주는 환각.</div>
+        </div>
+        <span class="thinker-tag">Controlled Hallucination</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>Sussex 대학 인지철학자 Andy Clark은 Friston의 수학을 철학적 언어로 번역했다. 그의 캐치프레이즈: <strong>"지각은 통제된 환각이다."</strong> 뇌는 언제나 환각을 생성하지만, 그 환각이 감각 데이터와 어긋날 때만 수정된다. 어긋나지 않으면 그대로 우리의 "현실"이 된다.</p>
+          <p>Clark은 또 <strong>확장된 마음(extended mind, 1998)</strong> 개념의 창시자이기도 하다. 마음은 두개골 안에만 있지 않다 — 노트·스마트폰·언어·공동체가 모두 인지 체계의 일부다. 움벨트가 도구·문화로 확장되는 구조.</p>
+          <div class="quote">"Perception is controlled hallucination — and sometimes the controls slip."<span class="quote-src">— Surfing Uncertainty (2016)</span></div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 예측의 층위</div>
+<div class="schema"><span class="c-d"># 클라크의 계층적 예측 처리</span>
+
+  <span class="c-t">Top</span>   <span class="c-d">(추상 · 느림)</span>
+    ▲  ┌─────────────────┐  예측 ↓
+    │  │ 사회·문화 예측     │
+    │  └─────────────────┘
+    │  ┌─────────────────┐
+    │  │ 장면·상황 예측     │  <span class="c-d">← 이 방은 카페다</span>
+    │  └─────────────────┘
+    │  ┌─────────────────┐
+    │  │ 객체·얼굴 예측     │  <span class="c-d">← 저건 친구다</span>
+    │  └─────────────────┘
+    │  ┌─────────────────┐
+    │  │ 윤곽·색·모서리     │  <span class="c-d">← 저건 곡선이다</span>
+    │  └─────────────────┘
+    │  ┌─────────────────┐
+    ▼  │ 망막 픽셀 (감각)    │  오차 ↑
+  <span class="c-t">Bottom</span> └─────────────────┘
+
+<span class="c-hi">각 층:</span> 위층이 아래층에 예측을 보냄
+       아래층은 예측과 다른 것(오차)만 위로 보고
+<span class="c-hi">결과:</span> <span class="c-a">대부분의 감각 대역폭은 환각이다</span> (=예측).
+       오차가 작을수록 "안정된 현실감".</div>
+          <div class="schema-cap">CLARK · HIERARCHICAL PREDICTIVE PROCESSING</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Cognitive Science</div>
+              <div class="inf-body">예측 처리 이론을 철학·교육계에 확산시킨 번역자. 『Surfing Uncertainty』(2016) 이후 현대 인지과학의 기본 어휘가 됨.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Philosophy of Mind</div>
+              <div class="inf-body"><strong>확장된 마음(Extended Mind, 1998, w/ Chalmers)</strong>은 체화 인지의 대표 논제. "마음의 경계는 피부가 아니다."</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">UX / Design</div>
+              <div class="inf-body">도구가 마음의 일부가 된다는 관점은 UX·제품 디자인 철학에 직접 수혈. "도구는 인지를 확장한다"는 설계 원칙의 이론적 배경.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              같은 제품·같은 카피를 봐도 사람마다 다르게 읽는 이유가 이 계층 구조로 설명된다. 당신은 상위 층(문화·역사·개인사)에서 만든 예측을 하위 층에 내려보내고, 그 예측으로 낮은 층의 감각을 "해석"한다. 브랜드가 <strong>맥락을 먼저 깔아야</strong> 하는 이유 — 상위 층 예측을 세팅하면 같은 시각 자극이 다르게 지각된다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- 03 UNDERSTANDING -->
+<section id="s3" style="background:var(--bg-2);">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">03</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">STAGE 03 · UNDERSTANDING</div>
+        <h2>이해 — <em>몸과 해석의 순환</em></h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      움벨트가 조건이고 예측이 엔진이라면, 이해는 그 위에서 일어나는 작업이다. <strong>몸으로 의미를 붙잡고(Merleau-Ponty), 몸 경험에서 추상을 끌어내고(Lakoff), 선이해와 부분 사이를 순환한다(Gadamer)</strong> — 세 사람이 이해의 세 축이다.
+    </p>
+
+    <div class="phase-hero green">
+      <div class="phase-era">STAGE 03 · EMBODIED + HERMENEUTIC</div>
+      <h3>작업 · <em>이해는 순환이다</em></h3>
+      <p>데카르트 전통은 이해를 "정신의 작용"으로 보았다. 체화 전환 이후 이해는 <strong>몸·맥락·역사가 함께 작동하는 순환</strong>이 되었다. 이 섹션의 세 사람이 그 순환의 세 층을 책임진다.</p>
+      <div class="phase-q">핵심 질문 <strong>→</strong> 이해란 대상을 받아들이는 것인가, 아니면 대상과 함께 바뀌는 것인가?</div>
+    </div>
+
+    <!-- Merleau-Ponty -->
+    <article class="thinker green">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Merleau-Ponty</span>
+            <span class="thinker-ko">모리스 메를로-퐁티</span>
+            <span class="thinker-years">1908–1961</span>
+          </div>
+          <div class="thinker-punch">나는 몸을 가진 것이 아니라 <em>몸 그 자체이다</em> — 이해는 머리가 아니라 몸에서 일어난다.</div>
+        </div>
+        <span class="thinker-tag">Body-Subject · Intercorporeality</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>프랑스 현상학자 메를로-퐁티는 데카르트의 "생각하는 나 + 연장된 몸" 이원론을 정면으로 거부했다. 그의 핵심 개념 <strong>몸-주체(corps-sujet / body-subject)</strong> — 나는 몸을 도구처럼 가진 정신이 아니다. 나의 지각·이해·행동은 <strong>몸 그 자체의 지향</strong>이다. 손을 뻗어 컵을 잡을 때, "잡기로 결정하는 정신"과 "움직이는 몸"이 따로 있지 않다. 하나의 살아 있는 지향이다.</p>
+          <p>더 나아가 타인과의 소통은 정신과 정신의 만남이 아니다. <strong>상호신체성(intercorporeality)</strong> — 몸과 몸 사이의 공명이다. 거울 뉴런의 발견(Rizzolatti, 1992)은 이 철학적 직관이 맞았음을 신경 수준에서 입증.</p>
+          <div class="quote">"세계를 보는 사람은 세계의 일부이며, 세계 속에 있음으로써만 본다."<span class="quote-src">— 지각의 현상학 (1945)</span></div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 몸-주체의 통일성</div>
+<div class="schema"><span class="c-d"># 데카르트 vs 메를로-퐁티</span>
+
+  <span class="c-d">데카르트의 이원론:</span>
+    ┌────────────┐         ┌────────────┐
+    │ 정신 (사유) │─────────│ 몸 (연장)   │
+    └────────────┘  송과선  └────────────┘
+         │                       │
+     "잡기로 결정"            "실제 잡기"
+         (시간차 · 인과)
+
+  <span class="c-d">메를로-퐁티의 통일:</span>
+      ┌───────────────────────┐
+      │    <span class="c-g">몸-주체 (body-subject)</span>  │
+      │                       │
+      │  지각 + 의도 + 행동    │
+      │  = 하나의 지향         │
+      └───────────────────────┘
+                │
+         "잡기"라는 하나의 사건
+
+  <span class="c-d">상호신체성 (intercorporeality):</span>
+      <span class="c-g">[내 몸]</span> ←───── 공명 ─────→ <span class="c-g">[너의 몸]</span>
+              눈맞춤 · 자세 · 호흡
+              (언어 이전의 소통)</div>
+          <div class="schema-cap">MERLEAU-PONTY · BODY-SUBJECT</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Philosophy</div>
+              <div class="inf-body">체화 인지(embodied cognition)의 중심 철학자. 들뢰즈·푸코의 몸 담론, 페미니즘 철학(Iris Marion Young), 장애학의 기반.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Dance · Somatics</div>
+              <div class="inf-body">무용 이론·신체 연극·소매틱 교육(Feldenkrais·Alexander)의 철학적 근거. "몸이 지능을 가진다"는 주장의 출처.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Neuroscience</div>
+              <div class="inf-body">거울 뉴런·체성감각·내수용감각 연구의 개념적 선구. <strong>Damasio·Thompson</strong>이 직접 인용.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              줌 미팅에서 텍스트 메시지보다 피로한 이유 — 화면은 상호신체성의 단서를 대부분 차단한다. 몸 공명 없이 정신만 교차하는 상태는 인간 소통의 정상 상태가 아니다. 좋은 디자인·영상·프레젠테이션이 "리듬"을 가져야 하는 이유도 여기 — 독자의 몸을 먼저 움직여야 메시지가 착륙한다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Lakoff & Johnson -->
+    <article class="thinker green">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Lakoff & Johnson</span>
+            <span class="thinker-ko">레이코프 · 존슨</span>
+            <span class="thinker-years">1980→</span>
+          </div>
+          <div class="thinker-punch">추상은 <em>몸의 경험이 은유로 확장된 것</em>이다 — 공통된 몸이 있기에 공통된 의미가 가능하다.</div>
+        </div>
+        <span class="thinker-tag">★ Conceptual Metaphor</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>『Metaphors We Live By』(1980). 은유는 수사적 장식이 아니라 <strong>사고의 기본 구조</strong>다. 우리는 추상을 언제나 구체적 몸 경험을 통해 이해한다. "이해한다(under-stand)"는 "아래에 서 있다"는 공간 은유. "파악하다(grasp)"는 "손으로 잡다"의 은유. 가장 추상적인 수학 개념조차 공간·운동 감각의 확장이다.</p>
+          <p>특히 <strong>1차 은유(Primary Metaphor)</strong>는 아기 때 몸 경험에서 자동으로 형성된다. 부모 품에서 체온을 느낀 경험이 <strong>Affection is Warmth</strong> 은유를 만들고, 이것이 평생 "따뜻한 사람", "쌀쌀한 반응" 같은 표현의 뿌리가 된다. 우리 모두 비슷한 몸을 가졌기에 비슷한 1차 은유를 공유한다 — <strong>이것이 움벨트 간 소통이 가능한 첫 번째 이유</strong>.</p>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 1차 은유 매핑</div>
+<div class="schema"><span class="c-d"># 레이코프의 개념적 은유 매핑</span>
+
+  <span class="c-g">[근원 영역 · Source]</span>         <span class="c-g">[목표 영역 · Target]</span>
+  (구체 · 몸 경험)                    (추상 · 개념)
+         │                                    ▲
+         └──────── 매핑(mapping) ────────────┘
+
+  <span class="c-d">1차 은유 예시 (primary metaphors):</span>
+
+  ┌──────────────────────────┬──────────────────────────┐
+  │ 체온 경험 (부모 품)      │ <span class="c-hi">애정 = 온기</span>              │
+  │ 시각 확인                │ <span class="c-hi">앎 = 봄 (I see)</span>          │
+  │ 크기 = 영향              │ <span class="c-hi">중요함 = 크기</span>            │
+  │ 쌓기 = 높아짐            │ <span class="c-hi">더 많음 = 위쪽</span>           │
+  │ 무게 부담                │ <span class="c-hi">어려움 = 짐</span>              │
+  │ 가까움 = 아는 사람       │ <span class="c-hi">친밀함 = 가까움</span>          │
+  │ 밝음 = 안전              │ <span class="c-hi">명료함 = 밝음</span>            │
+  │ 전진 운동                │ <span class="c-hi">진전 = 앞으로</span>            │
+  └──────────────────────────┴──────────────────────────┘
+
+<span class="c-hi">핵심:</span> 이것들은 수사가 아니라 <span class="c-hi">사고 그 자체의 구조</span>.
+       그리고 <span class="c-a">대부분의 인간이 비슷한 몸을 가졌기에 공유된다</span>.</div>
+          <div class="schema-cap">LAKOFF & JOHNSON · PRIMARY METAPHOR</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Linguistics</div>
+              <div class="inf-body">인지언어학 분야 창시. 촘스키의 형식주의 언어학에 대한 결정적 대안. 전세계 언어학 교과서가 재집필됨.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Politics</div>
+              <div class="inf-body">레이코프의 『코끼리는 생각하지 마』 — 정치 담론에서 <strong>프레임(frame)</strong>이 어떻게 작동하는지 분석. 현대 정치 커뮤니케이션의 교과서.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Copywriting · Branding</div>
+              <div class="inf-body">"은유를 만들어라, 설명하지 말라"는 카피라이팅 원칙의 과학적 근거. 좋은 슬로건은 대부분 개념적 은유 구조.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              Nike "Just Do It" — "결단은 행동이다" 몸 은유. Apple "Think Different" — "사고는 방향이다" 공간 은유. 카피를 쓸 때 당신이 고르는 동사 하나가 어떤 몸 은유를 활성화한다. 레이코프를 알면 <strong>그 선택을 의식적으로</strong> 할 수 있다. 감각일지에 "추상어를 몸 은유로 치환"하는 훈련이 효과적인 이유.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Gadamer -->
+    <article class="thinker purple">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Gadamer</span>
+            <span class="thinker-ko">한스게오르크 가다머</span>
+            <span class="thinker-years">1900–2002</span>
+          </div>
+          <div class="thinker-punch">이해는 백지에서 시작되지 않는다 — 언제나 <em>선이해와 부분 사이를 순환</em>하며, 그 끝에 <em>지평 융합</em>이 있다.</div>
+        </div>
+        <span class="thinker-tag">★ Hermeneutic Circle · Fusion of Horizons</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>하이데거의 제자 가다머는 이해의 구조를 분석해 두 개의 결정적 개념을 제시했다.</p>
+          <p><strong>해석학적 순환(hermeneutischer Zirkel)</strong> — 우리는 이해하려는 대상에 언제나 <strong>선이해(Vorverständnis)</strong>를 가지고 들어간다. 그 선이해가 부분의 해석을 이끌고, 부분이 다시 전체를 수정하고, 수정된 전체가 다음 부분의 해석을 이끈다. 이해는 선형이 아니라 <strong>나선형으로 상승하는 순환</strong>이다.</p>
+          <p><strong>지평 융합(Horizontverschmelzung)</strong> — 두 사람의 이해가 만나는 순간은 한쪽이 다른 쪽을 흡수하는 것이 아니다. 두 지평이 서로 겹치며 <strong>이전엔 없던 공통의 공간</strong>을 여는 것. 이 공간에서 A는 더 이상 이전의 A가 아니고, B도 이전의 B가 아니다. <strong>대화가 둘 다를 바꾼다.</strong></p>
+          <div class="quote">"진정한 대화에서는 누구도 대화의 주인이 아니다. 대화가 우리 모두를 인도한다."<span class="quote-src">— 진리와 방법 (1960)</span></div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 해석학적 순환 + 지평 융합</div>
+<div class="schema"><span class="c-d"># 가다머의 두 개념</span>
+
+  <span class="c-d">1) 해석학적 순환 (나선 상승):</span>
+
+         [전체 v1] ──── 이끈다 ────▶ [부분 해석]
+              ▲                              │
+              │                              │
+              └───── 수정한다 ───────────────┘
+                      (반복 = 나선)
+
+  <span class="c-d">2) 지평 융합:</span>
+
+        <span class="c-p">[A의 지평]</span>
+          │ 선이해 · 언어 · 역사 · 편견
+          │
+          ▼ 대화/텍스트
+          ┌─────────────────┐
+          │   <span class="c-hi">공통의 공간</span>      │  ← 이전엔 없던 영역
+          │  (fused horizon)│
+          └─────────────────┘
+          ▲
+          │ 대화/텍스트
+          │
+        <span class="c-p">[B의 지평]</span>
+
+<span class="c-hi">결과:</span> A'와 B'. 둘 다 약간 달라진 상태.
+       이해 = 정보 복원이 아니라 <span class="c-hi">두 지평의 생성적 겹침</span>.</div>
+          <div class="schema-cap">GADAMER · HERMENEUTIC CIRCLE + HORIZON FUSION</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Philosophy</div>
+              <div class="inf-body">해석학(hermeneutics)의 20세기 대표자. <strong>Ricœur · Habermas · Derrida</strong>와 대화하며 대륙 철학의 중심 축을 이룸.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Literary Theory</div>
+              <div class="inf-body">독자 반응 이론(reader-response), 수용미학(Iser·Jauss)의 토대. "텍스트의 의미는 독자와의 만남에서 완성된다."</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Dialogue · Therapy</div>
+              <div class="inf-body">대화 기반 심리치료, 조직 대화 방법론(Bohm Dialogue), 갈등 해결 이론이 지평 융합 개념을 핵심 프레임으로 차용.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              "오늘 대화에서 내 생각이 조금이라도 바뀌었는가?"라는 질문이 소통 성공의 진짜 지표인 이유. <strong>한쪽이 변하지 않으면 그것은 대화가 아니라 방송이다.</strong> 좋은 인터뷰·브랜드 커뮤니케이션·에디토리얼이 "합의"가 아니라 "새로운 공통 공간의 생성"을 목표로 해야 하는 근거. 가다머를 알면 "내 메시지를 관철시켰다"는 감각이 실패의 신호로 읽힌다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- 04 LANGUAGE -->
+<section id="s4">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">04</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">STAGE 04 · LANGUAGE</div>
+        <h2>언어화 — <em>사적 경험을 공적 기호로</em></h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      이해가 일어나도 아직 소통은 아니다. <strong>언어로 코드화</strong>해야 다른 움벨트에 전달된다. 이 번역 과정에서 무엇이 일어나는가를 20세기 언어철학·기호학 네 사람이 답했다. 그리고 이 과정에서 <strong>반드시 잃는 것</strong>이 무엇인지도.
+    </p>
+
+    <div class="phase-hero pink">
+      <div class="phase-era">STAGE 04 · ENCODING INTO SHARED SYMBOLS</div>
+      <h3>코드화 · <em>사적 경험에서 공적 기호로</em></h3>
+      <p>언어는 단순한 라벨이 아니다. 단어의 의미는 사전에 있지 않고 <strong>사용·관계·차이의 그물</strong>에 있다. 같은 단어가 맥락에 따라 다른 의미가 되고, 번역할 때마다 무엇인가 잃는다.</p>
+      <div class="phase-q">핵심 질문 <strong>→</strong> 내가 쓴 단어가 상대에게 같은 의미로 도착하려면 무엇이 필요한가?</div>
+    </div>
+
+    <!-- Wittgenstein -->
+    <article class="thinker pink">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Wittgenstein</span>
+            <span class="thinker-ko">루트비히 비트겐슈타인</span>
+            <span class="thinker-years">1889–1951</span>
+          </div>
+          <div class="thinker-punch">단어의 의미는 <em>사용</em>이다 — 언어는 삶의 형식 안에서 벌어지는 게임이다.</div>
+        </div>
+        <span class="thinker-tag">Language Game · Form of Life</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>전기 비트겐슈타인(『논리-철학 논고』, 1921)은 "언어는 세계의 그림이다"라는 엄격한 정의에 도달했다. 그런데 만년의 그는 스스로를 뒤집었다. 후기 비트겐슈타인(『철학적 탐구』, 1953)의 결론: <strong>"단어의 의미는 언어에서의 그것의 사용이다(The meaning of a word is its use in the language)."</strong></p>
+          <p><strong>언어 게임(Sprachspiel)</strong> — 언어는 하나의 체계가 아니라 무수히 많은 게임들의 집합이다. 주문·요청·농담·약속·명령·감탄 — 각각이 다른 규칙을 가진 다른 게임. <strong>삶의 형식(Lebensform)</strong> — 언어 게임은 삶의 방식과 분리되지 않는다. 언어를 이해한다는 것은 그 게임이 속한 삶의 형식을 이해한다는 것.</p>
+          <p>그리고 그 유명한 <strong>사적 언어 논증</strong>: 오직 나만 이해할 수 있는 언어는 성립 불가능하다. 언어가 작동하려면 공적 기준이 필요하고, 공적 기준은 공동체 안에서만 성립한다. <strong>따라서 모든 언어는 본질적으로 공적이다.</strong></p>
+          <div class="quote">"사자가 말할 수 있다 해도, 우리는 그를 이해할 수 없을 것이다."<span class="quote-src">— Philosophical Investigations §327</span></div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 단어 "물!"의 일곱 게임</div>
+<div class="schema"><span class="c-d"># 같은 단어, 다른 언어 게임</span>
+
+                  <span class="c-pk">"물!"</span>
+                     │
+    ┌────┬────┬────┴────┬────┬────┬────┐
+    ▼    ▼    ▼         ▼    ▼    ▼    ▼
+  주문  대답  경고      감탄  명령  질문  의례
+   │    │    │         │    │    │    │
+ 식당  질의  "위험!"   놀라움  군대 시험  기도
+
+<span class="c-d">각 게임:</span>
+  - 서로 다른 <span class="c-hi">규칙</span>
+  - 서로 다른 <span class="c-hi">맥락 · 말투 · 반응</span>
+  - 서로 다른 <span class="c-hi">삶의 형식</span> (식사 / 강의 / 전투 / 종교)
+
+<span class="c-hi">핵심:</span> 의미는 단어 속이 아니라
+       <span class="c-pk">단어가 놓이는 게임 속</span>에 있다.</div>
+          <div class="schema-cap">WITTGENSTEIN · LANGUAGE GAME</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Philosophy</div>
+              <div class="inf-body">일상언어학파(Oxford Ordinary Language)의 씨앗. 오스틴의 화행 이론(speech acts), 설(Searle)의 확장이 모두 여기서.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Anthropology</div>
+              <div class="inf-body">Clifford Geertz의 <strong>두터운 기술(thick description)</strong> — 한 문화를 이해한다는 것은 그 삶의 형식을 이해하는 것.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">NLP / AI</div>
+              <div class="inf-body">LLM이 의미를 "사용 맥락"에서 학습하는 구조는 비트겐슈타인 명제의 계산적 실현. 분산 의미론의 철학적 근거.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              카피 한 줄이 A에게는 자극, B에게는 모욕이 되는 이유 — 같은 언어 게임에 속해 있지 않기 때문. 브랜드가 특정 <strong>커뮤니티의 삶의 형식에 진입해야</strong> 그들의 언어 게임에서 의미를 가진다. TTS/AI가 가끔 이상하게 느껴지는 이유도 삶의 형식 없이 단어만 뽑아내기 때문. 언어화실 작업이 중요한 이유 — 용어 하나하나의 "게임 규칙"을 정의하는 것.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Saussure -->
+    <article class="thinker pink">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Saussure</span>
+            <span class="thinker-ko">페르디낭 드 소쉬르</span>
+            <span class="thinker-years">1857–1913</span>
+          </div>
+          <div class="thinker-punch">기호의 의미는 자기 안이 아니라 <em>다른 기호와의 차이</em>에서 나온다 — 구조주의의 출발점.</div>
+        </div>
+        <span class="thinker-tag">Structural Linguistics</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>제네바의 언어학자 소쉬르는 20세기 초 강의를 통해 기호의 구조를 새로 정의했다. 기호(sign) = <strong>기표(signifier, 소리·글자)</strong> + <strong>기의(signified, 개념)</strong>. 둘의 결합은 <strong>자의적(arbitrary)</strong>이다 — "나무"라는 소리와 실제 나무 개념 사이에 필연적 연결은 없다.</p>
+          <p>더 급진적인 주장: <strong>의미는 기호 자체가 아니라 다른 기호들과의 차이에서 나온다.</strong> "빨강"의 의미는 "빨강" 안에 있지 않고 "주황과 다르다, 분홍과 다르다, 보라와 다르다"는 관계망에서 생긴다. 기호는 <strong>실체가 아니라 차이의 네트워크</strong>다.</p>
+          <p>함의: 같은 단어도 문화·세대·맥락에 따라 네트워크가 다르면 다른 의미가 된다. "젊다"는 18세 학생의 네트워크에서와 70세 노인의 네트워크에서 다른 좌표를 차지한다.</p>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 차이의 네트워크</div>
+<div class="schema"><span class="c-d"># 소쉬르의 기호 구조 + 의미 네트워크</span>
+
+  <span class="c-d">기호 (sign):</span>
+      ┌─────────────┐
+      │ 기표 (소리)  │ ← "빨강"
+      ├─────────────┤
+      │ 기의 (개념)  │ ← [RED 개념]
+      └─────────────┘
+      (자의적 결합)
+
+  <span class="c-d">의미 = 차이의 네트워크:</span>
+
+                  <span class="c-pk">[빨강]</span>
+                 /  │  \
+                /   │   \
+           ≠ [주황] │ ≠ [분홍]
+                    │
+                 ≠ [보라]
+
+  <span class="c-hi">"빨강"의 의미</span> = 이 네트워크에서 "빨강"이 차지하는 좌표
+                   = <span class="c-a">주황도 분홍도 보라도 아닌 것</span>
+
+<span class="c-d">따라서:</span> 네트워크가 다르면 의미도 다르다.
+        번역은 단어가 아니라 네트워크 전체의 이동.</div>
+          <div class="schema-cap">SAUSSURE · SIGN + DIFFERENTIAL NETWORK</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Philosophy</div>
+              <div class="inf-body">구조주의(Lévi-Strauss·Barthes)와 후기구조주의(Derrida·Foucault)의 출발점. 20세기 후반 인문학 전체를 재구성.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Semiotics</div>
+              <div class="inf-body">Roland Barthes의 신화 분석, 광고 기호학 — 이미지·브랜드·로고를 "기호 체계"로 읽는 모든 방법론의 뿌리.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Design · Branding</div>
+              <div class="inf-body">"브랜드는 경쟁 브랜드와의 차이로 정의된다"는 포지셔닝 이론의 언어학적 토대. Aaker · Kapferer 모델도 여기서 출발.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              브랜드 네이밍이 왜 경쟁자 분석에서 시작해야 하는가 — 이름의 의미는 이름 자체가 아니라 <strong>경쟁 이름들과의 차이</strong>에서 나오기 때문. 카피에서 "단어를 고르는 것이 아니라 차이를 고르는 것"이라는 원칙도 소쉬르의 후예. 오늘 당신이 쓰는 해시태그 하나도 다른 해시태그와의 관계망에서 의미를 얻는다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Peirce -->
+    <article class="thinker pink">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Peirce</span>
+            <span class="thinker-ko">찰스 샌더스 퍼스</span>
+            <span class="thinker-years">1839–1914</span>
+          </div>
+          <div class="thinker-punch">기호는 <em>기표-기의의 이항</em>이 아니라 <em>대상-기호-해석항의 삼항</em>이다 — 해석자가 의미에 필수 요소다.</div>
+        </div>
+        <span class="thinker-tag">Triadic Semiotics</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>같은 시기 대서양 건너편의 미국 철학자 퍼스는 기호를 다르게 정의했다. 소쉬르의 이항(기표-기의)이 아니라 <strong>삼항 구조</strong>: <strong>Representamen(기호)</strong> — <strong>Object(대상)</strong> — <strong>Interpretant(해석항)</strong>. 기호는 대상을 누군가에게 대리하며, 그 누군가의 마음에 또 다른 기호(해석항)를 발생시킨다.</p>
+          <p>더 유명한 퍼스의 분류: <strong>아이콘(icon)</strong> — 닮음으로 지시(초상화·지도). <strong>인덱스(index)</strong> — 인과로 지시(연기 = 불). <strong>상징(symbol)</strong> — 관습으로 지시(대부분의 단어). 세 모드가 조합되어 실제 기호 작용이 일어난다.</p>
+          <p>퍼스의 핵심 공헌: <strong>의미는 "해석되는 한" 존재한다.</strong> 해석자가 없으면 기호도 없다. 따라서 소통은 "송신자가 기의를 전달한다"가 아니라 "수신자가 해석항을 생성한다"로 재정의된다.</p>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 삼항 구조 + 세 모드</div>
+<div class="schema"><span class="c-d"># 퍼스의 삼항 기호</span>
+
+                  <span class="c-pk">Object</span>
+                  (대상)
+                 /       \
+                /         \
+               / 지시       \ 해석
+              /             \
+    <span class="c-pk">Representamen</span> ─── <span class="c-pk">Interpretant</span>
+         (기호)              (해석항)
+                              = 수신자 마음의 또 다른 기호
+
+  <span class="c-d">기호의 세 모드 (icon / index / symbol):</span>
+
+  ┌─────────┬─────────┬─────────────────────┐
+  │ Icon    │ 닮음    │ 초상화, 지도, 아이콘 │
+  │ Index   │ 인과    │ 연기→불, 발자국→발  │
+  │ Symbol  │ 관습    │ 단어, 국기, 로고    │
+  └─────────┴─────────┴─────────────────────┘
+
+<span class="c-hi">핵심:</span> <span class="c-a">해석자가 없으면 기호도 없다.</span>
+       의미 = 수신자의 해석항 생성 사건.</div>
+          <div class="schema-cap">PEIRCE · TRIADIC SEMIOTICS</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Philosophy</div>
+              <div class="inf-body">미국 실용주의(pragmatism)의 창시자. James · Dewey · Rorty로 이어지는 계보의 시조.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Semiotics</div>
+              <div class="inf-body">Umberto Eco·Thomas Sebeok의 기호학이 퍼스를 기반으로 발전. 생물기호학에서 윅스퀼과 만난다.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">UX · Design</div>
+              <div class="inf-body">아이콘·인덱스·상징 구분은 UI 디자인·비주얼 문해력 교육의 표준 프레임. 로고 타이폴로지의 이론적 토대.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              "사용자가 그 디자인을 어떻게 해석할까"를 먼저 묻는 UX 방법론은 퍼스의 삼항을 실천한 것. 같은 로고가 한국에서 아이콘, 유럽에서 인덱스, 미국에서 상징으로 작동할 수 있다 — 문화별로 해석항이 달라지기 때문. 브랜드가 <strong>해석의 공간을 설계</strong>해야 하는 이유.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- 05 SHARING -->
+<section id="s5" style="background:var(--bg-2);">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">05</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">STAGE 05 · SHARING</div>
+        <h2>공유 — <em>움벨트들이 겹쳐질 때</em></h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      언어로 코드화됐다 해도 실제 <strong>공유</strong>가 일어나려면 신경·인지·몸·문화의 네 층위가 동시에 작동해야 한다. 여기서 거울 뉴런과 마음 이론이 핵심 인프라.
+    </p>
+
+    <div class="phase-hero yellow">
+      <div class="phase-era">STAGE 05 · FOUR LAYERS OF SHARING</div>
+      <h3>인프라 · <em>소통의 네 기층</em></h3>
+      <p>소통은 단일 채널이 아니라 <strong>신경 · 인지 · 몸 · 문화</strong> 네 층이 병렬로 작동하는 현상. 한 층이라도 끊기면 "말은 했는데 못 전달됐다"는 일이 생긴다.</p>
+      <div class="phase-q">핵심 질문 <strong>→</strong> 내 메시지는 어느 층까지 도달했는가?</div>
+    </div>
+
+    <!-- Rizzolatti -->
+    <article class="thinker yellow">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Rizzolatti</span>
+            <span class="thinker-ko">자코모 리촐라티</span>
+            <span class="thinker-years">1937–</span>
+          </div>
+          <div class="thinker-punch">상대의 행동을 볼 때 내 뇌의 같은 부위가 발화한다 — <em>거울 뉴런</em>이 공감의 신경학적 기반.</div>
+        </div>
+        <span class="thinker-tag">Mirror Neurons · 1992</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">THE DISCOVERY · 결정적 발견</div>
+          <p>1992년, 이탈리아 파르마대 연구팀이 마카크 원숭이 뇌를 기록하다 우연한 패턴을 발견했다. 원숭이가 땅콩을 집을 때 발화하는 뉴런이, <strong>실험자가 땅콩을 집는 걸 볼 때도 똑같이 발화</strong>했다. 행동하는 뇌와 관찰하는 뇌가 부분적으로 같았다. 이들은 이 뉴런들을 <strong>거울 뉴런(mirror neurons)</strong>이라 명명했다.</p>
+          <p>함의: 우리가 상대를 "이해하는" 방식의 일부는 관찰이 아니라 <strong>내적 시뮬레이션</strong>이다. 상대의 움직임·표정·말을 볼 때 내 운동 피질이 그것을 살짝 "따라 하며" 해석한다. 공감(empathy)이 추상적 능력이 아니라 <strong>신경 수준의 공명</strong>이라는 증거.</p>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 관찰 = 시뮬레이션</div>
+<div class="schema"><span class="c-d"># 거울 뉴런의 이중 활성</span>
+
+   <span class="c-y">[행위자 A]</span>                    <span class="c-y">[관찰자 B]</span>
+        │                                 │
+   컵을 잡는다                      A의 행동을 본다
+        │                                 │
+        ▼                                 ▼
+   ┌────────────┐                  ┌──────────────────┐
+   │ 운동 피질   │                  │ 같은 운동 피질     │
+   │ 활성화     │  ═══════════▶    │ 살짝 활성화        │
+   └────────────┘  거울 뉴런        └──────────────────┘
+                                          │
+                                          ▼
+                              "B는 A의 의도를 내적으로
+                               <span class="c-hi">시뮬레이션</span>한다"
+
+<span class="c-d">이것이:</span> 공감 · 모방 학습 · 언어 습득 · 예술 반응의
+         신경학적 기층.</div>
+          <div class="schema-cap">RIZZOLATTI · MIRROR NEURONS</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Neuroscience</div>
+              <div class="inf-body">사회 신경과학(social neuroscience)의 거의 모든 분야에 재방문된 발견. 자폐 스펙트럼의 한 가설(mirror neuron dysfunction)도 여기서.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Art · Aesthetics</div>
+              <div class="inf-body"><strong>신경미학(neuroaesthetics)</strong>의 토대 — 우리가 그림·춤·영화에 몸으로 반응하는 이유의 과학적 설명. 빈덴부르크의 "체화 시뮬레이션" 이론.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Philosophy</div>
+              <div class="inf-body">메를로-퐁티의 상호신체성·후설의 상호주관성이 신경 수준에서 부분적으로 입증. 체화 현상학의 강력한 지원.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              좋은 광고 영상에서 등장인물의 몸짓·표정이 자연스러워야 하는 이유 — 관객의 거울 뉴런이 그걸 따라하며 감정에 들어가기 때문. 어색한 연기가 몰입을 깨는 것은 시뮬레이션 오류. <strong>카피의 "몸 동사"가 추상어보다 강한 이유</strong>도 같다. 독자의 운동 피질을 활성화하는 단어(뛰다·붙잡다·던지다·쓰러지다)가 개념어보다 깊게 박힌다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="thinker yellow">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Theory of Mind</span>
+            <span class="thinker-ko">마음 이론</span>
+            <span class="thinker-years">1978→</span>
+          </div>
+          <div class="thinker-punch">상대의 <em>믿음·욕망·의도</em>를 추론하는 능력 — 3~4세에 발달하는 인간 사회성의 핵심 장치.</div>
+        </div>
+        <span class="thinker-tag">Social Cognition</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p><strong>마음 이론(Theory of Mind, ToM)</strong>은 Premack & Woodruff가 1978년 침팬지 연구에서 처음 제안. "타인이 자기와 다른 마음을 가진 존재라는 것을 이해하고, 그 마음의 내용을 추론하는 능력." 인간은 대략 3~4세에 이 능력을 획득한다.</p>
+          <p>경전적 실험 — <strong>샐리-앤 과제(False Belief Task)</strong>. 샐리가 구슬을 바구니에 넣고 나간 사이 앤이 그것을 상자로 옮긴다. 샐리가 돌아오면 어디서 구슬을 찾을까? 4세 미만은 "상자"라 답한다(자기가 아는 사실을 샐리도 알 거라 생각). 4세 이상은 "바구니"라 답한다 — <strong>샐리의 믿음이 자기와 다를 수 있음을 이해</strong>.</p>
+          <p>이 능력은 거울 뉴런(몸 공명)과 별개의 인지 장치로 보이고, 복잡한 사회성·거짓말·공감·스토리텔링의 전제 조건이다. 자폐 스펙트럼의 일부 특성도 ToM 발달 차이로 설명된다.</p>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Psychology</div>
+              <div class="inf-body">발달심리학의 20세기 후반 중심 연구 주제. Baron-Cohen의 자폐 연구, Tomasello의 비교 인지 연구가 모두 이 축.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Literary Theory</div>
+              <div class="inf-body"><strong>Lisa Zunshine</strong>의 『Why We Read Fiction』 — 소설은 타인의 마음을 훈련하는 ToM 체육관이다. 문학 연구의 인지적 전환.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">AI · HCI</div>
+              <div class="inf-body">ToM은 AI가 여전히 어려워하는 영역. Agent가 사용자의 의도를 추론하는 능력이 ToM의 계산적 실현.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              <strong>"사용자 페르소나"</strong>가 제품 기획의 필수가 된 이유. 페르소나는 ToM을 외부화한 도구 — "이 사람은 무엇을 믿고, 무엇을 원하고, 지금 무엇을 생각하고 있을까"를 구조화해 자기 예측 모델을 타인에 맞춰 보정. 좋은 인터뷰·글쓰기·영업의 공통점: 상대의 ToM에 들어가는 속도가 빠르다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- 06 PARADOX -->
+<section id="s6">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">06</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">STAGE 06 · THE PARADOX</div>
+        <h2>역설 — <em>갇혀 있는데 어떻게 가능한가</em></h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      지금까지의 모든 분석은 하나의 역설로 수렴한다. <strong>각자의 움벨트에 갇혀 있음에도 소통은 매일 일어난다.</strong> 어떻게? 답은 "서로 완벽히 같지 않지만 충분히 닮은" 다섯 기층이 있기 때문이다.
+    </p>
+
+    <div class="phase-hero accent">
+      <div class="phase-era">STAGE 06 · FIVE COMMON GROUNDS</div>
+      <h3>해답 · <em>다섯 기층의 겹침</em></h3>
+      <p>완벽한 번역은 불가능하다. 충분한 겹침은 언제나 가능하다. 그 겹침은 다섯 기층에서 일어난다 — 몸·뇌·언어 게임·서사·지평. 아래 다섯 카드가 이 책의 종합.</p>
+      <div class="phase-q">핵심 질문 <strong>→</strong> 소통이 작동하는 기반은 무엇이고, 없어지면 무엇이 무너지는가?</div>
+    </div>
+
+    <div class="pillars">
+      <div class="pillar">
+        <div class="p-num">PILLAR I</div>
+        <h4>비슷한 몸</h4>
+        <p>두 개의 눈, 두 개의 손, 중력에 맞선 직립, 체온 37도 — 이 물리적 공통성이 Lakoff의 1차 은유를 공유 가능하게 만든다. 체화된 의미의 기반.</p>
+      </div>
+      <div class="pillar">
+        <div class="p-num">PILLAR II</div>
+        <h4>비슷한 뇌</h4>
+        <p>거울 뉴런, 마음 이론, DMN, 해마 — 같은 아키텍처를 공유하기에 시뮬레이션이 호환된다. 네가 우는 걸 보면 내 뇌도 부분적으로 운다.</p>
+      </div>
+      <div class="pillar">
+        <div class="p-num">PILLAR III</div>
+        <h4>공유된 언어 게임</h4>
+        <p>같은 언어·같은 공동체·같은 삶의 형식. 비트겐슈타인의 관점에서 의미의 공공 기반. 끊기면 같은 단어가 다른 의미가 된다.</p>
+      </div>
+      <div class="pillar">
+        <div class="p-num">PILLAR IV</div>
+        <h4>공유된 서사</h4>
+        <p>신화·문학·관용구·농담·역사적 일화 — 집단이 같은 참조점을 가지기에 "그거 알지?"가 가능하다. 서사의 공용 저장소.</p>
+      </div>
+      <div class="pillar">
+        <div class="p-num">PILLAR V</div>
+        <h4>지평 융합 가능성</h4>
+        <p>대화·예술·의례가 두 지평을 일시적으로 겹치게 한다. 이 겹침 속에서 공통 공간이 생성되고, 두 사람 다 약간씩 달라진다.</p>
+      </div>
+    </div>
+
+    <div class="phase-hero accent" style="margin-top:40px; border-left-color:var(--accent);">
+      <div class="phase-era">CONCLUSION · THE FORMULA</div>
+      <h3>결론 · <em>충분한 겹침은 언제나 가능하다</em></h3>
+      <p style="font-size:17px; color:var(--text);"><strong>완벽한 이해는 불가능하다. 그러나 다섯 기층의 충분한 겹침은 언제나 가능하다. 소통이란 바로 그 겹침을 넓히는 일이다.</strong></p>
+      <p>이것이 크리에이티브 커뮤니케이터의 작업 정의. "내가 생각한 것을 정확히 전달한다"가 아니라 "두 움벨트의 지평이 겹치는 공간을 함께 만든다."</p>
+    </div>
+  </div>
+</section>
+
+<!-- 07 LOSS -->
+<section id="s7" style="background:var(--bg-2);">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">07</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">THE FAILURE MODE</div>
+        <h2>번역의 손실 — <em>사적 경험 → 언어화</em>에서 반드시 잃는 것</h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      사적 경험을 언어로 옮길 때 우리는 무엇을 잃는가. 이 다섯 가지 손실을 이해하면 왜 시·이미지·몸짓·음악이 "언어로 다 못 하는 것"을 한다는 말이 성립하는지가 보인다.
+    </p>
+
+    <div class="loss-list">
+      <div class="loss-card">
+        <h4><em>LOSS 01</em>동시성 (Simultaneity)</h4>
+        <p>경험은 동시에 여러 층을 가진다 — 맛·온도·향·기억·감정이 한순간에 발생. 언어는 순차적이다. 문장은 한 번에 하나씩만 나아간다. 재구성하려는 순간 동시성은 무너진다.</p>
+      </div>
+      <div class="loss-card">
+        <h4><em>LOSS 02</em>강도 (Intensity)</h4>
+        <p>"커피가 맛있다"는 문장은 그 커피의 생생함을 담지 못한다. 단어는 의미의 평균값이지 경험의 정점이 아니다. 문학이 비유·리듬·반복으로 강도를 되살리려 애쓰는 이유.</p>
+      </div>
+      <div class="loss-card">
+        <h4><em>LOSS 03</em>맥락 (Context)</h4>
+        <p>"거기 그때 그 사람과"라는 고유성이 일반어로 압축된다. "사랑했다" 세 글자에 두 사람 사이 3년의 고유성이 다 들어갈 수 없다. 맥락의 증발.</p>
+      </div>
+      <div class="loss-card">
+        <h4><em>LOSS 04</em>암묵지 (Tacit Knowledge)</h4>
+        <p>자전거 타는 법, 김치 담그는 감, 대화에서 말을 고르는 타이밍 — 몸이 아는 것은 언어로 옮기기 어렵다. Polanyi의 "우리는 말할 수 있는 것보다 더 많이 안다."</p>
+      </div>
+      <div class="loss-card">
+        <h4><em>LOSS 05</em>양가성 (Ambivalence)</h4>
+        <p>"사랑하면서도 증오한다", "기쁘면서도 슬프다" — 경험은 모순을 동시에 품지만 명제는 하나를 골라야 한다. 언어의 단일 좌표화가 경험의 이중성을 평탄하게 만든다.</p>
+      </div>
+      <div class="loss-card">
+        <h4><em>LOSS 06</em>리듬과 호흡 (Rhythm)</h4>
+        <p>말의 빠르기·쉬어가기·강세는 의미를 만든다. 같은 문장이 다른 리듬으로 다른 의미가 된다. 글에 담기지 않는 층. 음악·시·연설이 이 층을 복원하려 한다.</p>
+      </div>
+    </div>
+
+    <div class="phase-hero accent" style="margin-top:40px;">
+      <div class="phase-era">THE UPSHOT</div>
+      <h3>귀결 · <em>언어는 경험의 1/10도 담지 못한다</em></h3>
+      <p>이것이 예술·시·이미지·음악·춤·건축·영화가 여전히 필요한 이유다. 언어가 놓친 9/10을 다른 매체가 나눠 담는다. 크리에이티브 커뮤니케이터의 과제는 "어떤 매체에 어떤 층을 맡길 것인가"의 판단.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 08 ART -->
+<section id="s8">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">08</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">THE COMPLEMENT</div>
+        <h2>예술의 역할 — <em>언어가 놓친 것을 담는 매체</em></h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      번역의 여섯 손실을 어떻게 되돌리는가. 각 매체는 언어가 놓친 특정 층을 복원하도록 진화해왔다. 이 매핑을 알면 크리에이티브 작업의 매체 선택이 근거를 가진다.
+    </p>
+
+    <div class="art-overlap">
+      <div>
+        <h3>왜 한 메시지에 <em>여러 매체</em>를 써야 하는가</h3>
+        <p>언어 하나로는 "동시성 · 강도 · 맥락 · 암묵지 · 양가성 · 리듬" 여섯을 다 담을 수 없다. 복수 매체를 조합하는 것은 예술적 취향이 아니라 <strong>인지적 필연</strong>이다.</p>
+        <p>특히 <strong>체화된 메시지</strong>를 전달할 때 — 이미지·공간·몸짓·음향이 언어보다 먼저 도달한다. 상호신체성·거울 뉴런·1차 은유가 언어 채널을 우회해 직접 작동한다.</p>
+      </div>
+<div class="schema"><span class="c-d"># 매체와 복원 영역</span>
+
+  <span class="c-hi">언어</span>         →  개념 · 논리 · 시퀀스
+  <span class="c-a">이미지</span>        →  동시성 · 맥락 · 양가성
+  <span class="c-t">음악 · 소리</span>    →  강도 · 리듬 · 감정
+  <span class="c-g">공간 · 건축</span>    →  맥락 · 몸의 지향
+  <span class="c-y">몸짓 · 춤</span>     →  암묵지 · 상호신체성
+  <span class="c-p">시 · 비유</span>     →  강도 · 양가성 · 리듬
+
+<span class="c-d">규칙:</span> 한 메시지에 두 매체 이상
+      하나는 언어, 하나는 비언어</div>
+    </div>
+  </div>
+</section>
+
+<!-- 09 PRACTICE -->
+<section id="s9" style="background:var(--bg-2);">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">09</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">APPLICATION · TODAY</div>
+        <h2>크리에이티브 커뮤니케이터의 <em>여섯 실천</em></h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      이 지도 전체는 한 질문의 답이다. <strong>"오늘 내가 하는 크리에이티브 작업을 어떻게 바꿀 것인가?"</strong> 아래 여섯 실천은 감각일지·카피 작업·디자인 리뷰·인터뷰·브리프 쓰기 등 매일의 루틴에 바로 장착할 수 있다.
+    </p>
+
+    <div class="practice-grid">
+      <div class="practice-card">
+        <div class="tag">PRACTICE 01</div>
+        <h4>내 움벨트의 한계 자각</h4>
+        <ul>
+          <li>"내가 당연하다"는 건 대개 내 움벨트의 특수성</li>
+          <li>감각일지 주 1회: "당연하지 않은 것 한 가지"</li>
+          <li>브리프 작성 전 자기 전제 3개 적어두기</li>
+          <li>피드백 받을 때 "이 사람 움벨트에서 본다면" 렌즈</li>
+        </ul>
+      </div>
+      <div class="practice-card">
+        <div class="tag">PRACTICE 02</div>
+        <h4>타인 움벨트 진입</h4>
+        <ul>
+          <li>판단을 괄호 치고 현상학적 관찰(epoché)</li>
+          <li>인터뷰 후 상대 눈으로 본 세계 한 문단 적기</li>
+          <li>페르소나를 ToM 훈련 도구로 사용</li>
+          <li>"그 사람은 왜 저렇게 볼까"를 호기심으로 붙잡기</li>
+        </ul>
+      </div>
+      <div class="practice-card">
+        <div class="tag">PRACTICE 03</div>
+        <h4>체화된 은유 사용</h4>
+        <ul>
+          <li>초고의 추상어 3개를 몸 은유로 치환 시도</li>
+          <li>감정 어휘는 체온·무게·속도 축으로 정밀화</li>
+          <li>동사 선택 = 몸 시뮬레이션 설계</li>
+          <li>Lakoff 1차 은유 리스트를 체크리스트로</li>
+        </ul>
+      </div>
+      <div class="practice-card">
+        <div class="tag">PRACTICE 04</div>
+        <h4>비언어 매체 동원</h4>
+        <ul>
+          <li>주요 메시지를 언어 + 이미지 + 리듬 세 매체로</li>
+          <li>동시성은 이미지, 강도는 음향, 맥락은 공간</li>
+          <li>줌보다 대면 — 상호신체성이 필요한 대화</li>
+          <li>프레젠테이션에 몸의 리듬(쉬기 · 속도) 설계</li>
+        </ul>
+      </div>
+      <div class="practice-card">
+        <div class="tag">PRACTICE 05</div>
+        <h4>지평 융합 목표</h4>
+        <ul>
+          <li>"내 메시지 관철"이 아닌 "공통 공간 생성"</li>
+          <li>대화 후 자문: "내 생각이 조금이라도 바뀌었나"</li>
+          <li>인터뷰 = 정보 수집이 아니라 지평의 확장</li>
+          <li>합의 말고 창발 — 예상 못 한 세 번째 답</li>
+        </ul>
+      </div>
+      <div class="practice-card">
+        <div class="tag">PRACTICE 06</div>
+        <h4>충분한 겹침 판단</h4>
+        <ul>
+          <li>완벽한 번역은 포기 — 100%는 없다</li>
+          <li>"절대 건너야 할 문장 1개"를 먼저 정하기</li>
+          <li>나머지는 그것을 돕는 도구로 재배치</li>
+          <li>여백을 두는 용기 — 독자의 해석 공간</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ONE LINE -->
+<section class="oneline">
+  <div class="oneline-inner">
+    <div class="oneline-k">ONE LINE SUMMARY</div>
+    <p class="oneline-main">
+      우리는 각자의 <em>움벨트</em>에 갇혀 있지만,<br/>
+      비슷한 몸 · 비슷한 뇌 · 공유된 언어와 서사라는<br/>
+      <em>다섯 기층</em> 위에서 <em>지평을 겹치며</em> 소통한다.
+    </p>
+    <div class="oneline-sig">크리에이티브 커뮤니케이터의 작업은<br/>움벨트와 움벨트 사이에 다리를 놓는 일이다.</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="inner">
+    <div>
+      <h4>SERIES · CREATIVE COMMUNICATOR</h4>
+      <p>
+        <strong>Part I</strong> 광고사 & 카피 역사<br/>
+        <strong>Part II</strong> 카피라이팅 프레임워크<br/>
+        <strong>Part III</strong> 뇌과학 · 해마 · 이야기<br/>
+        <strong>Part IV · Deep</strong> 인식과 소통 · 움벨트<br/>
+        <strong>Part V · Deep</strong> 현대사상 인식론 계보
+      </p>
+    </div>
+    <div>
+      <h4>PRIMARY · 1차 문헌</h4>
+      <ul>
+        <li>Uexküll, 『A Foray into the Worlds of Animals and Humans』</li>
+        <li>Merleau-Ponty, 『지각의 현상학』</li>
+        <li>Wittgenstein, 『철학적 탐구』</li>
+        <li>Gadamer, 『진리와 방법』</li>
+        <li>Lakoff & Johnson, 『Metaphors We Live By』</li>
+      </ul>
+    </div>
+    <div>
+      <h4>MODERN · 현대 마음 과학</h4>
+      <ul>
+        <li>Clark, 『Surfing Uncertainty』</li>
+        <li>Seth, 『Being You』</li>
+        <li>Barrett, 『How Emotions Are Made』</li>
+        <li>Damasio, 『The Feeling of What Happens』</li>
+        <li>Fletcher, 『Storythinking』</li>
+      </ul>
+    </div>
+  </div>
+  <div class="colophon">
+    <span>© 2026 · 크리에이티브 커뮤니케이터 시리즈</span>
+    <span>PART IV · DEEP · PERCEPTION & COMMUNICATION</span>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>크리에이티브 어휘 지도 · Creative Vocabulary Map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fdfcfa;
+    --bg-2: #f4f1ec;
+    --bg-card: #ffffff;
+    --text: #1a1a1a;
+    --text-soft: #4a4845;
+    --text-dim: #807e7a;
+    --text-faint: #c4c2bd;
+    --accent: #d9601f;
+    --accent-soft: rgba(217,96,31,0.08);
+    --teal: #2e8a7c;
+    --purple: #7e5a98;
+    --blue: #4a72a8;
+    --border: rgba(0,0,0,0.10);
+    --border-2: rgba(0,0,0,0.16);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Sans KR', -apple-system, sans-serif;
+    line-height: 1.65;
+    padding: 64px 40px 80px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1320px; margin: 0 auto; }
+
+  /* HEADER */
+  header { margin-bottom: 64px; padding-bottom: 32px; border-bottom: 1px solid var(--border-2); }
+  .kicker { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.32em; color: var(--text-dim); margin-bottom: 22px; text-transform: uppercase; }
+  h1 { font-size: clamp(32px, 4vw, 48px); font-weight: 900; line-height: 1.1; letter-spacing: -0.022em; margin-bottom: 14px; }
+  h1 em { font-style: normal; color: var(--accent); }
+  .subtitle { font-family: 'Playfair Display', serif; font-style: italic; font-size: 18px; color: var(--text-soft); margin-bottom: 22px; }
+  .lead { max-width: 760px; font-size: 14.5px; color: var(--text-soft); line-height: 1.85; }
+  .lead strong { color: var(--text); font-weight: 600; }
+  .lead em { font-style: italic; color: var(--accent); font-family: 'Playfair Display', serif; }
+
+  .meta-row { margin-top: 24px; display: flex; gap: 32px; flex-wrap: wrap; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.18em; color: var(--text-dim); }
+  .meta-row span strong { color: var(--text); font-weight: 700; }
+
+  /* SECTION HEADER */
+  .section { margin-bottom: 72px; }
+  .section-head { display: flex; align-items: baseline; gap: 22px; margin-bottom: 28px; padding-bottom: 16px; border-bottom: 1px solid var(--border-2); }
+  .section-num { font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.28em; color: var(--accent); font-weight: 700; }
+  .section-title { font-size: 22px; font-weight: 800; letter-spacing: -0.005em; }
+  .section-meta { margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-dim); letter-spacing: 0.22em; }
+
+  /* CLUSTER GRID */
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 16px; }
+
+  /* CARD */
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--text-faint);
+    padding: 22px 22px 24px;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-top-color 0.18s ease;
+    display: flex;
+    flex-direction: column;
+    min-height: 220px;
+  }
+  .card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
+  .card.c-perception { border-top-color: var(--blue); }
+  .card.c-stance     { border-top-color: var(--teal); }
+  .card.c-relation   { border-top-color: var(--accent); }
+  .card.c-operation  { border-top-color: var(--purple); }
+
+  .card-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px; flex-wrap: wrap; }
+  .card-tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.22em; color: var(--accent); font-weight: 700; }
+  .card-en { font-family: 'Playfair Display', serif; font-style: italic; font-size: 12px; color: var(--text-dim); margin-left: auto; }
+  .card-title { font-size: 17px; font-weight: 800; margin-bottom: 8px; color: var(--text); letter-spacing: -0.005em; }
+  .card-desc { font-size: 12.5px; color: var(--text-soft); line-height: 1.65; margin-bottom: 16px; font-style: italic; }
+
+  /* WORD CHIPS */
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; }
+  .chip {
+    display: inline-block;
+    padding: 5px 11px;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    border-radius: 2px;
+  }
+
+  /* CANDIDATES (section 02) */
+  .grid.candidates .card {
+    border: 1.5px dashed var(--accent);
+    border-top: 3px solid var(--accent);
+    background: var(--accent-soft);
+  }
+  .grid.candidates .chip {
+    background: rgba(255,255,255,0.85);
+    border-color: rgba(217,96,31,0.28);
+  }
+  .grid.candidates .card-tag::before { content: '★ '; }
+
+  /* DIAGNOSIS CALLOUT */
+  .callout {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    padding: 32px 36px;
+    margin-top: 24px;
+  }
+  .callout .lab { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.3em; color: var(--accent); text-transform: uppercase; margin-bottom: 14px; }
+  .callout p { font-size: 14.5px; color: var(--text); line-height: 1.95; max-width: 880px; margin-bottom: 14px; }
+  .callout p:last-child { margin-bottom: 0; }
+  .callout p strong { color: var(--accent); font-weight: 700; }
+  .callout p em { font-style: italic; color: var(--text); font-family: 'Playfair Display', serif; }
+
+  /* LEGEND */
+  .legend { display: flex; gap: 22px; flex-wrap: wrap; margin-top: 24px; padding: 16px 20px; background: var(--bg-2); border: 1px solid var(--border); font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.18em; color: var(--text-dim); }
+  .legend .item { display: flex; align-items: center; gap: 8px; }
+  .legend .swatch { width: 14px; height: 14px; border-top: 3px solid var(--text-faint); background: white; border-bottom: 1px solid var(--border); border-left: 1px solid var(--border); border-right: 1px solid var(--border); }
+  .legend .sw-perception { border-top-color: var(--blue); }
+  .legend .sw-stance { border-top-color: var(--teal); }
+  .legend .sw-relation { border-top-color: var(--accent); }
+  .legend .sw-operation { border-top-color: var(--purple); }
+  .legend .sw-candidate { border: 1.5px dashed var(--accent); border-top: 3px solid var(--accent); background: var(--accent-soft); }
+
+  footer { margin-top: 80px; padding-top: 28px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.22em; color: var(--text-dim); }
+
+  /* MOBILE */
+  @media (max-width: 720px) {
+    body { padding: 32px 20px 60px; }
+    .grid { grid-template-columns: 1fr; }
+    .section-head { flex-wrap: wrap; }
+    .section-meta { margin-left: 0; }
+    footer { flex-direction: column; gap: 12px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HEADER -->
+  <header>
+    <div class="kicker">CREATIVE VOCABULARY MAP · 2026.05</div>
+    <h1>크리에이티브 <em>어휘 지도</em></h1>
+    <div class="subtitle">Words I keep returning to — clusters &amp; candidates</div>
+    <p class="lead">자주 떠올리는 단어들을 <strong>10 클러스터</strong>로 묶고, 부재한 영역을 보강할 <strong>6 후보 클러스터</strong>를 추가한 지도. 단어가 사고의 골격이라면 — 이 지도는 곧 <em>자기 작업의 골격</em>이다. 한눈에 보면서 어디가 두꺼운지 어디가 비어있는지 점검용.</p>
+    <div class="meta-row">
+      <span>SOURCE · <strong>2026.04.30 노트 + 큐레이션 분석</strong></span>
+      <span>EXISTING · <strong>10 clusters</strong></span>
+      <span>CANDIDATE · <strong>6 clusters</strong></span>
+      <span>TOTAL · <strong>~85 단어</strong></span>
+    </div>
+  </header>
+
+  <!-- LEGEND -->
+  <div class="legend">
+    <div class="item"><div class="swatch sw-perception"></div>PERCEPTION</div>
+    <div class="item"><div class="swatch sw-stance"></div>STANCE</div>
+    <div class="item"><div class="swatch sw-relation"></div>RELATION</div>
+    <div class="item"><div class="swatch sw-operation"></div>OPERATION</div>
+    <div class="item"><div class="swatch sw-candidate"></div>CANDIDATE</div>
+  </div>
+
+  <!-- SECTION 1: 현재 어휘 -->
+  <section class="section" style="margin-top: 56px;">
+    <div class="section-head">
+      <div class="section-num">01</div>
+      <div class="section-title">현재 어휘 — 10 클러스터</div>
+      <div class="section-meta">DOMAIN · CRAFT · LANGUAGE</div>
+    </div>
+    <div class="grid">
+
+      <!-- A. 층위 -->
+      <div class="card c-perception">
+        <div class="card-head">
+          <div class="card-tag">A · LAYER</div>
+          <div class="card-en">interior · exterior</div>
+        </div>
+        <div class="card-title">층위 · 안과 밖</div>
+        <div class="card-desc">한 현상을 깊이로 본다 — 표면 아래의 본질을 묻는 습관.</div>
+        <div class="chips">
+          <span class="chip">안</span>
+          <span class="chip">밖</span>
+          <span class="chip">음</span>
+          <span class="chip">마음</span>
+          <span class="chip">본질</span>
+          <span class="chip">표면</span>
+          <span class="chip">깊이</span>
+        </div>
+      </div>
+
+      <!-- B. 인식 단계 -->
+      <div class="card c-perception">
+        <div class="card-head">
+          <div class="card-tag">B · MIND LAYERS</div>
+          <div class="card-en">perception layers</div>
+        </div>
+        <div class="card-title">인식의 4 단계</div>
+        <div class="card-desc">한 자극이 통과하는 층 — 입력에서 욕망까지.</div>
+        <div class="chips">
+          <span class="chip">감각</span>
+          <span class="chip">지각</span>
+          <span class="chip">인지</span>
+          <span class="chip">생각</span>
+          <span class="chip">욕망</span>
+        </div>
+      </div>
+
+      <!-- C. 위치 -->
+      <div class="card c-stance">
+        <div class="card-head">
+          <div class="card-tag">C · STANCE</div>
+          <div class="card-en">point of view</div>
+        </div>
+        <div class="card-title">위치 · 시점</div>
+        <div class="card-desc">어디서 보는가 — 보는 자리가 보이는 것을 결정한다.</div>
+        <div class="chips">
+          <span class="chip">주관</span>
+          <span class="chip">입장</span>
+          <span class="chip">맥락</span>
+          <span class="chip">관점</span>
+          <span class="chip">시점</span>
+        </div>
+      </div>
+
+      <!-- D. 3 좌표 -->
+      <div class="card c-stance">
+        <div class="card-head">
+          <div class="card-tag">D · COORDINATES</div>
+          <div class="card-en">three axes</div>
+        </div>
+        <div class="card-title">3 좌표</div>
+        <div class="card-desc">모든 사건의 좌표 — 24/7 모토와 직결.</div>
+        <div class="chips">
+          <span class="chip">시간</span>
+          <span class="chip">공간</span>
+          <span class="chip">사람</span>
+        </div>
+      </div>
+
+      <!-- E. 연결 -->
+      <div class="card c-relation">
+        <div class="card-head">
+          <div class="card-tag">E · CONNECTION</div>
+          <div class="card-en">relation forms</div>
+        </div>
+        <div class="card-title">연결의 형태</div>
+        <div class="card-desc">관계의 종류 — 점이 아닌 선·면으로 사고한다.</div>
+        <div class="chips">
+          <span class="chip">흐름</span>
+          <span class="chip">연결</span>
+          <span class="chip">연상</span>
+          <span class="chip">관계</span>
+          <span class="chip">평행</span>
+          <span class="chip">교차</span>
+          <span class="chip">네트워크</span>
+          <span class="chip">하이퍼</span>
+        </div>
+      </div>
+
+      <!-- F. 변증법 -->
+      <div class="card c-relation">
+        <div class="card-head">
+          <div class="card-tag">F · DIALECTIC</div>
+          <div class="card-en">coexistence of opposites</div>
+        </div>
+        <div class="card-title">변증법 · 대립의 공존</div>
+        <div class="card-desc">A이면서 B인 상태 — 경계 위에서 사고하기.</div>
+        <div class="chips">
+          <span class="chip">대비</span>
+          <span class="chip">대립</span>
+          <span class="chip">조합</span>
+          <span class="chip">조화</span>
+          <span class="chip">균형</span>
+          <span class="chip">통합</span>
+        </div>
+      </div>
+
+      <!-- G. 메타·구조 -->
+      <div class="card c-relation">
+        <div class="card-head">
+          <div class="card-tag">G · META · STRUCTURE</div>
+          <div class="card-en">meta-frames</div>
+        </div>
+        <div class="card-title">메타 · 구조</div>
+        <div class="card-desc">한 층 위에서 보기 — 일차 현상 위의 골격.</div>
+        <div class="chips">
+          <span class="chip">메타</span>
+          <span class="chip">스키마</span>
+          <span class="chip">패턴</span>
+          <span class="chip">트리</span>
+          <span class="chip">네트워크</span>
+          <span class="chip">크로스</span>
+        </div>
+      </div>
+
+      <!-- H. 작업 동사 -->
+      <div class="card c-operation">
+        <div class="card-head">
+          <div class="card-tag">H · OPERATION</div>
+          <div class="card-en">working verbs</div>
+        </div>
+        <div class="card-title">작업 동사</div>
+        <div class="card-desc">무엇을 하는가 — 명사보다 작동의 어휘.</div>
+        <div class="chips">
+          <span class="chip">강조</span>
+          <span class="chip">편집</span>
+          <span class="chip">단순화</span>
+          <span class="chip">측정</span>
+          <span class="chip">추론</span>
+          <span class="chip">검증</span>
+        </div>
+      </div>
+
+      <!-- I. 표현·번역 -->
+      <div class="card c-operation">
+        <div class="card-head">
+          <div class="card-tag">I · TRANSLATION</div>
+          <div class="card-en">inner → outer</div>
+        </div>
+        <div class="card-title">표현 · 번역</div>
+        <div class="card-desc">안의 것을 밖으로 — 시리즈를 관통하는 핵심 동사.</div>
+        <div class="chips">
+          <span class="chip">표현</span>
+          <span class="chip">재현</span>
+          <span class="chip">형태</span>
+          <span class="chip">이미지</span>
+          <span class="chip">시각화</span>
+          <span class="chip">기호</span>
+          <span class="chip">코드</span>
+        </div>
+      </div>
+
+      <!-- J. 추론 -->
+      <div class="card c-operation">
+        <div class="card-head">
+          <div class="card-tag">J · REASONING</div>
+          <div class="card-en">inference circuits</div>
+        </div>
+        <div class="card-title">추론의 회로</div>
+        <div class="card-desc">사고의 형식 — Part VI 추론 리포트와 직결.</div>
+        <div class="chips">
+          <span class="chip">연역</span>
+          <span class="chip">귀납</span>
+          <span class="chip">가추</span>
+          <span class="chip">가설</span>
+          <span class="chip">실험</span>
+          <span class="chip">다양성</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 2: 추가 후보 -->
+  <section class="section">
+    <div class="section-head">
+      <div class="section-num">02 ★</div>
+      <div class="section-title">추가 후보 — 6 클러스터</div>
+      <div class="section-meta">UNDER-REPRESENTED · TO RECRUIT</div>
+    </div>
+    <div class="grid candidates">
+
+      <!-- ① 도달 -->
+      <div class="card">
+        <div class="card-head">
+          <div class="card-tag">① ARRIVAL</div>
+          <div class="card-en">landing · sticking</div>
+        </div>
+        <div class="card-title">도달의 어휘</div>
+        <div class="card-desc">메시지가 닿아 새겨지는 순간 — 가장 큰 부재 영역. 다이아몬드 회로의 마지막을 가리킬 단어들.</div>
+        <div class="chips">
+          <span class="chip">닿음</span>
+          <span class="chip">와닿음</span>
+          <span class="chip">박힘</span>
+          <span class="chip">새겨짐</span>
+          <span class="chip">잔류</span>
+          <span class="chip">도착</span>
+          <span class="chip">떨림</span>
+          <span class="chip">사무침</span>
+        </div>
+      </div>
+
+      <!-- ② 부재·여백 -->
+      <div class="card">
+        <div class="card-head">
+          <div class="card-tag">② ABSENCE</div>
+          <div class="card-en">empty · pause</div>
+        </div>
+        <div class="card-title">부재 · 여백</div>
+        <div class="card-desc">채우지 않은 자리 — 블로그에서 직접 다뤘으나 어휘 목록엔 부재. 동양 미학과 디자인의 핵심.</div>
+        <div class="chips">
+          <span class="chip">공백</span>
+          <span class="chip">여백</span>
+          <span class="chip">침묵</span>
+          <span class="chip">멈춤</span>
+          <span class="chip">사이</span>
+          <span class="chip">간격</span>
+          <span class="chip">휴지</span>
+          <span class="chip">정지</span>
+        </div>
+      </div>
+
+      <!-- ③ 몸·신체 -->
+      <div class="card">
+        <div class="card-head">
+          <div class="card-tag">③ BODY</div>
+          <div class="card-en">somatic medium</div>
+        </div>
+        <div class="card-title">몸 · 신체</div>
+        <div class="card-desc">가장 즉각적인 매체 — 산티아고 780km · 러닝크루의 어휘. 큐레이션의 메타 가치만 있고 어휘는 빈약했음.</div>
+        <div class="chips">
+          <span class="chip">몸짓</span>
+          <span class="chip">자세</span>
+          <span class="chip">호흡</span>
+          <span class="chip">보행</span>
+          <span class="chip">감응</span>
+          <span class="chip">체화</span>
+          <span class="chip">살갗</span>
+          <span class="chip">결</span>
+        </div>
+      </div>
+
+      <!-- ④ 흔적·기록 -->
+      <div class="card">
+        <div class="card-head">
+          <div class="card-tag">④ TRACE</div>
+          <div class="card-en">residue · imprint</div>
+        </div>
+        <div class="card-title">흔적 · 기록</div>
+        <div class="card-desc">시간이 남기는 것 — 매거진 이름이 <em>아카이브 감각</em>인데 정작 아카이브 쪽 어휘가 비어있다.</div>
+        <div class="chips">
+          <span class="chip">흔적</span>
+          <span class="chip">잔향</span>
+          <span class="chip">자국</span>
+          <span class="chip">인장</span>
+          <span class="chip">자취</span>
+          <span class="chip">결</span>
+          <span class="chip">잉여</span>
+          <span class="chip">잔여</span>
+        </div>
+      </div>
+
+      <!-- ⑤ 균열·오작동 -->
+      <div class="card">
+        <div class="card-head">
+          <div class="card-tag">⑤ FRACTURE</div>
+          <div class="card-en">misfire · noise</div>
+        </div>
+        <div class="card-title">균열 · 오작동</div>
+        <div class="card-desc">메시지가 어긋나는 순간 — 에디터의 진짜 작업은 잘 굴러가는 것을 만드는 게 아니라 어디서 어긋나는지를 보는 일.</div>
+        <div class="chips">
+          <span class="chip">오해</span>
+          <span class="chip">균열</span>
+          <span class="chip">어긋남</span>
+          <span class="chip">결렬</span>
+          <span class="chip">노이즈</span>
+          <span class="chip">잡음</span>
+          <span class="chip">우연</span>
+          <span class="chip">실수</span>
+          <span class="chip">표류</span>
+        </div>
+      </div>
+
+      <!-- ⑥ 숙성·변형 -->
+      <div class="card">
+        <div class="card-head">
+          <div class="card-tag">⑥ MATURATION</div>
+          <div class="card-en">slow change</div>
+        </div>
+        <div class="card-title">숙성 · 변형</div>
+        <div class="card-desc">느리게 익는 시간 — 즉각적 실행 어휘는 풍부, 느린 변형 어휘는 빈약. 26 → 30의 호흡 어휘.</div>
+        <div class="chips">
+          <span class="chip">숙성</span>
+          <span class="chip">발효</span>
+          <span class="chip">응축</span>
+          <span class="chip">여물기</span>
+          <span class="chip">익기</span>
+          <span class="chip">잠복</span>
+          <span class="chip">변형</span>
+          <span class="chip">탈피</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- DIAGNOSIS -->
+  <section class="section">
+    <div class="section-head">
+      <div class="section-num">03</div>
+      <div class="section-title">진단 한 줄</div>
+      <div class="section-meta">DIAGNOSIS</div>
+    </div>
+    <div class="callout">
+      <div class="lab">SUMMARY</div>
+      <p>현재 어휘는 <strong>연결을 만드는 사람</strong>의 어휘에는 충분하지만, <strong>연결이 도착해서 새겨지는 순간</strong>과 <strong>도착에 실패하는 순간</strong>의 어휘가 비어있다.</p>
+      <p>가장 즉시 효과 있을 작업 — 6 후보 카테고리에서 본인이 <em>마음에 박히는</em> 단어 1-2개씩만 골라 단어 목록에 합류시키기. 8-12개 늘어나는 정도면 충분. 그 후 <em>그 단어로 일주일을 살아보고</em> 어떤 게 자기 어휘로 들어왔는지 점검 — 다음 단계는 그때.</p>
+    </div>
+  </section>
+
+  <footer>
+    <span>CREATIVE VOCABULARY MAP · 정찬휘 · 2026.05.01</span>
+    <span>v1.0 · 10 + 6 clusters · ~85 words</span>
+  </footer>
+
+</div>
+</body>
+</html>

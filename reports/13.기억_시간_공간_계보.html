@@ -1,0 +1,1756 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>기억·시간·공간 계보 — 시미오니데스에서 격자세포까지 · Part XIII</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fdfcfa; --bg-2: #f4f1ec; --bg-card: #ffffff; --bg-card-2: #f8f6f1; --bg-code: #f4f1ec;
+    --text: #1a1a1a; --text-soft: #4a4845; --text-dim: #807e7a; --text-faint: #c4c2bd;
+    --accent: #d9601f; --accent-2: #e07530; --accent-dim: #b54e15;
+    --teal: #2e8a7c; --teal-dim: #1f5e54;
+    --green: #4a8e4a; --purple: #7e5a98; --pink: #c25787; --blue: #4a72a8; --yellow: #b8954a; --red: #c14638;
+    --border: rgba(0,0,0,0.10); --border-2: rgba(0,0,0,0.16); --rule: rgba(0,0,0,0.12);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', -apple-system, sans-serif; font-weight: 400; line-height: 1.75; -webkit-font-smoothing: antialiased; }
+  a { color: var(--accent); text-decoration: none; }
+  .hero { padding: 110px 60px 140px; position: relative; overflow: hidden; border-bottom: 1px solid var(--border); }
+  .hero-inner { max-width: 1120px; margin: 0 auto; position: relative; }
+  .hero-kicker { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.35em; color: var(--text-dim); margin-bottom: 80px; }
+  .hero h1 { font-family: 'Noto Sans KR', sans-serif; font-weight: 900; font-size: clamp(40px, 5.5vw, 72px); line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 20px; }
+  .hero h1 em { font-style: normal; color: var(--accent); }
+  .hero-lead { max-width: 720px; font-size: 16px; color: var(--text-soft); line-height: 1.85; font-weight: 300; margin-top: 36px; }
+  .hero-meta { margin-top: 120px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; padding-top: 32px; border-top: 1px solid var(--border); }
+  .hero-meta .label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.25em; color: var(--text-dim); text-transform: uppercase; margin-bottom: 8px; }
+  .hero-meta .value { font-size: 17px; font-weight: 700; color: var(--text); }
+  nav.sticky { position: sticky; top: 0; background: rgba(253,252,250,0.92); backdrop-filter: blur(18px); border-bottom: 1px solid var(--border); z-index: 50; padding: 14px 60px; }
+  nav .nav-inner { max-width: 1120px; margin: 0 auto; display: flex; gap: 24px; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; }
+  nav a { color: var(--text-dim); white-space: nowrap; padding: 4px 0; border-bottom: 1px solid transparent; transition: all 0.2s; }
+  nav a:hover { color: var(--accent); }
+  section { padding: 100px 60px; position: relative; }
+  .container { max-width: 1120px; margin: 0 auto; }
+  .sec-header { margin-bottom: 56px; display: flex; align-items: flex-start; gap: 32px; }
+  .sec-num { font-family: 'JetBrains Mono', monospace; font-size: 56px; font-weight: 700; color: var(--text-faint); line-height: 1; letter-spacing: -0.02em; flex-shrink: 0; }
+  .sec-num.star { color: var(--accent); }
+  .sec-title-wrap { flex: 1; padding-top: 8px; }
+  h2 { font-family: 'Noto Sans KR', sans-serif; font-weight: 900; font-size: clamp(28px, 3.6vw, 44px); line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 16px; color: var(--text); }
+  h2 em { font-style: normal; color: var(--accent); }
+  .sec-sub { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.2em; color: var(--text-dim); text-transform: uppercase; margin-top: 6px; margin-bottom: 22px; }
+  .sec-lead { font-size: 16px; color: var(--text-soft); max-width: 800px; line-height: 1.85; font-weight: 300; }
+  .sec-lead strong { color: var(--text); font-weight: 600; }
+  .intro-why { background: var(--bg-card); border: 1px solid var(--border); padding: 36px 40px; margin-top: 32px; }
+  .intro-why h3 { font-size: 18px; font-weight: 700; margin-bottom: 14px; color: var(--text); }
+  .intro-why h3 span { color: var(--accent); font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; margin-right: 10px; }
+  .intro-why p { font-size: 14px; color: var(--text-soft); line-height: 1.8; margin-bottom: 10px; }
+  .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
+  .compare-card { background: var(--bg-card); border: 1px solid var(--border); padding: 32px 32px; }
+  .compare-card h4 { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 14px; }
+  .compare-card.old h4 { color: var(--text-dim); }
+  .compare-card.new h4 { color: var(--accent); }
+  .compare-card .punch { font-size: 19px; font-weight: 700; margin-bottom: 14px; line-height: 1.4; }
+  .compare-card.new .punch { color: var(--accent-2); }
+  .compare-card p { font-size: 14px; color: var(--text-soft); line-height: 1.75; margin-bottom: 8px; }
+  .phase-hero { background: var(--bg-card); border: 1px solid var(--border); border-left: 4px solid var(--accent); padding: 40px 44px; margin-top: 48px; margin-bottom: 44px; }
+  .phase-hero.teal { border-left-color: var(--teal); }
+  .phase-hero.purple { border-left-color: var(--purple); }
+  .phase-hero.green { border-left-color: var(--green); }
+  .phase-hero.pink { border-left-color: var(--pink); }
+  .phase-hero.blue { border-left-color: var(--blue); }
+  .phase-hero.yellow { border-left-color: var(--yellow); }
+  .phase-era { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.25em; color: var(--text-dim); margin-bottom: 10px; }
+  .phase-hero h3 { font-size: 26px; font-weight: 800; line-height: 1.4; margin-bottom: 18px; letter-spacing: -0.01em; }
+  .phase-hero h3 em { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; color: var(--accent); }
+  .phase-hero.teal h3 em { color: var(--teal); }
+  .phase-hero.purple h3 em { color: var(--purple); }
+  .phase-hero.green h3 em { color: var(--green); }
+  .phase-hero.pink h3 em { color: var(--pink); }
+  .phase-hero.blue h3 em { color: var(--blue); }
+  .phase-hero.yellow h3 em { color: var(--yellow); }
+  .phase-hero p { font-size: 15px; color: var(--text-soft); line-height: 1.85; margin-bottom: 10px; }
+  .phase-q { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-dim); margin-top: 24px; padding-top: 22px; border-top: 1px dashed var(--border-2); letter-spacing: 0.05em; line-height: 1.7; }
+  .phase-q strong { color: var(--accent-2); }
+  .thinker { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--accent); margin-bottom: 28px; overflow: hidden; box-shadow: 0 1px 2px rgba(0,0,0,0.03); }
+  .thinker.teal { border-left-color: var(--teal); }
+  .thinker.purple { border-left-color: var(--purple); }
+  .thinker.green { border-left-color: var(--green); }
+  .thinker.pink { border-left-color: var(--pink); }
+  .thinker.blue { border-left-color: var(--blue); }
+  .thinker.yellow { border-left-color: var(--yellow); }
+  .thinker-top { padding: 28px 36px 22px; display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: start; border-bottom: 1px solid var(--border); }
+  .thinker-id { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+  .thinker-name { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--text); letter-spacing: -0.01em; }
+  .thinker-ko { font-size: 15px; color: var(--text-dim); font-weight: 400; }
+  .thinker-years { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-dim); letter-spacing: 0.15em; }
+  .thinker-tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; padding: 6px 12px; background: rgba(217,96,31,0.10); color: var(--accent); text-transform: uppercase; white-space: nowrap; align-self: start; border: 1px solid rgba(217,96,31,0.28); }
+  .thinker.teal .thinker-tag { background: rgba(46,138,124,0.10); color: var(--teal); border-color: rgba(46,138,124,0.28);}
+  .thinker.purple .thinker-tag { background: rgba(126,90,152,0.10); color: var(--purple); border-color: rgba(126,90,152,0.28);}
+  .thinker.green .thinker-tag { background: rgba(74,142,74,0.10); color: var(--green); border-color: rgba(74,142,74,0.28);}
+  .thinker.pink .thinker-tag { background: rgba(194,87,135,0.10); color: var(--pink); border-color: rgba(194,87,135,0.28);}
+  .thinker.blue .thinker-tag { background: rgba(74,114,168,0.10); color: var(--blue); border-color: rgba(74,114,168,0.28);}
+  .thinker.yellow .thinker-tag { background: rgba(184,149,74,0.10); color: var(--yellow); border-color: rgba(184,149,74,0.28);}
+  .thinker-punch { grid-column: 1 / -1; margin-top: 8px; font-size: 17px; font-weight: 600; color: var(--text); line-height: 1.55; letter-spacing: -0.005em; }
+  .thinker-punch em { font-style: normal; color: var(--accent-2); font-weight: 700; }
+  .thinker.teal .thinker-punch em { color: var(--teal); }
+  .thinker.purple .thinker-punch em { color: var(--purple); }
+  .thinker.green .thinker-punch em { color: var(--green); }
+  .thinker.pink .thinker-punch em { color: var(--pink); }
+  .thinker.blue .thinker-punch em { color: var(--blue); }
+  .thinker.yellow .thinker-punch em { color: var(--yellow); }
+  .thinker-body { padding: 32px 36px 36px; }
+  .block { margin-bottom: 36px; }
+  .block:last-child { margin-bottom: 0; }
+  .block-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.25em; color: var(--accent); text-transform: uppercase; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+  .block-label::before { content: ''; width: 18px; height: 1px; background: var(--accent); }
+  .thinker.teal .block-label { color: var(--teal); } .thinker.teal .block-label::before { background: var(--teal); }
+  .thinker.purple .block-label { color: var(--purple); } .thinker.purple .block-label::before { background: var(--purple); }
+  .thinker.green .block-label { color: var(--green); } .thinker.green .block-label::before { background: var(--green); }
+  .thinker.pink .block-label { color: var(--pink); } .thinker.pink .block-label::before { background: var(--pink); }
+  .thinker.blue .block-label { color: var(--blue); } .thinker.blue .block-label::before { background: var(--blue); }
+  .thinker.yellow .block-label { color: var(--yellow); } .thinker.yellow .block-label::before { background: var(--yellow); }
+  .block h4 { font-size: 22px; font-weight: 800; margin-bottom: 14px; line-height: 1.4; color: var(--text); letter-spacing: -0.005em; }
+  .block p { font-size: 14.5px; color: var(--text-soft); line-height: 1.85; margin-bottom: 10px; }
+  .block p strong { color: var(--text); font-weight: 600; }
+  .schema { background: var(--bg-code); border: 1px solid var(--border); padding: 28px 32px; margin: 22px 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.9; color: var(--text-soft); white-space: pre; overflow-x: auto; }
+  .schema .c-a { color: var(--accent); font-weight: 600; }
+  .schema .c-t { color: var(--teal); font-weight: 600; }
+  .schema .c-p { color: var(--purple); font-weight: 600; }
+  .schema .c-g { color: var(--green); font-weight: 600; }
+  .schema .c-b { color: var(--blue); font-weight: 600; }
+  .schema .c-y { color: var(--yellow); font-weight: 600; }
+  .schema .c-pk { color: var(--pink); font-weight: 600; }
+  .schema .c-d { color: var(--text-dim); }
+  .schema .c-hi { color: var(--text); font-weight: 700; }
+  .schema-cap { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-dim); letter-spacing: 0.15em; margin-top: 8px; text-align: right; }
+  .influence { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 14px; }
+  .inf-item { padding: 16px 18px; background: var(--bg-card-2); border-left: 2px solid var(--accent); }
+  .thinker.teal .inf-item { border-left-color: var(--teal); }
+  .thinker.purple .inf-item { border-left-color: var(--purple); }
+  .thinker.green .inf-item { border-left-color: var(--green); }
+  .thinker.pink .inf-item { border-left-color: var(--pink); }
+  .thinker.blue .inf-item { border-left-color: var(--blue); }
+  .thinker.yellow .inf-item { border-left-color: var(--yellow); }
+  .inf-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--text-dim); text-transform: uppercase; margin-bottom: 6px; }
+  .inf-body { font-size: 13px; color: var(--text-soft); line-height: 1.7; }
+  .inf-body strong { color: var(--text); }
+  .echo { background: rgba(217,96,31,0.06); border: 1px solid rgba(217,96,31,0.20); padding: 22px 26px; margin-top: 18px; }
+  .thinker.teal .echo { background: rgba(46,138,124,0.07); border-color: rgba(46,138,124,0.22); }
+  .thinker.purple .echo { background: rgba(126,90,152,0.07); border-color: rgba(126,90,152,0.22); }
+  .thinker.green .echo { background: rgba(74,142,74,0.07); border-color: rgba(74,142,74,0.22); }
+  .thinker.pink .echo { background: rgba(194,87,135,0.07); border-color: rgba(194,87,135,0.22); }
+  .thinker.blue .echo { background: rgba(74,114,168,0.07); border-color: rgba(74,114,168,0.22); }
+  .thinker.yellow .echo { background: rgba(184,149,74,0.07); border-color: rgba(184,149,74,0.22); }
+  .echo-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.25em; color: var(--accent); text-transform: uppercase; margin-bottom: 8px; }
+  .thinker.teal .echo-label { color: var(--teal); }
+  .thinker.purple .echo-label { color: var(--purple); }
+  .thinker.green .echo-label { color: var(--green); }
+  .thinker.pink .echo-label { color: var(--pink); }
+  .thinker.blue .echo-label { color: var(--blue); }
+  .thinker.yellow .echo-label { color: var(--yellow); }
+  .echo-body { font-size: 14px; color: var(--text); line-height: 1.75; }
+  .echo-body strong { color: var(--accent); font-weight: 700; }
+  .thinker.teal .echo-body strong { color: var(--teal); }
+  .thinker.purple .echo-body strong { color: var(--purple); }
+  .thinker.green .echo-body strong { color: var(--green); }
+  .thinker.pink .echo-body strong { color: var(--pink); }
+  .thinker.blue .echo-body strong { color: var(--blue); }
+  .thinker.yellow .echo-body strong { color: var(--yellow); }
+  .quote { margin: 16px 0; padding: 14px 0 14px 20px; border-left: 3px solid var(--accent-dim); font-family: 'Nanum Myeongjo', serif; font-style: italic; font-size: 16px; color: var(--text); line-height: 1.7; }
+  .quote-src { display: block; margin-top: 8px; font-family: 'JetBrains Mono', monospace; font-style: normal; font-size: 10px; color: var(--text-dim); letter-spacing: 0.15em; }
+  .threads-intro { background: var(--bg-card); border: 1px solid var(--border); padding: 32px 36px; margin-top: 28px; }
+  .threads-intro p { font-size: 15px; color: var(--text-soft); line-height: 1.85; }
+  .threads-intro p strong { color: var(--accent); }
+  .thread-detail { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--accent); padding: 28px 32px; margin-top: 20px; }
+  .thread-detail.t1 { border-left-color: var(--yellow); }
+  .thread-detail.t2 { border-left-color: var(--purple); }
+  .thread-detail.t3 { border-left-color: var(--teal); }
+  .thread-detail.t4 { border-left-color: var(--pink); }
+  .thread-detail.t5 { border-left-color: var(--blue); }
+  .thread-detail.t6 { border-left-color: var(--green); }
+  .thread-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 10px; flex-wrap: wrap; }
+  .thread-head .num { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: var(--text-dim); }
+  .thread-head h4 { font-size: 20px; font-weight: 800; color: var(--text); }
+  .thread-chain { font-family: 'Playfair Display', serif; font-style: italic; font-size: 14px; color: var(--text-soft); margin-bottom: 14px; line-height: 1.6; }
+  .thread-body { font-size: 14px; color: var(--text-soft); line-height: 1.85; }
+  .thread-body strong { color: var(--text); }
+  .art-flow { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-top: 32px; }
+  .art-step { background: var(--bg-card); border: 1px solid var(--border); padding: 24px 22px; position: relative; }
+  .art-step:nth-child(1) { border-top: 3px solid var(--yellow); }
+  .art-step:nth-child(2) { border-top: 3px solid var(--purple); }
+  .art-step:nth-child(3) { border-top: 3px solid var(--accent); }
+  .art-step:nth-child(4) { border-top: 3px solid var(--blue); }
+  .art-step:nth-child(5) { border-top: 3px solid var(--green); }
+  .art-step .seq { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.25em; color: var(--text-dim); margin-bottom: 10px; }
+  .art-step h4 { font-size: 16px; font-weight: 800; line-height: 1.35; margin-bottom: 6px; }
+  .art-step .art-sub { font-family: 'Playfair Display', serif; font-style: italic; font-size: 12px; color: var(--accent); margin-bottom: 12px; }
+  .art-step p { font-size: 12.5px; color: var(--text-soft); line-height: 1.7; }
+  .bridge-box { margin-top: 36px; background: var(--bg-card); border: 1px solid var(--border); border-top: 3px solid var(--accent); padding: 44px; }
+  .bridge-box .lbl { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.3em; color: var(--accent); text-transform: uppercase; margin-bottom: 14px; }
+  .bridge-box h3 { font-size: 24px; font-weight: 800; line-height: 1.4; margin-bottom: 16px; color: var(--text); }
+  .bridge-box h3 em { font-style: italic; color: var(--accent); font-family: 'Playfair Display', serif; font-weight: 400; }
+  .bridge-box p { font-size: 14.5px; color: var(--text-soft); line-height: 1.85; margin-bottom: 12px; }
+  .bridge-box p strong { color: var(--text); font-weight: 600; }
+  .bridge-box .closing { margin-top: 20px; padding-top: 18px; border-top: 1px dashed var(--border-2); font-family: 'Playfair Display', serif; font-style: italic; color: var(--accent-2); font-size: 15px; }
+  .app-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
+  .app-card { background: var(--bg-card); border: 1px solid var(--border); padding: 28px 30px; }
+  .app-card.c-blue { border-top: 3px solid var(--blue); }
+  .app-card.c-pink { border-top: 3px solid var(--pink); }
+  .app-card.c-green { border-top: 3px solid var(--green); }
+  .app-card .tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.25em; color: var(--accent); text-transform: uppercase; margin-bottom: 12px; }
+  .app-card h4 { font-size: 18px; font-weight: 800; margin-bottom: 14px; line-height: 1.4; }
+  .app-card ul { list-style: none; padding: 0; }
+  .app-card li { font-size: 13px; color: var(--text-soft); padding: 8px 0; border-bottom: 1px dashed var(--border); line-height: 1.65; }
+  .app-card li:last-child { border-bottom: none; }
+  .app-card li::before { content: '▸ '; color: var(--accent); margin-right: 4px; }
+  .app-card li strong { color: var(--text); font-weight: 600; }
+  .oneline { padding: 140px 60px; text-align: center; position: relative; overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .oneline::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(217,96,31,0.08), transparent 60%); }
+  .oneline-inner { max-width: 900px; margin: 0 auto; position: relative; }
+  .oneline-k { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.4em; color: var(--accent); margin-bottom: 36px; }
+  .oneline-main { font-size: clamp(22px, 2.8vw, 32px); font-weight: 700; line-height: 1.5; color: var(--text); }
+  .oneline-main em { font-style: normal; color: var(--accent); }
+  .oneline-sig { margin-top: 44px; font-family: 'Playfair Display', serif; font-style: italic; color: var(--text-soft); font-size: 16px; line-height: 1.7; }
+  footer { background: var(--bg-2); padding: 70px 60px 40px; border-top: 1px solid var(--border); }
+  footer .inner { max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 56px; }
+  footer h4 { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.25em; color: var(--accent); text-transform: uppercase; margin-bottom: 18px; }
+  footer p, footer li { font-size: 13px; color: var(--text-soft); line-height: 1.85; }
+  footer p strong { color: var(--text); }
+  footer ul { list-style: none; }
+  footer li { padding: 3px 0; }
+  footer li::before { content: '— '; color: var(--text-dim); }
+  footer .colophon { max-width: 1120px; margin: 52px auto 0; padding-top: 24px; border-top: 1px solid var(--border); font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--text-dim); display: flex; justify-content: space-between; }
+  @media (max-width: 960px) {
+    .hero, section, footer, nav.sticky { padding-left: 28px; padding-right: 28px; }
+    .sec-header { flex-direction: column; gap: 12px; }
+    .sec-num { font-size: 42px; }
+    .hero-meta { grid-template-columns: 1fr 1fr; }
+    .compare-grid, .bridge-box { grid-template-columns: 1fr; gap: 20px; }
+    .art-flow { grid-template-columns: repeat(2, 1fr); }
+    .app-grid, .influence { grid-template-columns: 1fr; }
+    footer .inner { grid-template-columns: 1fr; gap: 32px; }
+    .thinker-top { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-kicker">MEMORY · TIME · SPACE LINEAGE · PART XIII · 2026</div>
+    <h1>시미오니데스의 <em>궁전</em>에서<br/>해마의 <em>격자세포</em>까지</h1>
+    <p class="hero-lead">
+      2,500년 전 시미오니데스는 잔치 사고에서 죽은 손님들을 그들이 앉았던 자리로 식별했다. 거기서 <strong style="color:var(--text)">기억술(method of loci)</strong>이 태어났다 — 공간이 기억의 격자다. 2014년 노벨 생리의학상은 <strong style="color:var(--text)">해마의 장소세포·격자세포</strong>를 발견한 세 사람에게 갔다. 시미오니데스가 옳았다.
+      <br/><br/>이 문서는 그 사이 2,500년의 사상사를 추적한다 — 아우구스티누스의 영혼의 신장, 베르그송의 두 기억, 후설의 시간 의식 3중 구조, 프루스트의 마들렌, 바슐라르의 공간 시학, 알박스의 집단 기억, 노라의 기억의 장소까지. <strong style="color:var(--text)">기억은 시간 위에 흐르는 게 아니다. 기억은 공간을 짓고, 그 공간이 시간을 잡아둔다.</strong>
+    </p>
+    <div class="hero-meta">
+      <div><div class="label">Duration</div><div class="value">2,500 Years · BCE 5C → 2026</div></div>
+      <div><div class="label">Phases</div><div class="value">6 국면</div></div>
+      <div><div class="label">Thinkers</div><div class="value">10 명</div></div>
+      <div><div class="label">Series</div><div class="value">Part XIII · Creative Communicator</div></div>
+    </div>
+  </div>
+</header>
+
+<nav class="sticky">
+  <div class="nav-inner">
+    <a href="#intro">00 · 들어가며</a>
+    <a href="#p1">01 · 기억의 골격</a>
+    <a href="#p2">02 · 시간의 내면</a>
+    <a href="#p3">03 · 시간의 흐름</a>
+    <a href="#p4">04 · 비자발적·공간</a>
+    <a href="#p5">05 · 집단의 기억</a>
+    <a href="#p6">06 · 한 회로 ★</a>
+    <a href="#bridge">07 · USER BRIDGE</a>
+    <a href="#threads">08 · 6 스레드</a>
+    <a href="#reson">09 · 공명</a>
+    <a href="#now">10 · 오늘의 적용</a>
+  </div>
+</nav>
+
+<!-- 00 · INTRO -->
+<section id="intro">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">00</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">WHY THIS LINEAGE</div>
+        <h2>기억·시간·공간이 <em>한 회로</em>에서 만나는 자리</h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      Part VII이 시공간 스키마의 <strong>구조</strong>를 다루고, Part XII가 신체화 인식의 <strong>몸 축</strong>을 다뤘다면, 이번 Part XIII는 같은 자리를 <strong>기억 축</strong>에서 본다. 기억이라는 한 가지 작용이 어떻게 시간과 공간을 한 회로로 묶는가.
+    </p>
+
+    <div class="intro-why">
+      <h3><span>CORE QUESTION</span>이 계보가 답하려는 하나의 질문</h3>
+      <p><strong style="color:var(--text)">"우리의 기억은 시간에 새겨지는가, 공간에 새겨지는가? 그리고 만약 둘 다라면, 어디가 그 둘이 만나는 자리인가?"</strong></p>
+      <p>고대 시미오니데스의 답 — <strong>공간</strong>이 기억의 격자다. 아우구스티누스의 답 — 시간은 영혼의 <strong>신장(distentio animi)</strong>이고, 그 신장이 곧 기억이다. 베르그송 — 시간은 <strong>몸으로 흐르는 두 기억</strong>의 자리다. 프루스트 — 마들렌 한 입에서 <strong>비자발적 기억</strong>이 시간 너머로 통째로 살아 돌아온다. 바슐라르·노라 — <strong>공간이 다시 무대로</strong>. 그리고 2014년 노벨상 — <strong>해마가 시간·공간·기억을 한 회로</strong>로 묶고 있음이 측정됐다.</p>
+      <p>이 답을 받아들이면 사용자의 <strong style="color:var(--accent-2)">감각일지·시뮬레이션·새 공간 루틴·옵시디언 vault</strong>가 한 가지 작업의 다른 얼굴임이 보인다 — 모두 <strong>기억의 회로를 의식적으로 짓는 행위</strong>다.</p>
+    </div>
+
+    <div class="compare-grid">
+      <div class="compare-card old">
+        <h4>— 기억을 시간 좌표로만 볼 때</h4>
+        <div class="punch">"어제 일을 잘 적어두자."</div>
+        <p>기억이 시간 위에 일자별로 정렬된 데이터처럼 보인다. 일기는 날짜와 사건의 기록. 잊는 것은 "사라지는 것". 이 도식이 일반적이지만, 사실 우리 기억은 그렇게 작동하지 않는다.</p>
+      </div>
+      <div class="compare-card new">
+        <h4>— 기억을 공간·시간·몸의 회로로 볼 때</h4>
+        <div class="punch">"기억은 <em>장소·감각·동작</em>으로 짜인다."</div>
+        <p>같은 카페에 다시 가면 그때 기억이 통째로 살아 돌아온다. 같은 음악·향·각도가 5년 전을 부른다. 새 공간이 새 기억을 짠다. 미래일기는 일어나지 않은 일에 미리 자리를 만든다. <strong>기억의 자리는 시간이 아니라 공간 + 감각 + 몸의 한 회로</strong>다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 01 · 기억의 골격 -->
+<section id="p1" style="background:var(--bg-2);">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">01</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">PHASE 01 · METHOD OF LOCI · BCE 5C</div>
+        <h2>시미오니데스의 <em>발견</em> — 공간이 기억의 격자다</h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      서양 기억술의 시조 신화. 케오스의 시인 시미오니데스(BCE 556–468)가 잔치에서 막 나왔을 때 천장이 무너져 손님들이 깔려 죽었다. 가족들이 누가 누구인지 알아내지 못해 절망했을 때, 시미오니데스는 <strong>각자가 어디 앉아 있었는지</strong>를 떠올려 신원을 알려줬다 — 이 한 사건에서 <strong>method of loci</strong>(자리의 기억술)가 태어났다.
+    </p>
+
+    <div class="phase-hero yellow">
+      <div class="phase-era">PHASE 01 · KEOS · ROMAN ORATORY · BCE 5C → CE 5C</div>
+      <h3>국면 1 · 기억은 <em>공간</em>에 자리 잡는다</h3>
+      <p>시미오니데스 일화는 키케로 『웅변가에 대하여』 II.86에 기록됐고, 퀸틸리아누스 『웅변학』 XI.2에서 정식화됐다. 르네상스에 들어 프란시스 예이츠의 1966 『The Art of Memory』가 이 전통의 부활을 가져왔다. <strong>기억의 궁전(memory palace)</strong>이 곧 시미오니데스의 직계 후손.</p>
+      <div class="phase-q">핵심 질문 <strong>→</strong> 만약 공간이 기억의 격자라면, 새 공간을 만나는 일은 새 기억의 골격을 짓는 일인가?</div>
+    </div>
+
+    <article class="thinker yellow">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Simonides of Ceos</span>
+            <span class="thinker-ko">시미오니데스</span>
+            <span class="thinker-years">BCE 556 – 468</span>
+          </div>
+          <div class="thinker-punch">기억하려면 <em>공간을 지어라</em>. 사물을 자리에 놓고, 그 자리를 다시 걸어가라 — method of loci.</div>
+        </div>
+        <span class="thinker-tag">Method of Loci</span>
+      </div>
+      <div class="thinker-body">
+
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <h4>잔치의 사고에서 발견된 진리 — 기억은 공간에 자리 잡는다</h4>
+          <p>시미오니데스가 잔치에서 송가를 부른 직후 잠시 자리를 비웠다. 그 사이 천장이 무너져 모든 손님이 깔려 죽었고, 시신들은 알아볼 수 없게 부서져 있었다. 가족들이 누구인지 식별하려 했을 때, 시미오니데스만이 답할 수 있었다 — 그가 송가를 부르며 한 사람씩 봤기 때문에 <strong>각자가 어디 앉아 있었는지</strong>를 기억했고, 그 자리(loci)를 통해 신원을 복원했다.</p>
+          <p>이 사건에서 그가 깨달은 것 — <strong>기억은 사물 자체가 아니라 사물이 놓인 자리에 붙는다</strong>. 무언가를 기억하려면 그것을 머릿속의 익숙한 공간(집·신전·길)에 놓고, 그 공간을 다시 걸어가면 된다. 자리가 그것을 다시 떠올리게 한다.</p>
+          <div class="quote">"기억의 모든 기술은 자리(loci)와 이미지(imagines)에 의존한다. 자리는 우리가 아는 곳들이어야 하고, 이미지는 강렬해야 한다."<span class="quote-src">— Cicero, 『웅변가에 대하여』 II.86 (BCE 55), 시미오니데스 일화 인용</span></div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 머릿속 그림</div>
+          <div class="schema"><span class="c-hi">METHOD OF LOCI</span>  ·  공간을 기억의 격자로
+
+   <span class="c-hi">기억할 것</span>          <span class="c-hi">머릿속 공간</span>           <span class="c-hi">결합</span>
+   ──────────          ─────────────           ──────
+
+   1. 우유              집 현관                   <span class="c-y">우유 박스가 현관에</span>
+   2. 빵                거실 소파                 <span class="c-y">빵 더미가 소파에</span>
+   3. 사과              부엌 식탁                 <span class="c-y">사과 산이 식탁에</span>
+   4. 와인              침실 책장                 <span class="c-y">와인 병이 책장에</span>
+   5. 치즈              화장실 거울               <span class="c-y">치즈 덩이가 거울 옆</span>
+
+
+   <span class="c-hi">호출 방식</span>
+
+       머릿속에서 집을 한 번 걷는다
+              ↓
+       현관 → 거실 → 부엌 → 침실 → 화장실
+              ↓
+       각 자리에서 강렬한 이미지가
+              ↓
+       <span class="c-a">자동으로 떠오른다</span>
+
+
+   <span class="c-hi">왜 작동하는가?</span>
+
+       1. <span class="c-y">공간은 우리의 가장 안정적 표상</span>
+          — 집의 구조는 잘 잊히지 않는다
+       2. <span class="c-y">시각적 이미지가 단어보다 잘 기억된다</span>
+          — 우뇌의 영상 처리는 빠르다
+       3. <span class="c-y">이동의 순서가 시간 순서를 대체한다</span>
+          — 걷기 = 시간
+
+
+   <span class="c-hi">2,500년 후</span>  현대 신경과학이 옳음을 측정
+        해마 = 공간 + 시간 + 일화 기억의 한 회로
+        (국면 06 참조)</div>
+          <div class="schema-cap">SIMONIDES · LOCI AS MEMORY SCAFFOLD</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">RHETORIC</div>
+              <div class="inf-body"><strong>키케로</strong>·<strong>퀸틸리아누스</strong>가 정식화. 로마 웅변가들이 긴 연설을 외울 때 표준 기술. 인쇄술 이전의 기억은 직업 능력이었다.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">RENAISSANCE</div>
+              <div class="inf-body"><strong>Giordano Bruno</strong>의 우주적 기억 시스템·<strong>Matteo Ricci</strong>의 명나라 기억 궁전·<strong>Frances Yates</strong>의 1966 『The Art of Memory』가 르네상스 부활.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">MODERN</div>
+              <div class="inf-body">현대 메모리 챔피언(Dominic O'Brien·Joshua Foer 『Moonwalking with Einstein』 2011)이 모두 method of loci. 2,500년 된 기술이 지금도 가장 강력하다.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">당신이 메모리에 적은 <strong>"새 공간 루틴"</strong>의 가장 오래된 사상적 부모가 시미오니데스다. 새 공간에 가면 시간 감각이 회복된다고 느끼는 그 경험 — 사실은 새 공간이 <strong>새 기억의 격자를 깔고 있는</strong> 것이다. 같은 카페 100번 = 격자 하나 / 새 카페 한 번 = 격자 100개. 그래서 새 공간은 시간을 늘린다. 그리고 옵시디언 vault도 결국 디지털 기억 궁전이다 — 폴더와 파일이 곧 loci. 잘 짜인 폴더 구조 = 좋은 격자.</div>
+          </div>
+        </div>
+
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- 02 · 아우구스티누스 -->
+<section id="p2">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">02</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">PHASE 02 · DISTENTIO ANIMI · 397–401 CE</div>
+        <h2>아우구스티누스 — 시간은 <em>영혼의 신장</em>이다</h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      서양 사상사에서 처음으로 시간을 본격 분석한 사람. 『고백록』 11권의 그 유명한 명제 — <strong>"시간이 무엇이냐고 묻지 않으면 나는 안다. 묻는 순간 나는 모른다."</strong> 그가 도달한 답이 <strong>distentio animi</strong>(영혼의 신장) — 시간은 객관적 흐름이 아니라 영혼이 과거(기억)·현재(주의)·미래(기대) 셋을 동시에 잡고 있는 작용이다.
+    </p>
+
+    <div class="phase-hero purple">
+      <div class="phase-era">PHASE 02 · HIPPO · 397–401 CE</div>
+      <h3>국면 2 · 시간의 자리는 <em>영혼</em>이다 — 그리고 그 영혼은 곧 기억이다</h3>
+      <p>아우구스티누스가 발견한 것 — 시간은 외부 세계에 있지 않다. 외부 세계에는 오직 현재만 있다. 과거는 이미 없고, 미래는 아직 없다. 그러나 우리는 <strong>과거를 기억하고 미래를 기대</strong>한다. 그 기억과 기대의 자리가 곧 영혼이고, 시간이 흐르는 자리가 곧 영혼이다.</p>
+      <div class="phase-q">핵심 질문 <strong>→</strong> 만약 시간이 영혼의 신장이라면, 기억은 시간의 본질이고 미래도 같은 작용으로 만들어지는가?</div>
+    </div>
+
+    <article class="thinker purple">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Augustinus</span>
+            <span class="thinker-ko">아우구스티누스</span>
+            <span class="thinker-years">354 – 430</span>
+          </div>
+          <div class="thinker-punch">시간은 외부에 흐르는 게 아니다. <em>영혼이 과거·현재·미래를 동시에 잡고 있는 작용</em>이 곧 시간이다.</div>
+        </div>
+        <span class="thinker-tag">Distentio Animi</span>
+      </div>
+      <div class="thinker-body">
+
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <h4>시간은 영혼의 신장(distentio animi) — 과거·현재·미래가 영혼에 동시에 있다</h4>
+          <p>아우구스티누스가 『고백록』 11권에서 시간을 분석할 때, 그가 부딪힌 역설은 — 객관적으로 보면 <strong>오직 현재만 있다</strong>. 과거는 이미 지났고 미래는 아직 안 왔다. 그런데 우리는 분명히 시간을 경험한다. 과거를 기억하고, 미래를 기대한다. 그 모순의 답이 — <strong>시간은 외부에 있지 않고 영혼에 있다</strong>.</p>
+          <p>그가 만든 결정적 도식 — <strong>현재의 세 형태</strong>. "과거의 현재"(memoria, 기억) · "현재의 현재"(contuitus, 주의) · "미래의 현재"(expectatio, 기대). 셋 다 영혼의 작용이고, 셋이 동시에 있을 때만 시간이 있다. 영혼이 과거·현재·미래를 동시에 잡고 있는 그 신장(distentio)이 곧 시간이다.</p>
+          <div class="quote">"시간이 무엇이냐고 묻지 않으면 나는 안다. 묻는 순간 나는 모른다. (…) 과거의 현재는 기억이고, 현재의 현재는 주의이고, 미래의 현재는 기대다."<span class="quote-src">— Augustinus, 『고백록』 XI.14, XI.20 (397–401)</span></div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 머릿속 그림</div>
+          <div class="schema"><span class="c-hi">DISTENTIO ANIMI</span>  ·  시간 = 영혼의 신장
+
+   <span class="c-hi">객관적 시간</span>  =  외부 좌표
+   ─────────────────────────
+
+       PAST  ←  NOW  →  FUTURE
+       (없음)   (점)    (없음)
+       지나갔다  지금만   아직 없음
+                있다
+
+   ↓ 그러나 인간은 시간을 경험한다 ↓
+
+
+   <span class="c-hi">아우구스티누스의 답</span>  =  영혼의 신장
+   ─────────────────────────────────
+
+                <span class="c-p">SOUL · 영혼</span>
+            ╔═══════════════════════════╗
+            ║                           ║
+            ║   <span class="c-y">memoria</span>     <span class="c-a">contuitus</span>     <span class="c-g">expectatio</span>   ║
+            ║   기억         주의          기대         ║
+            ║   ─────         ────          ────         ║
+            ║   "과거의       "현재의       "미래의"      ║
+            ║    현재"        현재"         현재"        ║
+            ║                                           ║
+            ║   ◄──────── distentio ────────►          ║
+            ║      영혼이 셋을 동시에 잡고 있음            ║
+            ╚═══════════════════════════╝
+                          ↓
+                    <span class="c-hi">이것이 곧 시간</span>
+
+
+   <span class="c-hi">결정적 통찰</span>
+
+       1. 시간의 자리는 <span class="c-p">영혼</span>이다 (외부 X)
+       2. 영혼의 자리는 <span class="c-y">기억</span>이 잡고 있다
+       3. 미래도 같은 작용 — <span class="c-g">기대</span>는 기억의 거울
+       4. <span class="c-a">셋이 동시에 작동</span>해야 시간이 있다
+
+
+   <span class="c-hi">1,500년 후</span>  후설의 시간 의식 3중 구조
+        Retention(파지) · Primal Impression · Protention(예지)
+        ↑ 이름만 바뀌고 도식은 같음</div>
+          <div class="schema-cap">AUGUSTINUS · TIME AS THE SOUL'S DISTENSION</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">PHENOMENOLOGY</div>
+              <div class="inf-body"><strong>후설</strong>의 1905 『내적 시간 의식의 현상학』 강의가 아우구스티누스 도식의 직접 발전형. 파지·근지각·예지 3중 구조 = memoria·contuitus·expectatio.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">PHILOSOPHY</div>
+              <div class="inf-body"><strong>하이데거</strong>의 『존재와 시간』(1927)이 distentio 개념을 시숙(Zeitlichkeit)으로 발전. <strong>리쾨르</strong>의 『시간과 이야기』(1983–85)가 아우구스티누스 + 아리스토텔레스 종합.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">NEUROSCIENCE</div>
+              <div class="inf-body">현대 <strong>mental time travel</strong> 연구(Tulving·Schacter)가 보인 것 — 기억과 미래 시뮬레이션이 같은 해마 회로를 쓴다. 아우구스티누스 1,600년 후 신경과학으로 확인.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">당신이 <strong>미래일기</strong>를 쓰는 행위의 가장 깊은 정당성이 아우구스티누스에 있다. 미래일기는 환상이 아니라 <strong>영혼의 신장(distentio animi)</strong>의 의식적 활성화다 — 기억(memoria)으로 과거를 잡고, 주의(contuitus)로 현재를 잡고, 기대(expectatio)로 미래를 잡으면, 셋이 동시에 작동하는 그 자리에서 시간이 살아난다. 1,600년 뒤 신경과학이 확인한 것 — 미래 시뮬레이션은 과거 회상과 같은 해마 회로다. 미래일기는 그 회로의 운동이다.</div>
+          </div>
+        </div>
+
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- 03 · 시간의 흐름 -->
+<section id="p3" style="background:var(--bg-2);">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">03</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">PHASE 03 · DURATION + INNER TIME · 1896–1905</div>
+        <h2>베르그송과 후설 — 시간이 <em>흐르는 자리</em>의 두 답</h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      19세기 말과 20세기 초, 두 사상가가 아우구스티누스의 distentio animi를 다른 방향으로 발전시킨다. <strong>베르그송</strong>은 시간을 <strong>몸으로 흐르는 지속(durée)</strong>으로 옮기고, 두 종류 기억(습관·순수)을 발견했다. <strong>후설</strong>은 distentio의 도식을 <strong>의식의 시간 3중 구조</strong>(파지·근지각·예지)로 정식화했다. Part XII에서 다룬 둘이지만 이번엔 <strong>기억 측면</strong>에 집중.
+    </p>
+
+    <div class="phase-hero teal">
+      <div class="phase-era">PHASE 03 · PARIS · GÖTTINGEN · 1896–1905</div>
+      <h3>국면 3 · 시간은 <em>몸으로 흐르고</em>, 의식은 <em>3중으로 잡는다</em></h3>
+      <p>베르그송: 시간은 좌표가 아니라 흐름. 두 기억 — 습관 기억(몸에 새겨짐) vs 순수 기억(이미지로 남음). 후설: 들리는 멜로디 한 음마다 파지·근지각·예지가 동시에 작동. 아우구스티누스의 distentio가 음악의 한 순간에 살아 있다.</p>
+      <div class="phase-q">핵심 질문 <strong>→</strong> 시간이 흐른다면, 그 흐름은 어떻게 잡히는가? 한 음을 듣는 동안 우리 의식은 무엇을 하고 있는가?</div>
+    </div>
+
+    <!-- BERGSON -->
+    <article class="thinker teal">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Henri Bergson</span>
+            <span class="thinker-ko">앙리 베르그송</span>
+            <span class="thinker-years">1859 – 1941</span>
+          </div>
+          <div class="thinker-punch">기억은 두 가지 — <em>몸에 새겨진 것</em>과 <em>이미지로 남은 것</em>. 그리고 진짜 기억은 의지로 호출되지 않는다.</div>
+        </div>
+        <span class="thinker-tag">Two Memories</span>
+      </div>
+      <div class="thinker-body">
+
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <h4>『물질과 기억』 1896 — 두 종류 기억의 발견</h4>
+          <p>베르그송은 Part XII에서 시간의 지속(durée) 측면을 다뤘다. 이번엔 그의 <strong>기억론</strong>에 집중한다. 1896 『물질과 기억』의 결정적 발견 — 기억은 단일한 작용이 아니라 <strong>두 가지로 분리</strong>된다.</p>
+          <p><strong>첫째, 습관 기억(mémoire-habitude)</strong> — 자전거·악기·운전 같은 신체에 새겨진 기능. 반복으로 학습되고, 의식 없이 작동한다. 몸이 곧 기억이다.</p>
+          <p><strong>둘째, 순수 기억(mémoire pure)</strong> — 어제의 한 순간·10년 전 풍경·이미 죽은 사람의 얼굴. 이미지로 남은 과거. 이것은 의지로 호출되지 않는다 — 어떤 신체적 만남(마들렌·향·음악)이 그것을 갑자기 통째로 살아 돌아오게 한다. 프루스트가 이 두 번째 기억을 문학으로 만들었다.</p>
+          <div class="quote">"진짜 기억은 의지가 만들어내는 것이 아니다. 진짜 기억은 우리가 그것을 기다리지 않을 때, 신체적 만남이 그것을 부를 때 통째로 살아난다."<span class="quote-src">— Bergson, 『물질과 기억』 (1896) 요지</span></div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 머릿속 그림</div>
+          <div class="schema"><span class="c-hi">BERGSON'S TWO MEMORIES</span>  ·  기억의 분리
+
+       ┌─────────────────────┐    ┌─────────────────────┐
+       │  <span class="c-t">HABIT MEMORY</span>        │    │  <span class="c-a">PURE MEMORY</span>          │
+       │  습관 기억           │    │  순수 기억           │
+       ├─────────────────────┤    ├─────────────────────┤
+       │  반복으로 학습       │    │  단 한 번 일어남     │
+       │  의식 없이 작동      │    │  의식의 자리에 떠오름  │
+       │  몸에 새겨짐         │    │  이미지로 남음        │
+       │  일반화 가능         │    │  유일한 한 순간       │
+       │                     │    │                     │
+       │  자전거·악기·운전     │    │  어제 그 순간         │
+       │  타이핑·운동         │    │  10년 전 풍경        │
+       │  요리                │    │  죽은 사람 얼굴       │
+       └─────────────────────┘    └─────────────────────┘
+              ↓                            ↓
+        반복으로 호출                <span class="c-a">신체적 만남으로 호출</span>
+        (의지 가능)                   (의지 불가능)
+              ↓                            ↓
+          행위                        통째로 살아 돌아옴
+
+
+   <span class="c-hi">결정적 차이</span>
+
+       습관 기억은 <span class="c-t">시간을 압축</span>한다
+            (10년 동안 매일 한 동작 → 한 기능)
+
+       순수 기억은 <span class="c-a">시간을 보존</span>한다
+            (한 번의 순간이 통째로 남음)
+
+
+   <span class="c-hi">17년 후</span>  프루스트의 마들렌 (1913)
+        순수 기억의 문학적 구현 — 차에 적신 마들렌 한 입에서
+        콩브레의 한 시절이 통째로 살아 돌아옴
+
+   <span class="c-hi">100년 후</span>  현대 신경과학
+        절차 기억(소뇌·기저핵) = 베르그송의 습관 기억
+        일화 기억(해마)        = 베르그송의 순수 기억</div>
+          <div class="schema-cap">BERGSON · TWO KINDS OF MEMORY</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">LITERATURE</div>
+              <div class="inf-body"><strong>프루스트</strong> 『잃어버린 시간을 찾아서』(1913–) 가 베르그송 순수 기억의 문학적 구현. 마들렌·종소리·돌의 균열이 모두 신체적 만남으로 호출되는 순수 기억.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">PHILOSOPHY</div>
+              <div class="inf-body"><strong>들뢰즈</strong>가 1966 『베르그송주의』에서 두 기억을 차이의 철학으로 발전시킴. 시간의 세 종합(과거-현재-미래)이 베르그송 위에서 자람.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">NEUROSCIENCE</div>
+              <div class="inf-body"><strong>Larry Squire</strong>의 declarative vs non-declarative memory 분류(1980s)가 베르그송의 분리를 신경적으로 확인. <strong>HM 환자</strong> 사례가 결정적 — 해마 손상이 일화 기억만 잃게 함.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">감각일지가 베르그송에게서 받는 통찰 — <strong>의지로 떠오르는 기억은 진짜 기억이 아니다</strong>. 일지를 "오늘 무엇을 했는지" 적는 것으로 끝내면 그것은 <em>습관 기억</em>의 영역이다. 진짜 일지는 — <strong>지금 신체적 만남(향·각도·온도·음악)에서 의외로 떠오른 한 순간</strong>을 잡아두는 작업이다. 그것이 순수 기억의 자리고, 미래에 다시 이 일지를 읽을 때 같은 한 순간이 통째로 살아 돌아오는 자리다. 일지는 <strong>미래의 마들렌을 미리 심는 행위</strong>다.</div>
+          </div>
+        </div>
+
+      </div>
+    </article>
+
+    <!-- HUSSERL -->
+    <article class="thinker teal">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Edmund Husserl</span>
+            <span class="thinker-ko">에드문트 후설</span>
+            <span class="thinker-years">1859 – 1938</span>
+          </div>
+          <div class="thinker-punch">한 음을 듣는 그 순간, 의식은 <em>방금 지나간 음 + 지금 음 + 곧 올 음</em>을 동시에 잡는다.</div>
+        </div>
+        <span class="thinker-tag">Inner Time-Consciousness</span>
+      </div>
+      <div class="thinker-body">
+
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <h4>1905 강의 — 시간 의식의 3중 구조: 파지·근지각·예지</h4>
+          <p>후설의 1905 강의 『내적 시간 의식의 현상학』(하이데거 편집 1928 출간)이 보여준 것 — 들리는 멜로디 한 음마다 의식은 <strong>세 가지 작용</strong>을 동시에 한다.</p>
+          <p><strong>1. Retention (파지, 把持)</strong> — 방금 지나간 음의 잔향. 사라진 게 아니라 의식 안에 짧은 그림자로 남아 있다.<br/>
+          <strong>2. Primal Impression (근지각, 根知覺)</strong> — 지금 듣는 그 음. 정확히 현재.<br/>
+          <strong>3. Protention (예지, 豫知)</strong> — 곧 올 음의 그림자. 멜로디의 패턴이 다음 음을 미리 그려준다.</p>
+          <p>이 3중이 동시에 작동해야 멜로디가 멜로디로 들린다. 파지가 끊어지면 음들은 서로 무관한 점이 된다. 예지가 끊어지면 깜짝 놀람이 사라진다. <strong>아우구스티누스의 distentio animi가 음악의 한 순간에 정확히 살아 있다</strong>.</p>
+          <div class="quote">"멜로디를 들을 때 우리는 단지 한 음만 듣는 것이 아니다. 방금 지나간 음의 파지와, 곧 올 음의 예지가 같이 작동하기 때문에 멜로디가 멜로디로 경험된다."<span class="quote-src">— Husserl, 『내적 시간 의식의 현상학』 (1905 강의)</span></div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 머릿속 그림</div>
+          <div class="schema"><span class="c-hi">HUSSERL'S TIME-CONSCIOUSNESS</span>  ·  3중 구조
+
+   멜로디:    도 — 레 — 미 — 파 — 솔 — 라 — 시
+                          ↑
+                       지금 이 순간
+
+   <span class="c-hi">의식의 3중</span>
+
+       <span class="c-y">RETENTION</span>          <span class="c-a">PRIMAL IMPRESSION</span>      <span class="c-g">PROTENTION</span>
+       파지 · 把持            근지각 · 根知覺              예지 · 豫知
+
+       방금 지나간            지금 듣는 그 음              곧 올 음의
+       음의 잔향              (정확히 현재)                그림자
+
+       도─레─[미]              [파]                         [솔]─[라]
+       ◄──────                 ●                            ──────►
+       꼬리                   순간                          머리
+
+
+   <span class="c-hi">셋이 동시에 작동</span>  ·  매 순간
+
+       ┌────────────────────────────────────────────┐
+       │                                            │
+       │   <span class="c-y">파지</span>      <span class="c-a">근지각</span>      <span class="c-g">예지</span>            │
+       │   ◄───────  ●  ───────►                    │
+       │                                            │
+       │   ▒▒▒▒▒    █     ░░░░░                    │
+       │                                            │
+       │   짙음     중심   옅음                     │
+       │   (살아있음)        (열림)                  │
+       │                                            │
+       └────────────────────────────────────────────┘
+
+
+   <span class="c-hi">파지가 끊어지면</span>  →  음들이 서로 무관한 점이 됨
+   <span class="c-hi">예지가 끊어지면</span>  →  깜짝 놀람이 사라짐
+                       (예측이 없어 모든 게 똑같이 새로움)
+
+
+   <span class="c-hi">아우구스티누스 1,500년 후</span>
+       memoria → <span class="c-y">retention</span>
+       contuitus → <span class="c-a">primal impression</span>
+       expectatio → <span class="c-g">protention</span>
+       이름만 바뀜. 도식은 같음.</div>
+          <div class="schema-cap">HUSSERL · 3-FOLD STRUCTURE OF TIME-CONSCIOUSNESS</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">PHILOSOPHY</div>
+              <div class="inf-body"><strong>하이데거</strong>의 시숙(Zeitlichkeit)·<strong>메를로퐁티</strong>의 시간 도식·<strong>리쾨르</strong>의 이야기 시간이 모두 후설 3중 구조의 발전형.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">COG SCI</div>
+              <div class="inf-body">현대 <strong>예측 처리(predictive processing)</strong> 이론 — 뇌는 매 순간 예측을 만든다 — 이 사실 후설 protention의 21세기 신경과학 버전. Andy Clark·Karl Friston.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">MUSIC · UX</div>
+              <div class="inf-body">멜로디 기대 위반이 곧 음악적 흥미. 영화 편집의 리듬·게임의 보상 타이밍·UI 마이크로 인터랙션도 protention 위에서 설계된다.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">시뮬레이션 훈련의 정확한 신경적 메커니즘이 후설에 있다. 미래의 한 장면을 머릿속에 그리는 일은 <strong>protention(예지)의 의식적 강화</strong>다. 평소엔 무의식적으로 작동하는 예지를 의식의 자리로 끌어올려, 한 음 너머가 아니라 한 시간·한 달·한 해 너머의 그림자를 그리는 것. 이게 잘 되려면 <strong>지금 이 순간의 파지·근지각도 또렷</strong>해야 한다 — 셋은 한 회로다. 그래서 미래를 잘 그리려면 현재의 감각일지가 먼저다.</div>
+          </div>
+        </div>
+
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- 04 · 비자발적·공간 -->
+<section id="p4">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">04</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">PHASE 04 · INVOLUNTARY MEMORY · POETICS OF SPACE · 1913–1958</div>
+        <h2>프루스트와 바슐라르 — <em>마들렌</em>과 <em>공간의 시학</em></h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      베르그송의 순수 기억이 문학과 시학으로 옮겨간 자리. <strong>프루스트</strong>는 1913년 마들렌 한 입에서 콩브레의 한 시절이 통째로 살아 돌아오는 장면으로 비자발적 기억을 영원히 정의했다. <strong>바슐라르</strong>는 1958 『공간의 시학』에서 집·다락·지하실·서랍이 어떻게 기억과 상상의 깊이를 만드는지 보였다. 둘 다 <strong>공간이 다시 기억의 무대로 돌아오는</strong> 자리.
+    </p>
+
+    <div class="phase-hero pink">
+      <div class="phase-era">PHASE 04 · PARIS · 1913–1958</div>
+      <h3>국면 4 · 마들렌과 다락 — <em>의지로 호출되지 않는 기억</em>의 자리</h3>
+      <p>프루스트의 마들렌은 베르그송의 순수 기억이 문학으로 들어온 자리. 바슐라르의 다락은 시미오니데스의 method of loci가 시학으로 깊어진 자리. 둘 다 — <strong>기억은 의지로 만들어지지 않는다. 공간과 감각이 그것을 부른다</strong>는 같은 명제의 두 변주.</p>
+      <div class="phase-q">핵심 질문 <strong>→</strong> 의지로 호출되지 않는 기억을 의도적으로 부를 수 있는가? 아니, 의도적으로 미래에 자리 잡게 할 수 있는가?</div>
+    </div>
+
+    <!-- PROUST -->
+    <article class="thinker pink">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Marcel Proust</span>
+            <span class="thinker-ko">마르셀 프루스트</span>
+            <span class="thinker-years">1871 – 1922</span>
+          </div>
+          <div class="thinker-punch">차에 적신 <em>마들렌 한 입</em>에서 콩브레의 한 시절이 통째로 살아 돌아온다 — 비자발적 기억의 정의.</div>
+        </div>
+        <span class="thinker-tag">Mémoire Involontaire</span>
+      </div>
+      <div class="thinker-body">
+
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <h4>마들렌 사건 — 비자발적 기억(mémoire involontaire)의 영원한 정의</h4>
+          <p>『잃어버린 시간을 찾아서』 1권 〈스완네 집 쪽으로〉(1913) 초반의 그 장면. 추운 겨울날, 어머니가 차와 함께 마들렌을 줬다. 한 입 베어 무는 순간 — <strong>설명할 수 없는 기쁨</strong>이 통째로 그를 덮쳤다. 며칠을 그 기쁨의 정체를 추적한 끝에 그가 도달한 답 — 그것은 <strong>어린 시절 콩브레에서 이모가 일요일 아침마다 차와 함께 줬던 마들렌의 맛</strong>이었다.</p>
+          <p>그 한 맛이 콩브레의 한 시절 전체를 통째로 살아 돌아오게 했다. 이모의 방, 정원, 일요일의 종소리, 동네 사람들 — 모두가 한 감각에서 펼쳐졌다. 프루스트는 이것을 <strong>"비자발적 기억(mémoire involontaire)"</strong>이라 불렀다. 의지로 떠올리는 기억(자발적 기억)은 사실 같은 시절을 떠올려도 <strong>죽은 채로</strong> 떠오른다. 살아 돌아오는 기억은 신체적 만남에서만 온다.</p>
+          <div class="quote">"한 잔의 차와 마들렌 한 조각이 그렇게 큰 비밀을 품고 있다는 것을 누가 짐작이나 했을까. (…) 콩브레의 모든 것이 그 한 잔의 차에서 펼쳐졌다."<span class="quote-src">— Proust, 『스완네 집 쪽으로』 (1913)</span></div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 머릿속 그림</div>
+          <div class="schema"><span class="c-hi">PROUST'S MADELEINE</span>  ·  비자발적 기억의 작동
+
+   <span class="c-hi">자발적 기억</span>                <span class="c-hi">비자발적 기억</span>
+   ─────────────                  ─────────────────
+
+       의지가 부른다                  감각이 부른다
+       ↓                              ↓
+       기억의 외곽을 더듬음            <span class="c-pk">한 시절이 통째로</span>
+                                      <span class="c-pk">살아 돌아옴</span>
+       ↓                              ↓
+       죽은 사진처럼                   살아있는 풍경
+
+
+   <span class="c-hi">마들렌의 회로</span>
+
+       1. 한 입의 맛 (감각)
+              ↓
+       2. <span class="c-a">설명할 수 없는 기쁨</span>
+              ↓ (의식은 아직 모름)
+       3. 며칠의 추적
+              ↓
+       4. <span class="c-pk">"이건 콩브레의 마들렌이었다!"</span>
+              ↓
+       5. 콩브레 전체가 펼쳐짐
+          ─ 이모의 방
+          ─ 정원
+          ─ 일요일의 종소리
+          ─ 동네 사람들 얼굴
+          ─ 빛의 각도
+          ─ 공기의 냄새
+
+
+   <span class="c-hi">결정적 통찰</span>
+
+       기억은 한 점으로 저장되지 않는다
+            ↓
+       기억은 <span class="c-pk">감각·공간·시간이 결합된 회로</span>로 저장된다
+            ↓
+       한 점(맛)이 활성화되면
+            ↓
+       <span class="c-a">전체 회로가 통째로 살아남</span>
+
+
+   <span class="c-hi">100년 후</span>  해마 일화 기억 신경과학
+        해마 = 감각 + 공간 + 시간을 한 회로로 묶는 자리
+        한 자극이 회로 전체를 호출
+        ↑ 마들렌 1913의 신경적 확인</div>
+          <div class="schema-cap">PROUST · INVOLUNTARY MEMORY AS CIRCUIT ACTIVATION</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">LITERATURE</div>
+              <div class="inf-body">20세기 모더니즘 소설의 분기점. <strong>버지니아 울프</strong>·<strong>제임스 조이스</strong>·<strong>한강</strong>까지 모든 의식의 흐름 문학이 프루스트 위에서 자람.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">FILM</div>
+              <div class="inf-body"><strong>미셸 공드리</strong> 〈이터널 선샤인〉(2004)·<strong>크리스토퍼 놀란</strong> 〈메멘토〉(2000)·<strong>이창동</strong> 〈시〉(2010)·<strong>봉준호</strong> 〈마더〉(2009)가 모두 프루스트적 기억 구조.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">NEUROSCIENCE</div>
+              <div class="inf-body">현대 일화 기억 연구의 직관적 출발점. <strong>Endel Tulving</strong>의 episodic memory(1972) 정의가 프루스트적 — "특정 시간·공간에서 일어난 사건의 통째 회상".</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">감각일지의 가장 시적인 정당성이 프루스트에 있다 — <strong>지금 이 순간을 미래의 마들렌으로 심는 작업</strong>. 어제의 카페, 오늘의 향, 어제 들은 한 곡 — 이것들을 그저 적어두면 미래의 어느 날 같은 자극을 만났을 때 <strong>오늘 전체가 통째로 살아 돌아온다</strong>. 일지는 일지를 읽는 행위로 끝나지 않는다. 일지에 적은 자극을 다시 만나는 일이 곧 일지의 본 작용이다. 그래서 일지에 <strong>감각의 좌표(향·색·소리·온도)</strong>를 같이 적어두면, 미래의 어느 날 우연히 같은 좌표를 만났을 때 콩브레가 살아난다.</div>
+          </div>
+        </div>
+
+      </div>
+    </article>
+
+    <!-- BACHELARD -->
+    <article class="thinker pink">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Gaston Bachelard</span>
+            <span class="thinker-ko">개스턴 바슐라르</span>
+            <span class="thinker-years">1884 – 1962</span>
+          </div>
+          <div class="thinker-punch">집·다락·지하실·서랍은 단순한 공간이 아니다. <em>기억과 상상의 깊이를 짓는 시적 구조</em>다.</div>
+        </div>
+        <span class="thinker-tag">Topoanalyse · Poetics of Space</span>
+      </div>
+      <div class="thinker-body">
+
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <h4>『공간의 시학』 1958 — 위상분석학(topoanalyse), 공간 이미지의 깊이</h4>
+          <p>바슐라르의 1958 『La poétique de l'espace』가 한 일은 — <strong>공간을 측량의 대상이 아니라 시적 이미지의 자리로 다시 정의했다</strong>. 집의 다락은 평수가 아니라 <em>꿈꾸는 자리</em>다. 지하실은 어두움이 아니라 <em>두려움과 보물의 자리</em>다. 서랍은 수납이 아니라 <em>비밀의 자리</em>다.</p>
+          <p>그가 만든 개념이 <strong>위상분석학(topoanalyse)</strong> — 공간을 통한 영혼의 분석. 정신분석이 시간의 트라우마를 추적한다면, 위상분석학은 <strong>공간 이미지의 깊이</strong>를 추적한다. 우리가 어린 시절 살았던 집의 구조가 평생 우리의 꿈과 상상의 골격이 된다.</p>
+          <p>이 통찰이 시미오니데스를 <strong>시적으로 깊게</strong> 만들었다. 시미오니데스가 공간을 기억의 격자로 봤다면, 바슐라르는 공간을 <strong>기억과 상상이 함께 사는 깊이</strong>로 봤다.</p>
+          <div class="quote">"집은 우리의 첫 우주다. 집은 진정한 의미의 코스모스다. (…) 우리의 모든 친밀한 공간은 우리 안의 다른 공간들로 우리를 데려간다."<span class="quote-src">— Bachelard, 『공간의 시학』 (1958)</span></div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 머릿속 그림</div>
+          <div class="schema"><span class="c-hi">BACHELARD'S TOPOANALYSE</span>  ·  공간의 시적 깊이
+
+           ┌─────────────────┐
+           │  <span class="c-y">다락(grenier)</span>     │  ← 꿈꾸는 자리
+           │  꿈·상상·하늘    │     수직성 = 상승
+           ├─────────────────┤
+           │                 │
+           │  <span class="c-a">방·거실</span>          │  ← 일상의 자리
+           │  매일의 시간     │     수평성 = 사회
+           │                 │
+           ├─────────────────┤
+           │  <span class="c-pk">지하실(cave)</span>     │  ← 두려움과 보물의 자리
+           │  무의식·죽음     │     수직성 = 하강
+           └─────────────────┘
+                  │
+                  ↓
+              <span class="c-hi">집의 수직성</span>
+              =  영혼의 깊이의 도식
+
+
+   <span class="c-hi">미니어처 공간</span>  · 깊이가 큼
+
+       ┌──────┐
+       │ 서랍 │  →  비밀·작은 보물
+       └──────┘
+
+       ┌──────┐
+       │ 둥지 │  →  보호·근원
+       └──────┘
+
+       ┌──────┐
+       │ 껍데기│  →  은둔·자기 안
+       └──────┘
+
+
+   <span class="c-hi">통찰</span>
+
+       작은 공간이 <span class="c-pk">큰 깊이</span>를 가진다
+       (반대 X)
+              ↓
+       기억과 상상은 미니어처에 더 잘 자리 잡는다
+              ↓
+       시미오니데스의 격자(loci)에
+       <span class="c-a">시적 깊이</span>가 더해진다
+
+
+   <span class="c-hi">위상분석학(topoanalyse)</span>
+
+       정신분석 = 시간의 트라우마 추적
+       ────────────────────────────────
+       위상분석 = <span class="c-pk">공간 이미지의 깊이</span> 추적
+
+       어린 시절 집의 구조 = 평생 꿈의 골격</div>
+          <div class="schema-cap">BACHELARD · POETICS OF SPACE</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">ARCHITECTURE</div>
+              <div class="inf-body"><strong>피터 줌터</strong>·<strong>알도 반 아이크</strong>·<strong>승효상</strong>의 건축 철학이 모두 바슐라르 위에서 자람. 공간이 단순 기능이 아니라 <strong>시적 깊이</strong>임을 받아들이는 건축.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">LITERATURE</div>
+              <div class="inf-body"><strong>한강</strong>의 〈채식주의자〉·<strong>이창동</strong> 〈버닝〉의 비닐하우스·<strong>은희경</strong>의 다락방까지 — 한국 문학의 공간 이미지 비평이 바슐라르의 한국 적용.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">DESIGN</div>
+              <div class="inf-body">오늘의 <strong>인테리어 큐레이션</strong>·<strong>매거진 B</strong>의 공간 다루기·<strong>D&Department</strong>의 일본 방·일상 디자인이 모두 바슐라르적 시선. 측량 너머의 공간을 다루는 모든 작업.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">새 공간 루틴이 바슐라르와 만나면 더 깊어진다. 새 카페·새 길·새 방을 단순히 시각적으로 보지 말고 <strong>그 공간의 다락·지하실·서랍은 무엇인가</strong>를 의식적으로 묻기. 모든 공간엔 꿈꾸는 자리·두려움의 자리·비밀의 자리가 있다. 그 셋을 찾는 시선이 새 공간 루틴을 시적으로 깊게 만든다. 옵시디언 vault에도 다락(상상의 폴더)·지하실(아직 정리 못 한 폴더)·서랍(작은 인용 메모)이 있다 — 정리는 시미오니데스고, 깊이는 바슐라르다.</div>
+          </div>
+        </div>
+
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- 05 · 집단 -->
+<section id="p5" style="background:var(--bg-2);">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">05</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">PHASE 05 · COLLECTIVE MEMORY · 1925–1992</div>
+        <h2>알박스와 노라 — <em>집단의 기억</em>과 <em>장소</em></h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      20세기 사회학이 발견한 것 — <strong>기억은 개인의 일이 아니다</strong>. 우리가 무엇을 어떻게 기억하는지는 가족·종교·계급·국가의 <strong>사회적 틀</strong> 안에서 결정된다. <strong>알박스</strong>가 1925년 이 통찰을 정식화했고, 60년 뒤 <strong>노라</strong>가 그것을 <strong>"기억의 장소(lieux de mémoire)"</strong> 개념으로 발전시켰다.
+    </p>
+
+    <div class="phase-hero blue">
+      <div class="phase-era">PHASE 05 · PARIS · 1925–1992</div>
+      <h3>국면 5 · 기억은 <em>사회의 틀</em>과 <em>장소</em>에 잡힌다</h3>
+      <p>알박스: 개인 기억도 가족·종교·계급의 좌표 안에서 형성된다. 노라: 기억의 자연적 환경(milieu de mémoire)이 사라진 시대에 인공적 장소(lieu de mémoire)가 만들어진다 — 광장·기념일·시·국기·박물관. 한국의 5.18 묘지·세월호 기억 공간도 같은 구조.</p>
+      <div class="phase-q">핵심 질문 <strong>→</strong> 만약 기억이 사회적이라면, 우리가 만드는 모든 콘텐츠는 어떤 집단 기억의 장소를 짓고 있는가?</div>
+    </div>
+
+    <!-- HALBWACHS -->
+    <article class="thinker blue">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Maurice Halbwachs</span>
+            <span class="thinker-ko">모리스 알박스</span>
+            <span class="thinker-years">1877 – 1945</span>
+          </div>
+          <div class="thinker-punch">기억은 개인의 일이 아니다. <em>가족·종교·계급의 사회적 틀</em> 안에서 결정된다.</div>
+        </div>
+        <span class="thinker-tag">Collective Memory</span>
+      </div>
+      <div class="thinker-body">
+
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <h4>『기억의 사회적 틀』 1925 — 개인 기억도 사회적이다</h4>
+          <p>알박스는 뒤르켐의 제자였고, 그가 1925 『Les cadres sociaux de la mémoire』(기억의 사회적 틀)에서 보여준 것 — <strong>심지어 가장 사적인 기억조차 사회적이다</strong>. 우리는 가족 안에서 시간을 배우고(생일·기념일·식사 시간), 종교·학교·계급의 좌표 안에서 사건의 의미를 부여받는다.</p>
+          <p>그가 든 결정적 사례 — 오래된 친구와 만나면, 혼자선 떠올리지 못했던 한 시절이 <strong>대화 안에서 살아 돌아온다</strong>. 한 사람의 기억이 다른 사람의 기억으로 채워진다. 이것은 기억이 <strong>사회적 자산</strong>임을 보여준다. 사후 출간된 1950 『La mémoire collective』(집단 기억)이 이 통찰을 정식화했다.</p>
+          <p>알박스 자신은 1944년 부헨발트 강제수용소에 끌려가 1945년 거기서 죽었다. 그가 평생 분석한 집단 기억의 가장 잔혹한 형태가 그 자신의 죽음에서 일어났다.</p>
+          <div class="quote">"가장 개인적인 기억조차도 사회적 틀 안에서만 가능하다. 우리가 혼자 기억한다고 믿을 때조차, 우리는 우리가 속한 집단의 시선으로 기억하고 있다."<span class="quote-src">— Halbwachs, 『기억의 사회적 틀』 (1925)</span></div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 머릿속 그림</div>
+          <div class="schema"><span class="c-hi">SOCIAL FRAMES OF MEMORY</span>
+
+   <span class="c-hi">전통 가정</span>                   <span class="c-hi">알박스</span>
+   ──────────                   ──────
+
+       개인 기억                    개인 기억은
+       (혼자만의 것)                다음 틀들 안에서만 가능
+
+                                   ┌──────────────┐
+                                   │  <span class="c-b">가족</span>          │
+                                   │  생일·식사·    │
+                                   │  의례         │
+                                   ├──────────────┤
+                                   │  <span class="c-y">종교</span>          │
+                                   │  기도 시간·    │
+                                   │  계절          │
+                                   ├──────────────┤
+                                   │  <span class="c-a">계급</span>          │
+                                   │  노동의 리듬·   │
+                                   │  여가의 자리    │
+                                   ├──────────────┤
+                                   │  <span class="c-g">국가</span>          │
+                                   │  국경일·역사·   │
+                                   │  뉴스의 좌표    │
+                                   └──────────────┘
+                                          ↓
+                                       개인 기억
+
+
+   <span class="c-hi">결정적 사례</span>
+
+       오래된 친구와 만나면
+              ↓
+       혼자선 못 떠올리던 한 시절이
+              ↓
+       대화 안에서 <span class="c-a">살아 돌아온다</span>
+              ↓
+       기억은 사회적 자산이다
+
+
+   <span class="c-hi">함의</span>
+
+       1. SNS·뉴스가 우리의 집단 기억 틀을 짓고 있다
+       2. 우리가 만드는 콘텐츠도 누군가의 사회적 틀이 된다
+       3. <span class="c-a">한 사회의 기억 인프라</span>가 그 사회의 영혼이다</div>
+          <div class="schema-cap">HALBWACHS · MEMORY AS SOCIAL FRAME</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">SOCIOLOGY</div>
+              <div class="inf-body">집단 기억 연구의 창시. <strong>피에르 노라</strong>·<strong>얀 아스만</strong>(문화 기억)·<strong>알라이다 아스만</strong>까지 모든 후속 연구가 알박스 위에서 자람.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">HISTORY</div>
+              <div class="inf-body"><strong>아날학파</strong>의 망탈리테(mentalité) 연구·<strong>홀로코스트 기억 연구</strong>·<strong>한국 식민지·전쟁 기억 연구</strong>(정근식·김성례)가 모두 알박스 계보.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">DIGITAL</div>
+              <div class="inf-body">SNS·인스타그램·뉴스 알고리즘이 21세기 집단 기억의 새 인프라. <strong>Vincent Mosco</strong>의 디지털 기억 연구·플랫폼 정치학이 알박스의 디지털 시대 적용.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">크리에이티브 커뮤니케이터로서 가장 큰 함의가 알박스에 있다 — <strong>당신이 만드는 모든 콘텐츠는 누군가의 집단 기억의 한 자락이 된다</strong>. 카피 한 줄, 디자인 한 장이 한 시대의 기억 틀에 들어간다. 그래서 가벼운 콘텐츠도 결국 사회의 기억 인프라를 짓는 일이다. 그리고 사적 영역에서도 — <strong>가족·친구와 같이 기억을 짓는 일</strong>이 곧 자기 영혼의 일이다. 혼자 일지를 쓰는 것과 누군가와 같이 한 시절을 회상하는 일은 다른 깊이의 기억을 만든다.</div>
+          </div>
+        </div>
+
+      </div>
+    </article>
+
+    <!-- NORA -->
+    <article class="thinker blue">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Pierre Nora</span>
+            <span class="thinker-ko">피에르 노라</span>
+            <span class="thinker-years">1931 – 현재</span>
+          </div>
+          <div class="thinker-punch">기억의 자연적 환경이 사라지면 <em>인공적 장소(lieu de mémoire)</em>가 만들어진다 — 광장·기념일·박물관·국기.</div>
+        </div>
+        <span class="thinker-tag">Lieux de Mémoire</span>
+      </div>
+      <div class="thinker-body">
+
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <h4>『기억의 장소』 1984–1992 — milieu de mémoire에서 lieu de mémoire로</h4>
+          <p>피에르 노라가 1984–1992년에 걸쳐 7권으로 출간한 거대한 프로젝트 『Les lieux de mémoire』(기억의 장소). 그가 만든 결정적 구분 — <strong>milieu de mémoire(기억의 환경)</strong> vs <strong>lieu de mémoire(기억의 장소)</strong>.</p>
+          <p>전통 사회에서는 기억이 일상의 환경 자체에 살아 있었다 — 농촌의 계절, 종교의 의례, 가족의 식사. 굳이 "기억하자"고 결심할 필요가 없었다. 환경이 곧 기억이었다. 그러나 근대화·도시화·세속화로 그 자연적 환경이 사라지면서, <strong>인공적으로 기억을 잡아두는 장소</strong>가 만들어진다 — 광장·기념일·박물관·국기·시·역사 교과서.</p>
+          <p>노라의 통찰 — 우리가 lieu de mémoire를 만든다는 것은 <strong>기억이 자연적으로는 살아남지 못한다</strong>는 신호다. 인공적 보존이 시작될 때 기억은 이미 죽기 시작한 것이다. 그러나 그 인공적 장소가 새로운 형태의 기억을 가능하게 한다.</p>
+          <div class="quote">"기억의 장소(lieux de mémoire)가 존재하는 것은 기억의 환경(milieux de mémoire)이 더 이상 존재하지 않기 때문이다."<span class="quote-src">— Pierre Nora, 『기억의 장소』 1권 서문 (1984)</span></div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 머릿속 그림</div>
+          <div class="schema"><span class="c-hi">NORA'S TWO STATES</span>  ·  기억의 환경 → 장소
+
+   <span class="c-hi">MILIEU DE MÉMOIRE</span>           <span class="c-hi">LIEU DE MÉMOIRE</span>
+   기억의 환경                       기억의 장소
+   ───────────────                   ──────────────
+
+   전통 사회                          근대 이후
+       │                                 │
+       ↓                                 ↓
+   환경 자체가 기억                   인공적 장소가 만들어짐
+       │                                 │
+       ↓                                 ↓
+   ┌────────────────┐                ┌────────────────┐
+   │ 농촌의 계절    │                │ 광장·동상      │
+   │ 종교의 의례    │                │ 기념일         │
+   │ 가족 식사      │                │ 박물관         │
+   │ 마을의 공유 시간│                │ 국기·국가      │
+   │                │                │ 역사 교과서    │
+   │ "기억하자"     │                │ 역사 영화      │
+   │ 결심 불필요    │                │ 추모 시        │
+   └────────────────┘                └────────────────┘
+                                              ↓
+                                       인공적 보존
+                                       =  기억이 자연적으로
+                                          살아남지 못한다는 신호
+
+
+   <span class="c-hi">한국의 lieux de mémoire</span>
+
+       · 5.18 묘지 · 광주
+       · 세월호 기억 공간 · 진도·안산
+       · 이태원 1029 추모 공간
+       · 위안부 소녀상
+       · 광화문 광장
+       · 독립문
+       · 한글의 날
+
+
+   <span class="c-hi">아이러니</span>
+
+       lieu de mémoire가 늘어난다는 것은
+       전통 사회의 milieu가 사라지고 있다는 신호
+              ↓
+       그러나 그 lieu가 없었다면
+       <span class="c-a">기억 자체가 없었을지도</span></div>
+          <div class="schema-cap">NORA · LIEU DE MÉMOIRE</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">HISTORY</div>
+              <div class="inf-body">현대 역사학의 핵심 개념. <strong>Memory Studies</strong> 분야 자체를 만든 책. <strong>한국 5.18·세월호·이태원 기억 정치</strong>가 모두 lieu de mémoire 프레임으로 분석됨.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">ARCHITECTURE</div>
+              <div class="inf-body"><strong>다니엘 리베스킨드</strong> 베를린 유대인 박물관·<strong>마야 린</strong> 베트남 전쟁 기념비·<strong>나야경</strong> 5.18 신묘역이 모두 lieu de mémoire의 건축적 구현.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">DIGITAL</div>
+              <div class="inf-body">SNS의 추모 게시물·해시태그(#blacklivesmatter·#metoo·#stop_asian_hate)가 21세기 디지털 lieu de mémoire. 위치는 가상이지만 작용은 같음.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">옵시디언 vault가 노라의 21세기 디지털 lieu de mémoire다. 자연스럽게 머릿속에 살아 있을 것 같지 않은 기억을 <strong>의식적으로 디지털 장소에 잡아두는</strong> 작업. 폴더 하나, 파일 하나가 곧 작은 lieu. 그리고 더 큰 통찰 — <strong>당신이 만드는 콘텐츠는 한국 사회의 한 lieu가 될 수 있다</strong>. 한 카피, 한 영상, 한 책이 시대의 기억 인프라가 된다. 노라가 가르쳐주는 것 — 기억은 자연적으로 살아남지 않는다. 의식적으로 자리를 만들어야 산다.</div>
+          </div>
+        </div>
+
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- 06 · 한 회로 ★ -->
+<section id="p6">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num star">06</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">PHASE 06 · ONE CIRCUIT ★ · 1971–2014</div>
+        <h2>해마 회로 — <em>시간·공간·기억</em>이 한 자리에서 만난다</h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      2,500년의 사상사가 한 신경 회로에서 확인되는 자리. <strong>John O'Keefe</strong>의 1971 장소세포 발견, <strong>May-Britt + Edvard Moser</strong>의 2005 격자세포 발견, 2014 노벨 생리의학상. 그리고 <strong>Eleanor Maguire</strong>의 런던 택시기사 연구, <strong>Endel Tulving</strong>의 mental time travel — 해마가 시간·공간·일화 기억·미래 시뮬레이션을 모두 같은 회로로 묶고 있음이 측정됐다.
+    </p>
+
+    <div class="phase-hero green">
+      <div class="phase-era">PHASE 06 · UCL · TRONDHEIM · 1971–2014 ★</div>
+      <h3>국면 6 · 시미오니데스가 옳았다 — <em>해마</em>가 그 회로다</h3>
+      <p>장소세포(특정 장소에서만 발화) + 격자세포(공간을 헥사곤 격자로 코드) + 시간세포(시간 위치 코드) + 일화 기억(과거의 통째 회상) + mental time travel(미래 시뮬레이션) — <strong>해마와 그 주변 회로가 이 모두를 한 자리에서 처리</strong>한다. 시미오니데스의 method of loci, 아우구스티누스의 distentio, 프루스트의 마들렌, 노라의 lieu가 한 회로의 다른 표현이었다.</p>
+      <div class="phase-q">핵심 질문 <strong>→</strong> 만약 시간·공간·기억·미래가 한 회로라면, 우리는 그 회로를 의식적으로 어떻게 단련할 수 있는가?</div>
+    </div>
+
+    <!-- O'Keefe + Moser -->
+    <article class="thinker green">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">O'Keefe + Moser</span>
+            <span class="thinker-ko">존 오키프 + 모세르 부부</span>
+            <span class="thinker-years">1971 · 2005 · 2014 노벨상</span>
+          </div>
+          <div class="thinker-punch">해마에 <em>장소세포</em>가, 내후각 피질에 <em>격자세포</em>가 있다. 뇌 안에 GPS가 있다.</div>
+        </div>
+        <span class="thinker-tag">Place Cells · Grid Cells</span>
+      </div>
+      <div class="thinker-body">
+
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <h4>장소세포(1971) + 격자세포(2005) — 뇌 안의 GPS</h4>
+          <p><strong>1971년 John O'Keefe</strong>가 쥐의 해마에서 결정적 발견을 했다. 쥐를 작은 우리 안에서 자유롭게 돌게 하면서 단일 뉴런의 발화를 기록했더니 — <strong>특정 위치에 갈 때만 발화하는 뉴런</strong>이 있었다. 그가 "장소세포(place cells)"라 명명. 뇌 안에 외부 공간의 표상이 있다는 첫 측정.</p>
+          <p><strong>2005년 May-Britt + Edvard Moser 부부</strong>가 한 발 더 나갔다. 해마 바로 옆 내후각 피질(entorhinal cortex)에서 — <strong>헥사곤 격자 패턴으로 발화하는 뉴런</strong>을 발견. 한 격자세포는 마치 좌표 평면 위에 정삼각형 격자를 깔아 놓은 듯이, 일정 간격마다 발화한다. <strong>"격자세포(grid cells)"</strong>. 뇌 안에 좌표계가 있다.</p>
+          <p>2014 노벨 생리의학상 — O'Keefe + Moser 부부 셋이 공동 수상. 칸트가 1781년에 "공간은 우리 안의 형식"이라 한 그 명제가 <strong>측정 가능한 신경 회로</strong>로 확인된 순간이었다.</p>
+          <div class="quote">"우리가 발견한 것은 뇌 안에 외부 공간의 표상이 있다는 사실이다. 이것이 어떻게 작동하는지 이해하면, 기억이 어떻게 작동하는지도 이해할 수 있다."<span class="quote-src">— John O'Keefe, 노벨상 강연 (2014)</span></div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 머릿속 그림</div>
+          <div class="schema"><span class="c-hi">PLACE CELLS + GRID CELLS</span>  ·  뇌 안의 GPS
+
+   <span class="c-hi">PLACE CELL</span>  ·  해마(Hippocampus)
+   ─────────────────────────────────
+
+       쥐가 우리 안을 돌아다니는 동안
+
+       ┌─────────────┐
+       │             │
+       │       <span class="c-g">●</span>     │  ← <span class="c-g">●</span> 위치에 가면 발화
+       │             │
+       │             │
+       └─────────────┘
+
+       다른 위치에선 침묵
+       다른 장소세포는 다른 위치에서 발화
+              ↓
+       <span class="c-g">한 공간 = 여러 장소세포의 합주</span>
+
+
+   <span class="c-hi">GRID CELL</span>  ·  내후각 피질(Entorhinal Cortex)
+   ───────────────────────────────────────
+
+       한 격자세포의 발화 패턴
+
+       ┌─────────────────────┐
+       │  <span class="c-a">●</span>  <span class="c-a">●</span>  <span class="c-a">●</span>  <span class="c-a">●</span>  │
+       │    <span class="c-a">●</span>  <span class="c-a">●</span>  <span class="c-a">●</span>      │  ← 정삼각형 격자
+       │  <span class="c-a">●</span>  <span class="c-a">●</span>  <span class="c-a">●</span>  <span class="c-a">●</span>  │
+       │    <span class="c-a">●</span>  <span class="c-a">●</span>  <span class="c-a">●</span>      │
+       │  <span class="c-a">●</span>  <span class="c-a">●</span>  <span class="c-a">●</span>  <span class="c-a">●</span>  │
+       └─────────────────────┘
+
+       헥사곤 격자로 발화
+              ↓
+       <span class="c-a">뇌 안의 좌표계</span>
+
+
+   <span class="c-hi">결합</span>
+
+       격자세포 (좌표계)  →  장소세포 (특정 위치)  →  해마 일화 기억
+              ↓                    ↓                       ↓
+       어디인지 안다       그 자리에 있음 안다          그 자리에서
+                                                       무슨 일이 있었는지
+                                                       기억한다
+
+
+   <span class="c-hi">2,500년의 확인</span>
+
+       시미오니데스 (BCE 5C)  →  공간 = 기억의 격자
+       O'Keefe + Moser (2014) →  격자세포 + 장소세포
+       ─────────────────────────────────────────────
+       시미오니데스가 옳았다 — 측정으로 확인됨</div>
+          <div class="schema-cap">O'KEEFE · MOSER · BRAIN'S GPS</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">NEUROSCIENCE</div>
+              <div class="inf-body">21세기 인지신경과학의 가장 큰 발견 중 하나. 후속으로 <strong>time cells</strong>(2011 Eichenbaum)·<strong>boundary cells</strong>·<strong>head-direction cells</strong>까지 — 해마 회로가 시공간을 다층으로 코드.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">MEDICINE</div>
+              <div class="inf-body">알츠하이머 진단·치료의 새 토대. 알츠하이머 초기에 가장 먼저 손상되는 자리가 내후각 피질(격자세포 자리). <strong>공간 기억 상실</strong>이 알츠하이머의 첫 신호.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">AI · TECH</div>
+              <div class="inf-body"><strong>DeepMind</strong>의 격자세포 모방 AI(2018)·<strong>SLAM</strong>(자율주행 위치 인식)·<strong>VR/AR</strong> 공간 디자인이 모두 격자세포 회로의 인공 구현 시도.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">새 공간 루틴이 신경과학적으로 증명된 자리. 새 공간에 가면 — <strong>장소세포가 새로 깔린다</strong>. 그 자리에 있었던 일·생각·감각이 그 새 장소세포 회로에 묶인다. 이것이 새 공간이 새 기억을 짓는 정확한 메커니즘. 그리고 더 큰 통찰 — <strong>해마는 정기적으로 단련해야 한다</strong>. 매일 같은 길만 가면 새 장소세포가 깔리지 않고, 알츠하이머의 첫 신호가 같은 회로에서 시작된다. 새 공간 루틴은 해마의 운동이다.</div>
+          </div>
+        </div>
+
+      </div>
+    </article>
+
+    <!-- Maguire + Tulving -->
+    <article class="thinker green">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Maguire + Tulving</span>
+            <span class="thinker-ko">엘리노어 매과이어 + 엔델 툴빙</span>
+            <span class="thinker-years">2000 · 1972·1985</span>
+          </div>
+          <div class="thinker-punch">런던 택시기사의 해마는 더 크다. 그리고 미래 시뮬레이션은 <em>과거 회상과 같은 해마 회로</em>를 쓴다.</div>
+        </div>
+        <span class="thinker-tag">Mental Time Travel</span>
+      </div>
+      <div class="thinker-body">
+
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <h4>택시기사의 해마(Maguire 2000) + 정신적 시간 여행(Tulving 1985)</h4>
+          <p><strong>Eleanor Maguire의 2000년 연구</strong>가 한 일은 단순하면서도 강력했다. 런던 택시기사 자격을 따려면 "The Knowledge"라는 시험을 통과해야 한다 — 런던 25,000개 거리·수만 개 랜드마크를 외워야 한다. 평균 3-4년 공부. Maguire가 fMRI로 베테랑 택시기사의 뇌를 찍었더니 — <strong>해마 후방이 일반인보다 명확히 더 컸다</strong>. 운전 경력이 길수록 더 컸다. 공간 기억의 사용이 해마를 키운다.</p>
+          <p><strong>Endel Tulving의 1972년 분류</strong>가 다른 결정적 도식을 줬다. 기억은 셋 — <strong>일화 기억(episodic, 특정 시간·공간의 사건)</strong>·<strong>의미 기억(semantic, 일반 지식)</strong>·<strong>절차 기억(procedural, 신체 기능)</strong>. 베르그송의 두 기억이 셋으로 정밀화됐다.</p>
+          <p>그리고 1985년 Tulving이 더 도발적인 발견 — <strong>"mental time travel"</strong>. 일화 기억은 단순한 과거 회상이 아니라 <strong>과거의 한 자리에 자기 의식을 보내는 능력</strong>이다. 그리고 같은 능력이 <strong>미래의 한 자리에 자기 의식을 보낼 때</strong>도 작동한다. 과거 회상과 미래 시뮬레이션은 <strong>같은 해마 회로</strong>다. 인간만 가진 능력 — 동물은 못 한다.</p>
+          <div class="quote">"인간 의식의 가장 독특한 특징은 정신적 시간 여행이다 — 과거의 자기 자신을 다시 만나고, 아직 일어나지 않은 미래의 자기 자신을 미리 만나는 능력. 이것이 우리를 동물과 가장 구별짓는다."<span class="quote-src">— Endel Tulving, "Episodic Memory and Autonoesis" (1985)</span></div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 머릿속 그림</div>
+          <div class="schema"><span class="c-hi">MENTAL TIME TRAVEL</span>  ·  같은 회로, 두 방향
+
+   <span class="c-hi">PAST</span>                         <span class="c-hi">FUTURE</span>
+   과거                          미래
+   ────                          ────
+
+       회상(remembering)             시뮬레이션(simulation)
+              ↓                            ↓
+       과거의 한 자리에 가기         미래의 한 자리에 가기
+              ↓                            ↓
+       감각·공간·시간이             감각·공간·시간을
+       통째로 살아남                 통째로 짓기
+              ↓                            ↓
+       <span class="c-y">"그때 그 카페에서"</span>           <span class="c-g">"내일 그 자리에서"</span>
+
+
+   <span class="c-hi">같은 회로</span>
+
+       ┌──────────────────────────────────────┐
+       │                                      │
+       │           <span class="c-a">HIPPOCAMPUS</span>                │
+       │           (해마)                     │
+       │                                      │
+       │   장소세포 + 격자세포 + 시간세포      │
+       │                                      │
+       │     ↑                  ↓             │
+       │     │                  │             │
+       │   회상              시뮬레이션         │
+       │   (과거)             (미래)            │
+       │                                      │
+       └──────────────────────────────────────┘
+                        ↓
+              <span class="c-a">한 회로의 두 방향 운동</span>
+
+
+   <span class="c-hi">증거 1</span>  Maguire 2000
+
+       런던 택시기사 (3-4년 공부)
+              ↓
+       해마 후방이 일반인보다 큼
+              ↓
+       <span class="c-g">공간 기억이 해마를 자라게 한다</span>
+
+
+   <span class="c-hi">증거 2</span>  Schacter & Addis 2007
+
+       fMRI로 두 작업 활성 영역 비교
+              ↓
+       과거 회상 활성 영역 ≈ 미래 시뮬레이션 활성 영역
+              ↓
+       <span class="c-g">같은 회로</span>
+
+
+   <span class="c-hi">함의</span>
+
+       1. 미래일기는 환상이 아니라 <span class="c-a">해마 회로의 운동</span>
+       2. 미래 시뮬레이션이 강한 사람은 과거 회상도 강하다
+       3. 새 공간을 만나면 둘 다 강해진다
+       4. <span class="c-a">시미오니데스·아우구스티누스가 한 회로에 있다</span></div>
+          <div class="schema-cap">MAGUIRE · TULVING · MENTAL TIME TRAVEL</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">NEUROSCIENCE</div>
+              <div class="inf-body"><strong>Daniel Schacter</strong>의 constructive memory·<strong>Donna Rose Addis</strong>의 mental time travel fMRI 연구·<strong>Eleanor Maguire</strong>의 해마 가소성 연구가 모두 이 위에서 자람.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">EDUCATION</div>
+              <div class="inf-body"><strong>공간 기억 훈련</strong>이 학습 효과를 키움이 측정됨. 노트의 위치·교실의 좌석·도서관 책상이 모두 공간 기억 회로를 활성화. 한국 교육에 적용 가능한 통찰.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">AGING · DEMENTIA</div>
+              <div class="inf-body">새 공간·새 길을 정기적으로 만나는 일이 <strong>해마 운동</strong>이고, 알츠하이머 예방의 근거 있는 방법. <strong>"하루 한 번 새 카페"</strong> 같은 루틴이 신경과학적으로 정당화됨.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">사용자의 세 가지 인지 모델 훈련 — 감각일지·시뮬레이션·새 공간 루틴 — 이 한 신경 회로에서 만나는 자리가 정확히 여기다. <strong>모두 해마의 운동이다</strong>. 감각일지 = 일화 기억의 의식적 강화. 시뮬레이션 = mental time travel의 미래 방향. 새 공간 루틴 = 장소세포·격자세포의 새로운 격자 깔기. 셋이 다른 활동처럼 보이지만 <strong>같은 신경 회로</strong>를 다른 각도에서 단련한다. 그래서 셋 중 하나만 해도 다른 둘이 같이 강해진다. 그리고 셋을 모두 정기적으로 하면 — 알츠하이머가 시작되는 자리가 강해지고, 미래를 그리는 능력이 깊어지고, 과거가 통째로 살아 돌아오는 마들렌의 회로가 살아 있게 된다.</div>
+          </div>
+        </div>
+
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- 07 · USER BRIDGE -->
+<section id="bridge" style="background:var(--bg-2);">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num star">07</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">USER CONTEXT BRIDGE</div>
+        <h2>당신의 인지 모델 훈련 — <em>2,500년이 한 회로에서 만나는 자리</em></h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      앞의 10명이 추상이 아니라 당신의 일상 — 감각일지·시뮬레이션·새 공간 루틴·옵시디언 vault — 으로 어떻게 들어와 있는지의 매핑. 한 가지 훈련에 2,500년이 동시에 살아 있다.
+    </p>
+
+    <div class="bridge-box">
+      <div class="lbl">BRIDGE · 사용자 컨텍스트</div>
+      <h3><em>감각일지 · 시뮬레이션 · 새 공간 루틴 · 옵시디언</em>이 어디서 오는지의 사상적 지도</h3>
+      <p>당신의 인지 모델 훈련은 한 사람의 발견이 아니라 <strong>2,500년 기억 사상사 + 21세기 신경과학</strong>의 누적 위에 서 있다.</p>
+      <p style="margin-top: 18px;">
+        <strong>감각일지</strong> = 베르그송(순수 기억) + 프루스트(미래의 마들렌 심기) + 들뢰즈(강도로 적기) + 다마지오(신체 표지) + Tulving(일화 기억의 의식적 강화)
+      </p>
+      <p>
+        <strong>시뮬레이션 훈련</strong> = 아우구스티누스(distentio의 expectatio) + 후설(protention 강화) + 메를로퐁티(신체 도식 활성) + 라코프(신체 은유로 미래) + Tulving + Schacter(mental time travel 미래 방향)
+      </p>
+      <p>
+        <strong>새 공간 루틴</strong> = 시미오니데스(loci 새로 깔기) + 칸트(감성 형식 활성) + 베르그송(지속의 회복) + 바슐라르(공간의 시적 깊이) + O'Keefe·Moser(장소세포·격자세포 운동) + Maguire(해마 가소성)
+      </p>
+      <p>
+        <strong>옵시디언 vault</strong> = 시미오니데스(디지털 기억 궁전) + 노라(인공적 lieu de mémoire) + Andy Clark(extended mind) + 알박스(콘텐츠가 누군가의 사회적 틀이 됨)
+      </p>
+      <div class="closing">— 한 가지 훈련에 다섯에서 일곱 명이 동시에 살아 있다. 그래서 이 훈련들은 사적 취향이 아니라 2,500년 누적의 보편 도구다.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 · THREADS -->
+<section id="threads">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">08</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">SIX STRANDS</div>
+        <h2>6국면을 가로로 꿰는 <em>여섯 스레드</em></h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      시미오니데스에서 해마 신경과학까지 6국면이 따로 흐르는 게 아니라, 6개의 스레드가 그것을 가로로 꿰고 있다. 한 스레드를 따라가면 2,500년이 한 풍경처럼 보인다.
+    </p>
+
+    <div class="threads-intro">
+      <p>각 스레드는 <strong>하나의 가로 질문</strong>이다. 6국면 중 어느 것들이 한 자리에서 같이 작동하는가를 추적한다. 스트랜드 6의 망각이 이 시리즈에 새로 들어온 자리 — 잊기가 곧 기억의 일부다.</p>
+    </div>
+
+    <div class="thread-detail t1">
+      <div class="thread-head"><div class="num">STRAND · 01</div><h4>공간이 기억의 골격이다</h4></div>
+      <div class="thread-chain">시미오니데스 method of loci(BCE 5C) → 바슐라르 공간의 시학(1958) → 노라 lieu de mémoire(1984) → O'Keefe·Moser 장소·격자세포(1971·2005)</div>
+      <div class="thread-body">2,500년의 같은 발견. 시미오니데스가 직관으로 본 것이 신경과학으로 측정됐다. <strong>새 공간이 기억의 새 격자를 깐다</strong>는 것이 모든 새 공간 루틴의 정당성.</div>
+    </div>
+
+    <div class="thread-detail t2">
+      <div class="thread-head"><div class="num">STRAND · 02</div><h4>시간은 어디 흐르는가</h4></div>
+      <div class="thread-chain">아우구스티누스 distentio(397) → 베르그송 durée(1896) → 후설 시간 의식 3중(1905) → Tulving mental time travel(1985)</div>
+      <div class="thread-body">시간의 자리는 외부가 아니라 <strong>영혼·몸·의식·해마 회로</strong>다. 1,500년 동안 같은 도식이 다른 매체로 표현돼 왔다. 미래일기는 이 도식의 의식적 운동.</div>
+    </div>
+
+    <div class="thread-detail t3">
+      <div class="thread-head"><div class="num">STRAND · 03</div><h4>자발성 vs 비자발성</h4></div>
+      <div class="thread-chain">베르그송 두 기억(1896) → 프루스트 마들렌(1913) → Tulving episodic vs semantic(1972)</div>
+      <div class="thread-body">의지로 떠오르는 기억은 죽은 기억. 진짜 기억은 신체적 만남에서 통째로 살아 돌아온다. 감각일지는 <strong>미래의 비자발적 마들렌을 미리 심는 작업</strong>.</div>
+    </div>
+
+    <div class="thread-detail t4">
+      <div class="thread-head"><div class="num">STRAND · 04</div><h4>개인 기억 vs 집단 기억</h4></div>
+      <div class="thread-chain">알박스 사회적 틀(1925) → 노라 lieu de mémoire(1984) → SNS·해시태그 디지털 기억(2010s)</div>
+      <div class="thread-body">기억은 절대 사적이지 않다. 우리가 기억하는 모든 것은 사회의 틀 안에서, 사회의 장소 안에서 일어난다. 크리에이티브 커뮤니케이터는 <strong>한 사회의 기억 인프라를 짓는 사람</strong>.</div>
+    </div>
+
+    <div class="thread-detail t5">
+      <div class="thread-head"><div class="num">STRAND · 05</div><h4>기억과 미래의 같은 회로</h4></div>
+      <div class="thread-chain">아우구스티누스 expectatio(397) → 후설 protention(1905) → Tulving mental time travel(1985) → Schacter & Addis fMRI 확인(2007)</div>
+      <div class="thread-body">미래일기가 환상이 아니라 신경적으로 정당한 이유. <strong>과거 회상과 미래 시뮬레이션은 같은 해마 회로</strong>다. 1,600년 전 직관이 21세기에 측정됨.</div>
+    </div>
+
+    <div class="thread-detail t6">
+      <div class="thread-head"><div class="num">STRAND · 06</div><h4>망각의 자리</h4></div>
+      <div class="thread-chain">아우구스티누스 (모든 것을 기억할 수 없음) → 노라 (보존이 시작될 때 기억은 죽기 시작) → Schacter 『기억의 7가지 죄』(2001)</div>
+      <div class="thread-body">잊기가 곧 기억의 일부. 모든 것을 기억하면 아무것도 기억할 수 없다. <strong>잘 잊기 = 잘 기억하기</strong>. 옵시디언 vault도 무한히 쌓는 것이 아니라 정리하고 버리는 것이 기억의 위생.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 09 · RESONANCE -->
+<section id="reson" style="background:var(--bg-2);">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">09</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">RESONANCE</div>
+        <h2>다른 분야와의 <em>공명</em> — 기억이 살아나는 다섯 자리</h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      기억·시간·공간 사상은 책에서 끝나지 않았다. 박물관·영화·건축·한국 기억 정치·AI까지 다섯 영역에서 같은 사상이 다른 매체로 살아난다.
+    </p>
+
+    <div class="art-flow">
+      <div class="art-step">
+        <div class="seq">SEQ · 01 / MUSEUM</div>
+        <h4>박물관·아카이브</h4>
+        <div class="art-sub">국립한글박물관 · 5.18 기록관</div>
+        <p>노라의 lieu de mémoire의 가장 직접적 구현. 한 사회가 무엇을 박물관에 넣는가가 그 사회의 기억 정치다. 한국의 박물관 풍경 자체가 lieu의 지도.</p>
+      </div>
+      <div class="art-step">
+        <div class="seq">SEQ · 02 / CINEMA</div>
+        <h4>기억 영화</h4>
+        <div class="art-sub">메멘토 · 이터널 선샤인 · 시</div>
+        <p>크리스토퍼 놀란 〈메멘토〉(2000)·미셸 공드리 〈이터널 선샤인〉(2004)·이창동 〈시〉(2010)·〈인사이드 아웃〉(2015)이 모두 기억의 신경 구조를 영상으로.</p>
+      </div>
+      <div class="art-step">
+        <div class="seq">SEQ · 03 / ARCH</div>
+        <h4>기억의 건축</h4>
+        <div class="art-sub">리베스킨드 · 마야 린 · 줌터</div>
+        <p>다니엘 리베스킨드 베를린 유대인 박물관·마야 린 베트남 기념비·피터 줌터 Bruder Klaus 채플이 모두 lieu de mémoire의 건축적 구현.</p>
+      </div>
+      <div class="art-step">
+        <div class="seq">SEQ · 04 / KOREA</div>
+        <h4>한국 기억 정치</h4>
+        <div class="art-sub">5.18 · 세월호 · 이태원</div>
+        <p>한국이 21세기에 가장 격렬하게 lieu de mémoire를 짓는 나라 중 하나. 매 사건이 기억의 장소가 되고, 그 장소가 한국 사회의 도덕 좌표가 된다.</p>
+      </div>
+      <div class="art-step">
+        <div class="seq">SEQ · 05 / AI</div>
+        <h4>LLM과 외부 기억</h4>
+        <div class="art-sub">Andy Clark · Tiago Forte</div>
+        <p>옵시디언·노션·Roam이 Andy Clark의 extended mind의 디지털 구현. LLM의 망각·맥락 윈도우 한계가 21세기 기억 철학의 새 무대.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 · TODAY -->
+<section id="now">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">10</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">TODAY · APPLICATION</div>
+        <h2>오늘의 적용 — 감각일지·시뮬레이션·새 공간의 <em>기억 매뉴얼</em></h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      앞의 모든 계보가 결국 당신의 인지 모델 훈련으로 돌아오는 자리. 세 가지 훈련을 기억·시간·공간 축에서 다시 설계한다.
+    </p>
+
+    <div class="app-grid">
+
+      <div class="app-card c-blue">
+        <div class="tag">FOR 감각일지 · BODY JOURNAL</div>
+        <h4>미래의 마들렌을 심는 일지</h4>
+        <ul>
+          <li><strong>프루스트 모드</strong> — 적을 때 <strong>감각의 좌표(향·색·소리·온도·각도)</strong>를 함께. 미래의 어느 날 같은 자극을 만나면 오늘이 통째로 살아 돌아오게</li>
+          <li><strong>베르그송 모드</strong> — 의지로 떠오르는 게 아니라 <strong>의외로 떠오른 한 순간</strong>을 잡기</li>
+          <li><strong>들뢰즈 모드</strong> — 의미 바로 안 붙이고 강도만 (Part XII에서)</li>
+          <li><strong>알박스 모드</strong> — 가족·친구와 같이 한 시절을 회상하기 = 다른 깊이의 기억</li>
+          <li><strong>망각 모드</strong> — 모든 것을 적지 말고 <strong>이 한 가지만</strong>을 골라 적기</li>
+          <li>일지의 본 작용은 일지를 다시 읽는 게 아니라 <strong>일지에 적은 자극을 다시 만나는 일</strong></li>
+        </ul>
+      </div>
+
+      <div class="app-card c-pink">
+        <div class="tag">FOR 시뮬레이션 · MENTAL REHEARSAL</div>
+        <h4>미래일기 = mental time travel의 운동</h4>
+        <ul>
+          <li><strong>아우구스티누스</strong> — distentio의 expectatio를 의식적으로. 영혼이 미래를 잡는 그 작용</li>
+          <li><strong>후설</strong> — protention 강화. 평소 무의식인 예지를 한 시간·한 달 너머로</li>
+          <li><strong>메를로퐁티</strong> — 신체 도식 활성. 그때 손은 어디, 발은 어디</li>
+          <li><strong>Tulving + Schacter</strong> — 같은 해마 회로의 미래 방향. 과거 회상이 강한 사람이 미래 시뮬레이션도 강하다</li>
+          <li><strong>현재의 파지가 또렷해야</strong> 미래의 예지도 또렷. 그래서 감각일지가 시뮬레이션의 토대</li>
+          <li>시뮬레이션 후 <strong>몸의 신체 표지(다마지오)</strong>를 관찰하면 그 미래의 좋고 나쁨이 답으로 옴</li>
+        </ul>
+      </div>
+
+      <div class="app-card c-green">
+        <div class="tag">FOR 새 공간 · NEW SPACE</div>
+        <h4>해마의 운동, 격자의 새로 깔기</h4>
+        <ul>
+          <li><strong>시미오니데스</strong> — 새 공간 = method of loci의 새 격자</li>
+          <li><strong>칸트</strong> — 감성 형식이 새 입력으로 활성화</li>
+          <li><strong>바슐라르</strong> — 새 공간의 다락·지하실·서랍을 의식적으로 찾기</li>
+          <li><strong>베르그송</strong> — 새 공간에서 시간이 늘어진다. 천천히 둘러보기</li>
+          <li><strong>O'Keefe·Moser</strong> — 새 공간 = 새 장소세포·격자세포가 깔리는 자리. <strong>해마의 운동이자 알츠하이머 예방</strong></li>
+          <li>옵시디언 vault에도 다락·지하실·서랍이 있다. 정리는 시미오니데스, 깊이는 바슐라르</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ONE LINE -->
+<div class="oneline">
+  <div class="oneline-inner">
+    <div class="oneline-k">ONE LINE</div>
+    <div class="oneline-main">기억은 시간 위에 흐르는 게 아니다.<br/>기억은 <em>공간</em>을 짓고, 그 공간이 <em>시간</em>을 잡아둔다.</div>
+    <div class="oneline-sig">— Memory · Time · Space Lineage · Part XIII · 2026-05</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="inner">
+    <div>
+      <h4>SERIES · CREATIVE COMMUNICATOR</h4>
+      <p>
+        <strong>Part I</strong> 광고사 &amp; 카피 역사<br/>
+        <strong>Part II</strong> 카피라이팅 프레임워크<br/>
+        <strong>Part III</strong> 뇌과학·해마·이야기<br/>
+        <strong>Part IV</strong> 인식과 소통·움벨트<br/>
+        <strong>Part V</strong> 현대사상 인식론 계보 · Deep<br/>
+        <strong>Part VI</strong> 추론(Reasoning)의 계보 · Deep<br/>
+        <strong>Part VII</strong> 시간과 공간의 스키마 · Deep<br/>
+        <strong>Part VIII</strong> 디자인사 &amp; 바우하우스 계보 · Deep<br/>
+        <strong>Part IX</strong> 타이포그래피 아키타입 · Deep<br/>
+        <strong>Part X</strong> 수학적 사고의 7가지 동작 · Deep<br/>
+        <strong>Part XI</strong> 창작자의 9가지 동작 · Deep<br/>
+        <strong>Part XII</strong> 신체화 인식 계보 · Deep<br/>
+        <strong>Part XIII</strong> 기억·시간·공간 계보 ★ <em>(NOW)</em>
+      </p>
+    </div>
+
+    <div>
+      <h4>READING · 개론</h4>
+      <ul>
+        <li>Frances Yates, <em>The Art of Memory</em> (1966)</li>
+        <li>Augustinus, <em>고백록</em> XI권 (397)</li>
+        <li>Bachelard, <em>공간의 시학</em> (1958)</li>
+        <li>Halbwachs, <em>집단 기억</em> (1950)</li>
+        <li>Pierre Nora, <em>기억의 장소</em> 1권 (1984)</li>
+      </ul>
+    </div>
+
+    <div>
+      <h4>READING · 동시대</h4>
+      <ul>
+        <li>Joshua Foer, <em>Moonwalking with Einstein</em> (2011)</li>
+        <li>Daniel Schacter, <em>The Seven Sins of Memory</em> (2001)</li>
+        <li>O'Keefe &amp; Nadel, <em>The Hippocampus as a Cognitive Map</em> (1978)</li>
+        <li>Eleanor Maguire, "London Taxi Drivers" (2000)</li>
+        <li>Endel Tulving, "Episodic Memory" (1972, 1985)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="colophon">
+    <span>MEMORY · TIME · SPACE LINEAGE · PART XIII · 2026-05</span>
+    <span>BY CHANHWI / VIA LINEAGE SKILL</span>
+  </div>
+</footer>
+
+</body>
+</html>

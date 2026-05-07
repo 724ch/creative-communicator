@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Creative Communicator · Lineage Series Index</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fdfcfa; --bg-2: #f4f1ec; --bg-card: #ffffff; --bg-card-2: #f8f6f1; --bg-code: #f4f1ec;
+    --text: #1a1a1a; --text-soft: #4a4845; --text-dim: #807e7a; --text-faint: #c4c2bd;
+    --accent: #d9601f; --accent-2: #e07530; --accent-dim: #b54e15;
+    --teal: #2e8a7c; --teal-dim: #1f5e54;
+    --green: #4a8e4a; --purple: #7e5a98; --pink: #c25787; --blue: #4a72a8; --yellow: #b8954a; --red: #c14638;
+    --border: rgba(0,0,0,0.10); --border-2: rgba(0,0,0,0.16);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', -apple-system, sans-serif; font-weight: 400; line-height: 1.75; -webkit-font-smoothing: antialiased; }
+  a { color: var(--accent); text-decoration: none; }
+
+  .hero { padding: 130px 60px 110px; border-bottom: 1px solid var(--border); }
+  .hero-inner { max-width: 1120px; margin: 0 auto; }
+  .hero-kicker { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.35em; color: var(--text-dim); margin-bottom: 80px; }
+  .hero h1 { font-family: 'Noto Sans KR', sans-serif; font-weight: 900; font-size: clamp(40px, 6vw, 84px); line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 28px; }
+  .hero h1 em { font-style: normal; color: var(--accent); }
+  .hero-tagline { font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(18px, 2vw, 24px); color: var(--text-soft); margin-top: 12px; line-height: 1.5; }
+  .hero-lead { max-width: 720px; font-size: 16px; color: var(--text-soft); line-height: 1.85; font-weight: 300; margin-top: 44px; }
+  .hero-lead strong { color: var(--text); font-weight: 600; }
+  .hero-lead em { font-style: italic; color: var(--text); }
+  .hero-meta { margin-top: 96px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; padding-top: 32px; border-top: 1px solid var(--border); }
+  .hero-meta .label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.25em; color: var(--text-dim); text-transform: uppercase; margin-bottom: 8px; }
+  .hero-meta .value { font-size: 17px; font-weight: 700; color: var(--text); }
+
+  nav.sticky { position: sticky; top: 0; background: rgba(253,252,250,0.92); backdrop-filter: blur(18px); border-bottom: 1px solid var(--border); z-index: 50; padding: 14px 60px; }
+  nav .nav-inner { max-width: 1120px; margin: 0 auto; display: flex; gap: 26px; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; }
+  nav a { color: var(--text-dim); white-space: nowrap; padding: 4px 0; transition: all 0.2s; }
+  nav a:hover { color: var(--accent); }
+
+  section { padding: 100px 60px; }
+  .container { max-width: 1120px; margin: 0 auto; }
+  .sec-header { margin-bottom: 56px; display: flex; align-items: flex-start; gap: 32px; }
+  .sec-num { font-family: 'JetBrains Mono', monospace; font-size: 56px; font-weight: 700; color: var(--text-faint); line-height: 1; flex-shrink: 0; }
+  .sec-title-wrap { flex: 1; padding-top: 8px; }
+  h2 { font-family: 'Noto Sans KR', sans-serif; font-weight: 900; font-size: clamp(28px, 3.6vw, 44px); line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 16px; }
+  h2 em { font-style: normal; color: var(--accent); }
+  .sec-sub { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.2em; color: var(--text-dim); text-transform: uppercase; margin-top: 6px; margin-bottom: 22px; }
+  .sec-lead { font-size: 16px; color: var(--text-soft); max-width: 800px; line-height: 1.85; font-weight: 300; }
+  .sec-lead strong { color: var(--text); font-weight: 600; }
+
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 44px; }
+  .about-card { background: var(--bg-card); border: 1px solid var(--border); padding: 36px 38px; }
+  .about-card h3 { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.25em; color: var(--accent); text-transform: uppercase; margin-bottom: 16px; }
+  .about-card .punch { font-size: 20px; font-weight: 800; line-height: 1.4; margin-bottom: 14px; color: var(--text); letter-spacing: -0.005em; }
+  .about-card p { font-size: 14px; color: var(--text-soft); line-height: 1.85; margin-bottom: 10px; }
+  .about-card p strong { color: var(--text); font-weight: 600; }
+
+  .principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 36px; }
+  .principle-card { background: var(--bg-card); border: 1px solid var(--border); border-top: 3px solid var(--accent); padding: 28px 28px; }
+  .principle-card.c-tl { border-top-color: var(--teal); }
+  .principle-card.c-pp { border-top-color: var(--purple); }
+  .principle-card .num { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.25em; color: var(--text-dim); margin-bottom: 8px; }
+  .principle-card h4 { font-size: 17px; font-weight: 800; margin-bottom: 10px; line-height: 1.4; color: var(--text); }
+  .principle-card p { font-size: 13px; color: var(--text-soft); line-height: 1.7; }
+
+  .report-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 44px; }
+  .report-card { background: var(--bg-card); border: 1px solid var(--border); border-top: 3px solid var(--accent); padding: 0; overflow: hidden; transition: transform 0.18s ease, box-shadow 0.18s ease; display: flex; flex-direction: column; }
+  .report-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
+  .report-card.c-yel { border-top-color: var(--yellow); }
+  .report-card.c-pk { border-top-color: var(--pink); }
+  .report-card.c-tl { border-top-color: var(--teal); }
+  .report-card.c-pp { border-top-color: var(--purple); }
+  .report-card.c-bl { border-top-color: var(--blue); }
+  .report-card.c-gr { border-top-color: var(--green); }
+  .report-card.c-rd { border-top-color: var(--red); }
+  .report-card.c-ac { border-top-color: var(--accent); }
+  .report-card.c-dk { border-top-color: var(--text); }
+  .report-card a { color: inherit; display: block; padding: 28px 30px 24px; flex: 1; display: flex; flex-direction: column; }
+  .report-card .meta-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
+  .report-card .part-no { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: var(--accent); font-weight: 700; }
+  .report-card .pub-date { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: var(--text-dim); }
+  .report-card h3 { font-size: 19px; font-weight: 800; line-height: 1.35; margin-bottom: 8px; color: var(--text); letter-spacing: -0.005em; }
+  .report-card .sub-en { font-family: 'Playfair Display', serif; font-style: italic; font-size: 13px; color: var(--text-dim); margin-bottom: 16px; }
+  .report-card .punch { font-size: 13.5px; color: var(--text-soft); line-height: 1.7; flex: 1; }
+  .report-card .punch strong { color: var(--text); font-weight: 600; }
+  .report-card .meta-bottom { margin-top: 20px; padding-top: 14px; border-top: 1px dashed var(--border-2); display: flex; justify-content: space-between; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: var(--text-dim); }
+  .report-card .meta-bottom .open { color: var(--accent); font-weight: 600; }
+
+  .threads-list { background: var(--bg-card); border: 1px solid var(--border); padding: 40px 44px; margin-top: 36px; }
+  .threads-list h3 { font-size: 18px; font-weight: 800; margin-bottom: 20px; color: var(--text); }
+  .threads-list ul { list-style: none; padding: 0; }
+  .threads-list li { padding: 14px 0; border-bottom: 1px dashed var(--border); display: grid; grid-template-columns: 200px 1fr; gap: 24px; align-items: baseline; }
+  .threads-list li:last-child { border-bottom: none; }
+  .threads-list .t-name { font-family: 'Playfair Display', serif; font-style: italic; font-size: 15px; color: var(--accent); }
+  .threads-list .t-body { font-size: 13.5px; color: var(--text-soft); line-height: 1.7; }
+  .threads-list .t-body strong { color: var(--text); font-weight: 600; }
+  .threads-list .t-parts { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-dim); letter-spacing: 0.1em; margin-top: 4px; display: block; }
+
+  .colophon-block { background: var(--bg-card); border: 1px solid var(--border); padding: 44px 48px; margin-top: 36px; }
+  .colophon-block .col-row { display: grid; grid-template-columns: 200px 1fr; gap: 36px; padding: 22px 0; border-bottom: 1px dashed var(--border); align-items: baseline; }
+  .colophon-block .col-row:last-child { border-bottom: none; }
+  .colophon-block .col-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.22em; color: var(--accent); text-transform: uppercase; }
+  .colophon-block .col-content { font-size: 14px; color: var(--text-soft); line-height: 1.85; }
+  .colophon-block .col-content strong { color: var(--text); font-weight: 600; }
+  .colophon-block .col-content em { font-style: italic; color: var(--text); }
+
+  .identity { margin-top: 56px; padding: 56px 32px 48px; background: var(--bg-card); border: 1px solid var(--border); }
+  .identity .id-cap { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.3em; color: var(--accent); text-transform: uppercase; text-align: center; margin-bottom: 10px; }
+  .identity .id-title { font-size: 22px; font-weight: 800; text-align: center; margin-bottom: 6px; color: var(--text); letter-spacing: -0.005em; }
+  .identity .id-title em { font-style: normal; color: var(--accent); }
+  .identity .id-sub { font-family: 'Playfair Display', serif; font-style: italic; font-size: 14px; color: var(--text-dim); text-align: center; margin-bottom: 28px; }
+  .identity svg.diamond { display: block; width: 100%; max-width: 760px; height: auto; margin: 0 auto; }
+  .identity svg.diamond-sub { max-width: 640px; }
+  .identity svg.diamond-mech { max-width: 820px; }
+  .identity .id-foot { max-width: 640px; margin: 28px auto 0; font-size: 13px; color: var(--text-soft); line-height: 1.85; text-align: center; }
+  .identity .id-foot strong { color: var(--text); font-weight: 600; }
+  .identity .id-foot em { font-style: italic; color: var(--accent); font-family: 'Playfair Display', serif; }
+  .identity .id-zoom { display: flex; align-items: center; gap: 16px; margin: 48px auto 8px; max-width: 480px; }
+  .identity .id-zoom .ln { flex: 1; height: 1px; background: var(--border-2); }
+  .identity .id-zoom .lab { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.3em; color: var(--text-dim); text-transform: uppercase; }
+
+  .commit-box { background: var(--bg-2); border: 1px solid var(--border); border-left: 3px solid var(--accent); padding: 28px 32px; margin-top: 28px; }
+  .commit-box .lab { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.25em; color: var(--accent); text-transform: uppercase; margin-bottom: 10px; }
+  .commit-box p { font-size: 14px; color: var(--text); line-height: 1.8; }
+  .commit-box p strong { font-weight: 700; }
+  .commit-box p em { font-style: italic; color: var(--text); }
+
+  footer { background: var(--bg-2); padding: 70px 60px 40px; border-top: 1px solid var(--border); }
+  footer .inner { max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 56px; }
+  footer h4 { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.25em; color: var(--accent); text-transform: uppercase; margin-bottom: 18px; }
+  footer p, footer li { font-size: 13px; color: var(--text-soft); line-height: 1.85; }
+  footer p strong { color: var(--text); }
+  footer ul { list-style: none; }
+  footer li { padding: 3px 0; }
+  footer li::before { content: '— '; color: var(--text-dim); }
+  footer .colophon-foot { max-width: 1120px; margin: 52px auto 0; padding-top: 24px; border-top: 1px solid var(--border); font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--text-dim); display: flex; justify-content: space-between; }
+
+  @media (max-width: 960px) {
+    .hero, section, footer, nav.sticky { padding-left: 28px; padding-right: 28px; }
+    .sec-header { flex-direction: column; gap: 12px; }
+    .hero-meta { grid-template-columns: 1fr 1fr; }
+    .about-grid, .principles, .report-grid { grid-template-columns: 1fr; gap: 18px; }
+    .threads-list li, .colophon-block .col-row { grid-template-columns: 1fr; gap: 8px; }
+    footer .inner { grid-template-columns: 1fr; gap: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-kicker">CREATIVE COMMUNICATOR · LINEAGE SERIES · 2026</div>
+    <h1>인간이 인간에게<br/>메시지를 닿게 만드는 일,<br/><em>그 인지 회로의 계보</em></h1>
+    <p class="hero-tagline">A 9-part lineage of the creative mind — from Roman inscriptions to AI typography</p>
+    <p class="hero-lead"><strong>크리에이티브 커뮤니케이터</strong>는 디자인·카피라이팅·에디토리얼 세 축을 가진 한 사람의 정체성이다. 이 시리즈는 그 정체성의 <strong>인지 회로를 사상사로 거슬러 추적</strong>한다. 광고사·뇌과학·인식론·추론·디자인사·타이포그래피까지 — 다른 분야로 보이지만 한 가지 질문에 답한다: *"인간이 인간에게 메시지를 닿게 만드는 일은 어떻게 작동하는가?"*
+
+---</p>
+    <div class="hero-meta">
+      <div><div class="label">Duration</div><div class="value">12 Deep Reports</div></div>
+      <div><div class="label">Span</div><div class="value">2026-04-17 → ongoing</div></div>
+      <div><div class="label">Format</div><div class="value">~150 KB · 11 sections each</div></div>
+      <div><div class="label">Author</div><div class="value">정찬휘 · Chanhwi Jeong</div></div>
+    </div>
+  </div>
+</header>
+
+<nav class="sticky">
+  <div class="nav-inner">
+    <a href="#about">01 · About</a>
+    <a href="#principles">02 · Principles</a>
+    <a href="#reports">03 · 9 Reports</a>
+    <a href="#threads">04 · Cross-Threads</a>
+    <a href="#colophon">05 · Colophon</a>
+  </div>
+</nav>
+
+<section id="about">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">01</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">ABOUT THE SERIES</div>
+        <h2>왜 <em>이 시리즈</em>인가</h2>
+      </div>
+    </div>
+    <p class="sec-lead">디자인이 트렌드 추종이 되지 않으려면, 카피가 인용의 인용이 되지 않으려면 — 자기 작업의 <strong>출처 계보</strong>를 알고 있어야 한다. 이 시리즈는 그 계보를 9개 영역에서 차례로 짚는 작업이다. 학습이자 창작이고, 기록이자 도구다.</p>
+
+    <div class="identity">
+      <div class="id-cap">IDENTITY · COMMUNICATION × CREATIVE</div>
+      <div class="id-title">크리에이티브 커뮤니케이션의 <em>회로</em></div>
+      <div class="id-sub">Feel · Send · Articulate · Receive — and back.</div>
+
+      <svg class="diamond" viewBox="0 0 880 540" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Communication × Creative cross with feel/send/articulate/receive cycle">
+        <defs>
+          <marker id="cyc-arrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="9" markerHeight="9" orient="auto">
+            <path d="M2,2 L10,6 L2,10 Z" fill="#d9601f"/>
+          </marker>
+        </defs>
+
+        <!-- inner cross axes (segmented around shapes — no penetration into □△▽○) -->
+        <!-- horizontal: △ right edge → ▽ left edge -->
+        <line x1="297" y1="320" x2="503" y2="320" stroke="#1a1a1a" stroke-width="1.1"/>
+        <!-- vertical: □ bottom → ○ top -->
+        <line x1="400" y1="220" x2="400" y2="423" stroke="#1a1a1a" stroke-width="1.1"/>
+
+        <!-- axis labels (italic Playfair, BRAUN-ish hand-feel) -->
+        <text x="730" y="324" text-anchor="start" font-family="Playfair Display, serif" font-style="italic" font-size="18" fill="#1a1a1a">Communication</text>
+        <text x="400" y="68" text-anchor="middle" font-family="Playfair Display, serif" font-style="italic" font-size="18" fill="#1a1a1a">Creative</text>
+
+        <!-- TOP · 언어화 · square -->
+        <text x="400" y="118" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-weight="500" font-size="22" fill="#1a1a1a">{ 언어화 }</text>
+        <rect x="385" y="185" width="30" height="30" fill="none" stroke="#1a1a1a" stroke-width="1.8"/>
+
+        <!-- LEFT · 발신 · △ apex up -->
+        <text x="180" y="326" text-anchor="end" font-family="Noto Sans KR, sans-serif" font-weight="500" font-size="22" fill="#1a1a1a">[ 발신 ]</text>
+        <polygon points="280,304 264,334 296,334" fill="none" stroke="#1a1a1a" stroke-width="1.8"/>
+
+        <!-- RIGHT · 수신 · ▽ apex down -->
+        <text x="620" y="326" text-anchor="start" font-family="Noto Sans KR, sans-serif" font-weight="500" font-size="22" fill="#1a1a1a">[ 수신 ]</text>
+        <polygon points="504,306 536,306 520,336" fill="none" stroke="#1a1a1a" stroke-width="1.8"/>
+
+        <!-- BOTTOM · 느낌 · circle -->
+        <circle cx="400" cy="440" r="13" fill="none" stroke="#1a1a1a" stroke-width="1.8"/>
+        <text x="400" y="495" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-weight="500" font-size="22" fill="#1a1a1a">느낌</text>
+
+        <!-- CYCLE ARCS (clockwise: 느낌 → 발신 → 언어화 → 수신 → 느낌) -->
+        <!-- 느낌(S) → 발신(W): SW arc -->
+        <path d="M 370 492 A 175 175 0 0 1 228 350" fill="none" stroke="#d9601f" stroke-width="1.8" marker-end="url(#cyc-arrow)"/>
+        <!-- 발신(W) → 언어화(N): NW arc -->
+        <path d="M 228 290 A 175 175 0 0 1 370 148" fill="none" stroke="#d9601f" stroke-width="1.8" marker-end="url(#cyc-arrow)"/>
+        <!-- 언어화(N) → 수신(E): NE arc -->
+        <path d="M 430 148 A 175 175 0 0 1 572 290" fill="none" stroke="#d9601f" stroke-width="1.8" marker-end="url(#cyc-arrow)"/>
+        <!-- 수신(E) → 느낌(S): SE arc -->
+        <path d="M 572 350 A 175 175 0 0 1 430 492" fill="none" stroke="#d9601f" stroke-width="1.8" marker-end="url(#cyc-arrow)"/>
+      </svg>
+
+      <p class="id-foot">
+        가로축은 <strong>커뮤니케이션</strong> (발신 ↔ 수신), 세로축은 <strong>크리에이티브</strong> (언어화 ↔ 느낌). 안에서 일어난 <em>느낌</em>이 <em>발신</em>되어 <em>언어화</em>되고, <em>수신</em>자에게 닿아 다시 새로운 느낌이 되는 — <strong>한 바퀴의 회로</strong>가 메시지의 작동 단위다.
+      </p>
+
+      <!-- ZOOM IN: 언어화 sub-axis -->
+      <div class="id-zoom"><span class="ln"></span><span class="lab">↓ ZOOM IN · 언어화 축</span><span class="ln"></span></div>
+
+      <div class="id-cap">SUB-AXIS · MODES OF ARTICULATION</div>
+      <div class="id-title">언어화는 다시 <em>네 갈래</em>로</div>
+      <div class="id-sub">Writing · Design · Editorial · Generating</div>
+
+      <svg class="diamond diamond-sub" viewBox="0 0 760 580" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Four modes of articulation diamond">
+        <!-- diamond outline -->
+        <polygon points="380,80 620,290 380,500 140,290"
+                 fill="rgba(217,96,31,0.04)" stroke="#d9601f" stroke-width="1.5"/>
+
+        <!-- spokes -->
+        <line x1="380" y1="290" x2="380" y2="80"  stroke="#d9601f" stroke-width="0.6" opacity="0.4"/>
+        <line x1="380" y1="290" x2="620" y2="290" stroke="#d9601f" stroke-width="0.6" opacity="0.4"/>
+        <line x1="380" y1="290" x2="380" y2="500" stroke="#d9601f" stroke-width="0.6" opacity="0.4"/>
+        <line x1="380" y1="290" x2="140" y2="290" stroke="#d9601f" stroke-width="0.6" opacity="0.4"/>
+
+        <!-- TOP · GENERATING -->
+        <circle cx="380" cy="80" r="6" fill="#d9601f"/>
+        <text x="380" y="50" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="3" fill="#807e7a">VERTEX · NORTH</text>
+        <text x="380" y="71" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-weight="900" font-size="18" fill="#1a1a1a">GENERATING</text>
+        <text x="380" y="103" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-weight="500" font-size="12" fill="#4a4845">AI 협업으로 새로 짓기</text>
+
+        <!-- RIGHT · DESIGN -->
+        <circle cx="620" cy="290" r="6" fill="#d9601f"/>
+        <text x="640" y="272" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="3" fill="#807e7a">VERTEX · EAST</text>
+        <text x="640" y="295" text-anchor="start" font-family="Noto Sans KR, sans-serif" font-weight="900" font-size="18" fill="#1a1a1a">DESIGN</text>
+        <text x="640" y="314" text-anchor="start" font-family="Noto Sans KR, sans-serif" font-weight="500" font-size="12" fill="#4a4845">시각언어로 옮기기</text>
+
+        <!-- BOTTOM · EDITORIAL -->
+        <circle cx="380" cy="500" r="6" fill="#d9601f"/>
+        <text x="380" y="525" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-weight="900" font-size="18" fill="#1a1a1a">EDITORIAL</text>
+        <text x="380" y="544" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-weight="500" font-size="12" fill="#4a4845">창조적 재배치</text>
+
+        <!-- LEFT · WRITING -->
+        <circle cx="140" cy="290" r="6" fill="#d9601f"/>
+        <text x="120" y="272" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="3" fill="#807e7a">VERTEX · WEST</text>
+        <text x="120" y="295" text-anchor="end" font-family="Noto Sans KR, sans-serif" font-weight="900" font-size="18" fill="#1a1a1a">WRITING</text>
+        <text x="120" y="314" text-anchor="end" font-family="Noto Sans KR, sans-serif" font-weight="500" font-size="12" fill="#4a4845">미묘한 뉘앙스</text>
+
+        <!-- CENTER · 언어화 (square, linking back to main schema) -->
+        <rect x="345" y="255" width="70" height="70" fill="#fdfcfa" stroke="#1a1a1a" stroke-width="1.8"/>
+        <text x="380" y="282" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="2.5" fill="#d9601f">{ ARTICULATE }</text>
+        <text x="380" y="305" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-weight="900" font-size="16" fill="#1a1a1a">언어화</text>
+      </svg>
+
+      <p class="id-foot">
+        언어화 꼭짓점은 다시 네 모드로 갈라진다. 글의 <em>뉘앙스</em>(Writing) · 시각의 <em>레이아웃</em>(Design) · 기존 자료의 <em>재배치</em>(Editorial) · AI 협업의 <em>새로 짓기</em>(Generating). <strong>네 모드 모두 입력은 느낌이고 출력은 수신자의 새 느낌</strong> — 도구가 다를 뿐, 같은 회로를 돈다.
+      </p>
+
+      <!-- ZOOM IN: 언어화 메커니즘 (Container + Network/Tree) -->
+      <div class="id-zoom"><span class="ln"></span><span class="lab">↓ ZOOM IN · 언어화 메커니즘</span><span class="ln"></span></div>
+
+      <div class="id-cap">MECHANICS · CONCEPT → CONTAINER → RECEIVER</div>
+      <div class="id-title">언어화는 <em>컨테이너 작업</em>이다</div>
+      <div class="id-sub">Two archetypes shape the container — Network or Tree.</div>
+
+      <svg class="diamond diamond-mech" viewBox="0 0 880 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Container mechanism with Network and Tree archetypes">
+        <defs>
+          <marker id="mech-arrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="9" markerHeight="9" orient="auto">
+            <path d="M2,2 L10,6 L2,10 Z" fill="#d9601f"/>
+          </marker>
+        </defs>
+
+        <!-- ROW 1 · PROCESS FLOW -->
+
+        <!-- INPUT -->
+        <text x="135" y="85" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="3" fill="#807e7a">INPUT</text>
+        <text x="135" y="148" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-weight="700" font-size="20" fill="#1a1a1a">사고 · 발견</text>
+        <text x="135" y="174" text-anchor="middle" font-family="Playfair Display, serif" font-style="italic" font-size="13" fill="#807e7a">thought · discovery</text>
+
+        <!-- arrow input → container -->
+        <line x1="215" y1="142" x2="295" y2="142" stroke="#d9601f" stroke-width="1.6" marker-end="url(#mech-arrow)"/>
+
+        <!-- CONTAINER (the focal element) -->
+        <text x="430" y="78" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="3" fill="#d9601f">CONTAINER · 박스</text>
+        <rect x="310" y="95" width="240" height="115" fill="none" stroke="#1a1a1a" stroke-width="1.8"/>
+        <text x="430" y="142" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-weight="900" font-size="22" fill="#1a1a1a">Concepts · 내용</text>
+        <text x="430" y="175" text-anchor="middle" font-family="Playfair Display, serif" font-style="italic" font-size="13" fill="#4a4845">articulation = containerization</text>
+        <text x="430" y="234" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-weight="500" font-size="13" fill="#4a4845">메타언어로 <tspan font-style="italic" fill="#1a1a1a">visualize</tspan></text>
+
+        <!-- arrow container → output -->
+        <line x1="565" y1="142" x2="645" y2="142" stroke="#d9601f" stroke-width="1.6" marker-end="url(#mech-arrow)"/>
+
+        <!-- OUTPUT (▽ from main schema) -->
+        <text x="725" y="85" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="3" fill="#807e7a">OUTPUT</text>
+        <polygon points="708,128 742,128 725,160" fill="none" stroke="#1a1a1a" stroke-width="1.8"/>
+        <text x="725" y="190" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-weight="700" font-size="20" fill="#1a1a1a">수신</text>
+        <text x="725" y="214" text-anchor="middle" font-family="Playfair Display, serif" font-style="italic" font-size="13" fill="#807e7a">receiver</text>
+
+        <!-- vertical hint: container splits into archetypes below -->
+        <line x1="430" y1="252" x2="430" y2="288" stroke="#d9601f" stroke-width="1.4" stroke-dasharray="2 4" marker-end="url(#mech-arrow)"/>
+
+        <!-- DIVIDER + heading -->
+        <line x1="100" y1="305" x2="780" y2="305" stroke="rgba(0,0,0,0.16)" stroke-width="1" stroke-dasharray="4 6"/>
+        <text x="440" y="330" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="3" fill="#d9601f">TWO ARCHETYPES OF CONTAINER</text>
+        <text x="440" y="354" text-anchor="middle" font-family="Playfair Display, serif" font-style="italic" font-size="14" fill="#4a4845">어떤 구조로 담을까 — Network or Tree?</text>
+
+        <!-- ROW 2 LEFT · NETWORK -->
+        <text x="220" y="395" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-weight="900" font-size="20" fill="#1a1a1a">NETWORK</text>
+
+        <!-- network edges (drawn first) -->
+        <line x1="170" y1="430" x2="220" y2="418" stroke="#1a1a1a" stroke-width="1.2"/>
+        <line x1="220" y1="418" x2="270" y2="430" stroke="#1a1a1a" stroke-width="1.2"/>
+        <line x1="170" y1="430" x2="270" y2="430" stroke="#1a1a1a" stroke-width="1.2"/>
+        <line x1="170" y1="430" x2="190" y2="478" stroke="#1a1a1a" stroke-width="1.2"/>
+        <line x1="220" y1="418" x2="190" y2="478" stroke="#1a1a1a" stroke-width="1.2"/>
+        <line x1="220" y1="418" x2="252" y2="478" stroke="#1a1a1a" stroke-width="1.2"/>
+        <line x1="270" y1="430" x2="252" y2="478" stroke="#1a1a1a" stroke-width="1.2"/>
+        <line x1="190" y1="478" x2="252" y2="478" stroke="#1a1a1a" stroke-width="1.2"/>
+        <line x1="190" y1="478" x2="220" y2="520" stroke="#1a1a1a" stroke-width="1.2"/>
+        <line x1="252" y1="478" x2="220" y2="520" stroke="#1a1a1a" stroke-width="1.2"/>
+
+        <!-- network nodes -->
+        <circle cx="170" cy="430" r="6" fill="#1a1a1a"/>
+        <circle cx="220" cy="418" r="6" fill="#1a1a1a"/>
+        <circle cx="270" cy="430" r="6" fill="#1a1a1a"/>
+        <circle cx="190" cy="478" r="6" fill="#1a1a1a"/>
+        <circle cx="252" cy="478" r="6" fill="#1a1a1a"/>
+        <circle cx="220" cy="520" r="6" fill="#1a1a1a"/>
+
+        <!-- network captions -->
+        <text x="220" y="558" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-weight="600" font-size="14" fill="#1a1a1a">객체 ↔ 객체 · 텔링 · 메시지</text>
+        <text x="220" y="582" text-anchor="middle" font-family="Playfair Display, serif" font-style="italic" font-size="12" fill="#807e7a">소설 · 웹 · 카피 · UX flow</text>
+
+        <!-- ROW 2 RIGHT · TREE -->
+        <text x="660" y="395" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-weight="900" font-size="20" fill="#1a1a1a">TREE</text>
+
+        <!-- tree edges -->
+        <line x1="660" y1="418" x2="610" y2="460" stroke="#1a1a1a" stroke-width="1.2"/>
+        <line x1="660" y1="418" x2="710" y2="460" stroke="#1a1a1a" stroke-width="1.2"/>
+        <line x1="610" y1="460" x2="575" y2="510" stroke="#1a1a1a" stroke-width="1.2"/>
+        <line x1="610" y1="460" x2="645" y2="510" stroke="#1a1a1a" stroke-width="1.2"/>
+        <line x1="710" y1="460" x2="675" y2="510" stroke="#1a1a1a" stroke-width="1.2"/>
+        <line x1="710" y1="460" x2="745" y2="510" stroke="#1a1a1a" stroke-width="1.2"/>
+
+        <!-- tree nodes -->
+        <circle cx="660" cy="418" r="6" fill="#1a1a1a"/>
+        <circle cx="610" cy="460" r="6" fill="#1a1a1a"/>
+        <circle cx="710" cy="460" r="6" fill="#1a1a1a"/>
+        <circle cx="575" cy="510" r="6" fill="#1a1a1a"/>
+        <circle cx="645" cy="510" r="6" fill="#1a1a1a"/>
+        <circle cx="675" cy="510" r="6" fill="#1a1a1a"/>
+        <circle cx="745" cy="510" r="6" fill="#1a1a1a"/>
+
+        <!-- tree captions -->
+        <text x="660" y="558" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-weight="600" font-size="14" fill="#1a1a1a">평행 · 인과 · 위계 · 분류</text>
+        <text x="660" y="582" text-anchor="middle" font-family="Playfair Display, serif" font-style="italic" font-size="12" fill="#807e7a">매뉴얼 · 백과 · 디자인 시스템</text>
+      </svg>
+
+      <p class="id-foot">
+        언어화의 가장 윗단 결정은 <strong>"개념을 어떤 컨테이너에 담을까"</strong>다. 객체와 객체의 텔링이 우세하면 <em>Network</em> — 소설 · 웹 · UX 흐름. 평행과 인과의 위계가 우세하면 <em>Tree</em> — 매뉴얼 · 백과 · 디자인 시스템. <strong>같은 개념도 컨테이너에 따라 전혀 다른 모양</strong>이 된다 — 컨테이너는 담는 동시에 <em>형태를 만든다</em>.
+      </p>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-card">
+        <h3>제작 의도</h3>
+        <div class="punch">자기 작업을 설명할 수 있는 어휘를 갖는 것</div>
+        <p>"왜 이 글꼴인가", "왜 이 카피톤인가", "왜 이 구도인가"에 답할 수 있는 디자이너와 그렇지 못한 디자이너의 거리는 압도적이다. 답할 수 있다는 것은 — 자기 결정의 출처를 사상사·양식사 안에 둘 수 있다는 뜻이다.</p>
+        <p><strong>이 시리즈는 그 어휘를 9개 영역에서 모으는 작업</strong>이다. 동시에 그 모은 결과를 한 사람의 시각언어로 다시 짜는 큐레이션 작업이기도 하다.</p>
+      </div>
+      <div class="about-card">
+        <h3>주제 선정 기준</h3>
+        <div class="punch">크리에이티브 커뮤니케이터의 부품 회로 매핑</div>
+        <p>9개 주제는 무작위가 아니다. <strong>광고사 → 카피 프레임워크 → 뇌과학 → 인식·움벨트 → 인식론 → 추론 → 시간·공간 → 디자인사 → 타이포그래피</strong>는 — 메시지가 한 사람에서 다른 사람에게 닿는 과정의 부품들이다.</p>
+        <p>광고는 매체, 카피는 언어, 뇌는 수신자, 인식은 변환, 인식론은 그 변환의 사상사, 추론은 작동 회로, 시공간은 기억의 좌표, 디자인사는 시각 양식, 타이포는 가장 오래된 추상. <strong>한 부품도 빠지면 메시지는 닿지 않는다.</strong></p>
+        <p>---</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="principles" style="background:var(--bg-2);">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">02</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">DESIGN PRINCIPLES</div>
+        <h2>모든 리포트의 <em>공통 골격</em></h2>
+      </div>
+    </div>
+    <p class="sec-lead">9개 리포트는 같은 11-섹션 골격, 같은 카드 4-블록 구조, 같은 디자인 토큰 위에 짜여 있다. 이 일관성 자체가 시리즈의 메시지다 — <strong>인지 부품들은 다르지만, 그것을 보는 시각언어는 하나다.</strong></p>
+
+    <div class="principles">
+      <div class="principle-card">
+        <div class="num">PRINCIPLE 01</div>
+        <h4>11-섹션 골격</h4>
+        <p>HERO → INTRO → 5~7 PHASE → 6 THREADS → RESONANCE → APPLICATION → ONE LINE → FOOTER. 시간 축과 가로 축을 모두 가지는 구조.</p>
+      </div>
+      <div class="principle-card c-tl">
+        <div class="num">PRINCIPLE 02</div>
+        <h4>4-블록 카드</h4>
+        <p>각 학자/사조 카드는 CONCEPT · SCHEMA · HUMANITIES IMPACT · TODAY'S ECHO 4블록. 특히 SCHEMA는 모노스페이스 ASCII로 머릿속 그림을 그린다.</p>
+      </div>
+      <div class="principle-card c-pp">
+        <div class="num">PRINCIPLE 03</div>
+        <h4>오늘로 착지</h4>
+        <p>모든 리포트의 마지막은 "오늘의 적용" 3 카드. 사상사가 박물관 유물이 아니라 오늘의 작업 도구임을 매번 증명.</p>
+        <p>---</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reports">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">03</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">9 DEEP REPORTS</div>
+        <h2>아홉 개의 <em>인지 부품</em></h2>
+      </div>
+    </div>
+    <p class="sec-lead">각 리포트는 단독으로 읽을 수 있는 한 권의 책이자, 시리즈 안에서 다른 8개와 공명한다. 클릭해서 들어가면 5~7국면 × 학자 카드 × SCHEMA × 6 스레드의 풀 리포트.</p>
+
+    <div class="report-grid">
+      <article class="report-card c-yel">
+        <a href="reports/01.광고사_카피_역사.html">
+          <div class="meta-top">
+            <span class="part-no">PART I</span>
+            <span class="pub-date">2026-04-17</span>
+          </div>
+          <h3>광고사 & 카피 역사</h3>
+          <div class="sub-en">Advertising · From Myth to Algorithm</div>
+          <p class="punch">신화·종교·산업혁명·매스미디어·디지털·AI까지 — 광고가 <strong>인간을 학습해온 200년</strong>의 사상사. 카피·매체·소비자 인지의 변천.</p>
+          <div class="meta-bottom"><span>5 PHASES · 6 THREADS</span><span class="open">OPEN →</span></div>
+        </a>
+      </article>
+      <article class="report-card c-pk">
+        <a href="reports/02.카피라이팅_프레임워크.html">
+          <div class="meta-top">
+            <span class="part-no">PART II</span>
+            <span class="pub-date">2026-04-18</span>
+          </div>
+          <h3>카피라이팅 프레임워크</h3>
+          <div class="sub-en">12 Working Parts of a Copy</div>
+          <p class="punch">AIDA·PAS·4P부터 현대 D2C 카피·숏폼까지 — <strong>작동하는 카피의 12 부품</strong>. 각 프레임이 어떤 인지 회로를 자극하는지 분해.</p>
+          <div class="meta-bottom"><span>5 PHASES · 6 THREADS</span><span class="open">OPEN →</span></div>
+        </a>
+      </article>
+      <article class="report-card c-tl">
+        <a href="reports/03.뇌과학_해마_이야기.html">
+          <div class="meta-top">
+            <span class="part-no">PART III</span>
+            <span class="pub-date">2026-04-20</span>
+          </div>
+          <h3>뇌과학 · 해마 · 이야기</h3>
+          <div class="sub-en">Why We Think in Stories</div>
+          <p class="punch">해마 = <strong>이야기 엔진</strong>. 인간이 사실보다 서사로 사고하는 이유, 디폴트 모드 네트워크·시뮬레이션·미래 일기까지.</p>
+          <div class="meta-bottom"><span>6 PHASES · 6 THREADS</span><span class="open">OPEN →</span></div>
+        </a>
+      </article>
+      <article class="report-card c-pp">
+        <a href="reports/04.인식과_소통_움벨트.html">
+          <div class="meta-top">
+            <span class="part-no">PART IV</span>
+            <span class="pub-date">2026-04-20</span>
+          </div>
+          <h3>인식과 소통 · 움벨트</h3>
+          <div class="sub-en">Same World, Different Umwelten</div>
+          <p class="punch">위크스퀼의 <strong>움벨트</strong>·게슈탈트·예측 부호화. 같은 세상이 사람마다 다르게 인식되는 9 단층, 그리고 카피·디자인의 통과 지점.</p>
+          <div class="meta-bottom"><span>6 PHASES · 6 THREADS</span><span class="open">OPEN →</span></div>
+        </a>
+      </article>
+      <article class="report-card c-bl">
+        <a href="reports/05.현대사상_인식론_계보.html">
+          <div class="meta-top">
+            <span class="part-no">PART V</span>
+            <span class="pub-date">2026-04-22</span>
+          </div>
+          <h3>현대사상 인식론 계보</h3>
+          <div class="sub-en">400 Years of Deconstructing the "I"</div>
+          <p class="punch">데카르트 이후 400년 — <strong>"나"가 어떻게 구성되는가</strong>를 해체해온 여정. 칸트·다윈·마르크스·프로이트·게슈탈트·예측 뇌까지 7국면.</p>
+          <div class="meta-bottom"><span>7 PHASES · 6 THREADS</span><span class="open">OPEN →</span></div>
+        </a>
+      </article>
+      <article class="report-card c-gr">
+        <a href="reports/06.추론의_계보.html">
+          <div class="meta-top">
+            <span class="part-no">PART VI</span>
+            <span class="pub-date">2026-04-28</span>
+          </div>
+          <h3>추론(Reasoning)의 계보</h3>
+          <div class="sub-en">The Cognitive Circuit Behind Editing Sense</div>
+          <p class="punch">가추·유추·은유·환유·베이지안·내러티브 — 에디팅 판단력의 <strong>6 부품 회로</strong>. Peirce·Hofstadter·Lakoff·Kahneman·Bruner·Ginzburg.</p>
+          <div class="meta-bottom"><span>6 PHASES · 6 THREADS</span><span class="open">OPEN →</span></div>
+        </a>
+      </article>
+      <article class="report-card c-rd">
+        <a href="reports/07.시간과_공간의_스키마.html">
+          <div class="meta-top">
+            <span class="part-no">PART VII</span>
+            <span class="pub-date">2026-04-28</span>
+          </div>
+          <h3>시간과 공간의 스키마</h3>
+          <div class="sub-en">How Mental Coordinates Were Built</div>
+          <p class="punch">인간이 시간을 공간으로 사고하는 방식 — 칸트·민코프스키·인지언어학·해마 격자세포까지. <strong>좌표가 만들어지는 신경·언어·문화의 결합</strong>.</p>
+          <div class="meta-bottom"><span>7 PHASES · 6 THREADS</span><span class="open">OPEN →</span></div>
+        </a>
+      </article>
+      <article class="report-card c-ac">
+        <a href="reports/08.디자인사_바우하우스_계보.html">
+          <div class="meta-top">
+            <span class="part-no">PART VIII</span>
+            <span class="pub-date">2026-04-29</span>
+          </div>
+          <h3>디자인사 & 바우하우스 계보</h3>
+          <div class="sub-en">From Painting to Composition</div>
+          <p class="punch">사진의 등장·인상파·세잔·칸딘스키·말레비치·바우하우스 — <strong>그리기에서 구성하기로</strong> 옮겨간 100년. 한글 모더니즘과의 공명까지.</p>
+          <div class="meta-bottom"><span>7 PHASES · 6 THREADS</span><span class="open">OPEN →</span></div>
+        </a>
+      </article>
+      <article class="report-card c-dk">
+        <a href="reports/09.타이포그래피_아키타입.html">
+          <div class="meta-top">
+            <span class="part-no">PART IX</span>
+            <span class="pub-date">2026-04-29</span>
+          </div>
+          <h3>타이포그래피 아키타입</h3>
+          <div class="sub-en">Classification → Combination</div>
+          <p class="punch">트라야누스 비문에서 K-Hybrid 폰트까지 — 2,000년 글자 양식이 만든 <strong>8 역사적 원형</strong>. 분류가 폐기된 시대의 결합 큐레이션.</p>
+          <div class="meta-bottom"><span>7 PHASES · 6 THREADS · 8 ARCHETYPES</span><span class="open">OPEN →</span></div>
+        </a>
+      </article>
+      <article class="report-card c-ac">
+        <a href="reports/10.수학적_사고의_7가지_동작.html">
+          <div class="meta-top">
+            <span class="part-no">PART X</span>
+            <span class="pub-date">2026-05-06</span>
+          </div>
+          <h3>수학적 사고의 7가지 동작</h3>
+          <div class="sub-en">From Calculation to Cognitive Move</div>
+          <p class="punch">피타고라스에서 그로텐디크까지 — 수학자들이 머릿속에서 실제로 하는 <strong>7가지 사고 동작</strong>(추상화·공리화·일반화·동형사상·불변량·반례·재정의)을 크리에이티브 작업과 페어링.</p>
+          <div class="meta-bottom"><span>7 MOVES · 6 THREADS · 14 THINKERS</span><span class="open">OPEN →</span></div>
+        </a>
+      </article>
+      <article class="report-card c-ac">
+        <a href="reports/11.창작자의_9가지_동작.html">
+          <div class="meta-top">
+            <span class="part-no">PART XI</span>
+            <span class="pub-date">2026-05-07</span>
+          </div>
+          <h3>창작자의 9가지 동작</h3>
+          <div class="sub-en">From Observing to Reframing</div>
+          <p class="punch">Part X의 거울 짝. Berger·Vignelli·Bresson·Tufte·LeWitt·Anderson·Eames·Eno·Duchamp·Cage 등 18명의 서구 메이커를 통해 — <strong>관찰·추상·압축·패턴화·배치·리듬·결합·큐레이션·재정의</strong> 9가지를 풀어내고, 각 동작에 수학 렌즈를 짝지음.</p>
+          <div class="meta-bottom"><span>9 MOVES · 6 THREADS · 18 MAKERS</span><span class="open">OPEN →</span></div>
+        </a>
+      </article>
+      <article class="report-card c-dk">
+        <a href="reports/12.신체화_인식_계보.html">
+          <div class="meta-top">
+            <span class="part-no">PART XII</span>
+            <span class="pub-date">2026-05-07</span>
+          </div>
+          <h3>신체화 인식 계보</h3>
+          <div class="sub-en">From Descartes to Merleau-Ponty's Flesh</div>
+          <p class="punch">데카르트의 심신 이원론에서 메를로퐁티의 〈살(la chair)〉, 다마지오의 신체 표지까지 — <strong>인식이 머리에서 몸으로 돌아온 400년</strong>의 계보. Part V 인식론의 같은 인물들(데카르트·스피노자·칸트)을 〈몸 축〉에서 다시 읽고, 감각일지·시뮬레이션·새 공간 루틴이 사적 취향이 아니라 400년 누적의 보편 도구임을 보인다.</p>
+          <div class="meta-bottom"><span>6 PHASES · 6 THREADS · 10 THINKERS</span><span class="open">OPEN →</span></div>
+        </a>
+      </article>
+      <article class="report-card c-ac">
+        <a href="reports/13.기억_시간_공간_계보.html">
+          <div class="meta-top">
+            <span class="part-no">PART XIII</span>
+            <span class="pub-date">2026-05-07</span>
+          </div>
+          <h3>기억·시간·공간 계보</h3>
+          <div class="sub-en">From Simonides' Palace to the Hippocampus</div>
+          <p class="punch">시미오니데스의 method of loci(BCE 5C)에서 O'Keefe·Moser의 장소세포·격자세포(2014 노벨상)까지 — <strong>기억이 시간·공간을 한 회로로 묶는 자리</strong>. 아우구스티누스의 distentio animi, 베르그송의 두 기억, 후설의 시간 의식 3중, 프루스트의 마들렌, 바슐라르의 공간 시학, 알박스·노라의 집단 기억이 한 신경 회로의 다른 표현임을 보인다. <strong>감각일지·시뮬레이션·새 공간 루틴이 모두 해마의 운동임을 신경과학적으로 정당화.</strong></p>
+          <div class="meta-bottom"><span>6 PHASES · 6 THREADS · 10 THINKERS</span><span class="open">OPEN →</span></div>
+        </a>
+      </article>
+      <article class="report-card c-pk">
+        <a href="reports/14.숏폼_프레임워크.html">
+          <div class="meta-top">
+            <span class="part-no">PART XIV</span>
+            <span class="pub-date">2026-05-07</span>
+          </div>
+          <h3>숏폼·릴스 프레임워크</h3>
+          <div class="sub-en">3초에서 60초까지의 설득 공학</div>
+          <p class="punch">3초 후크에서 60초 마무리까지 — <strong>틱톡·릴스·쇼츠 시대의 15개 작동 프레임워크</strong>. Part II 카피라이팅 프레임워크의 영상 자매. 후크 5종(질문·반전·구체·갈등·대비) + 본문 5종(리스트·서사·실험·증명·고백) + 마무리 5종(CTA·여운·반복·전환·확장)을 분해.</p>
+          <div class="meta-bottom"><span>15 FRAMEWORKS · DEEP</span><span class="open">OPEN →</span></div>
+        </a>
+      </article>
+      <article class="report-card c-gr">
+        <a href="reports/15.기하학적_드로잉_방법론.html">
+          <div class="meta-top">
+            <span class="part-no">PART XV</span>
+            <span class="pub-date">2026-05-07</span>
+          </div>
+          <h3>기하학적 드로잉 방법론</h3>
+          <div class="sub-en">기본 형태로 세상을 그리는 법</div>
+          <p class="punch">원·삼각형·사각형 — <strong>세 기본 도형이 모든 형상의 골격</strong>임을 분해하는 드로잉 방법론. 다이어그램 라이브러리(75장) 큐레이션 작업의 사상적 토대. 바우하우스가 색채와 형태로 한 일을, 도형 환원의 시선으로 다시 짠 매뉴얼.</p>
+          <div class="meta-bottom"><span>3 BASIC FORMS · METHODOLOGY</span><span class="open">OPEN →</span></div>
+        </a>
+      </article>
+      <article class="report-card c-pp">
+        <a href="reports/16.인간과_기호_기호학_리서치.html">
+          <div class="meta-top">
+            <span class="part-no">PART XVI</span>
+            <span class="pub-date">2026-05-07</span>
+          </div>
+          <h3>인간과 기호 — 기호학 리서치</h3>
+          <div class="sub-en">시각 기호의 보편적 지각 메커니즘</div>
+          <p class="punch">Adrian Frutiger의 시선으로 본 <strong>시각 기호의 5층 분석</strong> — 점·선·면의 기호학적 재해석 / 분류 체계(Frutiger 유형론 × 기호학) / 묘사에서 추상으로의 진화 / 모든 문명이 같은 기호를 만드는 이유(집단 무의식) / 몸이 기호를 읽는 생리학적 기반. Part I 광고사·기호학과 Part XII 신체화의 교차점.</p>
+          <div class="meta-bottom"><span>5 PARTS · FRUTIGER × 기호학</span><span class="open">OPEN →</span></div>
+        </a>
+      </article>
+      <article class="report-card c-tl">
+        <a href="reports/17.시각적_리터러시_종합_연구.html">
+          <div class="meta-top">
+            <span class="part-no">PART XVII</span>
+            <span class="pub-date">2026-05-07</span>
+          </div>
+          <h3>Visual Literacy — 시각적 리터러시</h3>
+          <div class="sub-en">보는 능력의 종합 연구</div>
+          <p class="punch">시각적 리터러시 = <strong>보는 능력은 학습된다</strong>는 명제의 종합. 역사적 맥락 → 핵심 사상가들 → 구성요소 → 프레임워크와 모델 → 훈련 방법 → 동시대 맥락 → 단계별 도서까지 8장 구조. Part IX(타이포그래피)·Part XV(기하학적 드로잉)와 한 가족.</p>
+          <div class="meta-bottom"><span>8 CHAPTERS · 사상가 × 훈련법</span><span class="open">OPEN →</span></div>
+        </a>
+      </article>
+      <article class="report-card c-yel">
+        <a href="reports/18.색채_질감_교차감각_보편성.html">
+          <div class="meta-top">
+            <span class="part-no">PART XVIII</span>
+            <span class="pub-date">2026-05-07</span>
+          </div>
+          <h3>색채·질감·교차감각</h3>
+          <div class="sub-en">감각과 지각의 보편성 리서치</div>
+          <p class="punch">시각·청각·촉각·후각·미각이 어떻게 한 풍경에서 만나는가 — <strong>감각의 보편적 작동</strong>과 교차감각(synesthesia)의 메커니즘. Part IV(인식·움벨트)·Part XII(신체화)·Part XVI(기호 지각의 생리학)와 직결되는 감각 축의 종합.</p>
+          <div class="meta-bottom"><span>다층 감각 · 보편 메커니즘</span><span class="open">OPEN →</span></div>
+        </a>
+      </article>
+      <article class="report-card c-gr">
+        <a href="reports/19.기하학적_조형원리_실무적용.html">
+          <div class="meta-top">
+            <span class="part-no">PART XIX</span>
+            <span class="pub-date">2026-05-07</span>
+          </div>
+          <h3>기하학적 조형원리 실무적용</h3>
+          <div class="sub-en">도형에서 작업물로</div>
+          <p class="punch">Part XV(기하학적 드로잉)의 <strong>실무 적용 자매</strong>. 기본 도형의 원리를 실제 작업(포스터·UI·다이어그램·로고 시스템)으로 옮기는 방법론. 시미오니데스의 method of loci(Part XIII)가 시각 디자인의 격자로 들어오는 자리.</p>
+          <div class="meta-bottom"><span>실무 매뉴얼 · METHODOLOGY → APPLICATION</span><span class="open">OPEN →</span></div>
+        </a>
+      </article>
+      <article class="report-card c-bl">
+        <a href="reports/20.스키마_유형학.html">
+          <div class="meta-top">
+            <span class="part-no">PART XX ★</span>
+            <span class="pub-date">2026-05-07</span>
+          </div>
+          <h3>스키마 유형학</h3>
+          <div class="sub-en">도식적 사고의 완전한 지도</div>
+          <p class="punch">스키마(schema) = 머릿속에서 정보를 잡아두는 골격. <strong>도식적 사고의 유형들을 완전한 지도로</strong> 분류한다. Part VII(시공간 스키마)·Part XIII(기억 격자) 위에서, 도식이 인지를 어떻게 단축시키는지의 카탈로그.
+
+---</p>
+          <div class="meta-bottom"><span>SCHEMA TYPOLOGY · 도식 분류</span><span class="open">OPEN →</span></div>
+        </a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="threads" style="background:var(--bg-2);">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">04</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">CROSS-SERIES THREADS</div>
+        <h2>9 Part를 가로지르는 <em>다섯 강줄기</em></h2>
+      </div>
+    </div>
+    <p class="sec-lead">각 리포트는 독립이지만, 서로 같은 질문을 다른 언어로 묻는다. 시리즈 전체를 가로질러 흐르는 5 메타 스레드를 따라가면 — 9 부품이 어떻게 한 회로를 이루는지 보인다.</p>
+
+    <div class="threads-list">
+      <h3>META THREADS</h3>
+      <ul>
+        <li>
+          <span class="t-name">추상의 길</span>
+          <div class="t-body">
+            "구체에서 본질로" — 사상의 추상화(Part V)가 양식의 추상화(Part VIII)와 글자의 추상화(Part IX)로 평행 진행됐다. 모더니즘의 핵심 사고 패턴.
+            <span class="t-parts">PART V · VIII · IX</span>
+          </div>
+        </li>
+        <li>
+          <span class="t-name">기억과 이야기</span>
+          <div class="t-body">
+            인간은 사실이 아니라 서사로 기억한다는 통찰. 해마(III)·움벨트(IV)·내러티브 추론(VI)이 같은 신경·인지 회로의 다른 측면.
+            <span class="t-parts">PART III · IV · VI</span>
+          </div>
+        </li>
+        <li>
+          <span class="t-name">메시지의 작동</span>
+          <div class="t-body">
+            광고가 200년간 학습해온 인간(I)과, 그것을 12 부품으로 정제한 카피(II)가 — 그 다음 7개 Part의 모든 사상사로 확장됐다. 시리즈의 출발점.
+            <span class="t-parts">PART I · II</span>
+          </div>
+        </li>
+        <li>
+          <span class="t-name">결합과 큐레이션 ★</span>
+          <div class="t-body">
+            바우하우스의 미술+공예+산업 통합(VIII)과 타이포의 역사적 원형 결합(IX)이 — 시리즈의 메타 결론으로 수렴한다. <strong>"디자이너 = 결합의 큐레이터"</strong>.
+            <span class="t-parts">PART VIII · IX</span>
+          </div>
+        </li>
+        <li>
+          <span class="t-name">기술 충격의 사이클</span>
+          <div class="t-body">
+            사진(1839)·영화(1895)·디지털(1984)·AI(2022) — 매번 인간의 시각·언어 작업을 재정의했다. 이번 사이클(AI)을 보는 시각이 시리즈 전체의 동기.
+
+---
+            <span class="t-parts">PART I · VIII · IX</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="colophon">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">05</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">COLOPHON · METHOD</div>
+        <h2>작업 방법론과 <em>정직한 한계</em></h2>
+      </div>
+    </div>
+    <p class="sec-lead">이 시리즈는 <strong>인간 큐레이션 + AI 리서치 협업</strong>으로 만들어진다. 큐레이션·구조·관점·편집 결정은 인간이, 1차 자료 정리와 사실 점검은 AI가 분담한다. 그 분담을 명시하는 것이 — 디자이너로서의 작업 정의를 분명히 하는 일이다.</p>
+
+    <div class="colophon-block">
+      <div class="col-row">
+        <div class="col-label">Curation</div>
+        <div class="col-content"><strong>큐레이션·구조·편집 — 정찬휘.</strong> 시리즈 주제 선정, 11-섹션 골격, 각 Part의 국면 분할, 학자 선정과 카드 구성, 시각언어와 디자인 토큰, 톤의 일관성, 모든 발행 결정.</div>
+      </div>
+      <div class="col-row">
+        <div class="col-label">Research · Drafting</div>
+        <div class="col-content"><strong>1차 자료 정리·초안·사실 점검 보조 — Claude Code (Opus 4.7).</strong> 사상가의 핵심 개념 요약, 인용 후보, 연도·계보 관계 정리, ASCII 스키마 작성. 모든 출력물은 큐레이터가 검토·편집·확정.</div>
+      </div>
+      <div class="col-row">
+        <div class="col-label">Verification</div>
+        <div class="col-content">핵심 인용·연도·인물 관계는 <strong>출처 점검 후 게재</strong>를 원칙으로 한다. 다만 9 Part × 평균 18 학자 카드 × 4 블록의 분량에서 모든 미세 사실을 검증할 수는 없다. *발견된 오류는 갱신·재발행한다.* 발견 시 제보 환영.</div>
+      </div>
+      <div class="col-row">
+        <div class="col-label">Limits</div>
+        <div class="col-content">이 시리즈는 거대 영역(사상사·디자인사·뇌과학)을 압축하는 작업이라 <strong>단순화·생략·해석의 편향</strong>이 불가피하게 들어간다. 각 Part는 출발점으로서의 지도이지 결론이 아니다. 더 깊이 가려는 독자에게 — 각 Part의 footer에 reading list를 둔다.</div>
+      </div>
+      <div class="col-row">
+        <div class="col-label">Update Cadence</div>
+        <div class="col-content">평균 <strong>주 1~2 Part</strong> 발행. 새 Part 추가 시 시리즈 전체의 footer·인덱스도 동시 갱신. 시각 시스템 변경(예: 라이트 톤 전환)은 9 Part 일괄 적용.</div>
+      </div>
+      <div class="col-row">
+        <div class="col-label">License · Use</div>
+        <div class="col-content">교육·학습·인용 자유. 인용 시 출처 명시 부탁. 상업 전재는 사전 협의. <strong>이 시리즈는 자기 학습의 산출물</strong>이지 학술 논문이 아니므로, 학술 인용보다는 <strong>레퍼런스 진입점</strong>으로 활용하는 것이 적절하다.</div>
+      </div>
+    </div>
+
+    <div class="commit-box">
+      <div class="lab">EDITORIAL COMMITMENT</div>
+      <p><strong>이 시리즈를 만드는 사람의 입장.</strong> AI가 도구로서 작업의 속도를 바꾸지만, 무엇을 만들지·왜 만들지·어떻게 보일지는 사람이 결정한다. Part IX의 명제 — *"디자이너는 결합의 큐레이터"* — 가 이 시리즈 작업 방식 자체에 적용된다. 사상·자료·도구·디자인 시스템을 결합해 한 사람의 시각언어로 다시 짜는 일. 그것이 이 시대의 크리에이티브 커뮤니케이션이라고 믿는다.
+
+---</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="inner">
+    <div>
+      <h4>SERIES · LIVE INDEX</h4>
+      <p><strong>Creative Communicator</strong><br/>9-Part Lineage of the Creative Mind<br/><br/>2026-04-17 → ongoing<br/>Updated weekly · Light tone · BRAUN palette</p>
+    </div>
+    <div>
+      <h4>CONTACT</h4>
+      <ul>
+        <li>정찬휘 · Chanhwi Jeong</li>
+        <li>크리에이티브 커뮤니케이터 · 에디터</li>
+        <li><a href="https://myslice.is/@724ch?lang=ko" target="_blank" rel="noopener">myslice.is/@724ch ↗</a></li>
+        <li><a href="https://blog.naver.com/724ch" target="_blank" rel="noopener">blog.naver.com/724ch ↗</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>STACK</h4>
+      <ul>
+        <li>Claude Code · Opus 4.7</li>
+        <li>HTML · CSS · SVG (no JS)</li>
+        <li>Google Fonts: Noto Sans KR · Playfair · Cinzel · EB Garamond · UnifrakturMaguntia</li>
+        <li>Obsidian (companion guides)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="colophon-foot">
+    <span>© 2026 · 정찬휘 (Chanhwi Jeong) · Creative Communicator Series</span>
+    <span>INDEX · v1.0 · 2026-04-29</span>
+  </div>
+</footer>
+
+</body>
+</html>
