@@ -1630,38 +1630,45 @@
 
         <div class="block">
           <div class="block-label">SCHEMA · 머릿속 그림</div>
-<div class="schema"><span class="c-d"># 광원뿔 · 한 사건의 인과적 영향 영역</span>
+<div class="schema" style="white-space: normal; padding: 32px; text-align: center;"><div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.3em; color: var(--text); margin-bottom: 8px; text-transform: uppercase;">LIGHT CONE</div><div style="font-size: 13px; color: var(--text-dim); margin-bottom: 24px;">한 사건의 인과적 영향 영역</div><svg viewBox="0 0 800 880" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; max-width: 800px;" font-family="'Noto Sans KR', sans-serif" fill="#1a1a1a">
+            <text x="400" y="30" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="3" fill="#b8954a">4차원 시공간 단면</text>
 
-                              <span class="c-y">시간 ↑ (t)</span>
-                                │
-                ╲              │              ╱
-                  ╲            │            ╱
-                    ╲   <span class="c-y">미래 광원뿔</span>  ╱      <span class="c-d">★ 여기-지금이 영향을 줄 수 있는 모든 영역</span>
-                      ╲        │        ╱
-                        ╲      │      ╱
-                          ╲    │    ╱
-                            ╲  │  ╱
-                              ╲│╱
-                  ────────────●─────────────▶ <span class="c-y">공간 (x, y, z)</span>
-                              ╱│╲                       <span class="c-hi">여기-지금 (HERE-NOW)</span>
-                            ╱  │  ╲
-                          ╱    │    ╲
-                        ╱      │      ╲
-                      ╱        │        ╲
-                    ╱   <span class="c-y">과거 광원뿔</span>  ╲      <span class="c-d">★ 여기-지금에 영향을 줄 수 있었던 모든 영역</span>
-                  ╱            │            ╲
-                ╱              │              ╲
+            <g>
+              <line x1="400" y1="55" x2="400" y2="700" stroke="#1a1a1a" stroke-width="1.2"/>
+              <path d="M 400 55 L 393 65 M 400 55 L 407 65" stroke="#1a1a1a" stroke-width="1.5" fill="none"/>
+              <text x="420" y="75" font-family="'JetBrains Mono', monospace" font-size="11" fill="#b8954a">시간 t ↑</text>
 
-                <span class="c-d">광원뿔 바깥 = "어디 다른 곳"</span>
-                <span class="c-d">  └ 인과적으로 닿을 수 없음</span>
-                <span class="c-d">  └ 동시성을 정의할 수 없음</span>
+              <line x1="60" y1="380" x2="740" y2="380" stroke="#1a1a1a" stroke-width="1.2"/>
+              <path d="M 740 380 L 730 373 M 740 380 L 730 387" stroke="#1a1a1a" stroke-width="1.5" fill="none"/>
+              <text x="710" y="403" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="11" fill="#b8954a">공간 (x, y, z) →</text>
+            </g>
 
+            <polygon points="400,380 80,80 720,80" fill="rgba(184,149,74,0.10)" stroke="#b8954a" stroke-width="1.8"/>
+            <text x="400" y="180" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="13" letter-spacing="3" font-weight="700" fill="#b8954a">미래 광원뿔</text>
+            <text x="400" y="205" text-anchor="middle" font-size="11" fill="#807e7a">FUTURE LIGHT CONE</text>
+            <text x="400" y="225" text-anchor="middle" font-size="11" fill="#807e7a">"여기-지금"이 영향을 줄 수 있는 영역</text>
 
-  <span class="c-d">★ 한 콘텐츠의 광원뿔:</span>
+            <polygon points="400,380 80,680 720,680" fill="rgba(126,90,152,0.10)" stroke="#7e5a98" stroke-width="1.8"/>
+            <text x="400" y="540" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="13" letter-spacing="3" font-weight="700" fill="#7e5a98">과거 광원뿔</text>
+            <text x="400" y="565" text-anchor="middle" font-size="11" fill="#807e7a">PAST LIGHT CONE</text>
+            <text x="400" y="585" text-anchor="middle" font-size="11" fill="#807e7a">"여기-지금"에 영향을 줄 수 있었던 영역</text>
 
-      <span class="c-y">미래 광원뿔</span> = 이 콘텐츠가 영향을 줄 수 있는 사람·시간
-      <span class="c-y">과거 광원뿔</span> = 이 콘텐츠를 만드는 데 영향을 준 모든 것
-      <span class="c-d">바깥</span> = 만나지 않을 사람들 — 받아들이는 게 자유롭게 한다</div>
+            <circle cx="400" cy="380" r="14" fill="#d9601f"/>
+            <text x="400" y="385" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">●</text>
+            <text x="430" y="375" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#d9601f">HERE-NOW</text>
+
+            <text x="120" y="380" text-anchor="end" font-size="11" fill="#807e7a">바깥</text>
+            <text x="680" y="380" font-size="11" fill="#807e7a">바깥</text>
+            <text x="120" y="410" text-anchor="end" font-size="10" fill="#807e7a">인과 닿지 않음</text>
+            <text x="680" y="410" font-size="10" fill="#807e7a">인과 닿지 않음</text>
+
+            <line x1="80" y1="730" x2="720" y2="730" stroke="#c4c2bd" stroke-dasharray="2,3"/>
+
+            <rect x="60" y="755" width="680" height="100" fill="rgba(217,96,31,0.06)" stroke="#d9601f" stroke-width="1.5" rx="3"/>
+            <text x="400" y="785" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="3" fill="#d9601f">한 콘텐츠의 광원뿔</text>
+            <text x="400" y="813" text-anchor="middle" font-size="13"><tspan fill="#b8954a" font-weight="700">미래</tspan> = 영향 줄 수 있는 사람·시간 · <tspan fill="#7e5a98" font-weight="700">과거</tspan> = 영향 준 모든 것</text>
+            <text x="400" y="838" text-anchor="middle" font-size="11" fill="#807e7a">바깥 = 만나지 않을 사람들 — 받아들이는 게 자유롭게 한다</text>
+          </svg></div>
           <div class="schema-cap">MINKOWSKI · LIGHT CONE · 4차원 시공간</div>
         </div>
 
@@ -1756,45 +1763,73 @@
 
         <div class="block">
           <div class="block-label">SCHEMA · 머릿속 그림</div>
-<div class="schema"><span class="c-d"># 시간성의 3 탈자 (Ekstase) · 미래가 우선이다</span>
+<div class="schema" style="white-space: normal; padding: 32px; text-align: center;"><div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.3em; color: var(--text); margin-bottom: 8px; text-transform: uppercase;">ZEITLICHKEIT · 3 탈자의 동시성</div><div style="font-size: 13px; color: var(--text-dim); margin-bottom: 24px;">시간성 — 미래가 우선이다</div><svg viewBox="0 0 800 880" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; max-width: 800px;" font-family="'Noto Sans KR', sans-serif" fill="#1a1a1a">
+            <text x="400" y="30" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="3" fill="#c14638">Ekstase · 3 차원의 동시 펼침</text>
 
-                          <span class="c-r">[ 미 래 · ZUKUNFT ]</span>
-                              ╱
-                            ╱   <span class="c-d">가능성을 향한 던져짐</span>
-                          ╱     <span class="c-d">자기를 미리-앞질러 있음 (Sich-vorweg)</span>
-                        ╱       <span class="c-d">★ 시간성의 우선 차원</span>
-                      ╱
-                    ╱
-                  ╱   <span class="c-r">[ 현존재 · DASEIN ]</span>
-                  ●─────────●─────────●
-                  │         │         │
-                  │     <span class="c-r">[현재]</span>      │
-                  │   GEGENWART       │
-                  ╲     마주함         │
-                    ╲                  │
-                      ╲                │
-                        ╲              │
-                          ╲   <span class="c-r">[ 과 거 ]</span>
-                            ╲   GEWESENHEIT
-                              ╲   있어-왔던 것
-                                ╲    <span class="c-d">미래에서 회수됨</span>
-                                  ╲
+            <rect x="280" y="55" width="240" height="80" fill="rgba(193,70,56,0.10)" stroke="#c14638" stroke-width="1.8" rx="3"/>
+            <text x="400" y="85" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#c14638">DASEIN · 현존재</text>
+            <text x="400" y="115" text-anchor="middle" font-size="11" fill="#807e7a">시간성을 펼치는 자</text>
 
-  <span class="c-d">★ 보통의 직관:</span>  과거 ─▶ 현재 ─▶ 미래   (선형)
-  <span class="c-d">★ 하이데거:</span>     미래 ←▶ 현재 ←▶ 과거   (탈자적·동시적)
+            <line x1="400" y1="135" x2="200" y2="180" stroke="#c14638" stroke-width="1.5"/>
+            <line x1="400" y1="135" x2="600" y2="180" stroke="#c14638" stroke-width="1.5"/>
+            <line x1="400" y1="135" x2="400" y2="180" stroke="#c14638" stroke-width="1.5"/>
 
-                  <span class="c-r">미래(가능성) 없이는 과거도 현재도 의미를 가질 수 없다.</span>
+            <g>
+              <rect x="60" y="190" width="280" height="160" fill="rgba(193,70,56,0.10)" stroke="#c14638" stroke-width="1.8" rx="3"/>
+              <text x="200" y="220" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#c14638">미래 · ZUKUNFT</text>
+              <text x="200" y="250" text-anchor="middle" font-size="13" font-weight="700">가능성을 향한 던져짐</text>
+              <text x="200" y="275" text-anchor="middle" font-size="11" fill="#807e7a">Sich-vorweg</text>
+              <text x="200" y="300" text-anchor="middle" font-size="11" fill="#807e7a">자기를 미리-앞질러 있음</text>
+              <text x="200" y="328" text-anchor="middle" font-size="11" fill="#c14638" font-weight="700">★ 시간성의 우선 차원</text>
 
+              <rect x="460" y="190" width="280" height="160" fill="#fff" stroke="#c14638" stroke-width="1.5" rx="3"/>
+              <text x="600" y="220" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#c14638">과거 · GEWESENHEIT</text>
+              <text x="600" y="250" text-anchor="middle" font-size="13" font-weight="700">있어-왔던 것</text>
+              <text x="600" y="275" text-anchor="middle" font-size="11" fill="#807e7a">미래에서 회수됨</text>
+              <text x="600" y="300" text-anchor="middle" font-size="11" fill="#807e7a">"있었음"이 아니라</text>
+              <text x="600" y="320" text-anchor="middle" font-size="11" fill="#807e7a">"여전히 있는 것"</text>
+            </g>
 
-  <span class="c-d">[죽음을 향한 존재 · Sein-zum-Tode]</span>
+            <rect x="280" y="370" width="240" height="80" fill="#fff" stroke="#c14638" stroke-width="1.5" rx="3"/>
+            <text x="400" y="400" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#c14638">현재 · GEGENWART</text>
+            <text x="400" y="425" text-anchor="middle" font-size="13" font-weight="700">마주함</text>
+            <text x="400" y="442" text-anchor="middle" font-size="11" fill="#807e7a">미래·과거 사이의 만남</text>
 
-       일상  ──── 우회 ────  죽음이라는 끝점
-        │                              ↑
-        │                              │
-        ▼                              │
-       <span class="c-r">평탄한 시계 시간</span>     vs    <span class="c-r">본래적 시간성</span>
-       (Vulgäre Zeit)                  죽음을 향해 자기 가능성을
-                                       전체로 받아들이는 시간</div>
+            <line x1="80" y1="480" x2="720" y2="480" stroke="#c4c2bd" stroke-dasharray="2,3"/>
+
+            <text x="400" y="510" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="3" fill="#c14638">시간성의 방향</text>
+
+            <g font-size="13">
+              <rect x="60" y="525" width="335" height="50" fill="#fff" stroke="#807e7a" stroke-width="1.2" rx="3"/>
+              <text x="80" y="555">보통: 과거 → 현재 → 미래 <tspan fill="#807e7a">(선형)</tspan></text>
+
+              <rect x="405" y="525" width="335" height="50" fill="rgba(193,70,56,0.10)" stroke="#c14638" stroke-width="1.5" rx="3"/>
+              <text x="425" y="555" fill="#c14638" font-weight="700">하이데거: 미래 ↔ 과거 ↔ 현재 (탈자적)</text>
+            </g>
+
+            <text x="400" y="610" text-anchor="middle" font-size="13" font-weight="700" fill="#c14638">미래(가능성) 없이는 과거도 현재도 의미를 가질 수 없다</text>
+
+            <line x1="80" y1="640" x2="720" y2="640" stroke="#c4c2bd" stroke-dasharray="2,3"/>
+
+            <text x="400" y="675" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="3" fill="#c14638">죽음을 향한 존재 · Sein-zum-Tode</text>
+
+            <g>
+              <rect x="60" y="695" width="335" height="120" fill="#fff" stroke="#807e7a" stroke-width="1.2" rx="3"/>
+              <text x="227" y="725" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#807e7a">평탄한 시계 시간</text>
+              <text x="227" y="747" text-anchor="middle" font-size="11" fill="#807e7a">Vulgäre Zeit</text>
+              <text x="227" y="775" text-anchor="middle" font-size="13">일상의 측정 시간</text>
+              <text x="227" y="798" text-anchor="middle" font-size="11" fill="#807e7a">죽음을 잊은 시간</text>
+
+              <rect x="405" y="695" width="335" height="120" fill="rgba(193,70,56,0.10)" stroke="#c14638" stroke-width="1.8" rx="3"/>
+              <text x="572" y="725" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#c14638">본래적 시간성</text>
+              <text x="572" y="747" text-anchor="middle" font-size="11" fill="#c14638">Eigentliche Zeitlichkeit</text>
+              <text x="572" y="775" text-anchor="middle" font-size="13" font-weight="700">죽음을 향한 존재</text>
+              <text x="572" y="798" text-anchor="middle" font-size="11" fill="#807e7a">자기 가능성을 전체로</text>
+            </g>
+
+            <rect x="60" y="840" width="680" height="30" fill="rgba(217,96,31,0.06)" stroke="#d9601f" stroke-width="1.2" rx="3"/>
+            <text x="400" y="861" text-anchor="middle" font-size="12" font-style="italic">"미래를 여는 카피가 진짜 도달한다"</text>
+          </svg></div>
           <div class="schema-cap">HEIDEGGER · ZEITLICHKEIT · 3 탈자의 동시성</div>
         </div>
 
@@ -1866,45 +1901,61 @@
 
         <div class="block">
           <div class="block-label">SCHEMA · 머릿속 그림</div>
-<div class="schema"><span class="c-d"># 살아진 공간 · 신체로부터 펼쳐지는 가까움/멀음의 망</span>
+<div class="schema" style="white-space: normal; padding: 32px; text-align: center;"><div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.3em; color: var(--text); margin-bottom: 8px; text-transform: uppercase;">BODY-CENTERED SPACE</div><div style="font-size: 13px; color: var(--text-dim); margin-bottom: 24px;">살아진 공간 — 신체로부터 펼쳐지는 망</div><svg viewBox="0 0 800 880" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; max-width: 800px;" font-family="'Noto Sans KR', sans-serif" fill="#1a1a1a">
+            <text x="400" y="30" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="3" fill="#c25787">신체-주체로부터의 공간</text>
 
-                            <span class="c-pk">위 (Haut)</span>
-                              ▲
-                              │
-                              │       <span class="c-d">멀음 (Loin)</span>
-                              │           ◯
-                              │              ◯
-                              │                 ◯
-                              │
-            ◀ <span class="c-pk">왼쪽</span>     <span class="c-hi">[신체-주체]</span>     <span class="c-pk">오른쪽</span> ▶
-            (Gauche)         ●●●           (Droite)
-                          ╱  ╳  ╲
-                        ╱    │    ╲    <span class="c-pk">손이 닿음 (Portée)</span>
-                      ◯      │      ◯
-                    ◯        │        ◯
-                              │
-                              │       <span class="c-d">가까움 (Proche)</span>
-                              │
-                              ▼
-                            <span class="c-pk">아래 (Bas)</span>
+            <g>
+              <text x="400" y="60" text-anchor="middle" font-size="11" font-weight="700" fill="#c25787">위 · Haut</text>
+              <text x="400" y="475" text-anchor="middle" font-size="11" font-weight="700" fill="#c25787">아래 · Bas</text>
+              <text x="60" y="265" font-size="11" font-weight="700" fill="#c25787">왼쪽</text>
+              <text x="730" y="265" text-anchor="end" font-size="11" font-weight="700" fill="#c25787">오른쪽</text>
 
+              <ellipse cx="400" cy="260" rx="320" ry="180" fill="rgba(194,87,135,0.04)" stroke="#c25787" stroke-width="1" stroke-dasharray="3,3"/>
+              <ellipse cx="400" cy="260" rx="220" ry="120" fill="rgba(194,87,135,0.08)" stroke="#c25787" stroke-width="1.2" stroke-dasharray="3,3"/>
+              <ellipse cx="400" cy="260" rx="120" ry="65" fill="rgba(194,87,135,0.16)" stroke="#c25787" stroke-width="1.5"/>
 
-  <span class="c-d">★ 데카르트 좌표 vs 살아진 공간</span>
+              <circle cx="400" cy="260" r="22" fill="#c25787"/>
+              <text x="400" y="265" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">신체</text>
 
-       데카르트:   (3, 5, 2) ─────── 펜
-                   ↓
-                   객관적 좌표 · 어디서 측정해도 같음
+              <text x="400" y="200" text-anchor="middle" font-size="11" fill="#c25787">손이 닿음 · Portée</text>
+              <text x="400" y="135" text-anchor="middle" font-size="11" fill="#807e7a">시선 닿음</text>
+              <text x="400" y="100" text-anchor="middle" font-size="11" fill="#807e7a">멀음 · Loin</text>
 
-       메를로-퐁티:  손 ─────── 펜 (잡힘 · 가까움 · 사용 가능)
-                    ↓
-                    신체로부터 펼쳐진 의미 — 공간은 항상 누군가의 공간
+              <circle cx="220" cy="260" r="6" fill="#c25787" opacity="0.7"/>
+              <circle cx="580" cy="260" r="6" fill="#c25787" opacity="0.7"/>
+              <circle cx="320" cy="320" r="6" fill="#c25787" opacity="0.5"/>
+              <circle cx="480" cy="320" r="6" fill="#c25787" opacity="0.5"/>
+              <circle cx="150" cy="220" r="4" fill="#807e7a"/>
+              <circle cx="650" cy="220" r="4" fill="#807e7a"/>
+              <circle cx="100" cy="290" r="3" fill="#807e7a"/>
+              <circle cx="700" cy="290" r="3" fill="#807e7a"/>
+            </g>
 
+            <line x1="80" y1="495" x2="720" y2="495" stroke="#c4c2bd" stroke-dasharray="2,3"/>
 
-  <span class="c-d">[신체 도식 · Schéma corporel]</span>
+            <text x="400" y="525" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="3" fill="#c25787">데카르트 vs 메를로-퐁티</text>
 
-       내가 컵을 잡을 때 손가락의 정확한 위치를 추적하지 않는다.
-       신체가 자기 통합을 알고 있다. ────▶ 도구가 신체에 통합됨
-                                       (지팡이·자전거·키보드·VR 컨트롤러)</div>
+            <g font-size="13">
+              <rect x="60" y="545" width="335" height="100" fill="#fff" stroke="#807e7a" stroke-width="1.2" rx="3"/>
+              <text x="227" y="575" text-anchor="middle" font-weight="700">데카르트</text>
+              <text x="227" y="600" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="14">(3, 5, 2) — 펜</text>
+              <text x="227" y="625" text-anchor="middle" font-size="11" fill="#807e7a">객관적 좌표</text>
+
+              <rect x="405" y="545" width="335" height="100" fill="rgba(194,87,135,0.10)" stroke="#c25787" stroke-width="1.5" rx="3"/>
+              <text x="572" y="575" text-anchor="middle" font-weight="700" fill="#c25787">메를로-퐁티</text>
+              <text x="572" y="600" text-anchor="middle" font-size="13">손 — 펜 (잡힘 · 사용 가능)</text>
+              <text x="572" y="625" text-anchor="middle" font-size="11" fill="#807e7a">신체로부터의 의미</text>
+            </g>
+
+            <line x1="80" y1="675" x2="720" y2="675" stroke="#c4c2bd" stroke-dasharray="2,3"/>
+
+            <text x="400" y="705" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="3" fill="#c25787">신체 도식 · Schéma corporel</text>
+
+            <rect x="60" y="725" width="680" height="100" fill="rgba(194,87,135,0.06)" stroke="#c25787" stroke-width="1.5" rx="3"/>
+            <text x="400" y="755" text-anchor="middle" font-size="14" font-weight="700">신체가 자기 통합을 알고 있다</text>
+            <text x="400" y="785" text-anchor="middle" font-size="13" fill="#4a4845">→ 도구가 신체에 통합됨</text>
+            <text x="400" y="810" text-anchor="middle" font-size="11" fill="#807e7a">지팡이 · 자전거 · 키보드 · VR 컨트롤러 · 엄지 도달 영역</text>
+          </svg></div>
           <div class="schema-cap">MERLEAU-PONTY · BODY-CENTERED SPACE</div>
         </div>
 
@@ -1975,46 +2026,75 @@
 
         <div class="block">
           <div class="block-label">SCHEMA · 머릿속 그림</div>
-<div class="schema"><span class="c-d"># 집의 위상학 · 영혼의 수직축</span>
+<div class="schema" style="white-space: normal; padding: 32px; text-align: center;"><div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.3em; color: var(--text); margin-bottom: 8px; text-transform: uppercase;">POETIC SPACE · TOPO-ANALYSIS</div><div style="font-size: 13px; color: var(--text-dim); margin-bottom: 24px;">집의 위상학 · 영혼의 수직축</div><svg viewBox="0 0 800 940" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; max-width: 800px;" font-family="'Noto Sans KR', sans-serif" fill="#1a1a1a">
+            <g>
+              <rect x="200" y="50" width="400" height="140" fill="rgba(184,149,74,0.15)" stroke="#b8954a" stroke-width="1.8" rx="3"/>
+              <text x="400" y="80" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="3" fill="#b8954a">다락 · GRENIER</text>
+              <text x="400" y="115" text-anchor="middle" font-size="22">☼ ☼ ☼</text>
+              <text x="400" y="145" text-anchor="middle" font-size="13" font-weight="700">상승 · 빛 · 상상력</text>
+              <text x="400" y="170" text-anchor="middle" font-size="11" fill="#807e7a">위로 향하는 힘 · 합리성</text>
 
-                       <span class="c-g">[ 다 락 · GRENIER ]</span>
-                       ════════════════
-                       │  ☼  ☼  ☼  ☼  │  <span class="c-g">상승 · 빛</span>
-                       │  ☼   책   ☼  │  <span class="c-g">상상력 · 합리성</span>
-                       │ ☼  꿈   ☼   │  <span class="c-g">위로 향하는 힘</span>
-                       │  ☼   ☼  ☼   │
-                       └──────┬──────┘
-                              │
-                       <span class="c-d">[ 거 실 · SALON ]</span>
-                       ┌──────┴──────┐
-                       │             │  <span class="c-d">사회적 일상</span>
-                       │   📺  💬    │  <span class="c-d">매개의 공간</span>
-                       │             │
-                       └──────┬──────┘
-                              │
-                       <span class="c-g">[ 지하실 · CAVE ]</span>
-                       ┌──────┴──────┐
-                       │ ▓▓▓▓▓▓▓▓▓▓ │  <span class="c-g">하강 · 어두움</span>
-                       │ ▓▓ 그림자 ▓▓│  <span class="c-g">무의식</span>
-                       │ ▓▓ 두려움 ▓▓│  <span class="c-g">아래로 끌리는 힘</span>
-                       │ ▓▓▓▓▓▓▓▓▓▓ │
-                       ════════════════
+              <line x1="400" y1="190" x2="400" y2="225" stroke="#1a1a1a" stroke-width="1.5"/>
 
+              <rect x="200" y="225" width="400" height="140" fill="#fff" stroke="#807e7a" stroke-width="1.5" rx="3"/>
+              <text x="400" y="255" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="3" fill="#807e7a">거실 · SALON</text>
+              <text x="400" y="295" text-anchor="middle" font-size="22">📺 💬</text>
+              <text x="400" y="325" text-anchor="middle" font-size="13" font-weight="700">사회적 일상</text>
+              <text x="400" y="350" text-anchor="middle" font-size="11" fill="#807e7a">매개의 공간</text>
 
-  <span class="c-d">★ 다른 위상학적 이미지들:</span>
+              <line x1="400" y1="365" x2="400" y2="400" stroke="#1a1a1a" stroke-width="1.5"/>
 
-      <span class="c-g">서 랍</span>     안과 밖 · 비밀 · 수집의 공간
-      <span class="c-g">둥 지</span>     포근함 · 부드러운 곡선 · 보호의 원형
-      <span class="c-g">조개껍데기</span> 내면화 · 자기를 안에 담기
-      <span class="c-g">모 서 리</span>  안식 · 보호받음 · 등을 댐
-      <span class="c-g">광활한 외부</span> 무한 · 위협이자 동시에 자유
+              <rect x="200" y="400" width="400" height="140" fill="rgba(126,90,152,0.20)" stroke="#7e5a98" stroke-width="1.8" rx="3"/>
+              <text x="400" y="430" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="3" fill="#7e5a98">지하실 · CAVE</text>
+              <pattern id="bachshade" patternUnits="userSpaceOnUse" width="6" height="6"><line x1="0" y1="6" x2="6" y2="0" stroke="#1a1a1a" stroke-width="0.5"/></pattern>
+              <rect x="220" y="450" width="360" height="50" fill="url(#bachshade)" opacity="0.5"/>
+              <text x="400" y="478" text-anchor="middle" font-size="13" font-weight="700">하강 · 어두움 · 무의식</text>
+              <text x="400" y="500" text-anchor="middle" font-size="11" fill="#807e7a">아래로 끌리는 힘 · 그림자</text>
+            </g>
 
+            <text x="60" y="115" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#b8954a">↑ 빛</text>
+            <text x="60" y="305" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#807e7a">⊙ 일상</text>
+            <text x="60" y="475" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#7e5a98">↓ 그림자</text>
 
-  <span class="c-d">★ 위상분석 (Topo-analyse):</span>
-       정신분석 = 시간(어린 시절)을 분석
-       위상분석 = 공간(어린 시절의 집)을 분석
+            <text x="740" y="115" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#b8954a">의식</text>
+            <text x="740" y="305" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#807e7a">자아</text>
+            <text x="740" y="475" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#7e5a98">무의식</text>
 
-       "내 영혼은 어떤 공간에 자리 잡았는가?"</div>
+            <line x1="80" y1="565" x2="720" y2="565" stroke="#c4c2bd" stroke-dasharray="2,3"/>
+
+            <text x="400" y="595" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="3" fill="#4a8e4a">다른 위상학적 이미지들</text>
+
+            <g font-size="13">
+              <rect x="60" y="615" width="335" height="40" fill="#fff" stroke="#4a8e4a" stroke-width="1.2" rx="3"/>
+              <text x="80" y="640"><tspan font-weight="700" fill="#4a8e4a">서 랍</tspan> · 안과 밖 · 비밀 · 수집</text>
+
+              <rect x="405" y="615" width="335" height="40" fill="#fff" stroke="#4a8e4a" stroke-width="1.2" rx="3"/>
+              <text x="425" y="640"><tspan font-weight="700" fill="#4a8e4a">둥 지</tspan> · 포근함 · 부드러운 곡선</text>
+
+              <rect x="60" y="660" width="335" height="40" fill="#fff" stroke="#4a8e4a" stroke-width="1.2" rx="3"/>
+              <text x="80" y="685"><tspan font-weight="700" fill="#4a8e4a">조개껍데기</tspan> · 내면화 · 자기를 담기</text>
+
+              <rect x="405" y="660" width="335" height="40" fill="#fff" stroke="#4a8e4a" stroke-width="1.2" rx="3"/>
+              <text x="425" y="685"><tspan font-weight="700" fill="#4a8e4a">모 서 리</tspan> · 안식 · 등을 댐</text>
+
+              <rect x="60" y="705" width="680" height="40" fill="#fff" stroke="#4a8e4a" stroke-width="1.2" rx="3"/>
+              <text x="80" y="730"><tspan font-weight="700" fill="#4a8e4a">광활한 외부</tspan> · 무한 · 위협이자 동시에 자유</text>
+            </g>
+
+            <line x1="80" y1="775" x2="720" y2="775" stroke="#c4c2bd" stroke-dasharray="2,3"/>
+
+            <text x="400" y="805" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="3" fill="#d9601f">위상분석 · TOPO-ANALYSE</text>
+
+            <g font-size="13">
+              <rect x="60" y="825" width="335" height="50" fill="#fff" stroke="#807e7a" stroke-width="1.2" rx="3"/>
+              <text x="227" y="855" text-anchor="middle">정신분석 = 시간 분석</text>
+
+              <rect x="405" y="825" width="335" height="50" fill="rgba(217,96,31,0.10)" stroke="#d9601f" stroke-width="1.5" rx="3"/>
+              <text x="572" y="855" text-anchor="middle" font-weight="700" fill="#d9601f">위상분석 = 공간 분석</text>
+            </g>
+
+            <text x="400" y="910" text-anchor="middle" font-size="13" font-style="italic" fill="#d9601f">"내 영혼은 어떤 공간에 자리 잡았는가?"</text>
+          </svg></div>
           <div class="schema-cap">BACHELARD · POETIC SPACE · TOPO-ANALYSIS</div>
         </div>
 
