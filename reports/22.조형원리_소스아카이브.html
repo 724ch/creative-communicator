@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>조형원리 심화 리서치 — 소스 아카이브</title>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;700&display=swap');
+
+:root {
+  --bg: #fdfcfa;
+  --surface: #f4f1ec;
+  --card: #ffffff;
+  --card-hover: #f8f6f1;
+  --accent: #d9601f;
+  --accent-dim: #b54e15;
+  --accent-rgb: 217,96,31;
+  --white: #1a1a1a;
+  --text: #4a4845;
+  --text-dim: #807e7a;
+  --border: rgba(0,0,0,0.10);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Noto Sans KR', -apple-system, sans-serif;
+  font-weight: 300;
+  line-height: 1.9;
+  -webkit-font-smoothing: antialiased;
+  padding: 0;
+}
+
+/* === LAYOUT === */
+.report-wrapper {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 80px 32px 120px;
+}
+
+/* === HERO === */
+.hero-section {
+  text-align: center;
+  padding: 100px 20px 80px;
+  background: radial-gradient(ellipse at 35% 45%, rgba(var(--accent-rgb), 0.06) 0%, transparent 55%);
+  margin-bottom: 60px;
+  border-bottom: 1px solid var(--border);
+}
+
+.hero-section .label {
+  font-size: 11px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 32px;
+}
+
+/* === TYPOGRAPHY === */
+h1 {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: clamp(28px, 4.5vw, 48px);
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1.35;
+  margin-bottom: 24px;
+  letter-spacing: -0.5px;
+}
+
+h2 {
+  font-size: clamp(22px, 3.5vw, 34px);
+  font-weight: 900;
+  color: var(--white);
+  margin-top: 80px;
+  margin-bottom: 24px;
+  padding-top: 48px;
+  border-top: 1px solid var(--border);
+  line-height: 1.35;
+}
+
+h3 {
+  font-size: clamp(18px, 2.5vw, 24px);
+  font-weight: 700;
+  color: var(--white);
+  margin-top: 48px;
+  margin-bottom: 16px;
+  line-height: 1.4;
+}
+
+h4 {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-top: 32px;
+  margin-bottom: 12px;
+}
+
+h5, h6 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--white);
+  margin-top: 24px;
+  margin-bottom: 8px;
+}
+
+p {
+  margin-bottom: 18px;
+  font-size: 15px;
+}
+
+strong {
+  color: var(--white);
+  font-weight: 500;
+}
+
+em {
+  font-style: italic;
+  color: var(--text);
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(var(--accent-rgb), 0.3);
+  transition: border-color 0.2s;
+}
+
+a:hover {
+  border-color: var(--accent);
+}
+
+/* === HORIZONTAL RULES === */
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 48px 0;
+}
+
+/* === BLOCKQUOTES === */
+blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 20px 24px;
+  margin: 28px 0;
+  background: rgba(var(--accent-rgb), 0.04);
+  border-radius: 0 10px 10px 0;
+  font-style: italic;
+  color: var(--text);
+  font-size: 14px;
+}
+
+blockquote p {
+  margin-bottom: 8px;
+}
+
+blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+blockquote strong {
+  color: var(--white);
+}
+
+/* === TABLES === */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 28px 0;
+  font-size: 13px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  margin: 28px 0;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+
+.table-wrapper table {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+}
+
+thead th {
+  background: var(--card);
+  padding: 12px 14px;
+  text-align: left;
+  font-weight: 500;
+  color: var(--accent);
+  font-size: 11px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+td {
+  padding: 11px 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  vertical-align: top;
+  color: var(--text);
+}
+
+tbody tr:hover {
+  background: rgba(255,255,255,0.015);
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* === LISTS === */
+ul, ol {
+  margin: 16px 0;
+  padding-left: 24px;
+}
+
+li {
+  margin-bottom: 8px;
+  font-size: 15px;
+}
+
+li strong {
+  color: var(--white);
+}
+
+/* === CODE === */
+code {
+  background: var(--surface);
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--accent);
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  border: 1px solid var(--border);
+}
+
+pre {
+  background: var(--surface);
+  padding: 20px 24px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  overflow-x: auto;
+  margin: 24px 0;
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--text-dim);
+}
+
+pre code {
+  background: transparent;
+  padding: 0;
+  border: none;
+  color: var(--text-dim);
+}
+
+/* === IMAGES === */
+img {
+  max-width: 100%;
+  border-radius: 10px;
+  margin: 24px 0;
+}
+
+/* === YAML FRONTMATTER (hidden) === */
+.frontmatter {
+  display: none;
+}
+
+/* === FOOTNOTES AND REFERENCES === */
+.report-wrapper > ul:last-child li,
+.report-wrapper > ul:nth-last-child(-n+3) li {
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.7;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 640px) {
+  .report-wrapper {
+    padding: 40px 16px 80px;
+  }
+  .hero-section {
+    padding: 60px 16px 48px;
+  }
+  table {
+    font-size: 12px;
+  }
+  td, th {
+    padding: 8px 10px;
+  }
+}
+
+/* === SCROLLBAR === */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #444;
+}
+
+</style>
+</head>
+<body>
+
+<div class="hero-section">
+  <div class="label">Formative Principles Source Archive · 2026</div>
+</div>
+
+<div class="report-wrapper">
+<h1>조형원리 심화 리서치 — 소스 아카이브</h1>
+<blockquote>
+<p><strong>목적</strong>: 에디톨로지 관점에서 조형원리를 재해석하는 리서치의 참고자료 모음<br>
+<strong>핵심 테제</strong>: 김정운의 "창조 = 편집" — 조형요소를 "편집 단위"로, 조형원리를 "편집 원리"로 재정의<br>
+<strong>작성일</strong>: 2026-03-11<br>
+<strong>수집 방법</strong>: WebFetch, Exa Web Search, Google Search</p>
+</blockquote>
+<hr>
+<h2>축1 — 바우하우스 교육과정</h2>
+<h3>칸딘스키 《점·선·면》(Punkt und Linie zu Fläche, 1926)</h3>
+<ul>
+<li><strong>출처</strong>: Wassily Kandinsky, <em>Punkt und Linie zu Fläche</em>, Albert Langen Verlag, München, 1926 (Bauhausbücher 9) / 참고 URL: https://lutz-architekt-karlsruhe.de/2022/04/01/wassily-kandinsky-punkt-und-linie-zu-flaeche</li>
+<li><strong>핵심 인용/개념</strong>:</li>
+<li>"다양한 점·선·면 배치는 관람자에게 서로 다른 감정적 반응을 일으킨다." — 점은 가장 집중된 최소 형태, 선은 점의 운동 궤적, 면은 선의 운동으로 생성</li>
+<li>형태-색채 대응 이론: <strong>삼각형=노랑(긴장·예리), 사각형=빨강(안정·무게), 원=파랑(평온·무한)</strong></li>
+<li>바우하우스 1923년 전시에서 페터 켈러의 〈바우하우스 요람〉이 이 이론을 직접 적용 — 삼각형 노랑, 원 파랑, 사각형 빨강으로 구성</li>
+<li>"칸딘스키는 점·선·면으로 알파벳과 같은 문자체계를 만들 수 있을 거라곤 상상조차 못했다." (윤여경, 경향신문)</li>
+<li><strong>이 리서치와의 연결</strong>: 축1 핵심 — 조형요소(점·선·면)를 "편집 단위"로 재정의하는 이론적 토대. 형태-색채 대응은 조형요소 간 "편집 관계"의 원형</li>
+</ul>
+<hr>
+<h3>칸딘스키 바우하우스 교육 — 형태와 색채의 내면적 필연성</h3>
+<ul>
+<li><strong>출처</strong>: https://shop.bauhaus-movement.com/ko/wassily-kandinsky-ko/</li>
+<li><strong>핵심 인용/개념</strong>:</li>
+<li>"칸딘스키는 스타일에서 시작하지 않고 인식에서 출발했다. 학생들은 의자나 파사드를 디자인하기 전에 점, 선, 면을 분석했다. 기하학은 읽고 구성할 수 있는 언어가 되었다."</li>
+<li>"빨간 삼각형, 파란 원, 노란 사각형이 이미 모티프가 등장하기 전부터 긴장감, 평온함, 균형감을 암시할 수 있었다."</li>
+<li>모든 예술적 결정을 이끄는 "내면의 필연성(innere Notwendigkeit)" — 바우하우스에서 화가·직조가·건축가 모두를 위한 공통 방법론이 됨</li>
+<li><strong>이 리서치와의 연결</strong>: 축1 — 조형요소의 "내면적 긴장"이 편집 단위의 고유한 에너지임을 보여주는 근거</li>
+</ul>
+<hr>
+<h3>요하네스 이텐의 예비과정(Vorkurs) — 대비 연습과 12색상환</h3>
+<ul>
+<li><strong>출처</strong>: https://bauhauskooperation.com/knowledge/the-bauhaus/training/preliminary-course/johannes-ittens-preliminary-course / https://magazine.contenta.co/2018/07/요하네스-이텐-바우하우스-프뢰벨/</li>
+<li><strong>핵심 인용/개념</strong>:</li>
+<li>이텐은 선과 면, 원, 나선과 같은 기본 형태를 이해하는 것이 예술 창작에 본질적이라 여겼다</li>
+<li><strong>12색상환</strong> 개발 (1921): 7가지 명도 단계와 12가지 색조로 구성된 색채 구체(Color Sphere)</li>
+<li>대비 연습 7쌍: 명암 대비, 색상 대비, 보색 대비, 동시 대비, 채도 대비, 한난 대비, 면적 대비</li>
+<li>수업 전 체조와 호흡 명상 — 신체 감각을 통한 조형 감수성 훈련</li>
+<li>학술 논문: 오경은, 「요하네스 이텐의 색상환 — 바우하우스 색채이론과 음악의 관계」, 한국색채학회논문집 제39권 제1호, 2025 (https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART003179420)</li>
+<li><strong>이 리서치와의 연결</strong>: 축1 — 대비 연습 7쌍은 조형원리를 "편집 원리"로 재정의할 때의 핵심 구조. 대비 = 편집의 긴장 관계</li>
+</ul>
+<hr>
+<h3>파울 클레의 교육 노트 — 자연 형태의 추상 원리</h3>
+<ul>
+<li><strong>출처</strong>: Paul Klee, <em>Pedagogical Sketchbook</em> (Pädagogisches Skizzenbuch), Bauhausbücher No.2, 1925 / Wikipedia: https://en.wikipedia.org/wiki/Pedagogical_Sketchbook / PDF: https://monoskop.org/images/3/30/Klee_Paul_Pedagogical_Sketchbook_1960.pdf</li>
+<li><strong>핵심 인용/개념</strong>:</li>
+<li>"클레는 모방이나 이상화 없이 비례, 운동, 공간의 깊이를 시각 세계의 근본 속성으로 기록했다."</li>
+<li>체스판, 뼈, 근육, 심장, 물레방아, 식물, 철도 침목, 줄타기 곡예사 — 이 모든 것이 43개 디자인 수업의 예시</li>
+<li>"단순한 선의 교차 현상에서 시작해 구조, 차원, 균형, 운동이라는 정의된 평면의 이해로 이어진다."</li>
+<li>1921~1931년 바우하우스 재직, 강의 노트를 편집해 출판 (편집자: Walter Gropius, 디자인: László Moholy-Nagy)</li>
+<li><strong>이 리서치와의 연결</strong>: 축1 — 자연 형태를 추상 원리로 환원하는 방법론 = 에디톨로지적 "소재 분해 후 재편집"의 원형</li>
+</ul>
+<hr>
+<h3>바우하우스 → Ulm → 디터 람스 → 조너선 아이브 계보</h3>
+<ul>
+<li><strong>출처</strong>: </li>
+<li>김정운 인터뷰, 이코노미조선 2023.07.31: https://economychosun.com/site/data/html_dir/2023/07/31/2023073100019.html</li>
+<li>YouTube 김콜베: https://www.youtube.com/watch?v=QDPa7pSNu5Q</li>
+<li>reviw.co.kr 디터 람스 소개: https://reviw.co.kr/entry/디터-람스-디자인의-거장과-그의-영향력</li>
+<li><strong>핵심 인용/개념</strong>:</li>
+<li>김정운: "시작은 '왜 삼성은 애플처럼 못 만들까'라는 질문이었다. 애플 디자인의 뿌리가 바로 바우하우스였다."</li>
+<li>계보: <strong>바우하우스(1919~1933) → 울름조형대학(Ulm, 막스 빌 설립) → 디터 람스(Braun 수석 디자이너) → 조너선 아이브(Apple)</strong></li>
+<li>디터 람스: 1955년 Braun 입사, 울름조형대학 교수 한스 구겔로트·오틀 아이허의 영향 수용</li>
+<li>"감각의 교차 편집이라고 하는 바우하우스의 엄청난 교육 실험이 있었다." (김정운)</li>
+<li><strong>이 리서치와의 연결</strong>: 축1 + 축4 교차점 — 바우하우스의 "감각의 교차 편집"이 현대 디자인 계보의 핵심 DNA임을 보여주는 역사적 증거</li>
+</ul>
+<hr>
+<h2>축2 — 한국 조형원리 계보</h2>
+<h3>한글의 점·선·면 조형 분석 — 세종이 칸딘스키보다 500년 앞서</h3>
+<ul>
+<li><strong>출처</strong>: </li>
+<li>윤여경, 「한글과 점·선·면」, 경향신문 디자인 읽기, 2020.10.28: https://www.khan.co.kr/article/202010280300025</li>
+<li>이지원, 「한글 조형 분석」, 한국디자인사학회 학술대회, PDF: https://designhistory.kr/media/pages/search/hanguel-form-analysis/57e2c895b0-1623332453/08-hanguel-form-analysis.pdf</li>
+<li>유정미, 「훈민정음에 담긴 디자인 철학의 현대성」, 한국타이포그라피학회: http://koreantypography.org/wp-content/uploads/thesis/kst_j1_5.pdf</li>
+<li><strong>핵심 인용/개념</strong>:</li>
+<li>"한글의 자소는 모두 점·선·면(세모, 네모, 동그라미)으로 구성된 단순한 추상요소이다. 추상적 자소들이 조합돼 말소리가 이미지로 표현된다." (윤여경)</li>
+<li>"세종은 칸딘스키가 상상도 못한 일을 해냈다. 추상적 요소들을 갖고 가장 뛰어난 소리 문자를 만들었기 때문이다. 그것도 무려 500여년을 앞서." (윤여경)</li>
+<li>훈민정음은 소리를 시각화한 '글자 설계도' — 건물이 아닌 설계도면</li>
+<li>세종은 기하학적 방획(方劃)으로 새 글자를 새겼다 — 서체가 아닌 소리의 시각화 시스템</li>
+<li><strong>이 리서치와의 연결</strong>: 축2 핵심 — 한글은 조형요소(점·선·면)를 편집 단위로 삼아 소리를 시각화한 세계 최초의 체계적 편집 디자인</li>
+</ul>
+<hr>
+<h3>빗살무늬토기와 브랜딩 — 신석기 조형의 편집 원리</h3>
+<ul>
+<li><strong>출처</strong>: </li>
+<li>윤여경, 「빗살무늬토기와 브랜딩」, 경향신문 디자인 읽기, 2020.03.17: https://www.khan.co.kr/article/202003172043005</li>
+<li>경향신문 이기환, 「빗살무늬토기는 왜 '뾰족'할까」, 2023.01.31: https://www.khan.co.kr/article/202301310500001</li>
+<li>오마이뉴스, 「빗살무늬토기 패턴, 기하학적 추상무늬가 아니다」, 2022.04.03: https://www.ohmynews.com/NWS_Web/View/at_pg.aspx?CNTN_CD=A0002823348</li>
+<li><strong>핵심 인용/개념</strong>:</li>
+<li>"토기가 저장을 의미한다면 빗살은 소유를 의미한다. 소유가 가족에서 부족으로 확대되면서 무늬도 점차 복잡해졌을 것이다." (윤여경)</li>
+<li>"장인은 많은 사람들의 마음을 생각하며 정성껏 무늬를 그려 넣었을 것이다. 디자이너의 조상은 장인이다."</li>
+<li>빗살무늬토기의 복잡한 빗살무늬 = 신석기시대 브랜딩 작업</li>
+<li>김찬곤 연구: 빗살무늬토기 패턴은 기하학적 추상무늬가 아니라 '구상무늬' — 6547점 분석</li>
+<li><strong>이 리서치와의 연결</strong>: 축2 — 한국 최초의 조형 편집 사례. 무늬(패턴)는 소유·공동체 정체성을 편집하는 시각 언어</li>
+</ul>
+<hr>
+<h3>반구대 암각화 — 구석기 조형의 생활 기록</h3>
+<ul>
+<li><strong>출처</strong>: </li>
+<li>윤여경, 「울산 반구대 암각화의 생활 기록」, 경향신문 디자인 읽기: https://www.khan.co.kr/article/202007080300025</li>
+<li>교수신문, 「신석기시대 빛살무늬가 뿌리…'밝음의 미학'」: http://www.kyosu.net/news/articleView.html?idxno=28602</li>
+<li><strong>핵심 인용/개념</strong>:</li>
+<li>반구대 암각화(국보 285호): 울산 울주군, 너비 8m, 높이 3m — 고래·사슴·호랑이 등 300여 점</li>
+<li>구석기 예술가들도 대상을 그대로 모방하지 않았다 — '사자인간'처럼 분리·재배치로 새로운 형태 창조</li>
+<li>천전리 선사시대 암각화(국보 147호): 기하학적 추상 문양과 동물 형상의 공존</li>
+<li>한국 고대미술의 시원 — 빛살무늬(빗살무늬)가 '밝음의 미학'의 뿌리</li>
+<li><strong>이 리서치와의 연결</strong>: 축2 — 한국 조형의 원형. 구석기 조형 = 생존을 위한 정보 편집 시스템</li>
+</ul>
+<hr>
+<h3>한국 디자인 교육의 조형요소/원리 분류 체계</h3>
+<ul>
+<li><strong>출처</strong>: </li>
+<li>네이버 블로그 milky_min, 조형요소 정리: https://m.blog.naver.com/milky_min/223180846392</li>
+<li>훈민정음 디자인 철학 현대성 논문 (유정미, 대전대학교): http://koreantypography.org/wp-content/uploads/thesis/kst_j1_5.pdf</li>
+<li><strong>핵심 인용/개념</strong>:</li>
+<li>한국 디자인 교육의 조형요소: 점·선·면·형·색·질감·공간·명암</li>
+<li>조형원리: 균형·비례·리듬·강조·통일·조화·대비·변화</li>
+<li>"한국의 디자인은 서구 중심의 이론을 수용하여 그 가치와 철학을 서양 기준에 맞추어 교육하고 있다. 이는 결과적으로 한국적 디자인의 정체성 혼란이라는 병폐를 낳았다." (유정미)</li>
+<li>훈민정음은 "그 의도와 용도가 분명한 현대적 개념의 디자인"</li>
+<li><strong>이 리서치와의 연결</strong>: 축2 — 한국 디자인 교육의 현황과 한계. 서구 이론 수용의 문제를 한국 고유 조형 원리로 극복하는 논점</li>
+</ul>
+<hr>
+<h3>해주백자 — 한국의 인상파</h3>
+<ul>
+<li><strong>출처</strong>: 윤여경, 「한국의 인상파, 해주백자」, 경향신문 디자인 읽기, 2020.06.10: https://www.khan.co.kr/article/202006100300065</li>
+<li><strong>핵심 인용/개념</strong>:</li>
+<li>"19세기 말부터 20세기 초에 만들어진 해주백자에는 독특한 그림들이 그려져 있다. 주로 물고기와 꽃이 소재인데 필체가 아주 과감하고 독창적이다."</li>
+<li>"나는 이 그림을 보자마자 '아! 한국에도 인상파가 있었구나!'라는 생각을 했다."</li>
+<li>전통적 관행(청나라 개자원화보 모방)을 과감히 버리고 본능적 감성을 표현한 무명 장인들</li>
+<li>고려청자 → 청화백자 → 달항아리 → 해주백자의 계보 — 각각 중국·러시아 영향 vs. 독자적 표현</li>
+<li><strong>이 리서치와의 연결</strong>: 축2 — 한국 조형의 독자적 편집 실험. 외부 양식을 수용하되 자신의 감성으로 재편집한 사례</li>
+</ul>
+<hr>
+<h2>축3 — 현대 디자인 시스템</h2>
+<h3>게슈탈트 심리학 5원칙</h3>
+<ul>
+<li><strong>출처</strong>: </li>
+<li>라이트브레인 블로그: https://blog.rightbrain.co.kr/?p=7030</li>
+<li>디자인사이드: https://designside.tistory.com/4</li>
+<li>UX/UI 학습일지: https://one.jinote23.com/entry/학습일지-5주차-2</li>
+<li><strong>핵심 인용/개념</strong>:</li>
+<li>"우리의 뇌는 구성 요소들을 개별적으로 보기에 앞서서 그 윤곽이나 패턴, 형태적 차이를 먼저 파악하려는 습성을 지녔다." — 게슈탈트 이론의 핵심</li>
+<li><strong>5원칙</strong>:<ol>
+<li><strong>근접성(Proximity)</strong>: 가까이 위치한 요소들이 그룹으로 인식됨</li>
+<li><strong>유사성(Similarity)</strong>: 형태·색상·크기·질감이 유사한 요소들이 그룹으로 인식됨</li>
+<li><strong>연속성(Continuity)</strong>: 눈이 자연스럽게 연속적인 선이나 패턴을 따라감</li>
+<li><strong>폐합성(Closure)</strong>: 여러 요소들이 단일한 패턴을 보일 경우 하나의 개체로 인식</li>
+<li><strong>전경-배경(Figure-Ground)</strong>: 전면에 드러난 개체와 후면 배경을 동시에 인식</li>
+</ol>
+</li>
+<li>게슈탈트(Gestalt) = 독일어로 "통합된 전체(Unified Whole)"</li>
+<li><strong>이 리서치와의 연결</strong>: 축3 핵심 — 게슈탈트 원칙은 조형원리를 "편집 원리"로 재정의할 때의 인지과학적 근거. 근접·유사·연속 = 편집의 그룹화 원리</li>
+</ul>
+<hr>
+<h3>그리드 시스템 — Josef Müller-Brockmann과 스위스 타이포그래피</h3>
+<ul>
+<li><strong>출처</strong>: </li>
+<li>Josef Müller-Brockmann, <em>Grid Systems in Graphic Design</em>, Verlag Niggli AG, 1981 (6판 2009)</li>
+<li>서평: https://theartbog.com/book-review-grid-systems-in-graphic-design-by-josef-muller-brockmann/</li>
+<li>Möels &amp; Co: https://moelsandco.com/stories/josef-muller-brockmann-a-pioneer-of-swiss-graphic-design</li>
+<li><strong>핵심 인용/개념</strong>:</li>
+<li>"그리드 시스템은 그래픽 디자이너, 타이포그래퍼, 3차원 디자이너를 위한 시각 커뮤니케이션 매뉴얼"</li>
+<li>"잘 설계된 그리드는 창의성을 제한하는 것이 아니라 창의성의 토대를 제공한다."</li>
+<li>뮐러-브로크만은 1950~60년대 스위스 그래픽 디자인의 선구자 — 국제 타이포그래피 양식(Swiss Style) 형성</li>
+<li>구성주의(Constructivism)와 기능주의(Functionalism) 원칙 — 명확성·가독성·질서 강조</li>
+<li>1914년 라퍼스빌 출생, 1996년 취리히 근교 사망</li>
+<li><strong>이 리서치와의 연결</strong>: 축3 — 그리드 = 조형 편집의 구조적 틀. 그리드 시스템은 "편집 원리"를 공간적으로 구현한 시스템</li>
+</ul>
+<hr>
+<h3>Brad Frost 아토믹 디자인</h3>
+<ul>
+<li><strong>출처</strong>: </li>
+<li>Brad Frost, <em>Atomic Design</em>, 2016 / 공식 블로그: https://bradfrost.com/blog/link/from-template-to-atoms/</li>
+<li>Justinmind 가이드: https://www.justinmind.com/ui-design/atomic-design</li>
+<li>Figr Design: https://figr.design/blog/atomic-design-methodology-explained</li>
+<li><strong>핵심 인용/개념</strong>:</li>
+<li>"아토믹 디자인은 순차적 프로세스가 아니다. 전체와 부분을 동시에 고려하는 정신 모델이다." (Brad Frost)</li>
+<li><strong>5단계 계층</strong>: Atoms(원자) → Molecules(분자) → Organisms(유기체) → Templates(템플릿) → Pages(페이지)</li>
+<li>"인터페이스를 하나의 압도적인 전체로 다루는 대신, 화학의 원자처럼 더 작고 재사용 가능한 조각으로 분해한다."</li>
+<li>디자인 시스템 = 재사용 가능한 컴포넌트의 체계적 편집</li>
+<li><strong>이 리서치와의 연결</strong>: 축3 — 아토믹 디자인은 에디톨로지의 디지털 구현. 원자(편집 단위) → 분자(편집 조합) → 유기체(편집 시스템)의 계층 구조</li>
+</ul>
+<hr>
+<h3>디터 람스 "좋은 디자인 10원칙"</h3>
+<ul>
+<li><strong>출처</strong>: </li>
+<li>reviw.co.kr: https://reviw.co.kr/entry/디터-람스-디자인의-거장과-그의-영향력</li>
+<li>newstoday.io: https://newstoday.io/pressroom/10-design-principles/</li>
+<li>김정운 인터뷰 (이코노미조선): https://economychosun.com/site/data/html_dir/2023/07/31/2023073100019.html</li>
+<li><strong>핵심 인용/개념</strong>:</li>
+<li>디터 람스(Dieter Rams, 1932~): 독일 산업 디자이너, Braun 수석 디자이너(1961~1997)</li>
+<li>핵심 신념: <strong>"덜, 그러나 더 나은 것(Less, but better)"</strong></li>
+<li>좋은 디자인 10원칙: 혁신적·유용·심미적·이해 가능·눈에 띄지 않는·정직한·오래 지속되는·세부까지 철저한·환경 친화적·최소한의 디자인</li>
+<li>울름조형대학(Ulm School of Design) 교수 한스 구겔로트·오틀 아이허의 영향 수용</li>
+<li>조너선 아이브(Apple)가 람스의 디자인을 흉내 낸 것으로 널리 알려짐</li>
+<li><strong>이 리서치와의 연결</strong>: 축3 + 축1 계보 — 람스의 "덜, 그러나 더 나은 것"은 편집의 핵심 원리: 불필요한 요소를 제거하고 본질만 남기는 편집</li>
+</ul>
+<hr>
+<h3>조형의 원리 — 조화와 대비, 통일과 변화</h3>
+<ul>
+<li><strong>출처</strong>: design.jity.co.kr: https://design.jity.co.kr/entry/2-1-조형의-원리-조화와-대비-통일과-변화</li>
+<li><strong>핵심 인용/개념</strong>:</li>
+<li>조형원리의 핵심 쌍: 조화(Harmony) ↔ 대비(Contrast), 통일(Unity) ↔ 변화(Variety)</li>
+<li>조화: 요소들 사이의 유사성과 일관성으로 전체적 통일감 형성</li>
+<li>대비: 서로 다른 요소들의 차이를 강조해 시각적 긴장감과 흥미 유발</li>
+<li>통일: 전체적 일관성과 질서감</li>
+<li>변화: 단조로움을 피하고 시각적 흥미와 역동성 부여</li>
+<li><strong>이 리서치와의 연결</strong>: 축3 — 조형원리의 기본 구조. 에디톨로지 관점에서 조화=편집의 일관성, 대비=편집의 긴장 관계</li>
+</ul>
+<hr>
+<h2>축4 — 에디톨로지의 실천</h2>
+<h3>김정운 인터뷰 — "왜 삼성은 애플처럼 못 만들까"</h3>
+<ul>
+<li><strong>출처</strong>: 이코노미조선 503호, 2023.07.31: https://economychosun.com/site/data/html_dir/2023/07/31/2023073100019.html</li>
+<li><strong>핵심 인용/개념</strong>:</li>
+<li><strong>"타인의 시선이 없을 때 비로소 사람은 가장 창조적 존재가 된다."</strong></li>
+<li><strong>"편집의 소재가 많아야 한다."</strong> — K팝과 영화 등 한국 문화 영역이 잘나가는 배경</li>
+<li>"창의성(creativity)이라는 단어가 오스트리아 빈에서 탄생했다고 본다. 문화적 다원성이 보장되지 않으면 창의성이 나오기 어렵다."</li>
+<li>"바우하우스에서 '감각의 교차 편집'이라고 하는 창조적인 교육법을 도입해 학생들을 가르쳤다."</li>
+<li><strong>트리 vs. 네트워크</strong>: "그동안 우리는 '택소노미(taxonomy·분류학)'라 불리는 연역법, 귀납법의 '트리(tree) 구조적 사고'를 해왔다. 그런데 이제는 마우스를 클릭하거나 손가락으로 터치하는 작은 행동으로 경계를 뛰어넘는 생각을 할 수 있게 됐다. 전혀 다른 영역의 지식과 정보를 연결하고 편집하는 일명 '네트워크적 사고'가 가능해졌다."</li>
+<li>"이 엄청난 지식 혁명을 가능케 한 도구가 컴퓨터에서는 마우스, 스마트폰에서는 터치다. 그럼 이 모든 게 어디서 시작됐느냐. 바로 바우하우스다."</li>
+<li><strong>이 리서치와의 연결</strong>: 축4 핵심 — 에디톨로지의 핵심 테제들이 집약된 인터뷰. 바우하우스-에디톨로지-조형원리의 연결 고리</li>
+</ul>
+<hr>
+<h3>김정운 《에디톨로지》 — 창조는 편집이다</h3>
+<ul>
+<li><strong>출처</strong>: </li>
+<li>경향신문 저자와의 대화, 2014.10.31: https://www.khan.co.kr/article/201410312131595</li>
+<li>중앙일보 에디톨로지 연재: https://www.joongang.co.kr/article/6814114 (카드 vs. 노트)</li>
+<li>중앙일보: https://www.joongang.co.kr/article/6814522 (노트와 카드의 차이)</li>
+<li>블로그 서평: https://mangastorytelling.tistory.com/entry/김정운-에디톨로지-창조는-편집이다</li>
+<li>YES24 인터뷰 영상: https://www.youtube.com/watch?v=AQEjfyj0YY8</li>
+<li><strong>핵심 인용/개념</strong>:</li>
+<li><strong>"창조는 생전 듣도 보도 못한 것을 만들어내는 것이 아니라 이미 존재하는 것들의 편집이다."</strong></li>
+<li><strong>"세상의 모든 창조는 이미 존재하는 것들의 또 다른 편집이다. 해 아래 새로운 것은 없다. 하나도 없다! '창조는 편집이다.'"</strong></li>
+<li><strong>카드 vs. 노트</strong>: "나만의 이론? 카드에 콘텐트 담아 정리하라" — 카드는 독립적 편집 단위, 노트는 선형적 기록</li>
+<li>"독서는 내가 가진 개념과 저자의 개념이 편집되는 에디톨로지 과정이다. 그래야만 저자의 생각이 내 생각의 일부가 된다."</li>
+<li>"지금까지는 선택과 집중의 시대였죠. 하나만 열심히 파면 된다고 생각했어요. 이건 산업사회의 이데올로기예요. 21세기는 정보가 넘쳐나는 시대예요. 중요한 건 그걸 어떻게 편집하느냐입니다."</li>
+<li>에디톨로지(Editology) = 편집학 — 김정운이 직접 만든 신조어</li>
+<li><strong>이 리서치와의 연결</strong>: 축4 핵심 — 에디톨로지의 이론적 토대. "창조 = 편집"을 조형원리에 적용하면 조형요소 = 편집 단위, 조형원리 = 편집 원리</li>
+</ul>
+<hr>
+<h3>김정운 × 최재천 대담</h3>
+<ul>
+<li><strong>출처</strong>: YouTube: https://www.youtube.com/watch?v=gZaRmQyADX4</li>
+<li><strong>핵심 인용/개념</strong>:</li>
+<li>김정운과 최재천(생물학자)의 대담 — 창조성과 편집의 관계를 자연과학과 인문학의 교차점에서 논의</li>
+<li>"감각의 교차 편집" — 공감각(synesthesia)을 교육으로 구현하는 방법</li>
+<li>트리 구조(분류학적 사고) vs. 네트워크 구조(연결적 사고)의 대비</li>
+<li><strong>이 리서치와의 연결</strong>: 축4 — 에디톨로지의 생물학적·진화론적 근거. 창조성의 자연사적 맥락</li>
+</ul>
+<hr>
+<h2>축5 — 윤여경 '디자인 읽기'</h2>
+<blockquote>
+<p><strong>연재 정보</strong>: 경향신문 '디자인 읽기' 시리즈 (윤여경 기자, 디자인팀)<br>
+<strong>기자 페이지</strong>: https://www.khan.co.kr/reporter_article.html?id=332<br>
+<strong>연재 페이지</strong>: https://www.khan.co.kr/series/articles/ao338</p>
+</blockquote>
+<hr>
+<h3>[1] 인류 최초의 디자인, 주먹도끼</h3>
+<ul>
+<li><strong>출처</strong>: 경향신문 디자인 읽기, 2019.08.20: https://www.khan.co.kr/article/201908202052005</li>
+<li><strong>핵심 인용/개념</strong>:</li>
+<li>"주먹도끼는 현대의 스마트폰처럼 만능 도구였다. 구석기인들은 항상 주먹도끼를 지니고 다니며 식물의 뿌리를 캐고 과일의 껍질을 벗기고 옷감을 다듬었다."</li>
+<li>"대칭이 인류가 아름다움을 느낀 최초의 기준이자 형식이라면 주먹도끼는 바로 그 근거이자 증거다."</li>
+<li>주먹도끼: 1797년 영국 고고학자 존 프레리에 최초 발견, 세계 곳곳에서 유사 유형 발견</li>
+<li>구석기(타제석기) → 신석기(마제석기): 제작 기술 발달, 형태는 유사 — 손잡이 둥글고 끝 뾰족, 좌우 대칭</li>
+<li>미술사 맨 앞줄에 항상 주먹도끼가 등장</li>
+<li><strong>이 리서치와의 연결</strong>: 축5 — 인류 최초의 조형 편집. 대칭 = 가장 원초적인 편집 원리</li>
+</ul>
+<hr>
+<h3>[2] 한글과 점·선·면</h3>
+<ul>
+<li><strong>출처</strong>: 경향신문 디자인 읽기, 2020.10.28: https://www.khan.co.kr/article/202010280300025</li>
+<li><strong>핵심 인용/개념</strong>:</li>
+<li>"디자인에서 한글의 위대함은 형태에 있다. 한글의 자소는 모두 점·선·면(세모, 네모, 동그라미)으로 구성된 단순한 추상요소이다."</li>
+<li>"세종은 칸딘스키가 상상도 못한 일을 해냈다. 추상적 요소들을 갖고 가장 뛰어난 소리 문자를 만들었기 때문이다. 그것도 무려 500여년을 앞서."</li>
+<li>1459년 훈민정음언해 vs. 1926년 칸딘스키 〈점선면〉 — 이미지 대비</li>
+<li>칸딘스키는 점·선·면으로 알파벳 같은 문자체계를 만들 수 있을 거라곤 상상조차 못했다</li>
+<li><strong>이 리서치와의 연결</strong>: 축5 + 축2 교차 — 한글의 조형 원리가 바우하우스보다 500년 앞선 편집 디자인임을 논증</li>
+</ul>
+<hr>
+<h3>[3] '오감도'는 타이포그래피 실험이다</h3>
+<ul>
+<li><strong>출처</strong>: 경향신문 디자인 읽기, 2020.11.25: https://www.khan.co.kr/article/202011250300005</li>
+<li><strong>핵심 인용/개념</strong>:</li>
+<li>"타이포그래피는 글의 의미와 형태를 동시에 다루는 디자인 분야다."</li>
+<li>"이상의 시 '오감도'는 전형적인 타이포그래피 시다. '의미로서의 오감도'는 난해하지만, '형태로서의 오감도'는 누구나 느낄 수 있다."</li>
+<li>안상수(그래픽디자이너): "이상은 이미 디자인된 글자 요소들을 가지고 디자인 작업을 하는 타이포그래퍼였다."</li>
+<li>헤라르트 윙어르 〈당신이 읽는 동안〉: "사람은 글꼴의 형태와 글의 의미를 동시에 볼 수 없다."</li>
+<li>'오(烏)'는 '조(鳥)'에서 점 하나를 뺀 것 — 형태 유희</li>
+<li><strong>이 리서치와의 연결</strong>: 축5 — 타이포그래피 = 의미와 형태의 편집. 이상의 오감도는 한국 최초의 시각 편집 실험</li>
+</ul>
+<hr>
+<h3>[4] 이집트의 그림 기록 읽기</h3>
+<ul>
+<li><strong>출처</strong>: 경향신문 디자인 읽기, 2020.08.05: https://www.khan.co.kr/article/202008050300025</li>
+<li><strong>핵심 인용/개념</strong>:</li>
+<li>이집트 상형문자(히에로글리프) — 그림이 문자가 되는 과정</li>
+<li>그림 기록 = 정보의 시각적 편집 시스템</li>
+<li>피라미드: "약 5000년 전에 지어진 파라오의 무덤으로 당시 이집트의 정교한 수학과 기술이 종합된 성과이다." (예술과 디자인은 본래 공공적이다 기사에서 상세 언급)</li>
+<li><strong>이 리서치와의 연결</strong>: 축5 — 문자의 기원 = 그림의 편집. 조형요소가 의미를 담는 편집 단위가 되는 과정</li>
+</ul>
+<hr>
+<h3>[5] 빗살무늬토기와 브랜딩</h3>
+<ul>
+<li><strong>출처</strong>: 경향신문 디자인 읽기, 2020.03.17: https://www.khan.co.kr/article/202003172043005</li>
+<li><strong>핵심 인용/개념</strong>:</li>
+<li>"브랜드(brand)는 태우다(burn)와 어원을 함께한다. 옛날 사람들은 인두로 가축에게 낙인을 찍어 자신의 소유임을 강조했다."</li>
+<li>"토기가 저장을 의미한다면 빗살은 소유를 의미한다."</li>
+<li>"빗살무늬토기의 복잡한 빗살무늬는 신석기시대 브랜딩 작업이 아니었을까."</li>
+<li>신석기 농업혁명 이후 소유 개념 시작 — 무늬가 소유·정체성의 시각 기호가 됨</li>
+<li><strong>이 리서치와의 연결</strong>: 축5 + 축2 교차 — 브랜딩 = 조형 편집의 사회적 기능. 무늬는 공동체 정체성을 편집하는 시각 언어</li>
+</ul>
+<hr>
+<h3>[6] 구석기 예술과 현대 예술</h3>
+<ul>
+<li><strong>출처</strong>: 경향신문 디자인 읽기, 2020.02.18: https://www.khan.co.kr/article/202002182041015</li>
+<li><strong>핵심 인용/개념</strong>:</li>
+<li>"구석기 예술은 제의(祭儀)적인 필요에 의해 만들어졌다. 그래서 신성한 느낌이 있었다."</li>
+<li>"구석기 예술가들도 대상을 그대로 모방하지 않았다. 수만년 전의 조각인 '사자인간'에서 보듯 사람과 사자의 신체 요소로 분리하고 재배치함으로써 경험하지 못한 새로운 형태를 만들어냈다."</li>
+<li>"현대 미술은 고전 미술이 아닌 구석기 예술을 새롭게 이어간다고 할 수 있다."</li>
+<li>인상파(고갱·고흐·세잔) → 피카소·마티스 → 표현주의·개념주의의 계보</li>
+<li><strong>이 리서치와의 연결</strong>: 축5 — 구석기 예술 = 최초의 편집 창조. "분리하고 재배치" = 에디톨로지의 원형</li>
+</ul>
+<hr>
+<h3>[7] 한국의 인상파, 해주백자</h3>
+<ul>
+<li><strong>출처</strong>: 경향신문 디자인 읽기, 2020.06.10: https://www.khan.co.kr/article/202006100300065</li>
+<li><strong>핵심 인용/개념</strong>:</li>
+<li>"19세기 말부터 20세기 초에 만들어진 해주백자에는 독특한 그림들이 그려져 있다. 주로 물고기와 꽃이 소재인데 필체가 아주 과감하고 독창적이다."</li>
+<li>"전통적 관행을 과감히 버리고 한 사람의 장인으로서 자신의 본능적 감성을 맘껏 표현했다."</li>
+<li>"이 무명의 장인들이야말로 '한국의 인상파'라 불려야 마땅하지 않을까."</li>
+<li>고려청자(북송 영향) → 청화백자(청나라 개자원화보 모방) → 달항아리(러시아 절대주의 영향) → 해주백자(독자적 표현)</li>
+<li><strong>이 리서치와의 연결</strong>: 축5 + 축2 교차 — 한국 도자기의 편집 계보. 외부 양식 수용 → 독자적 재편집의 역사</li>
+</ul>
+<hr>
+<h3>[8] 예술과 디자인은 본래 공공적이다</h3>
+<ul>
+<li><strong>출처</strong>: 경향신문 디자인 읽기, 2020.12.23: https://www.khan.co.kr/article/202012230300025</li>
+<li><strong>핵심 인용/개념</strong>:</li>
+<li>"사실 '공공예술' '공공디자인'이란 말은 좀 어색하다. 예술과 디자인은 본래 공공적이기 때문이다."</li>
+<li>피라미드: "기단의 너비가 230m, 높이는 147m로 약 1m 크기의 돌 200여만개가 쓰였다. 이 거대한 구조물 네 변의 길이 오차는 놀랍게도 불과 25㎜다."</li>
+<li>"피라미드는 이집트 정부가 주도하는 공공예술(혹은 공공디자인) 사업이자 뉴딜정책이었다."</li>
+<li>"예술과 디자인에는 다양한 기술이 동원되고 때론 제작 과정에 여러 분야 사람들이 참여한다."</li>
+<li><strong>이 리서치와의 연결</strong>: 축5 — 디자인의 공공성 = 편집의 사회적 기능. 조형 편집은 개인이 아닌 공동체의 실천</li>
+</ul>
+<hr>
+<h3>[9] 위기에 대응하려면 전체 맥락을 알아야</h3>
+<ul>
+<li><strong>출처</strong>: 경향신문 디자인 읽기, 2020.09.30: https://www.khan.co.kr/article/202009300300025</li>
+<li><strong>핵심 인용/개념</strong>:</li>
+<li>"정보그래픽의 매력을 3가지로 요약하면, 첫째 '즉각성', 둘째 '전체성', 셋째 '평등성'이다."</li>
+<li>샤를 미나르의 '나폴레옹의 모스크바 침공(1812~1813년)' — 가장 대표적인 정보그래픽</li>
+<li>피터 센게의 '시스템 사고': "전체 맥락을 이해하고 있어야 자신이 속한 시장과 조직을 정확하게 파악할 수 있다."</li>
+<li>"한국말에서 '우리'란 '전체를 고려하는 나'를 뜻한다."</li>
+<li><strong>이 리서치와의 연결</strong>: 축5 — 정보그래픽 = 데이터의 조형 편집. 시스템 사고 = 편집의 전체성 원리</li>
+</ul>
+<hr>
+<h3>[10] 전염병을 막는 디자인</h3>
+<ul>
+<li><strong>출처</strong>: 경향신문 디자인 읽기, 2020.09.02: https://www.khan.co.kr/article/202009020300025</li>
+<li><strong>핵심 인용/개념</strong>:</li>
+<li>"존 스노는 뛰어난 의사인 동시에 뛰어난 디자이너였다. 그는 병의 원인을 찾기 위해 간략한 지도와 다이어그램으로 구성된 인포그래픽을 디자인했다."</li>
+<li>존 스노의 콜레라 역학지도(1854): 발병 장소와 빈도를 지도에 표시 → 브로드 스트리트 식수 펌프가 원인임을 발견</li>
+<li>"역학의 아버지" 존 스노 — 데이터 시각화로 전염병 확산 차단</li>
+<li>콜레라 = 공기 전염(기존 편견) → 물 전염(새로운 편집) — 패러다임 전환</li>
+<li><strong>이 리서치와의 연결</strong>: 축5 — 데이터 시각화 = 정보의 조형 편집. 편집의 힘으로 생명을 구한 역사적 사례</li>
+</ul>
+<hr>
+<h3>윤여경 Medium "디자仁" — 추가 글 목록</h3>
+<ul>
+<li><strong>출처</strong>: https://medium.com/@tigeryoonz</li>
+<li><strong>핵심 인용/개념</strong>:</li>
+<li>Medium 채널 "디자仁" — 윤여경 기자의 디자인 에세이 7편</li>
+<li>경향신문 '디자인 읽기' 연재의 확장판 성격</li>
+<li>디자인을 인문학적 관점에서 재해석하는 글쓰기</li>
+<li>※ Medium 접근 시 로그인 필요 — 제목 목록 확인 필요</li>
+<li><strong>이 리서치와의 연결</strong>: 축5 — 윤여경의 디자인 철학 심화 자료. 경향신문 연재와 함께 읽어야 할 보완 자료</li>
+</ul>
+<hr>
+<h2>보조 소스 — 축간 교차 참고</h2>
+<h3>조형원리 조화와 대비 참고 블로그</h3>
+<ul>
+<li><strong>출처</strong>: https://m.blog.naver.com/milky_min/223180846392</li>
+<li><strong>핵심 인용/개념</strong>: 한국 디자인 교육에서의 조형요소/원리 분류 체계 정리</li>
+<li><strong>이 리서치와의 연결</strong>: 축2 + 축3 — 한국 디자인 교육의 현황 파악용</li>
+</ul>
+<hr>
+<h3>훈민정음 디자인 철학의 현대성 (학술 논문)</h3>
+<ul>
+<li><strong>출처</strong>: 유정미(대전대학교), 「훈민정음에 담긴 디자인 철학의 현대성 (20세기 모더니즘 철학에 비추어)」, 한국타이포그라피학회: http://koreantypography.org/wp-content/uploads/thesis/kst_j1_5.pdf</li>
+<li><strong>핵심 인용/개념</strong>:</li>
+<li>"훈민정음은 단순하게 문자로만 국한할 수 없는 창조물이다. 한국 고유의 가치가 잘 반영된 디자인 결과물이라 할 수 있다."</li>
+<li>"훈민정음은 그 의도와 용도가 분명한 현대적 개념의 디자인이라고 할 만하다."</li>
+<li>20세기 모더니즘(바우하우스)과 훈민정음의 디자인 철학 비교 분석</li>
+<li><strong>이 리서치와의 연결</strong>: 축1 + 축2 교차 — 바우하우스와 훈민정음의 조형 철학 비교를 위한 학술적 근거</li>
+</ul>
+<hr>
+<h3>한글 조형 분석 (학술 논문)</h3>
+<ul>
+<li><strong>출처</strong>: 이지원(국민대학교), 「한글 조형 분석」, 한국디자인사학회 학술대회: https://designhistory.kr/media/pages/search/hanguel-form-analysis/57e2c895b0-1623332453/08-hanguel-form-analysis.pdf</li>
+<li><strong>핵심 인용/개념</strong>:</li>
+<li>"세종대왕은 나랏말을 문자 기호로 표기하는 체계를 만들었다."</li>
+<li>"한글의 사례를 통해 말소리를 시각적 기호와 연결하는 조형 원리를 분석하면, 우리는 그 속에서 언어와 시각 기호의 관계를 발견하고, 나아가 체계로서의 추상 기호 표현을 상상할 수 있게 된다."</li>
+<li>분절음 → 음소 → 자소 → 글자의 계층 구조 = 아토믹 디자인의 원형</li>
+<li><strong>이 리서치와의 연결</strong>: 축2 + 축3 교차 — 한글의 계층 구조가 아토믹 디자인과 동일한 편집 원리를 따름</li>
+</ul>
+<hr>
+<h2>소스 수집 현황 요약</h2>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>축</th>
+<th>수집 소스 수</th>
+<th>주요 소스</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>축1 바우하우스</td>
+<td>5개</td>
+<td>칸딘스키 《점선면》, 이텐 Vorkurs, 클레 교육 노트, 바우하우스→Apple 계보, 김정운 인터뷰</td>
+</tr>
+<tr>
+<td>축2 한국 조형</td>
+<td>6개</td>
+<td>한글 조형 분석, 빗살무늬토기, 반구대 암각화, 해주백자, 한국 디자인 교육 체계, 훈민정음 논문</td>
+</tr>
+<tr>
+<td>축3 현대 디자인</td>
+<td>5개</td>
+<td>게슈탈트 5원칙, 뮐러-브로크만 그리드, 아토믹 디자인, 디터 람스 10원칙, 조형원리 조화/대비</td>
+</tr>
+<tr>
+<td>축4 에디톨로지</td>
+<td>3개</td>
+<td>김정운 이코노미조선 인터뷰, 《에디톨로지》 핵심 인용, 김정운×최재천 대담</td>
+</tr>
+<tr>
+<td>축5 윤여경</td>
+<td>11개</td>
+<td>경향신문 10편 전문 수집, Medium 디자仁 채널</td>
+</tr>
+<tr>
+<td><strong>합계</strong></td>
+<td><strong>30개</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<hr>
+<p><em>수집 완료: 2026-03-11 | Wave 2 심화 리서치 입력 자료로 활용</em></p>
+</div>
+
+</body>
+</html>

@@ -1,8 +1,8 @@
 ---
 title: Creative Communicator · Lineage Series Index
 hero_kicker: CREATIVE COMMUNICATOR · LINEAGE SERIES · 2026
-hero_tagline: A 9-part lineage of the creative mind — from Roman inscriptions to AI typography
-meta_duration: 21 Deep Reports
+hero_tagline: A 25-part lineage of the creative mind — from Roman inscriptions to AI typography
+meta_duration: 25 Deep Reports
 meta_span: 2026-04-17 → ongoing
 meta_format: ~150 KB · 11 sections each
 meta_author: 정찬휘 · Chanhwi Jeong
@@ -26,7 +26,7 @@ footer_version: INDEX · v1.0 · 2026-04-29
 왜 <em>이 시리즈</em>인가
 
 ## Lead
-디자인이 트렌드 추종이 되지 않으려면, 카피가 인용의 인용이 되지 않으려면 — 자기 작업의 **출처 계보**를 알고 있어야 한다. 이 시리즈는 그 계보를 9개 영역에서 차례로 짚는 작업이다. 학습이자 창작이고, 기록이자 도구다.
+디자인이 트렌드 추종이 되지 않으려면, 카피가 인용의 인용이 되지 않으려면 — 자기 작업의 **출처 계보**를 알고 있어야 한다. 이 시리즈는 그 계보를 25개 영역에서 차례로 짚는 작업이다. 학습이자 창작이고, 기록이자 도구다.
 
 ## Card 1
 - title: 제작 의도
@@ -34,15 +34,15 @@ footer_version: INDEX · v1.0 · 2026-04-29
 
 "왜 이 글꼴인가", "왜 이 카피톤인가", "왜 이 구도인가"에 답할 수 있는 디자이너와 그렇지 못한 디자이너의 거리는 압도적이다. 답할 수 있다는 것은 — 자기 결정의 출처를 사상사·양식사 안에 둘 수 있다는 뜻이다.
 
-**이 시리즈는 그 어휘를 9개 영역에서 모으는 작업**이다. 동시에 그 모은 결과를 한 사람의 시각언어로 다시 짜는 큐레이션 작업이기도 하다.
+**이 시리즈는 그 어휘를 25개 영역에서 모으는 작업**이다. 동시에 그 모은 결과를 한 사람의 시각언어로 다시 짜는 큐레이션 작업이기도 하다.
 
 ## Card 2
 - title: 주제 선정 기준
 - punch: 크리에이티브 커뮤니케이터의 부품 회로 매핑
 
-9개 주제는 무작위가 아니다. **광고사 → 카피 프레임워크 → 뇌과학 → 인식·움벨트 → 인식론 → 추론 → 시간·공간 → 디자인사 → 타이포그래피**는 — 메시지가 한 사람에서 다른 사람에게 닿는 과정의 부품들이다.
+25개 주제는 무작위가 아니다. **FRONT(감각·인식·사고 보편성 1–14) + BACK(매체·사람·분야 15–25)** 두 큰 축으로 정렬된다. 7 카테고리 — 감각 → 인지 기초 → 인식 본질 → 의미·기호·형태 → 추론·사고 / 디자인사·사상 → 조형 실무 → 매체·카피. 보편에서 응용으로 흐르는 학습 곡선이 시리즈 자체의 번호로 짜여 있다.
 
-광고는 매체, 카피는 언어, 뇌는 수신자, 인식은 변환, 인식론은 그 변환의 사상사, 추론은 작동 회로, 시공간은 기억의 좌표, 디자인사는 시각 양식, 타이포는 가장 오래된 추상. **한 부품도 빠지면 메시지는 닿지 않는다.**
+감각은 입구, 인식은 변환, 기호·형태는 의미의 단위, 추론·사고는 작동 회로, 디자인사는 시각 양식의 누적, 조형 실무는 손의 응용, 매체·카피는 도착점. **한 부품도 빠지면 메시지는 닿지 않는다.**
 
 ---
 
@@ -52,7 +52,7 @@ footer_version: INDEX · v1.0 · 2026-04-29
 모든 리포트의 <em>공통 골격</em>
 
 ## Lead
-9개 리포트는 같은 11-섹션 골격, 같은 카드 4-블록 구조, 같은 디자인 토큰 위에 짜여 있다. 이 일관성 자체가 시리즈의 메시지다 — **인지 부품들은 다르지만, 그것을 보는 시각언어는 하나다.**
+25개 리포트는 같은 11-섹션 골격, 같은 카드 4-블록 구조, 같은 디자인 토큰 위에 짜여 있다. 이 일관성 자체가 시리즈의 메시지다 — **인지 부품들은 다르지만, 그것을 보는 시각언어는 하나다.**
 
 ## Card 1
 - title: 11-섹션 골격
@@ -77,36 +77,36 @@ HERO → INTRO → 5~7 PHASE → 6 THREADS → RESONANCE → APPLICATION → ONE
 # REPORTS
 
 ## Sub
-9 DEEP REPORTS
+25 DEEP REPORTS
 
 ## H2
-아홉 개의 <em>인지 부품</em>
+스물다섯 개의 <em>인지 부품</em>
 
 ## Lead
-각 리포트는 단독으로 읽을 수 있는 한 권의 책이자, 시리즈 안에서 다른 8개와 공명한다. 클릭해서 들어가면 5~7국면 × 학자 카드 × SCHEMA × 6 스레드의 풀 리포트.
+각 리포트는 단독으로 읽을 수 있는 한 권의 책이자, 시리즈 안에서 다른 24개와 공명한다. 클릭해서 들어가면 5~7국면 × 학자 카드 × SCHEMA × 6 스레드의 풀 리포트.
 
 ## Part I
 - color: yellow
-- date: 2026-04-17
-- file: reports/01.광고사_카피_역사.html
-- title: 광고사 & 카피 역사
-- sub: Advertising · From Myth to Algorithm
-- meta: 5 PHASES · 6 THREADS
+- date: 2026-05-07
+- file: reports/01.색채_질감_교차감각_보편성.html
+- title: 색채·질감·교차감각
+- sub: 감각과 지각의 보편성 리서치
+- meta: 다층 감각 · 보편 메커니즘
 
-신화·종교·산업혁명·매스미디어·디지털·AI까지 — 광고가 **인간을 학습해온 200년**의 사상사. 카피·매체·소비자 인지의 변천.
+시각·청각·촉각·후각·미각이 어떻게 한 풍경에서 만나는가 — **감각의 보편적 작동**과 교차감각(synesthesia)의 메커니즘. 시리즈의 시작점 — 모든 인지·소통·디자인이 출발하는 감각 층위.
 
 ## Part II
-- color: pink
-- date: 2026-04-18
-- file: reports/02.카피라이팅_프레임워크.html
-- title: 카피라이팅 프레임워크
-- sub: 12 Working Parts of a Copy
-- meta: 5 PHASES · 6 THREADS
+- color: teal
+- date: 2026-05-07
+- file: reports/02.시각적_리터러시_종합_연구.html
+- title: Visual Literacy — 시각적 리터러시
+- sub: 보는 능력의 종합 연구
+- meta: 8 CHAPTERS · 사상가 × 훈련법
 
-AIDA·PAS·4P부터 현대 D2C 카피·숏폼까지 — **작동하는 카피의 12 부품**. 각 프레임이 어떤 인지 회로를 자극하는지 분해.
+시각적 리터러시 = **보는 능력은 학습된다**는 명제의 종합. 역사적 맥락 → 핵심 사상가들 → 구성요소 → 프레임워크와 모델 → 훈련 방법 → 동시대 맥락 → 단계별 도서까지 8장 구조.
 
 ## Part III
-- color: teal
+- color: purple
 - date: 2026-04-20
 - file: reports/03.뇌과학_해마_이야기.html
 - title: 뇌과학 · 해마 · 이야기
@@ -116,185 +116,224 @@ AIDA·PAS·4P부터 현대 D2C 카피·숏폼까지 — **작동하는 카피의
 해마 = **이야기 엔진**. 인간이 사실보다 서사로 사고하는 이유, 디폴트 모드 네트워크·시뮬레이션·미래 일기까지.
 
 ## Part IV
-- color: purple
+- color: dark
+- date: 2026-05-07
+- file: reports/04.신체화_인식_계보.html
+- title: 신체화 인식 계보
+- sub: From Descartes to Merleau-Ponty's Flesh
+- meta: 6 PHASES · 6 THREADS · 10 THINKERS
+
+데카르트의 심신 이원론에서 메를로퐁티의 〈살(la chair)〉, 다마지오의 신체 표지까지 — **인식이 머리에서 몸으로 돌아온 400년**의 계보. 감각일지·시뮬레이션·새 공간 루틴이 사적 취향이 아니라 400년 누적의 보편 도구임을 보인다.
+
+## Part V
+- color: blue
 - date: 2026-04-20
-- file: reports/04.인식과_소통_움벨트.html
+- file: reports/05.인식과_소통_움벨트.html
 - title: 인식과 소통 · 움벨트
 - sub: Same World, Different Umwelten
 - meta: 6 PHASES · 6 THREADS
 
 위크스퀼의 **움벨트**·게슈탈트·예측 부호화. 같은 세상이 사람마다 다르게 인식되는 9 단층, 그리고 카피·디자인의 통과 지점.
 
-## Part V
-- color: blue
-- date: 2026-04-22
-- file: reports/05.현대사상_인식론_계보.html
-- title: 현대사상 인식론 계보
-- sub: 400 Years of Deconstructing the "I"
-- meta: 7 PHASES · 6 THREADS
-
-데카르트 이후 400년 — **"나"가 어떻게 구성되는가**를 해체해온 여정. 칸트·다윈·마르크스·프로이트·게슈탈트·예측 뇌까지 7국면.
-
 ## Part VI
-- color: green
-- date: 2026-04-28
-- file: reports/06.추론의_계보.html
-- title: 추론(Reasoning)의 계보
-- sub: The Cognitive Circuit Behind Editing Sense
-- meta: 6 PHASES · 6 THREADS
-
-가추·유추·은유·환유·베이지안·내러티브 — 에디팅 판단력의 **6 부품 회로**. Peirce·Hofstadter·Lakoff·Kahneman·Bruner·Ginzburg.
-
-## Part VII
 - color: red
 - date: 2026-04-28
-- file: reports/07.시간과_공간의_스키마.html
+- file: reports/06.시간과_공간의_스키마.html
 - title: 시간과 공간의 스키마
 - sub: How Mental Coordinates Were Built
 - meta: 7 PHASES · 6 THREADS
 
 인간이 시간을 공간으로 사고하는 방식 — 칸트·민코프스키·인지언어학·해마 격자세포까지. **좌표가 만들어지는 신경·언어·문화의 결합**.
 
-## Part VIII
+## Part VII
 - color: accent
-- date: 2026-04-29
-- file: reports/08.디자인사_바우하우스_계보.html
-- title: 디자인사 & 바우하우스 계보
-- sub: From Painting to Composition
-- meta: 7 PHASES · 6 THREADS
+- date: 2026-05-07
+- file: reports/07.기억_시간_공간_계보.html
+- title: 기억·시간·공간 계보
+- sub: From Simonides' Palace to the Hippocampus
+- meta: 6 PHASES · 6 THREADS · 10 THINKERS
 
-사진의 등장·인상파·세잔·칸딘스키·말레비치·바우하우스 — **그리기에서 구성하기로** 옮겨간 100년. 한글 모더니즘과의 공명까지.
+시미오니데스의 method of loci(BCE 5C)에서 O'Keefe·Moser의 장소세포·격자세포(2014 노벨상)까지 — **기억이 시간·공간을 한 회로로 묶는 자리**. 아우구스티누스, 베르그송, 후설, 프루스트, 바슐라르가 한 신경 회로의 다른 표현임을 보인다.
+
+## Part VIII
+- color: purple
+- date: 2026-05-07
+- file: reports/08.인간과_기호_기호학_리서치.html
+- title: 인간과 기호 — 기호학 리서치
+- sub: 시각 기호의 보편적 지각 메커니즘
+- meta: 5 PARTS · FRUTIGER × 기호학
+
+Adrian Frutiger의 시선으로 본 **시각 기호의 5층 분석** — 점·선·면의 기호학적 재해석 / 분류 체계 / 묘사에서 추상으로의 진화 / 모든 문명이 같은 기호를 만드는 이유 / 몸이 기호를 읽는 생리학적 기반.
 
 ## Part IX
-- color: dark
-- date: 2026-04-29
-- file: reports/09.타이포그래피_아키타입.html
-- title: 타이포그래피 아키타입
-- sub: Classification → Combination
-- meta: 7 PHASES · 6 THREADS · 8 ARCHETYPES
+- color: accent
+- date: 2026-03
+- file: reports/09.도형_상징_리서치.html
+- title: 도형 상징 리서치
+- sub: 점·선·면·원·방·각의 의미
+- meta: 6 CHAPTERS · 점·선·면·원·방·각
 
-트라야누스 비문에서 K-Hybrid 폰트까지 — 2,000년 글자 양식이 만든 **8 역사적 원형**. 분류가 폐기된 시대의 결합 큐레이션.
+원방각(圓方角) 한국 우주론과 칸딘스키의 점·선·면 — **왜 전 세계가 같은 도형에 같은 의미를 부여하는가**. 6장 구조로 풀어내는 기본 도형의 문화·신화·인지심리학적 보편 상징 체계.
 
 ## Part X
+- color: blue
+- date: 2026-05-07
+- file: reports/10.스키마_유형학.html
+- title: 스키마 유형학
+- sub: 도식적 사고의 완전한 지도
+- meta: SCHEMA TYPOLOGY · 도식 분류
+
+스키마(schema) = 머릿속에서 정보를 잡아두는 골격. **도식적 사고의 유형들을 완전한 지도로** 분류한다. 도식이 인지를 어떻게 단축시키는지의 카탈로그.
+
+## Part XI
+- color: green
+- date: 2026-04-28
+- file: reports/11.추론의_계보.html
+- title: 추론(Reasoning)의 계보
+- sub: The Cognitive Circuit Behind Editing Sense
+- meta: 6 PHASES · 6 THREADS
+
+가추·유추·은유·환유·베이지안·내러티브 — 에디팅 판단력의 **6 부품 회로**. Peirce·Hofstadter·Lakoff·Kahneman·Bruner·Ginzburg.
+
+## Part XII
 - color: accent
 - date: 2026-05-06
-- file: reports/10.수학적_사고의_7가지_동작.html
+- file: reports/12.수학적_사고의_7가지_동작.html
 - title: 수학적 사고의 7가지 동작
 - sub: From Calculation to Cognitive Move
 - meta: 7 MOVES · 6 THREADS · 14 THINKERS
 
 피타고라스에서 그로텐디크까지 — 수학자들이 머릿속에서 실제로 하는 **7가지 사고 동작**(추상화·공리화·일반화·동형사상·불변량·반례·재정의)을 크리에이티브 작업과 페어링.
 
-## Part XI
+## Part XIII
+- color: blue
+- date: 2026-04-22
+- file: reports/13.현대사상_인식론_계보.html
+- title: 현대사상 인식론 계보
+- sub: 400 Years of Deconstructing the "I"
+- meta: 7 PHASES · 6 THREADS
+
+데카르트 이후 400년 — **"나"가 어떻게 구성되는가**를 해체해온 여정. 칸트·다윈·마르크스·프로이트·게슈탈트·예측 뇌까지 7국면.
+
+## Part XIV
 - color: accent
 - date: 2026-05-07
-- file: reports/11.창작자의_9가지_동작.html
+- file: reports/14.창작자의_9가지_동작.html
 - title: 창작자의 9가지 동작
 - sub: From Observing to Reframing
 - meta: 9 MOVES · 6 THREADS · 18 MAKERS
 
-Part X의 거울 짝. Berger·Vignelli·Bresson·Tufte·LeWitt·Anderson·Eames·Eno·Duchamp·Cage 등 18명의 서구 메이커를 통해 — **관찰·추상·압축·패턴화·배치·리듬·결합·큐레이션·재정의** 9가지를 풀어내고, 각 동작에 수학 렌즈를 짝지음.
-
-## Part XII
-- color: dark
-- date: 2026-05-07
-- file: reports/12.신체화_인식_계보.html
-- title: 신체화 인식 계보
-- sub: From Descartes to Merleau-Ponty's Flesh
-- meta: 6 PHASES · 6 THREADS · 10 THINKERS
-
-데카르트의 심신 이원론에서 메를로퐁티의 〈살(la chair)〉, 다마지오의 신체 표지까지 — **인식이 머리에서 몸으로 돌아온 400년**의 계보. Part V 인식론의 같은 인물들(데카르트·스피노자·칸트)을 〈몸 축〉에서 다시 읽고, 감각일지·시뮬레이션·새 공간 루틴이 사적 취향이 아니라 400년 누적의 보편 도구임을 보인다.
-
-## Part XIII
-- color: accent
-- date: 2026-05-07
-- file: reports/13.기억_시간_공간_계보.html
-- title: 기억·시간·공간 계보
-- sub: From Simonides' Palace to the Hippocampus
-- meta: 6 PHASES · 6 THREADS · 10 THINKERS
-
-시미오니데스의 method of loci(BCE 5C)에서 O'Keefe·Moser의 장소세포·격자세포(2014 노벨상)까지 — **기억이 시간·공간을 한 회로로 묶는 자리**. 아우구스티누스의 distentio animi, 베르그송의 두 기억, 후설의 시간 의식 3중, 프루스트의 마들렌, 바슐라르의 공간 시학, 알박스·노라의 집단 기억이 한 신경 회로의 다른 표현임을 보인다. **감각일지·시뮬레이션·새 공간 루틴이 모두 해마의 운동임을 신경과학적으로 정당화.**
-
-## Part XIV
-- color: pink
-- date: 2026-05-07
-- file: reports/14.숏폼_프레임워크.html
-- title: 숏폼·릴스 프레임워크
-- sub: 3초에서 60초까지의 설득 공학
-- meta: 15 FRAMEWORKS · DEEP
-
-3초 후크에서 60초 마무리까지 — **틱톡·릴스·쇼츠 시대의 15개 작동 프레임워크**. Part II 카피라이팅 프레임워크의 영상 자매. 후크 5종(질문·반전·구체·갈등·대비) + 본문 5종(리스트·서사·실험·증명·고백) + 마무리 5종(CTA·여운·반복·전환·확장)을 분해.
+Berger·Vignelli·Bresson·Tufte·LeWitt·Anderson·Eames·Eno·Duchamp·Cage 등 18명의 메이커를 통해 추출한 — **관찰·추상·압축·패턴화·배치·리듬·결합·큐레이션·재정의** 9가지 보편 창작 동작. 각 동작에 수학 렌즈 페어링.
 
 ## Part XV
+- color: accent
+- date: 2026-04-29
+- file: reports/15.디자인사_바우하우스_계보.html
+- title: 디자인사 & 바우하우스 계보
+- sub: From Painting to Composition
+- meta: 7 PHASES · 6 THREADS
+
+사진의 등장·인상파·세잔·칸딘스키·말레비치·바우하우스 — **그리기에서 구성하기로** 옮겨간 100년. 한글 모더니즘과의 공명까지.
+
+## Part XVI
+- color: dark
+- date: 2026-04-29
+- file: reports/16.타이포그래피_아키타입.html
+- title: 타이포그래피 아키타입
+- sub: Classification → Combination
+- meta: 7 PHASES · 6 THREADS · 8 ARCHETYPES
+
+트라야누스 비문에서 K-Hybrid 폰트까지 — 2,000년 글자 양식이 만든 **8 역사적 원형**. 분류가 폐기된 시대의 결합 큐레이션.
+
+## Part XVII
+- color: accent
+- date: 2026-05-07
+- file: reports/17.무카이_디자인학.html
+- title: 무카이 슈타로 〈디자인학〉
+- sub: 13 Constellations Atlas
+- meta: 13 CONSTELLATIONS · 220+ KEYWORDS · DEEP
+
+무카이 슈타로 〈デザイン学〉(1996/2009)의 13 별자리 구조 그대로 — Peirce 애브덕션부터 Ruskin '생의 부'까지, 220+ 독일어·일본어·한국어 키워드와 별자리 간 광선들을 한 평면에 펼친 인지 지도. 제3의 모데르네(아이허 로티스) 명명 + 동서 다리(Furi=Gestus, Trübe=陰翳).
+
+## Part XVIII
+- color: dark
+- date: 2026-05
+- file: reports/18.현대디자인_5국가_계보.html
+- title: 현대디자인 5국가 계보
+- sub: Modern Design · 5 Nations Lineage
+- meta: 5 NATIONS · 15 MAKERS · DEEP
+
+바우하우스 이후 100년 — **유럽·미국·일본·중국·한국 다섯 풍경의 모던 디자인** 계보. 같은 그리드를 받았지만 다른 답을 만든 다섯 나라의 거장 15명 4-블록 분석 + 한글 deep-dive + K-Boom의 5가지 구조적 원인.
+
+## Part XIX
+- color: accent
+- date: 2026-05
+- file: reports/19.한국디자인_다음_10년.html
+- title: 한국 디자인 다음 10년 ★
+- sub: Korean Design · 2026 → 2036
+- meta: 7 SCENARIOS · 5 RISKS · 3 ACTIONS · DEEP
+
+Part 18 5국 계보의 후속. _"한국이 다음 10년의 시각 문법을 쓰고 있을지도 모른다"_를 가설로 두고 푸는 시나리오 지도. **2026년 한국이 손에 쥔 7 자산 + 다음 10년의 7 결정적 질문 + 7 시나리오 + 5 위험 + 3 행동 + 2036 가상 회고 4종**. 양식으로 끝나느냐, 문법으로 도약하느냐의 분기점.
+
+## Part XX
 - color: green
 - date: 2026-05-07
-- file: reports/15.기하학적_드로잉_방법론.html
+- file: reports/20.기하학적_드로잉_방법론.html
 - title: 기하학적 드로잉 방법론
 - sub: 기본 형태로 세상을 그리는 법
 - meta: 3 BASIC FORMS · METHODOLOGY
 
-원·삼각형·사각형 — **세 기본 도형이 모든 형상의 골격**임을 분해하는 드로잉 방법론. 다이어그램 라이브러리(75장) 큐레이션 작업의 사상적 토대. 바우하우스가 색채와 형태로 한 일을, 도형 환원의 시선으로 다시 짠 매뉴얼.
+원·삼각형·사각형 — **세 기본 도형이 모든 형상의 골격**임을 분해하는 드로잉 방법론. 다이어그램 라이브러리(75장) 큐레이션 작업의 사상적 토대.
 
-## Part XVI
-- color: purple
-- date: 2026-05-07
-- file: reports/16.인간과_기호_기호학_리서치.html
-- title: 인간과 기호 — 기호학 리서치
-- sub: 시각 기호의 보편적 지각 메커니즘
-- meta: 5 PARTS · FRUTIGER × 기호학
-
-Adrian Frutiger의 시선으로 본 **시각 기호의 5층 분석** — 점·선·면의 기호학적 재해석 / 분류 체계(Frutiger 유형론 × 기호학) / 묘사에서 추상으로의 진화 / 모든 문명이 같은 기호를 만드는 이유(집단 무의식) / 몸이 기호를 읽는 생리학적 기반. Part I 광고사·기호학과 Part XII 신체화의 교차점.
-
-## Part XVII
-- color: teal
-- date: 2026-05-07
-- file: reports/17.시각적_리터러시_종합_연구.html
-- title: Visual Literacy — 시각적 리터러시
-- sub: 보는 능력의 종합 연구
-- meta: 8 CHAPTERS · 사상가 × 훈련법
-
-시각적 리터러시 = **보는 능력은 학습된다**는 명제의 종합. 역사적 맥락 → 핵심 사상가들 → 구성요소 → 프레임워크와 모델 → 훈련 방법 → 동시대 맥락 → 단계별 도서까지 8장 구조. Part IX(타이포그래피)·Part XV(기하학적 드로잉)와 한 가족.
-
-## Part XVIII
-- color: yellow
-- date: 2026-05-07
-- file: reports/18.색채_질감_교차감각_보편성.html
-- title: 색채·질감·교차감각
-- sub: 감각과 지각의 보편성 리서치
-- meta: 다층 감각 · 보편 메커니즘
-
-시각·청각·촉각·후각·미각이 어떻게 한 풍경에서 만나는가 — **감각의 보편적 작동**과 교차감각(synesthesia)의 메커니즘. Part IV(인식·움벨트)·Part XII(신체화)·Part XVI(기호 지각의 생리학)와 직결되는 감각 축의 종합.
-
-## Part XIX
+## Part XXI
 - color: green
 - date: 2026-05-07
-- file: reports/19.기하학적_조형원리_실무적용.html
+- file: reports/21.기하학적_조형원리_실무적용.html
 - title: 기하학적 조형원리 실무적용
 - sub: 도형에서 작업물로
 - meta: 실무 매뉴얼 · METHODOLOGY → APPLICATION
 
-Part XV(기하학적 드로잉)의 **실무 적용 자매**. 기본 도형의 원리를 실제 작업(포스터·UI·다이어그램·로고 시스템)으로 옮기는 방법론. 시미오니데스의 method of loci(Part XIII)가 시각 디자인의 격자로 들어오는 자리.
+Part 20(드로잉 방법론)의 **실무 적용 자매**. 기본 도형의 원리를 실제 작업(포스터·UI·다이어그램·로고 시스템)으로 옮기는 방법론.
 
-## Part XX
-- color: blue
+## Part XXII
+- color: green
+- date: 2026-03
+- file: reports/22.조형원리_소스아카이브.html
+- title: 조형원리 소스아카이브
+- sub: 5축 소스 인용집
+- meta: 5 AXES · SOURCE ARCHIVE
+
+Part 20·21의 사상적 후방을 받치는 소스 아카이브 — **5축 구조**(바우하우스 교육과정 / 한국 조형원리 계보 / 현대 디자인 시스템 / 에디톨로지 실천 / 윤여경 〈디자인 읽기〉)로 정렬된 인용·발췌·계보 자료집.
+
+## Part XXIII
+- color: yellow
+- date: 2026-04-17
+- file: reports/23.광고사_카피_역사.html
+- title: 광고사 & 카피 역사
+- sub: Advertising · From Myth to Algorithm
+- meta: 5 PHASES · 6 THREADS
+
+신화·종교·산업혁명·매스미디어·디지털·AI까지 — 광고가 **인간을 학습해온 200년**의 사상사. 카피·매체·소비자 인지의 변천.
+
+## Part XXIV
+- color: pink
+- date: 2026-04-18
+- file: reports/24.카피라이팅_프레임워크.html
+- title: 카피라이팅 프레임워크
+- sub: 12 Working Parts of a Copy
+- meta: 5 PHASES · 6 THREADS
+
+AIDA·PAS·4P부터 현대 D2C 카피·숏폼까지 — **작동하는 카피의 12 부품**. 각 프레임이 어떤 인지 회로를 자극하는지 분해.
+
+## Part XXV
+- color: pink
 - date: 2026-05-07
-- file: reports/20.스키마_유형학.html
-- title: 스키마 유형학
-- sub: 도식적 사고의 완전한 지도
-- meta: SCHEMA TYPOLOGY · 도식 분류
+- file: reports/25.숏폼_프레임워크.html
+- title: 숏폼·릴스 프레임워크
+- sub: 3초에서 60초까지의 설득 공학
+- meta: 15 FRAMEWORKS · DEEP
 
-스키마(schema) = 머릿속에서 정보를 잡아두는 골격. **도식적 사고의 유형들을 완전한 지도로** 분류한다. Part VII(시공간 스키마)·Part XIII(기억 격자) 위에서, 도식이 인지를 어떻게 단축시키는지의 카탈로그.
-
-## Part XXI
-- color: accent
-- date: 2026-05-07
-- file: reports/21.무카이_디자인학.html
-- title: 무카이 슈타로 〈디자인학〉
-- sub: 13 Constellations Atlas
-- meta: 13 CONSTELLATIONS · 220+ KEYWORDS · DEEP
-- star: true
-
-무카이 슈타로 〈デザイン学〉(1996/2009)의 13 별자리 구조를 그대로 따라가며 — Peirce 애브덕션부터 Ruskin '생의 부'까지, 220+ 독일어·일본어·한국어 키워드와 별자리 간 광선들을 한 평면에 펼친 인지 지도. **책의 형식이 곧 책의 명제** — "디자인학 = 흩어진 개념을 별자리처럼 잇는 일." 제3의 모데르네(아이허 로티스) 명명 + 동서 다리(Furi=Gestus, Trübe=陰翳) 시각화. Part VIII(바우하우스)·Part IX(타이포)의 동쪽 확장.
+3초 후크에서 60초 마무리까지 — **틱톡·릴스·쇼츠 시대의 15개 작동 프레임워크**. 후크 5종 + 본문 5종 + 마무리 5종.
 
 ---
 
