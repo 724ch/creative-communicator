@@ -28,8 +28,12 @@
   .hero h1 em { font-style: normal; color: var(--accent); }
   .hero-tagline { font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(18px, 2vw, 24px); color: var(--text-soft); margin-top: 12px; line-height: 1.5; }
   .hero-lead { max-width: 720px; font-size: 16px; color: var(--text-soft); line-height: 1.85; font-weight: 300; margin-top: 44px; }
+  .hero-lead p { margin-bottom: 1.4em; }
+  .hero-lead p:last-child { margin-bottom: 0; }
   .hero-lead strong { color: var(--text); font-weight: 600; }
   .hero-lead em { font-style: italic; color: var(--text); }
+  .hero-diagram { max-width: 720px; margin: 8px 0 48px; padding: 32px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .hero-diagram svg { width: 100%; height: auto; max-width: 720px; display: block; margin: 0 auto; }
   .hero-meta { margin-top: 96px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; padding-top: 32px; border-top: 1px solid var(--border); }
   .hero-meta .label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.25em; color: var(--text-dim); text-transform: uppercase; margin-bottom: 8px; }
   .hero-meta .value { font-size: 17px; font-weight: 700; color: var(--text); }
@@ -154,7 +158,7 @@
     <div class="hero-kicker">{{HERO_KICKER}}</div>
     <h1>{{HERO_H1}}</h1>
     <p class="hero-tagline">{{HERO_TAGLINE}}</p>
-    <p class="hero-lead">{{HERO_LEAD}}</p>
+    <div class="hero-lead">{{HERO_LEAD}}</div>
     <div class="hero-meta">
       <div><div class="label">Duration</div><div class="value">{{META_DURATION}}</div></div>
       <div><div class="label">Span</div><div class="value">{{META_SPAN}}</div></div>

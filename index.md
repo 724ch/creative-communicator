@@ -1,22 +1,53 @@
 ---
-title: Creative Communicator · Lineage Series Index
-hero_kicker: CREATIVE COMMUNICATOR · LINEAGE SERIES · 2026
-hero_tagline: A 25-part lineage of the creative mind — from Roman inscriptions to AI typography
+title: Creative Communicator · Archive Sense Laboratory
+hero_kicker: ARCHIVE SENSE · LABORATORY · 2026~
+hero_tagline: An archive in search of better language for human connection
 meta_duration: 25 Deep Reports
 meta_span: 2026-04-17 → ongoing
 meta_format: ~150 KB · 11 sections each
 meta_author: 정찬휘 · Chanhwi Jeong
 footer_copy: © 2026 · 정찬휘 (Chanhwi Jeong) · Creative Communicator Series
-footer_version: INDEX · v1.0 · 2026-04-29
+footer_version: INDEX · v1.1 · 2026-05-08
 ---
 
 # HERO
 
 ## H1
-인간이 인간에게<br/>메시지를 닿게 만드는 일,<br/><em>그 인지 회로의 계보</em>
+더 나은 소통의 언어를 찾아서,<br/><em>연결감을 향한 아카이브</em>
 
 ## Lead
-**크리에이티브 커뮤니케이터**는 디자인·카피라이팅·에디토리얼 세 축을 가진 한 사람의 정체성이다. 이 시리즈는 그 정체성의 **인지 회로를 사상사로 거슬러 추적**한다. 광고사·뇌과학·인식론·추론·디자인사·타이포그래피까지 — 다른 분야로 보이지만 한 가지 질문에 답한다: *"인간이 인간에게 메시지를 닿게 만드는 일은 어떻게 작동하는가?"*
+<div class="hero-diagram">
+<svg viewBox="0 0 800 340" xmlns="http://www.w3.org/2000/svg" font-family="'Noto Sans KR', sans-serif" fill="#1a1a1a">
+  <circle cx="160" cy="140" r="72" fill="rgba(217,96,31,0.06)" stroke="#1a1a1a" stroke-width="1.8"/>
+  <polygon points="160,106 128,166 192,166" fill="#d9601f"/>
+  <text x="160" y="240" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="3" fill="#807e7a">안 · INNER</text>
+  <text x="160" y="263" text-anchor="middle" font-size="13" font-weight="700">발화자</text>
+
+  <line x1="245" y1="140" x2="325" y2="140" stroke="#807e7a" stroke-width="1.5"/>
+  <path d="M 325 140 L 316 134 M 325 140 L 316 146" stroke="#807e7a" stroke-width="1.5" fill="none"/>
+
+  <rect x="340" y="92" width="120" height="96" fill="rgba(217,96,31,0.12)" stroke="#1a1a1a" stroke-width="1.8"/>
+  <text x="400" y="240" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="3" fill="#807e7a">박 · OUTER</text>
+  <text x="400" y="263" text-anchor="middle" font-size="13" font-weight="700">매개 · 언어</text>
+
+  <line x1="475" y1="140" x2="555" y2="140" stroke="#807e7a" stroke-width="1.5"/>
+  <path d="M 555 140 L 546 134 M 555 140 L 546 146" stroke="#807e7a" stroke-width="1.5" fill="none"/>
+
+  <circle cx="640" cy="140" r="72" fill="rgba(217,96,31,0.06)" stroke="#1a1a1a" stroke-width="1.8"/>
+  <polygon points="608,114 672,114 640,174" fill="#d9601f"/>
+  <text x="640" y="240" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="3" fill="#807e7a">안 · INNER</text>
+  <text x="640" y="263" text-anchor="middle" font-size="13" font-weight="700">수신자</text>
+
+  <line x1="400" y1="188" x2="400" y2="298" stroke="#807e7a" stroke-width="0.8" stroke-dasharray="3,3"/>
+  <text x="400" y="318" text-anchor="middle" font-size="14" font-style="italic" fill="#d9601f">연결감</text>
+</svg>
+</div>
+
+<p>기술도, 표현도, 매체도 빠르게 바뀐다. 그러나 그 변화에 대응할 때 중심을 잡아주는 것은 — 결국 변하지 않는 것이어야 한다. 내가 변하지 않는다고 믿는 것은 〈사람〉과 〈느낌〉이다. 설득하고, 감정을 이끌어내고, 인식과 태도의 변화를 만들어 가치와 만족을 건네야 하는 대상은 결국 사람이기 때문이다. 사람이 어떻게 느끼고 어떻게 생각하는지의 보편적 경향성을 이해하면 — 매번 바뀌는 매체 앞에서도 같은 기준으로 선택할 수 있게 된다.</p>
+
+<p>크리에이티브는 내 안에 있는 것을 밖으로 꺼내는 일.<br/>커뮤니케이션은 그것이 다른 사람 안까지 닿을 수 있도록 소통하는 일.<br/>이 회로가 원활하게 작동할 때 사람과 사람 사이에 〈연결감〉이 생겨난다 — 그게 내가 정의하는 〈크리에이티브 커뮤니케이터〉다.</p>
+
+<p>이 시리즈는 그 정의를 25개 영역에서 풀어낸 노트다. 감각·인식의 보편성(Part 1–14)에서 시작해, 디자인·매체·실무의 응용(Part 15–25)으로 흐른다. 〈아카이브 센스(Archive Sense)〉라는 더 큰 작업의 한 갈래로 — 나만의 지식 체계와 생각의 모델링을 짓는 실험실이자 보관소다. 매번 갱신되며, 완결된 결론보다는 다음 질문을 부르는 자리.</p>
 
 ---
 
