@@ -1,0 +1,2854 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>인지의 위계와 편집의 자리 — 데이터에서 지혜까지, 그리고 그 사이를 만지는 손 · Part V</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fdfcfa; --bg-2: #f4f1ec; --bg-card: #ffffff; --bg-card-2: #f8f6f1; --bg-code: #f4f1ec;
+    --text: #1a1a1a; --text-soft: #4a4845; --text-dim: #807e7a; --text-faint: #c4c2bd;
+    --accent: #d9601f; --accent-2: #e07530; --accent-dim: #b54e15;
+    --teal: #2e8a7c; --teal-dim: #1f5e54;
+    --green: #4a8e4a; --purple: #7e5a98; --pink: #c25787; --blue: #4a72a8; --yellow: #b8954a; --red: #c14638;
+    --border: rgba(0,0,0,0.10); --border-2: rgba(0,0,0,0.16); --rule: rgba(0,0,0,0.12);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', -apple-system, sans-serif; font-weight: 400; line-height: 1.75; -webkit-font-smoothing: antialiased; }
+  a { color: var(--accent); text-decoration: none; }
+
+  .hero { padding: 110px 60px 140px; position: relative; overflow: hidden; border-bottom: 1px solid var(--border); }
+  .hero-inner { max-width: 1120px; margin: 0 auto; position: relative; }
+  .hero-kicker { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.35em; color: var(--text-dim); margin-bottom: 80px; }
+  .hero h1 { font-family: 'Noto Sans KR', sans-serif; font-weight: 900; font-size: clamp(40px, 5.5vw, 72px); line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 20px; }
+  .hero h1 em { font-style: normal; color: var(--accent); }
+  .hero-lead { max-width: 720px; font-size: 16px; color: var(--text-soft); line-height: 1.85; font-weight: 300; margin-top: 36px; }
+  .hero-lead strong { color: var(--text); font-weight: 500; }
+  .hero-meta { margin-top: 120px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; padding-top: 32px; border-top: 1px solid var(--border); }
+  .hero-meta .label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.25em; color: var(--text-dim); text-transform: uppercase; margin-bottom: 8px; }
+  .hero-meta .value { font-size: 17px; font-weight: 700; color: var(--text); }
+
+  nav.sticky { position: sticky; top: 0; background: rgba(253,252,250,0.92); backdrop-filter: blur(18px); border-bottom: 1px solid var(--border); z-index: 50; padding: 14px 60px; }
+  nav .nav-inner { max-width: 1120px; margin: 0 auto; display: flex; gap: 24px; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; }
+  nav a { color: var(--text-dim); white-space: nowrap; padding: 4px 0; border-bottom: 1px solid transparent; transition: all 0.2s; }
+  nav a:hover { color: var(--accent); }
+
+  section { padding: 100px 60px; position: relative; }
+  .container { max-width: 1120px; margin: 0 auto; }
+  .sec-header { margin-bottom: 56px; display: flex; align-items: flex-start; gap: 32px; }
+  .sec-num { font-family: 'JetBrains Mono', monospace; font-size: 56px; font-weight: 700; color: var(--text-faint); line-height: 1; letter-spacing: -0.02em; flex-shrink: 0; }
+  .sec-num.star { color: var(--accent); }
+  .sec-title-wrap { flex: 1; padding-top: 8px; }
+  h2 { font-family: 'Noto Sans KR', sans-serif; font-weight: 900; font-size: clamp(28px, 3.6vw, 44px); line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 16px; color: var(--text); }
+  h2 em { font-style: normal; color: var(--accent); }
+  .sec-sub { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.2em; color: var(--text-dim); text-transform: uppercase; margin-top: 6px; margin-bottom: 22px; }
+  .sec-lead { font-size: 16px; color: var(--text-soft); max-width: 800px; line-height: 1.85; font-weight: 300; }
+  .sec-lead strong { color: var(--text); font-weight: 600; }
+
+  .intro-why { background: var(--bg-card); border: 1px solid var(--border); padding: 36px 40px; margin-top: 32px; }
+  .intro-why h3 { font-size: 18px; font-weight: 700; margin-bottom: 14px; color: var(--text); }
+  .intro-why h3 span { color: var(--accent); font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; margin-right: 10px; }
+  .intro-why p { font-size: 14px; color: var(--text-soft); line-height: 1.8; margin-bottom: 10px; }
+
+  .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
+  .compare-card { background: var(--bg-card); border: 1px solid var(--border); padding: 32px 32px; }
+  .compare-card h4 { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 14px; }
+  .compare-card.old h4 { color: var(--text-dim); }
+  .compare-card.new h4 { color: var(--accent); }
+  .compare-card .punch { font-size: 19px; font-weight: 700; margin-bottom: 14px; line-height: 1.4; }
+  .compare-card.new .punch { color: var(--accent-2); }
+  .compare-card p { font-size: 14px; color: var(--text-soft); line-height: 1.75; margin-bottom: 8px; }
+
+  .map-block { background: var(--bg-card); border: 1px solid var(--border); padding: 44px; margin-top: 40px; }
+  .map-cap { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--text-dim); margin-top: 14px; text-align: center; text-transform: uppercase; }
+
+  .phase-hero { background: var(--bg-card); border: 1px solid var(--border); border-left: 4px solid var(--accent); padding: 40px 44px; margin-top: 48px; margin-bottom: 44px; }
+  .phase-hero.teal { border-left-color: var(--teal); }
+  .phase-hero.purple { border-left-color: var(--purple); }
+  .phase-hero.green { border-left-color: var(--green); }
+  .phase-hero.pink { border-left-color: var(--pink); }
+  .phase-hero.blue { border-left-color: var(--blue); }
+  .phase-hero.yellow { border-left-color: var(--yellow); }
+  .phase-era { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.25em; color: var(--text-dim); margin-bottom: 10px; }
+  .phase-era .star { color: var(--accent); margin-left: 8px; font-weight: 700; }
+  .phase-hero h3 { font-size: 26px; font-weight: 800; line-height: 1.3; margin-bottom: 14px; letter-spacing: -0.01em; }
+  .phase-hero h3 em { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; color: var(--accent); }
+  .phase-hero p { font-size: 15px; color: var(--text-soft); line-height: 1.8; margin-bottom: 10px; }
+  .phase-q { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-dim); margin-top: 24px; padding-top: 22px; border-top: 1px dashed var(--border-2); letter-spacing: 0.05em; line-height: 1.7; }
+  .phase-q strong { color: var(--accent-2); }
+
+  .thinker { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--accent); margin-bottom: 28px; overflow: hidden; box-shadow: 0 1px 2px rgba(0,0,0,0.03); }
+  .thinker.teal { border-left-color: var(--teal); }
+  .thinker.purple { border-left-color: var(--purple); }
+  .thinker.green { border-left-color: var(--green); }
+  .thinker.pink { border-left-color: var(--pink); }
+  .thinker.blue { border-left-color: var(--blue); }
+  .thinker.yellow { border-left-color: var(--yellow); }
+  .thinker.red { border-left-color: var(--red); }
+  .thinker-top { padding: 28px 36px 22px; display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: start; border-bottom: 1px solid var(--border); }
+  .thinker-id { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+  .thinker-name { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--text); letter-spacing: -0.01em; }
+  .thinker-ko { font-size: 15px; color: var(--text-dim); font-weight: 400; }
+  .thinker-years { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-dim); letter-spacing: 0.15em; }
+  .thinker-tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; padding: 6px 12px; background: rgba(217,96,31,0.10); color: var(--accent); text-transform: uppercase; white-space: nowrap; align-self: start; border: 1px solid rgba(217,96,31,0.28); }
+  .thinker.teal .thinker-tag { background: rgba(46,138,124,0.10); color: var(--teal); border-color: rgba(46,138,124,0.28); }
+  .thinker.purple .thinker-tag { background: rgba(126,90,152,0.10); color: var(--purple); border-color: rgba(126,90,152,0.28); }
+  .thinker.green .thinker-tag { background: rgba(74,142,74,0.10); color: var(--green); border-color: rgba(74,142,74,0.28); }
+  .thinker.pink .thinker-tag { background: rgba(194,87,135,0.10); color: var(--pink); border-color: rgba(194,87,135,0.28); }
+  .thinker.blue .thinker-tag { background: rgba(74,114,168,0.10); color: var(--blue); border-color: rgba(74,114,168,0.28); }
+  .thinker.yellow .thinker-tag { background: rgba(184,149,74,0.10); color: var(--yellow); border-color: rgba(184,149,74,0.28); }
+  .thinker-punch { grid-column: 1 / -1; margin-top: 8px; font-size: 17px; font-weight: 600; color: var(--text); line-height: 1.5; letter-spacing: -0.005em; }
+  .thinker-punch em { font-style: normal; color: var(--accent-2); font-weight: 700; }
+  .thinker.teal .thinker-punch em { color: var(--teal); }
+  .thinker.purple .thinker-punch em { color: var(--purple); }
+  .thinker.green .thinker-punch em { color: var(--green); }
+  .thinker.pink .thinker-punch em { color: var(--pink); }
+  .thinker.blue .thinker-punch em { color: var(--blue); }
+  .thinker.yellow .thinker-punch em { color: var(--yellow); }
+  .thinker-body { padding: 32px 36px 36px; }
+  .block { margin-bottom: 36px; }
+  .block:last-child { margin-bottom: 0; }
+  .block-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.25em; color: var(--accent); text-transform: uppercase; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+  .block-label::before { content: ''; width: 18px; height: 1px; background: var(--accent); }
+  .thinker.teal .block-label { color: var(--teal); } .thinker.teal .block-label::before { background: var(--teal); }
+  .thinker.purple .block-label { color: var(--purple); } .thinker.purple .block-label::before { background: var(--purple); }
+  .thinker.green .block-label { color: var(--green); } .thinker.green .block-label::before { background: var(--green); }
+  .thinker.pink .block-label { color: var(--pink); } .thinker.pink .block-label::before { background: var(--pink); }
+  .thinker.blue .block-label { color: var(--blue); } .thinker.blue .block-label::before { background: var(--blue); }
+  .thinker.yellow .block-label { color: var(--yellow); } .thinker.yellow .block-label::before { background: var(--yellow); }
+  .block p { font-size: 14.5px; color: var(--text-soft); line-height: 1.85; margin-bottom: 10px; }
+  .block p strong { color: var(--text); font-weight: 600; }
+
+  .schema { background: var(--bg-code); border: 1px solid var(--border); padding: 28px 32px; margin: 22px 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.9; color: var(--text-soft); white-space: pre; overflow-x: auto; }
+  .schema-cap { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-dim); letter-spacing: 0.15em; margin-top: 8px; text-align: right; }
+
+  .influence { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 14px; }
+  .inf-item { padding: 16px 18px; background: var(--bg-card-2); border-left: 2px solid var(--accent); }
+  .thinker.teal .inf-item { border-left-color: var(--teal); }
+  .thinker.purple .inf-item { border-left-color: var(--purple); }
+  .thinker.green .inf-item { border-left-color: var(--green); }
+  .thinker.pink .inf-item { border-left-color: var(--pink); }
+  .thinker.blue .inf-item { border-left-color: var(--blue); }
+  .thinker.yellow .inf-item { border-left-color: var(--yellow); }
+  .inf-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--text-dim); text-transform: uppercase; margin-bottom: 6px; }
+  .inf-body { font-size: 13px; color: var(--text-soft); line-height: 1.65; }
+  .inf-body strong { color: var(--text); }
+
+  .echo { background: rgba(217,96,31,0.06); border: 1px solid rgba(217,96,31,0.20); padding: 22px 26px; margin-top: 18px; }
+  .thinker.teal .echo { background: rgba(46,138,124,0.07); border-color: rgba(46,138,124,0.22); }
+  .thinker.purple .echo { background: rgba(126,90,152,0.07); border-color: rgba(126,90,152,0.22); }
+  .thinker.green .echo { background: rgba(74,142,74,0.07); border-color: rgba(74,142,74,0.22); }
+  .thinker.pink .echo { background: rgba(194,87,135,0.07); border-color: rgba(194,87,135,0.22); }
+  .thinker.blue .echo { background: rgba(74,114,168,0.07); border-color: rgba(74,114,168,0.22); }
+  .thinker.yellow .echo { background: rgba(184,149,74,0.07); border-color: rgba(184,149,74,0.22); }
+  .echo-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.25em; color: var(--accent); text-transform: uppercase; margin-bottom: 8px; }
+  .thinker.teal .echo-label { color: var(--teal); }
+  .thinker.purple .echo-label { color: var(--purple); }
+  .thinker.green .echo-label { color: var(--green); }
+  .thinker.pink .echo-label { color: var(--pink); }
+  .thinker.blue .echo-label { color: var(--blue); }
+  .thinker.yellow .echo-label { color: var(--yellow); }
+  .echo-body { font-size: 14px; color: var(--text); line-height: 1.7; }
+
+  .quote { margin: 16px 0; padding: 14px 0 14px 20px; border-left: 3px solid var(--accent-dim); font-family: 'Nanum Myeongjo', serif; font-style: italic; font-size: 16px; color: var(--text); line-height: 1.7; }
+  .quote-src { display: block; margin-top: 8px; font-family: 'JetBrains Mono', monospace; font-style: normal; font-size: 10px; color: var(--text-dim); letter-spacing: 0.15em; }
+
+  .concepts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .concept-chip { font-family: 'JetBrains Mono', monospace; font-size: 11px; padding: 6px 12px; background: var(--bg-card-2); border: 1px solid var(--border); color: var(--text-soft); letter-spacing: 0.02em; }
+  .concept-chip strong { color: var(--accent); font-weight: 600; margin-right: 6px; }
+  .thinker.teal .concept-chip strong { color: var(--teal); }
+  .thinker.purple .concept-chip strong { color: var(--purple); }
+  .thinker.green .concept-chip strong { color: var(--green); }
+  .thinker.pink .concept-chip strong { color: var(--pink); }
+  .thinker.blue .concept-chip strong { color: var(--blue); }
+  .thinker.yellow .concept-chip strong { color: var(--yellow); }
+
+  .threads-intro { background: var(--bg-card); border: 1px solid var(--border); padding: 32px 36px; margin-top: 28px; }
+  .threads-intro p { font-size: 15px; color: var(--text-soft); line-height: 1.8; }
+  .threads-intro p strong { color: var(--accent); }
+  .threads-viz { background: var(--bg-card); border: 1px solid var(--border); padding: 40px; margin-top: 24px; overflow-x: auto; }
+  .threads-viz svg { width: 100%; min-width: 900px; height: auto; display: block; }
+  .thread-detail { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--accent); padding: 28px 32px; margin-top: 20px; }
+  .thread-detail.t1 { border-left-color: var(--teal); }
+  .thread-detail.t2 { border-left-color: var(--purple); }
+  .thread-detail.t3 { border-left-color: var(--accent); }
+  .thread-detail.t4 { border-left-color: var(--yellow); }
+  .thread-detail.t5 { border-left-color: var(--blue); }
+  .thread-detail.t6 { border-left-color: var(--green); }
+  .thread-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 10px; flex-wrap: wrap; }
+  .thread-head .num { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: var(--text-dim); }
+  .thread-head h4 { font-size: 20px; font-weight: 800; color: var(--text); }
+  .thread-chain { font-family: 'Playfair Display', serif; font-style: italic; font-size: 14px; color: var(--text-soft); margin-bottom: 14px; line-height: 1.5; }
+  .thread-body { font-size: 14px; color: var(--text-soft); line-height: 1.8; }
+  .thread-body strong { color: var(--text); }
+
+  .oneline { padding: 140px 60px; text-align: center; position: relative; overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .oneline::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(217,96,31,0.08), transparent 60%); }
+  .oneline-inner { max-width: 900px; margin: 0 auto; position: relative; }
+  .oneline-k { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.4em; color: var(--accent); margin-bottom: 36px; }
+  .oneline-main { font-size: clamp(22px, 2.8vw, 32px); font-weight: 700; line-height: 1.5; color: var(--text); }
+  .oneline-main em { font-style: normal; color: var(--accent); }
+  .oneline-sig { margin-top: 44px; font-family: 'Playfair Display', serif; font-style: italic; color: var(--text-soft); font-size: 16px; line-height: 1.7; }
+
+  .app-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
+  .app-card { background: var(--bg-card); border: 1px solid var(--border); padding: 28px 30px; }
+  .app-card .tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.25em; color: var(--accent); text-transform: uppercase; margin-bottom: 12px; }
+  .app-card h4 { font-size: 18px; font-weight: 800; margin-bottom: 12px; line-height: 1.4; }
+  .app-card ul { list-style: none; padding: 0; }
+  .app-card li { font-size: 13px; color: var(--text-soft); padding: 6px 0; border-bottom: 1px dashed var(--border); line-height: 1.6; }
+  .app-card li:last-child { border-bottom: none; }
+  .app-card li::before { content: '▸ '; color: var(--accent); margin-right: 4px; }
+
+  footer { background: var(--bg-2); padding: 70px 60px 40px; border-top: 1px solid var(--border); }
+  footer .inner { max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 56px; }
+  footer h4 { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.25em; color: var(--accent); text-transform: uppercase; margin-bottom: 18px; }
+  footer p, footer li { font-size: 13px; color: var(--text-soft); line-height: 1.8; }
+  footer p strong { color: var(--text); }
+  footer ul { list-style: none; }
+  footer li { padding: 3px 0; }
+  footer li::before { content: '— '; color: var(--text-dim); }
+  footer .colophon { max-width: 1120px; margin: 52px auto 0; padding-top: 24px; border-top: 1px solid var(--border); font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--text-dim); display: flex; justify-content: space-between; }
+
+  @media (max-width: 960px) {
+    .hero, section, footer, nav.sticky { padding-left: 28px; padding-right: 28px; }
+    .sec-header { flex-direction: column; gap: 12px; }
+    .sec-num { font-size: 42px; }
+    .hero-meta { grid-template-columns: 1fr 1fr; }
+    .compare-grid { grid-template-columns: 1fr; gap: 20px; }
+    .app-grid, .influence { grid-template-columns: 1fr; }
+    footer .inner { grid-template-columns: 1fr; gap: 32px; }
+    .thinker-top { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-kicker">COGNITIVE HIERARCHY & THE EDITOR'S SEAT · PART V · 2026</div>
+    <h1>데이터에서 지혜까지,<br/>그 사이를 <em>만지는 손</em></h1>
+    <p class="hero-lead">
+      편집은 빈 종이에 글을 쓰는 일이 아니다. 이미 어딘가 흘러가는 큰 흐름의 한 구간에 손을 얹고, 무엇을 덜어내고 무엇을 더할지 결정하는 일이다. 그 흐름의 이름이 <strong>인지의 위계</strong>다.
+      데이터·신호·잡음·정보·지식·지혜가 한 줄로 정렬되고, 그 옆에 감각·지각·인지·인식·심상·상상·해석·추론이 평행하게 흐른다. 편집자는 그 위계의 어느 한 단을 만진다. 어느 단을 만지는지 모르면, 자기가 무엇을 하고 있는지 모르는 채로 일한다.
+    </p>
+    <div class="hero-meta">
+      <div><div class="label">Span</div><div class="value">19C → 2025 · 약 170년</div></div>
+      <div><div class="label">Phases</div><div class="value">8 Layers · 21 Thinkers</div></div>
+      <div><div class="label">Threads</div><div class="value">6 Cross-Strands</div></div>
+      <div><div class="label">Series</div><div class="value">Part V · Creative Communicator</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ NAV ============ -->
+<nav class="sticky">
+  <div class="nav-inner">
+    <a href="#intro">00 · 들어가며</a>
+    <a href="#map">01 · 위계 지도</a>
+    <a href="#p1">02 · 정보의 위계</a>
+    <a href="#p2">03 · 암묵과 명시</a>
+    <a href="#p3">04 · 감각의 입구</a>
+    <a href="#p4">05 · 지각의 구성</a>
+    <a href="#p5">06 · 인지·인식·느낌</a>
+    <a href="#p6">07 · 심상·기억·상상</a>
+    <a href="#p7">08 · 해석·이해·추론</a>
+    <a href="#p8">09 · 편집의 자리 ★</a>
+    <a href="#threads">10 · 6 스레드</a>
+    <a href="#now">11 · 오늘의 적용</a>
+  </div>
+</nav>
+
+<!-- ============ 00 · INTRO ============ -->
+<section id="intro">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">00</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">WHY THIS LINEAGE</div>
+        <h2>왜 <em>위계의 지도</em>가 필요한가</h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      에디터로 일하다 보면 같은 단어가 자리에 따라 다른 일을 한다는 걸 느낀다. 어제는 "정보"가 부족했고, 오늘은 "정보"가 너무 많고, 내일은 "정보"를 "지식"으로 옮기는 작업을 한다. <strong>정보·데이터·신호·지식·지혜</strong>가 각자 다른 일이라는 걸 머리는 알지만, 작업의 순간에는 자주 한 덩어리로 뭉친다.
+      뭉친 채로 일하면 무엇을 만지는지 모른다. 편집의 자기 인식은, 그 위계를 한 번 펼쳐놓고 매번 어느 단에 있는지 확인할 수 있는 지도를 손에 쥐는 일이다.
+    </p>
+
+    <div class="intro-why">
+      <h3><span>CORE QUESTION</span>이 계보가 답하려는 하나의 질문</h3>
+      <p><strong style="color:var(--text)">"창조를 위한 편집을 더 잘하려면, 사람이 어떻게 느끼고 생각하는지를 어디까지 알아야 하는가?"</strong></p>
+      <p>이 질문은 두 줄기로 나뉜다. 한쪽은 <strong>정보가 어떻게 위계화되는가</strong>(데이터→정보→지식→지혜). 다른 쪽은 <strong>인간이 그 위계를 어떻게 받아 처리하는가</strong>(감각→지각→인지→인식, 심상→기억→상상, 해석→이해→추론). 두 줄기가 평행하게 흐르다가 마지막에 한 자리에서 만난다. 그 자리가 편집의 자리다.</p>
+      <p>Shannon이 신호와 잡음을 분리한 1948년에서, 우리가 매일 다루는 카피·인터뷰·큐레이션 작업까지 약 80년. 이 사이에 정보이론, 인지심리학, 현상학, 예측 부호화, 편집공학이 같은 위계를 다른 언어로 그렸다. <strong style="color:var(--accent-2)">편집은 그 위계의 어느 단에 무엇을 더하거나 빼는 결정</strong>이다.</p>
+    </div>
+
+    <div class="compare-grid">
+      <div class="compare-card old">
+        <h4>— 위계를 모를 때</h4>
+        <div class="punch">편집이 "글 다듬기"로 작아진다</div>
+        <p>오탈자와 문장 흐름만 손본다. 내용은 그대로 두고 표면을 정리한다. 일이 끝나도 자기가 무엇을 한 건지 한 줄로 말하기 어렵다. "느낌이 더 좋아졌다" 같은 모호한 표현이 결과 보고서가 된다.</p>
+      </div>
+      <div class="compare-card new">
+        <h4>— 위계 위에서 편집할 때</h4>
+        <div class="punch">편집은 위계 사이의 이동이 된다</div>
+        <p>"이 카피는 데이터에 머물러 있다, 정보로 옮겨야 한다." "이 인터뷰는 정보가 많지만 지식이 없다, 한 명제로 묶어야 한다." 일을 한 줄로 말할 수 있고, 다음 작업의 방향이 자동으로 따라온다. 자기가 무엇을 만지고 있는지 안다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 01 · MAP ============ -->
+<section id="map" style="background:var(--bg-2);">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">01</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">THE MAP</div>
+        <h2>두 개의 위계가 <em>평행</em>하게 흐른다</h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      이 리포트의 한 장 요약. 왼쪽에 정보의 위계가, 오른쪽에 인지의 위계가 흐른다. 둘은 한 단 한 단 마주 본다. 편집은 그 두 줄기 사이를 가로지르며 일한다.
+    </p>
+
+    <div class="map-block">
+      <svg viewBox="0 0 1000 720" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; max-width: 1000px; display: block; margin: 0 auto;" font-family="'Noto Sans KR', sans-serif" fill="#1a1a1a">
+        <!-- columns -->
+        <text x="200" y="36" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="12" letter-spacing="3" fill="#d9601f" font-weight="700">INFORMATION HIERARCHY</text>
+        <text x="200" y="58" text-anchor="middle" font-size="13" fill="#807e7a">바깥 세계의 위계</text>
+
+        <text x="600" y="36" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="12" letter-spacing="3" fill="#2e8a7c" font-weight="700">COGNITIVE HIERARCHY</text>
+        <text x="600" y="58" text-anchor="middle" font-size="13" fill="#807e7a">안쪽 마음의 위계</text>
+
+        <!-- vertical guide lines -->
+        <line x1="200" y1="80" x2="200" y2="640" stroke="#c4c2bd" stroke-dasharray="2,4"/>
+        <line x1="600" y1="80" x2="600" y2="640" stroke="#c4c2bd" stroke-dasharray="2,4"/>
+
+        <!-- L0 ROW · Signal / Sensation -->
+        <rect x="80" y="90" width="240" height="58" fill="#fff" stroke="#d9601f" stroke-width="1.5" rx="3"/>
+        <text x="200" y="115" text-anchor="middle" font-size="14" font-weight="700">SIGNAL · 신호</text>
+        <text x="200" y="135" text-anchor="middle" font-size="11" fill="#807e7a">잡음에서 골라낸 차이</text>
+
+        <rect x="480" y="90" width="240" height="58" fill="#fff" stroke="#2e8a7c" stroke-width="1.5" rx="3"/>
+        <text x="600" y="115" text-anchor="middle" font-size="14" font-weight="700">SENSATION · 감각</text>
+        <text x="600" y="135" text-anchor="middle" font-size="11" fill="#807e7a">신체가 닿는 입구</text>
+
+        <line x1="320" y1="119" x2="480" y2="119" stroke="#1a1a1a" stroke-width="1.2" stroke-dasharray="4,3"/>
+        <path d="M 320 119 L 328 114 M 320 119 L 328 124" stroke="#1a1a1a" stroke-width="1.2" fill="none"/>
+        <path d="M 480 119 L 472 114 M 480 119 L 472 124" stroke="#1a1a1a" stroke-width="1.2" fill="none"/>
+
+        <!-- L1 ROW · Data / Perception -->
+        <rect x="80" y="180" width="240" height="58" fill="#fff" stroke="#d9601f" stroke-width="1.5" rx="3"/>
+        <text x="200" y="205" text-anchor="middle" font-size="14" font-weight="700">DATA · 데이터</text>
+        <text x="200" y="225" text-anchor="middle" font-size="11" fill="#807e7a">신호를 기록·정렬한 흔적</text>
+
+        <rect x="480" y="180" width="240" height="58" fill="#fff" stroke="#2e8a7c" stroke-width="1.5" rx="3"/>
+        <text x="600" y="205" text-anchor="middle" font-size="14" font-weight="700">PERCEPTION · 지각</text>
+        <text x="600" y="225" text-anchor="middle" font-size="11" fill="#807e7a">감각을 형태로 묶음</text>
+
+        <line x1="320" y1="209" x2="480" y2="209" stroke="#1a1a1a" stroke-width="1.2" stroke-dasharray="4,3"/>
+        <path d="M 320 209 L 328 204 M 320 209 L 328 214" stroke="#1a1a1a" stroke-width="1.2" fill="none"/>
+        <path d="M 480 209 L 472 204 M 480 209 L 472 214" stroke="#1a1a1a" stroke-width="1.2" fill="none"/>
+
+        <!-- L2 ROW · Information / Cognition -->
+        <rect x="80" y="270" width="240" height="58" fill="rgba(217,96,31,0.08)" stroke="#d9601f" stroke-width="1.5" rx="3"/>
+        <text x="200" y="295" text-anchor="middle" font-size="14" font-weight="700">INFORMATION · 정보</text>
+        <text x="200" y="315" text-anchor="middle" font-size="11" fill="#807e7a">차이를 만드는 차이</text>
+
+        <rect x="480" y="270" width="240" height="58" fill="rgba(46,138,124,0.10)" stroke="#2e8a7c" stroke-width="1.5" rx="3"/>
+        <text x="600" y="295" text-anchor="middle" font-size="14" font-weight="700">COGNITION · 인지</text>
+        <text x="600" y="315" text-anchor="middle" font-size="11" fill="#807e7a">표상을 다루는 작용</text>
+
+        <line x1="320" y1="299" x2="480" y2="299" stroke="#1a1a1a" stroke-width="1.2" stroke-dasharray="4,3"/>
+        <path d="M 320 299 L 328 294 M 320 299 L 328 304" stroke="#1a1a1a" stroke-width="1.2" fill="none"/>
+        <path d="M 480 299 L 472 294 M 480 299 L 472 304" stroke="#1a1a1a" stroke-width="1.2" fill="none"/>
+
+        <!-- L3 ROW · Knowledge / Awareness -->
+        <rect x="80" y="360" width="240" height="58" fill="rgba(217,96,31,0.08)" stroke="#d9601f" stroke-width="1.5" rx="3"/>
+        <text x="200" y="385" text-anchor="middle" font-size="14" font-weight="700">KNOWLEDGE · 지식</text>
+        <text x="200" y="405" text-anchor="middle" font-size="11" fill="#807e7a">검증된 관계의 묶음</text>
+
+        <rect x="480" y="360" width="240" height="58" fill="rgba(46,138,124,0.10)" stroke="#2e8a7c" stroke-width="1.5" rx="3"/>
+        <text x="600" y="385" text-anchor="middle" font-size="14" font-weight="700">AWARENESS · 인식</text>
+        <text x="600" y="405" text-anchor="middle" font-size="11" fill="#807e7a">알아차림과 자기 모니터</text>
+
+        <line x1="320" y1="389" x2="480" y2="389" stroke="#1a1a1a" stroke-width="1.2" stroke-dasharray="4,3"/>
+        <path d="M 320 389 L 328 384 M 320 389 L 328 394" stroke="#1a1a1a" stroke-width="1.2" fill="none"/>
+        <path d="M 480 389 L 472 384 M 480 389 L 472 394" stroke="#1a1a1a" stroke-width="1.2" fill="none"/>
+
+        <!-- L4 ROW · Wisdom / Insight -->
+        <rect x="80" y="450" width="240" height="58" fill="rgba(217,96,31,0.18)" stroke="#d9601f" stroke-width="1.8" rx="3"/>
+        <text x="200" y="475" text-anchor="middle" font-size="14" font-weight="700">WISDOM · 지혜</text>
+        <text x="200" y="495" text-anchor="middle" font-size="11" fill="#4a4845">상황·시간을 가로지르는 판단</text>
+
+        <rect x="480" y="450" width="240" height="58" fill="rgba(46,138,124,0.20)" stroke="#2e8a7c" stroke-width="1.8" rx="3"/>
+        <text x="600" y="475" text-anchor="middle" font-size="14" font-weight="700">INSIGHT · 통찰</text>
+        <text x="600" y="495" text-anchor="middle" font-size="11" fill="#4a4845">위계 전체를 한 번에 보는 눈</text>
+
+        <line x1="320" y1="479" x2="480" y2="479" stroke="#d9601f" stroke-width="1.5" stroke-dasharray="4,3"/>
+        <path d="M 320 479 L 328 474 M 320 479 L 328 484" stroke="#d9601f" stroke-width="1.5" fill="none"/>
+        <path d="M 480 479 L 472 474 M 480 479 L 472 484" stroke="#d9601f" stroke-width="1.5" fill="none"/>
+
+        <!-- vertical arrows up -->
+        <g stroke="#807e7a" stroke-width="1.2" fill="none">
+          <path d="M 60 178 L 60 92"/>
+          <path d="M 60 92 L 55 100 M 60 92 L 65 100"/>
+          <path d="M 60 268 L 60 182"/>
+          <path d="M 60 358 L 60 272"/>
+          <path d="M 60 448 L 60 362"/>
+
+          <path d="M 760 178 L 760 92"/>
+          <path d="M 760 92 L 755 100 M 760 92 L 765 100"/>
+          <path d="M 760 268 L 760 182"/>
+          <path d="M 760 358 L 760 272"/>
+          <path d="M 760 448 L 760 362"/>
+        </g>
+        <text x="48" y="280" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="10" letter-spacing="1" fill="#807e7a" transform="rotate(-90 48 280)">위계 · 추상화 ↑</text>
+
+        <!-- EDITOR's seat -->
+        <rect x="200" y="540" width="600" height="100" fill="rgba(217,96,31,0.08)" stroke="#d9601f" stroke-width="1.8" stroke-dasharray="4,3" rx="3"/>
+        <text x="500" y="570" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="3" fill="#d9601f" font-weight="700">EDITOR'S SEAT · 편집의 자리</text>
+        <text x="500" y="598" text-anchor="middle" font-size="14" font-weight="700">두 위계 사이를 가로지르며 일한다</text>
+        <text x="500" y="620" text-anchor="middle" font-size="12" fill="#4a4845">잡음을 신호로 · 신호를 정보로 · 정보를 지식으로 · 지식을 지혜로 옮기는 손</text>
+
+        <!-- dashed connecting lines from seat to columns -->
+        <line x1="320" y1="540" x2="200" y2="478" stroke="#d9601f" stroke-width="1" stroke-dasharray="2,3"/>
+        <line x1="680" y1="540" x2="600" y2="478" stroke="#d9601f" stroke-width="1" stroke-dasharray="2,3"/>
+
+        <!-- bottom caption -->
+        <text x="500" y="690" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" letter-spacing="2" fill="#807e7a">두 위계는 평행하지만 한 자리에서 만난다 · 그 자리가 편집의 자리</text>
+      </svg>
+      <div class="map-cap">MAP · 1 · TWO PARALLEL HIERARCHIES MEETING AT THE EDITOR'S SEAT</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 · PHASE 1 — 정보의 위계 ============ -->
+<section id="p1">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">02</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">PHASE 01 · 1948 → 1989 · 정보이론과 DIKW</div>
+        <h2>정보의 위계 — <em>잡음·신호·데이터·정보·지식·지혜</em></h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      편집자가 만지는 첫 번째 위계. 바깥 세계의 자료가 어떻게 단을 갈아 올라가는가. Shannon이 잡음과 신호의 분리에서 출발해 정보의 양을 수치로 만들었고, Bateson은 정보가 "차이를 만드는 차이"라는 정의로 의미의 자리로 끌어올렸고, Ackoff와 Rowley는 그 위에 지식과 지혜라는 두 단을 더 얹었다. <strong>편집은 이 위계의 어느 단에 손을 얹는가의 결정</strong>이다.
+    </p>
+
+    <div class="phase-hero">
+      <div class="phase-era">PHASE 01 · 1948 → 1989 · 정보이론 · 사이버네틱스 · 경영과학</div>
+      <h3>국면 1 · 자료가 <em>지혜</em>로 가는 다섯 단</h3>
+      <p>잡음과 신호의 분리, 신호의 데이터화, 데이터의 정보화, 정보의 지식화, 지식의 지혜화. 다섯 번의 옮김이 한 줄에 정렬됐다. 매 단마다 사람의 손이 들어간다. 편집은 그 손의 자리에서 일어나는 일이다.</p>
+      <div class="phase-q">핵심 질문 <strong>→</strong> 데이터에서 지혜까지, 한 단을 옮길 때마다 무엇이 더해지고 무엇이 빠지는가?</div>
+    </div>
+
+    <!-- Shannon -->
+    <article class="thinker">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Shannon</span>
+            <span class="thinker-ko">클로드 섀넌</span>
+            <span class="thinker-years">1916–2001</span>
+          </div>
+          <div class="thinker-punch">정보는 <em>불확실성의 감소</em>다 — 잡음에서 신호를 골라내는 작업으로 정보의 양이 정해진다.</div>
+        </div>
+        <span class="thinker-tag">Information Theory · 1948</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>Shannon의 〈A Mathematical Theory of Communication〉(1948)은 통신 공학 논문이지만, 그 안에 든 두 개념이 인지·편집의 토대가 됐다. 첫째는 <strong>정보의 양은 메시지가 가진 의미가 아니라, 그 메시지가 줄여주는 불확실성의 크기</strong>로 정해진다는 것. 둘째는 모든 메시지가 <strong>잡음(noise)</strong>과 함께 흐른다는 것. 신호와 잡음을 가르는 일이 통신의 첫 작업이다.</p>
+          <p>이 두 명제가 합쳐지면 정보는 자기 안의 의미로 측정되지 않고, 자기가 들어가는 자리의 <strong>맥락</strong>으로 측정된다. 같은 문장이 어디에서는 정보이고 어디에서는 잡음이다. 편집자가 자기 일을 두 줄로 말할 수 있게 해주는 첫 어휘가 여기서 나온다.</p>
+          <div class="quote">"통신의 근본 문제는 한 지점에서 선택된 메시지를 다른 지점에서 정확하거나 근사하게 재현하는 것이다. 의미의 문제는 공학적 문제와 무관하다." <span class="quote-src">— A Mathematical Theory of Communication, 1948</span></div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 머릿속 그림</div>
+<div class="schema" style="white-space: normal; padding: 32px; text-align: center;"><div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.3em; color: var(--text); margin-bottom: 8px; text-transform: uppercase;">SHANNON · COMMUNICATION CHANNEL</div><div style="font-size: 13px; color: var(--text-dim); margin-bottom: 24px;">송신·채널·수신, 그리고 잡음이라는 구분</div><svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; max-width: 800px;" font-family="'Noto Sans KR', sans-serif" fill="#1a1a1a">
+  <!-- source -->
+  <rect x="40" y="120" width="120" height="70" fill="#fff" stroke="#1a1a1a" stroke-width="1.5" rx="3"/>
+  <text x="100" y="148" text-anchor="middle" font-size="12" font-weight="700">SOURCE</text>
+  <text x="100" y="170" text-anchor="middle" font-size="11" fill="#807e7a">정보원</text>
+
+  <!-- encoder -->
+  <rect x="200" y="120" width="120" height="70" fill="rgba(217,96,31,0.08)" stroke="#d9601f" stroke-width="1.5" rx="3"/>
+  <text x="260" y="148" text-anchor="middle" font-size="12" font-weight="700">ENCODER</text>
+  <text x="260" y="170" text-anchor="middle" font-size="11" fill="#807e7a">부호화</text>
+
+  <!-- channel -->
+  <rect x="360" y="100" width="160" height="110" fill="rgba(46,138,124,0.10)" stroke="#2e8a7c" stroke-width="1.8" rx="3"/>
+  <text x="440" y="130" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#2e8a7c" font-weight="700">CHANNEL</text>
+  <text x="440" y="158" text-anchor="middle" font-size="13" font-weight="700">채널</text>
+  <text x="440" y="178" text-anchor="middle" font-size="11" fill="#807e7a">신호 + 잡음이 함께 흐름</text>
+
+  <!-- decoder -->
+  <rect x="560" y="120" width="120" height="70" fill="rgba(217,96,31,0.08)" stroke="#d9601f" stroke-width="1.5" rx="3"/>
+  <text x="620" y="148" text-anchor="middle" font-size="12" font-weight="700">DECODER</text>
+  <text x="620" y="170" text-anchor="middle" font-size="11" fill="#807e7a">복호화</text>
+
+  <!-- destination -->
+  <rect x="720" y="120" width="60" height="70" fill="#fff" stroke="#1a1a1a" stroke-width="1.5" rx="3"/>
+  <text x="750" y="148" text-anchor="middle" font-size="11" font-weight="700">DEST</text>
+  <text x="750" y="170" text-anchor="middle" font-size="10" fill="#807e7a">수신</text>
+
+  <!-- arrows -->
+  <g stroke="#1a1a1a" stroke-width="1.4" fill="none">
+    <path d="M 160 155 L 198 155"/>
+    <path d="M 198 155 L 192 151 M 198 155 L 192 159"/>
+    <path d="M 320 155 L 358 155"/>
+    <path d="M 358 155 L 352 151 M 358 155 L 352 159"/>
+    <path d="M 520 155 L 558 155"/>
+    <path d="M 558 155 L 552 151 M 558 155 L 552 159"/>
+    <path d="M 680 155 L 718 155"/>
+    <path d="M 718 155 L 712 151 M 718 155 L 712 159"/>
+  </g>
+
+  <!-- noise -->
+  <rect x="380" y="240" width="120" height="50" fill="rgba(193,70,56,0.10)" stroke="#c14638" stroke-width="1.5" rx="3"/>
+  <text x="440" y="262" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#c14638" font-weight="700">NOISE</text>
+  <text x="440" y="282" text-anchor="middle" font-size="11" fill="#4a4845">잡음 — 메시지를 흐림</text>
+  <path d="M 440 240 L 440 215" stroke="#c14638" stroke-width="1.4" stroke-dasharray="3,3"/>
+  <path d="M 440 215 L 436 220 M 440 215 L 444 220" stroke="#c14638" stroke-width="1.4" fill="none"/>
+
+  <!-- conclusion -->
+  <rect x="60" y="320" width="680" height="60" fill="rgba(217,96,31,0.06)" stroke="#d9601f" stroke-width="1.5" rx="3"/>
+  <text x="400" y="345" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="3" fill="#d9601f">결론</text>
+  <text x="400" y="368" text-anchor="middle" font-size="14" font-weight="700">★ 정보의 크기는 메시지의 의미가 아니라, 그 메시지가 줄여주는 불확실성으로 정해진다</text>
+</svg></div>
+          <div class="schema-cap">SHANNON · CHANNEL & NOISE · 1948</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Engineering</div>
+              <div class="inf-body">디지털 통신, 압축 알고리즘, 오류 정정 부호 모두 Shannon에서 출발. <strong>JPEG·MP3·5G·ChatGPT</strong>까지 모든 정보 매체의 토대.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Cybernetics</div>
+              <div class="inf-body"><strong>Wiener</strong>의 사이버네틱스, <strong>Bateson</strong>의 생태 인식론이 Shannon을 인간 행동·생물 시스템으로 확장. 정보가 공학을 넘어 인지·관계의 어휘가 된다.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Media / Editing</div>
+              <div class="inf-body">"잡음에서 신호를 가르는 작업"이 모든 매체 편집의 1차 작용으로 명명됐다. 데스킹·큐레이션·UX 글쓰기가 같은 동작이라는 발견의 출처.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              AI가 매일 토해내는 글 더미 앞에서, 편집자의 가장 첫 작업은 무엇이 신호이고 무엇이 잡음인지를 가르는 일이다. Shannon의 80년 전 명제가 그 어느 때보다 실무적이다. 카피 회의에서 "이 문장은 잡음이다, 빼자"라고 말할 수 있게 해주는 어휘가 여기서 나온다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Bateson -->
+    <article class="thinker teal">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Bateson</span>
+            <span class="thinker-ko">그레고리 베이트슨</span>
+            <span class="thinker-years">1904–1980</span>
+          </div>
+          <div class="thinker-punch">정보는 <em>차이를 만드는 차이</em>다 — Shannon의 양적 정보를 의미의 자리로 옮긴 한 줄.</div>
+        </div>
+        <span class="thinker-tag">Cybernetics · 1972</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>Bateson은 인류학자였지만 사이버네틱스를 거치며 정보의 자리를 다시 잡았다. 〈Steps to an Ecology of Mind〉(1972)에서 그가 던진 한 문장이 정보의 정의를 바꿨다 — <strong>"정보는 차이를 만드는 차이(a difference that makes a difference)"</strong>. 어떤 차이가 어딘가에서 다른 차이를 만들 때, 그제야 정보가 된다는 뜻이다.</p>
+          <p>이 정의는 두 가지를 함께 말한다. 첫째, 정보는 단독으로 존재하지 않고 어떤 관계 안에서 발생한다. 둘째, 정보가 되려면 어떤 결과를 일으켜야 한다. 글이 독자의 마음에 차이를 만들지 못하면 그 글은 정보가 아니라 데이터로 머문다.</p>
+          <div class="quote">"감각 도구에 인지될 수 있고, 일련의 사건들 안에서 차이를 만드는 차이, 그것이 우리가 정보라고 부르는 것의 가장 기본 단위다." <span class="quote-src">— Steps to an Ecology of Mind, 1972</span></div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 머릿속 그림</div>
+<div class="schema" style="white-space: normal; padding: 32px; text-align: center;"><div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.3em; color: var(--text); margin-bottom: 8px; text-transform: uppercase;">A DIFFERENCE THAT MAKES A DIFFERENCE</div><div style="font-size: 13px; color: var(--text-dim); margin-bottom: 24px;">차이가 차이를 만들 때 비로소 정보가 된다</div><svg viewBox="0 0 800 480" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; max-width: 800px;" font-family="'Noto Sans KR', sans-serif" fill="#1a1a1a">
+  <!-- Difference 1 -->
+  <rect x="60" y="60" width="200" height="80" fill="#fff" stroke="#1a1a1a" stroke-width="1.5" rx="3"/>
+  <text x="160" y="90" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#2e8a7c" font-weight="700">DIFFERENCE 1</text>
+  <text x="160" y="115" text-anchor="middle" font-size="13" font-weight="700">바깥의 차이</text>
+  <text x="160" y="132" text-anchor="middle" font-size="11" fill="#807e7a">밝음과 어두움, 큰 것과 작은 것</text>
+
+  <!-- arrow with label -->
+  <path d="M 270 100 L 330 100" stroke="#2e8a7c" stroke-width="1.8" fill="none"/>
+  <path d="M 330 100 L 322 95 M 330 100 L 322 105" stroke="#2e8a7c" stroke-width="1.8" fill="none"/>
+  <text x="300" y="86" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" fill="#807e7a">감지된다</text>
+
+  <!-- Mind -->
+  <rect x="340" y="60" width="200" height="80" fill="rgba(46,138,124,0.10)" stroke="#2e8a7c" stroke-width="1.5" rx="3"/>
+  <text x="440" y="90" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#2e8a7c" font-weight="700">MIND / SYSTEM</text>
+  <text x="440" y="115" text-anchor="middle" font-size="13" font-weight="700">마음·시스템</text>
+  <text x="440" y="132" text-anchor="middle" font-size="11" fill="#807e7a">차이를 받아들이는 자리</text>
+
+  <!-- arrow -->
+  <path d="M 550 100 L 610 100" stroke="#d9601f" stroke-width="1.8" fill="none"/>
+  <path d="M 610 100 L 602 95 M 610 100 L 602 105" stroke="#d9601f" stroke-width="1.8" fill="none"/>
+  <text x="580" y="86" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" fill="#807e7a">일으킨다</text>
+
+  <!-- Difference 2 -->
+  <rect x="620" y="60" width="160" height="80" fill="rgba(217,96,31,0.10)" stroke="#d9601f" stroke-width="1.8" rx="3"/>
+  <text x="700" y="90" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#d9601f" font-weight="700">DIFFERENCE 2</text>
+  <text x="700" y="115" text-anchor="middle" font-size="13" font-weight="700">안의 차이</text>
+  <text x="700" y="132" text-anchor="middle" font-size="11" fill="#807e7a">행동·판단의 변화</text>
+
+  <!-- Noise case -->
+  <rect x="60" y="200" width="720" height="80" fill="#f8f6f1" stroke="#807e7a" stroke-width="1" stroke-dasharray="3,3" rx="3"/>
+  <text x="420" y="230" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#807e7a">대조 사례 · NOT INFORMATION</text>
+  <text x="420" y="255" text-anchor="middle" font-size="13" font-weight="600">바깥에 차이가 있어도, 그것이 안에서 어떤 차이도 만들지 못하면</text>
+  <text x="420" y="273" text-anchor="middle" font-size="13" font-weight="700" fill="#c14638">그것은 정보가 아니라 잡음 또는 무관함이다</text>
+
+  <!-- conclusion box -->
+  <rect x="60" y="320" width="720" height="80" fill="rgba(46,138,124,0.07)" stroke="#2e8a7c" stroke-width="1.5" rx="3"/>
+  <text x="420" y="350" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="3" fill="#2e8a7c">결론</text>
+  <text x="420" y="376" text-anchor="middle" font-size="14" font-weight="700">★ 정보는 메시지 안이 아니라, 차이와 그 결과 사이의 관계에 있다</text>
+  <text x="420" y="395" text-anchor="middle" font-size="12" fill="#4a4845">Shannon의 양적 정보를 의미의 자리로 옮긴 한 줄</text>
+</svg></div>
+          <div class="schema-cap">BATESON · DIFFERENCE OF DIFFERENCE · 1972</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Cybernetics</div>
+              <div class="inf-body"><strong>Maturana·Varela</strong>의 자기생산(autopoiesis), <strong>Luhmann</strong>의 사회 시스템 이론이 베이트슨의 정의를 출발점으로 삼는다. 정보가 시스템 안의 차이로 정의됐다.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Anthropology</div>
+              <div class="inf-body">메시지의 의미를 송신자가 아니라 수신자의 맥락에서 정하는 시각. <strong>Geertz</strong>의 두꺼운 기술(thick description)과 닿아 있다.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Editing / UX</div>
+              <div class="inf-body">"이 문장은 독자의 무엇을 바꾸는가"라는 질문의 출처. <strong>Don Norman</strong>의 행동 디자인, 콘텐츠 디자인의 효과 측정 사고가 여기서 자라났다.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              모든 카피 회의의 단단한 기준이 되는 한 줄. "이 문장이 독자 안에서 무엇을 바꾸는가?" 바꾸지 않는다면 잡음이다. AI가 만든 글이 사람을 닿지 못하는 이유의 절반이 여기 있다. 의미는 있지만 차이를 만들지 못하는 것이다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Ackoff · Rowley (DIKW) -->
+    <article class="thinker purple">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Ackoff · Rowley</span>
+            <span class="thinker-ko">러셀 액코프 · 제니퍼 로울리</span>
+            <span class="thinker-years">1989 · 2007</span>
+          </div>
+          <div class="thinker-punch">데이터·정보·지식·지혜의 <em>4단 피라미드</em> — 편집자가 매일 오가는 위계의 표준 어휘.</div>
+        </div>
+        <span class="thinker-tag">DIKW Pyramid · 1989/2007</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>Ackoff는 1989년 〈From Data to Wisdom〉에서 4단 위계를 제안했다 — <strong>Data → Information → Knowledge → Wisdom</strong>. 이 위계는 한 단을 올라갈 때마다 사람의 손이 더 깊이 개입한다는 명제를 담고 있다. 데이터는 측정의 산물, 정보는 맥락의 산물, 지식은 검증의 산물, 지혜는 판단의 산물이다.</p>
+          <p>Rowley(2007)는 〈The wisdom hierarchy〉에서 이 위계를 다시 정리하며 각 단의 정의를 명료히 했다. 데이터는 "기록된 사실", 정보는 "관계 지어진 데이터", 지식은 "어떻게(know-how)가 더해진 정보", 지혜는 "왜(know-why)와 함께 작동하는 지식". 이 어휘는 학계보다 실무에서 더 자주 쓰인다. 도서관학·정보 디자인·콘텐츠 큐레이션의 표준 프레임이 됐다.</p>
+          <div class="quote">"데이터 한 컵, 정보 한 큰 술, 지식 한 작은 술, 지혜 한 알갱이. 매 단마다 가치는 올라가고 양은 줄어든다." <span class="quote-src">— Ackoff (1989), 의역</span></div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 머릿속 그림</div>
+<div class="schema" style="white-space: normal; padding: 32px; text-align: center;"><div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.3em; color: var(--text); margin-bottom: 8px; text-transform: uppercase;">DIKW · DATA · INFORMATION · KNOWLEDGE · WISDOM</div><div style="font-size: 13px; color: var(--text-dim); margin-bottom: 24px;">4단 피라미드 · 매 단마다 사람의 손이 깊어진다</div><svg viewBox="0 0 800 540" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; max-width: 800px;" font-family="'Noto Sans KR', sans-serif" fill="#1a1a1a">
+  <!-- Pyramid layers -->
+  <polygon points="400,60 470,160 330,160" fill="rgba(126,90,152,0.20)" stroke="#7e5a98" stroke-width="1.8"/>
+  <text x="400" y="115" text-anchor="middle" font-size="14" font-weight="700">WISDOM</text>
+  <text x="400" y="135" text-anchor="middle" font-size="11" fill="#4a4845">지혜 · why</text>
+
+  <polygon points="330,160 470,160 530,260 270,260" fill="rgba(126,90,152,0.12)" stroke="#7e5a98" stroke-width="1.5"/>
+  <text x="400" y="210" text-anchor="middle" font-size="14" font-weight="700">KNOWLEDGE</text>
+  <text x="400" y="230" text-anchor="middle" font-size="11" fill="#4a4845">지식 · how</text>
+
+  <polygon points="270,260 530,260 590,360 210,360" fill="rgba(126,90,152,0.07)" stroke="#7e5a98" stroke-width="1.5"/>
+  <text x="400" y="310" text-anchor="middle" font-size="14" font-weight="700">INFORMATION</text>
+  <text x="400" y="330" text-anchor="middle" font-size="11" fill="#4a4845">정보 · what · who · when · where</text>
+
+  <polygon points="210,360 590,360 660,460 140,460" fill="#fff" stroke="#7e5a98" stroke-width="1.5"/>
+  <text x="400" y="410" text-anchor="middle" font-size="14" font-weight="700">DATA</text>
+  <text x="400" y="430" text-anchor="middle" font-size="11" fill="#4a4845">데이터 · 기록된 사실</text>
+
+  <!-- Right column: human hand input -->
+  <text x="700" y="115" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="10" letter-spacing="1" fill="#7e5a98" font-weight="700">판단</text>
+  <text x="700" y="210" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="10" letter-spacing="1" fill="#7e5a98">검증</text>
+  <text x="700" y="310" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="10" letter-spacing="1" fill="#807e7a">맥락</text>
+  <text x="700" y="410" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="10" letter-spacing="1" fill="#807e7a">측정</text>
+
+  <!-- Left column: question word -->
+  <text x="100" y="115" text-anchor="start" font-family="'JetBrains Mono', monospace" font-size="10" letter-spacing="1" fill="#7e5a98" font-weight="700">WHY</text>
+  <text x="100" y="210" text-anchor="start" font-family="'JetBrains Mono', monospace" font-size="10" letter-spacing="1" fill="#7e5a98">HOW</text>
+  <text x="100" y="310" text-anchor="start" font-family="'JetBrains Mono', monospace" font-size="10" letter-spacing="1" fill="#807e7a">WHAT/WHO</text>
+  <text x="100" y="410" text-anchor="start" font-family="'JetBrains Mono', monospace" font-size="10" letter-spacing="1" fill="#807e7a">RAW</text>
+
+  <!-- Conclusion -->
+  <rect x="60" y="485" width="680" height="40" fill="rgba(126,90,152,0.07)" stroke="#7e5a98" stroke-width="1.5" rx="3"/>
+  <text x="400" y="510" text-anchor="middle" font-size="13" font-weight="700" fill="#7e5a98">★ 편집자는 이 피라미드의 어느 단을 만지는가의 자리에 매번 자리잡는다</text>
+</svg></div>
+          <div class="schema-cap">ACKOFF · DIKW PYRAMID · 1989</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Library Science</div>
+              <div class="inf-body">도서관학·정보학의 표준 프레임. <strong>Choo</strong>의 정보 행동 모델, <strong>Bates</strong>의 정보 탐색 이론이 DIKW를 배경으로 짜였다.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Knowledge Management</div>
+              <div class="inf-body">기업 KM의 표준 어휘. <strong>Davenport·Prusak</strong>의 〈Working Knowledge〉(1998)가 DIKW 위에 SECI 모델을 얹어 실무 매뉴얼화.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Editorial / Curation</div>
+              <div class="inf-body"><strong>마츠오카 세이고</strong>의 편집공학, <strong>김정운</strong>의 에디톨로지가 DIKW의 위계 옮김을 편집의 본 동작으로 명명했다. 한국 에디토리얼 씽킹의 토대.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              에디토리얼 회의에서 "이 콘텐츠는 어느 단인가"를 묻는 한 문장이 된다. 매거진 톱 기사는 보통 정보·지식 단, 칼럼은 지식·지혜 단. 같은 자료라도 어느 단으로 옮겨놓느냐가 매체의 톤을 정한다. AI는 데이터·정보 단을 채워주는 데 강하고, 사람은 지식·지혜 단에서 결정한다 — 이 분담이 작업의 새 표준.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============ 03 · PHASE 2 — 암묵지와 명시지 ============ -->
+<section id="p2" style="background:var(--bg-2);">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">03</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">PHASE 02 · 1958 → 1995 · 암묵지와 명시지</div>
+        <h2>몸으로 아는 것과 <em>말로 옮긴 것</em></h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      지식의 위계 안에도 결이 갈린다. 자전거 타는 법을 말로 풀어 쓸 수 있는 사람은 없지만, 사람들은 자전거를 탄다. Polanyi는 이 사실에서 출발해 <strong>암묵지(tacit knowing)</strong>를 명명했고, Nonaka는 그 암묵지를 조직 안에서 어떻게 명시지로 옮기는지의 4단 변환을 그렸다. 카피·인터뷰·에디토리얼이 매일 하는 작업이 바로 이 옮김이다.
+    </p>
+
+    <div class="phase-hero green">
+      <div class="phase-era">PHASE 02 · 1958 → 1995 · 과학철학 · 경영학</div>
+      <h3>국면 2 · <em>"말할 수 있는 것보다 더 많이 안다"</em></h3>
+      <p>Polanyi의 한 줄이 지식의 단을 두 결로 갈랐다. 사람들이 말로 옮기지 못한 채 가진 것이 더 크고, 명시지는 그 빙산의 끝이다. Nonaka는 이 두 결을 잇는 4단 사이클(SECI)을 일본 조직 안에서 발견해 모델화했다.</p>
+      <div class="phase-q">핵심 질문 <strong>→</strong> 몸으로 아는 것을 어떻게 글·말·도식으로 옮기는가? 옮기는 동안 무엇이 사라지는가?</div>
+    </div>
+
+    <!-- Polanyi -->
+    <article class="thinker green">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Polanyi</span>
+            <span class="thinker-ko">마이클 폴라니</span>
+            <span class="thinker-years">1891–1976</span>
+          </div>
+          <div class="thinker-punch">사람은 <em>말할 수 있는 것보다 더 많이 안다</em> — 암묵지(tacit knowing)의 발견.</div>
+        </div>
+        <span class="thinker-tag">Tacit Knowing · 1966</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>화학자였던 Polanyi는 〈The Tacit Dimension〉(1966)에서 한 줄로 지식의 결을 갈랐다 — <strong>"We can know more than we can tell"</strong>. 자전거 타기, 얼굴 알아보기, 의사가 환자의 미세 증후를 짚어내는 일. 우리는 그것을 어떻게 하는지 말로 옮기지 못한 채 한다. 이 결을 그는 <strong>암묵지(tacit knowing)</strong>라 불렀다.</p>
+          <p>Polanyi의 통찰은 한 단 더 들어간다. 모든 지식의 구조에는 <strong>focal awareness(초점 인식)</strong>와 <strong>subsidiary awareness(부수 인식)</strong>의 결합이 있다. 망치질을 할 때 의식의 초점은 못이지만, 손바닥의 감각·팔의 무게·자세의 균형이 부수적으로 작동한다. 부수 인식이 무너지면 초점도 함께 무너진다. 모든 명시적 작업의 밑단에 암묵의 결이 깔려 있다는 것이다.</p>
+          <div class="quote">"우리는 말할 수 있는 것보다 더 많이 안다." <span class="quote-src">— The Tacit Dimension, 1966</span></div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 머릿속 그림</div>
+<div class="schema" style="white-space: normal; padding: 32px; text-align: center;"><div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.3em; color: var(--text); margin-bottom: 8px; text-transform: uppercase;">FOCAL & SUBSIDIARY AWARENESS</div><div style="font-size: 13px; color: var(--text-dim); margin-bottom: 24px;">초점 인식 위에 깔린 암묵의 결</div><svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; max-width: 800px;" font-family="'Noto Sans KR', sans-serif" fill="#1a1a1a">
+  <!-- Iceberg pattern -->
+  <line x1="60" y1="200" x2="740" y2="200" stroke="#807e7a" stroke-width="1.2" stroke-dasharray="4,3"/>
+  <text x="60" y="190" font-family="'JetBrains Mono', monospace" font-size="10" letter-spacing="2" fill="#807e7a">수면 · 말로 옮길 수 있는 경계</text>
+
+  <!-- Above water: focal -->
+  <polygon points="400,60 470,200 330,200" fill="rgba(74,142,74,0.20)" stroke="#4a8e4a" stroke-width="1.8"/>
+  <text x="400" y="125" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#4a8e4a" font-weight="700">FOCAL</text>
+  <text x="400" y="150" text-anchor="middle" font-size="13" font-weight="700">초점 인식</text>
+  <text x="400" y="170" text-anchor="middle" font-size="11" fill="#4a4845">말로 옮길 수 있는 부분</text>
+  <text x="400" y="186" text-anchor="middle" font-size="11" fill="#4a4845">명시지(explicit)</text>
+
+  <!-- Below water: subsidiary -->
+  <polygon points="330,200 470,200 700,440 100,440" fill="rgba(74,142,74,0.10)" stroke="#4a8e4a" stroke-width="1.5"/>
+  <text x="400" y="240" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#4a8e4a" font-weight="700">SUBSIDIARY · TACIT</text>
+  <text x="400" y="280" text-anchor="middle" font-size="13" font-weight="700">부수 인식 · 암묵지</text>
+
+  <g font-size="11.5" fill="#4a4845">
+    <text x="200" y="320" text-anchor="middle">자세의 균형</text>
+    <text x="600" y="320" text-anchor="middle">시선의 결</text>
+    <text x="280" y="360" text-anchor="middle">손끝의 감각</text>
+    <text x="520" y="360" text-anchor="middle">호흡의 리듬</text>
+    <text x="400" y="395" text-anchor="middle">맥락의 알아챔</text>
+    <text x="400" y="420" text-anchor="middle">살의 기억</text>
+  </g>
+
+  <!-- conclusion -->
+  <rect x="60" y="460" width="680" height="34" fill="rgba(74,142,74,0.07)" stroke="#4a8e4a" stroke-width="1.5" rx="3"/>
+  <text x="400" y="482" text-anchor="middle" font-size="13" font-weight="700" fill="#4a8e4a">★ 초점은 부수의 등 위에 서 있다 — 부수가 무너지면 초점도 무너진다</text>
+</svg></div>
+          <div class="schema-cap">POLANYI · TACIT KNOWING · 1966</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Philosophy of Science</div>
+              <div class="inf-body">실증주의의 객관성 신화를 깬 한 축. 과학적 발견에도 암묵의 직관과 미감이 함께 한다는 명제. <strong>Kuhn</strong>의 패러다임 개념과 한 묶음.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Knowledge Management</div>
+              <div class="inf-body">기업 KM의 첫 출발점. <strong>Nonaka</strong>가 이 개념 위에 SECI 모델을 세웠고, <strong>Wenger</strong>의 실천 공동체 이론이 자라났다.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Craft / Apprenticeship</div>
+              <div class="inf-body">도제·장인 교육의 정당성 회복. <strong>Sennett</strong>의 〈장인〉(2008), <strong>Schön</strong>의 성찰적 실천이 암묵지 위에서 짜였다.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              AI는 명시지의 산을 잘 다룬다. 그러나 인터뷰 자리에서 사람이 가진 가장 값진 것은 보통 그가 아직 말로 옮기지 못한 것이다. 좋은 인터뷰어와 좋은 편집자는 그 암묵의 결을 짚어 명시의 자리로 옮기는 산파다. Polanyi의 한 줄이 인터뷰의 자세를 통째로 바꾼다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Nonaka -->
+    <article class="thinker yellow">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Nonaka</span>
+            <span class="thinker-ko">노나카 이쿠지로</span>
+            <span class="thinker-years">1935–</span>
+          </div>
+          <div class="thinker-punch">암묵을 명시로, 명시를 다시 암묵으로 — 지식이 도는 <em>SECI 4단 사이클</em>.</div>
+        </div>
+        <span class="thinker-tag">SECI Model · 1995</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>Nonaka가 Takeuchi와 함께 쓴 〈The Knowledge-Creating Company〉(1995)는 일본 제조 기업이 어떻게 새 지식을 만드는지 관찰한 책이다. 거기서 그는 Polanyi의 두 결(암묵·명시)을 결합해 <strong>SECI 사이클</strong>을 제안했다. 4단의 옮김이 사이클을 이룬다.</p>
+          <p><strong>Socialization(공동화)</strong>은 암묵에서 암묵으로의 옮김 — 도제식 전수, 어깨 너머 학습. <strong>Externalization(표출화)</strong>은 암묵에서 명시로 — 글·도식·은유로 옮김. 카피라이팅과 에디토리얼이 매일 하는 일이 여기다. <strong>Combination(연결화)</strong>은 명시에서 명시로 — 자료의 재배열·종합. <strong>Internalization(내면화)</strong>은 명시에서 다시 암묵으로 — 배운 것이 몸에 박힘. 4단이 한 바퀴를 돌 때마다 조직의 지식이 자란다.</p>
+          <div class="quote">"새로운 지식은 늘 개인에서 시작된다. 그러나 그 지식이 조직의 것이 되려면 암묵과 명시 사이의 변환을 거쳐야 한다." <span class="quote-src">— Nonaka & Takeuchi, 1995</span></div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 머릿속 그림</div>
+<div class="schema" style="white-space: normal; padding: 32px; text-align: center;"><div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.3em; color: var(--text); margin-bottom: 8px; text-transform: uppercase;">SECI · 4-STAGE KNOWLEDGE CYCLE</div><div style="font-size: 13px; color: var(--text-dim); margin-bottom: 24px;">공동화 · 표출화 · 연결화 · 내면화</div><svg viewBox="0 0 800 580" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; max-width: 800px;" font-family="'Noto Sans KR', sans-serif" fill="#1a1a1a">
+  <!-- 2x2 grid -->
+  <!-- Top-left: Socialization -->
+  <rect x="80" y="80" width="320" height="180" fill="rgba(184,149,74,0.10)" stroke="#b8954a" stroke-width="1.8" rx="3"/>
+  <text x="240" y="110" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#b8954a" font-weight="700">S · SOCIALIZATION</text>
+  <text x="240" y="140" text-anchor="middle" font-size="15" font-weight="700">공동화</text>
+  <text x="240" y="165" text-anchor="middle" font-size="12" fill="#4a4845">암묵 → 암묵</text>
+  <text x="240" y="195" text-anchor="middle" font-size="12" fill="#4a4845">도제·어깨 너머·공유 경험</text>
+  <text x="240" y="220" text-anchor="middle" font-size="11" fill="#807e7a">"같은 자리에서 같이 하기"</text>
+
+  <!-- Top-right: Externalization -->
+  <rect x="400" y="80" width="320" height="180" fill="rgba(217,96,31,0.10)" stroke="#d9601f" stroke-width="1.8" rx="3"/>
+  <text x="560" y="110" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#d9601f" font-weight="700">E · EXTERNALIZATION</text>
+  <text x="560" y="140" text-anchor="middle" font-size="15" font-weight="700">표출화 ★</text>
+  <text x="560" y="165" text-anchor="middle" font-size="12" fill="#4a4845">암묵 → 명시</text>
+  <text x="560" y="195" text-anchor="middle" font-size="12" fill="#4a4845">은유·도식·언어화</text>
+  <text x="560" y="220" text-anchor="middle" font-size="11" fill="#d9601f" font-weight="700">★ 카피·에디토리얼의 본 작업</text>
+
+  <!-- Bottom-left: Internalization -->
+  <rect x="80" y="280" width="320" height="180" fill="rgba(126,90,152,0.10)" stroke="#7e5a98" stroke-width="1.8" rx="3"/>
+  <text x="240" y="310" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#7e5a98" font-weight="700">I · INTERNALIZATION</text>
+  <text x="240" y="340" text-anchor="middle" font-size="15" font-weight="700">내면화</text>
+  <text x="240" y="365" text-anchor="middle" font-size="12" fill="#4a4845">명시 → 암묵</text>
+  <text x="240" y="395" text-anchor="middle" font-size="12" fill="#4a4845">매뉴얼이 몸에 박힘</text>
+  <text x="240" y="420" text-anchor="middle" font-size="11" fill="#807e7a">"하다 보니 알게 된다"</text>
+
+  <!-- Bottom-right: Combination -->
+  <rect x="400" y="280" width="320" height="180" fill="rgba(46,138,124,0.10)" stroke="#2e8a7c" stroke-width="1.8" rx="3"/>
+  <text x="560" y="310" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#2e8a7c" font-weight="700">C · COMBINATION</text>
+  <text x="560" y="340" text-anchor="middle" font-size="15" font-weight="700">연결화</text>
+  <text x="560" y="365" text-anchor="middle" font-size="12" fill="#4a4845">명시 → 명시</text>
+  <text x="560" y="395" text-anchor="middle" font-size="12" fill="#4a4845">자료 재배열·합성·종합</text>
+  <text x="560" y="420" text-anchor="middle" font-size="11" fill="#807e7a">큐레이션·아카이브의 본 작업</text>
+
+  <!-- Cycle arrows -->
+  <g stroke="#807e7a" stroke-width="1.5" fill="none">
+    <path d="M 400 170 L 415 170 L 415 170"/>
+    <path d="M 415 170 L 408 165 M 415 170 L 408 175"/>
+  </g>
+
+  <!-- Conclusion -->
+  <rect x="60" y="495" width="680" height="60" fill="rgba(217,96,31,0.06)" stroke="#d9601f" stroke-width="1.5" rx="3"/>
+  <text x="400" y="520" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="3" fill="#d9601f">결론</text>
+  <text x="400" y="543" text-anchor="middle" font-size="14" font-weight="700">★ 표출화(E)가 사라지면 조직의 지식은 도제 안에 갇혀 자라지 못한다</text>
+</svg></div>
+          <div class="schema-cap">NONAKA · SECI · 1995</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Management</div>
+              <div class="inf-body">기업 KM의 표준 모델. <strong>혼다·캐논·NEC</strong>의 신제품 개발 사례 분석에서 출발해 글로벌 경영학 교과서에 안착.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Editorial Theory</div>
+              <div class="inf-body">표출화(E) 단계가 곧 에디토리얼의 본 작업이라는 자각. <strong>마츠오카 세이고</strong>가 SECI를 편집공학의 작업 분류에 통합.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Design Thinking</div>
+              <div class="inf-body">IDEO·d.school 프로세스의 "Observe→Synthesize→Prototype→Test"가 SECI 사이클의 한 변주. <strong>관찰의 표출화</strong>가 제품 디자인의 핵심 동작.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              사용자 인터뷰의 본 작업은 사용자의 암묵을 명시로 옮기는 표출화(E)다. 그 결과를 정리하면 연결화(C)이고, 카드에 적어 팀이 보면 내면화(I)가 시작된다. 한 프로젝트 안에서 SECI 4단이 다 도는지 점검해보면, 막혀 있는 단이 보인다. 보통 표출화 단이 부족하다 — 관찰만 잔뜩 쌓이고 한 줄로 옮겨지지 못한 채 사라진다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============ 04 · PHASE 3 — 감각의 입구 ============ -->
+<section id="p3">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">04</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">PHASE 03 · 1867 → 1979 · 감각의 입구</div>
+        <h2>받아들이는 자리, <em>감각</em></h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      위계의 가장 낮은 단. 신체가 세계와 닿는 자리다. 19세기 후반 Helmholtz가 감각도 단순한 수동적 수용이 아니라 <strong>무의식적 추론</strong>임을 명시한 이래, 20세기 Gibson은 정반대로 감각이 환경에서 <strong>불변량(invariants)</strong>을 능동적으로 추출하는 작업이라 했다. 두 관점이 부딪히며 지각의 자리가 더 단단해졌다.
+    </p>
+
+    <div class="phase-hero blue">
+      <div class="phase-era">PHASE 03 · 1867 → 1979 · 생리학 · 생태심리학</div>
+      <h3>국면 3 · 감각은 <em>받는 일</em>이 아니라 <em>고르는 일</em></h3>
+      <p>망막에 빛이 닿는 순간부터 의식 있는 지각까지의 거리는 가깝지 않다. 그 사이에 무엇이 일어나는가. Helmholtz는 추론으로, Gibson은 추출로 답했다.</p>
+      <div class="phase-q">핵심 질문 <strong>→</strong> 감각은 세계의 복사인가, 아니면 세계에서 무엇을 골라내는 작업인가?</div>
+    </div>
+
+    <!-- Helmholtz -->
+    <article class="thinker pink">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Helmholtz</span>
+            <span class="thinker-ko">헤르만 폰 헬름홀츠</span>
+            <span class="thinker-years">1821–1894</span>
+          </div>
+          <div class="thinker-punch">지각은 <em>무의식적 추론</em>이다 — 감각 자료에서 세계를 재구성하는 자동 작업.</div>
+        </div>
+        <span class="thinker-tag">Unconscious Inference · 1867</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>Helmholtz는 〈Handbuch der physiologischen Optik〉(1867)에서 <strong>무의식적 추론(unbewusster Schluss / unconscious inference)</strong>을 제안했다. 망막에 비친 빛 패턴 자체는 너무 빈약해서 우리가 보는 풍부한 세계를 만들 수 없다. 뇌는 그 빈약한 자료에 <strong>과거의 경험과 가설</strong>을 더해 가장 그럴듯한 세계를 재구성한다.</p>
+          <p>이 명제는 감각이 수동적 수용이 아니라 <strong>능동적 가설 형성</strong>임을 처음 명시했다. 이 생각이 20세기 후반 Gregory의 "perception as hypothesis"로 이어지고, 21세기 Friston의 예측 부호화로 도약한다. Helmholtz의 1867년 한 문장이 150년의 마음 과학 한 줄기의 출발점이 됐다.</p>
+          <div class="quote">"감각의 인상이 인식 가능한 표상이 되기 위해서는, 우리는 그것이 어떤 외부 원인에 의해 만들어졌는지를 무의식적으로 추론해야 한다." <span class="quote-src">— Handbuch der physiologischen Optik, 1867</span></div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 머릿속 그림</div>
+<div class="schema" style="white-space: normal; padding: 32px; text-align: center;"><div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.3em; color: var(--text); margin-bottom: 8px; text-transform: uppercase;">HELMHOLTZ · UNCONSCIOUS INFERENCE</div><div style="font-size: 13px; color: var(--text-dim); margin-bottom: 24px;">빈약한 감각 + 과거의 가설 = 풍부한 지각</div><svg viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; max-width: 800px;" font-family="'Noto Sans KR', sans-serif" fill="#1a1a1a">
+  <!-- Sensory input -->
+  <rect x="60" y="60" width="220" height="80" fill="#fff" stroke="#1a1a1a" stroke-width="1.5" rx="3"/>
+  <text x="170" y="88" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#807e7a">SENSORY DATA</text>
+  <text x="170" y="112" text-anchor="middle" font-size="13" font-weight="700">망막 자료</text>
+  <text x="170" y="130" text-anchor="middle" font-size="11" fill="#807e7a">빈약하고 모호함</text>
+
+  <!-- Past hypotheses -->
+  <rect x="60" y="170" width="220" height="80" fill="rgba(194,87,135,0.10)" stroke="#c25787" stroke-width="1.5" rx="3"/>
+  <text x="170" y="198" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#c25787">PRIOR HYPOTHESES</text>
+  <text x="170" y="222" text-anchor="middle" font-size="13" font-weight="700">과거 가설</text>
+  <text x="170" y="240" text-anchor="middle" font-size="11" fill="#807e7a">경험으로 축적된 짐작</text>
+
+  <!-- arrows merging -->
+  <g stroke="#c25787" stroke-width="1.5" fill="none">
+    <path d="M 280 100 L 380 155"/>
+    <path d="M 380 155 L 370 152 M 380 155 L 374 162"/>
+    <path d="M 280 210 L 380 165"/>
+    <path d="M 380 165 L 374 158 M 380 165 L 370 168"/>
+  </g>
+
+  <!-- Inference engine -->
+  <rect x="380" y="120" width="220" height="80" fill="rgba(194,87,135,0.18)" stroke="#c25787" stroke-width="1.8" rx="3"/>
+  <text x="490" y="148" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#c25787" font-weight="700">INFERENCE</text>
+  <text x="490" y="172" text-anchor="middle" font-size="13" font-weight="700">무의식적 추론</text>
+  <text x="490" y="190" text-anchor="middle" font-size="11" fill="#4a4845">가장 그럴듯한 원인 짐작</text>
+
+  <!-- arrow to perception -->
+  <path d="M 600 160 L 660 160" stroke="#c25787" stroke-width="1.8" fill="none"/>
+  <path d="M 660 160 L 652 155 M 660 160 L 652 165" stroke="#c25787" stroke-width="1.8" fill="none"/>
+
+  <!-- Perception -->
+  <rect x="660" y="120" width="120" height="80" fill="rgba(217,96,31,0.10)" stroke="#d9601f" stroke-width="1.8" rx="3"/>
+  <text x="720" y="148" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#d9601f" font-weight="700">PERCEPT</text>
+  <text x="720" y="172" text-anchor="middle" font-size="13" font-weight="700">지각</text>
+  <text x="720" y="190" text-anchor="middle" font-size="11" fill="#4a4845">풍부한 세계</text>
+
+  <!-- Optical illusion note -->
+  <rect x="60" y="290" width="720" height="80" fill="#f8f6f1" stroke="#807e7a" stroke-width="1" stroke-dasharray="3,3" rx="3"/>
+  <text x="420" y="318" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#807e7a">예 · OPTICAL ILLUSIONS</text>
+  <text x="420" y="345" text-anchor="middle" font-size="13" font-weight="600">착시는 추론의 오류가 아니라 추론이 작동한다는 증거다</text>
+  <text x="420" y="362" text-anchor="middle" font-size="12" fill="#4a4845">감각이 모호할 때 뇌가 어떤 가설로 메우는지를 보여주는 창</text>
+
+  <!-- conclusion -->
+  <rect x="60" y="400" width="720" height="40" fill="rgba(194,87,135,0.07)" stroke="#c25787" stroke-width="1.5" rx="3"/>
+  <text x="420" y="425" text-anchor="middle" font-size="13" font-weight="700" fill="#c25787">★ 지각은 받는 일이 아니라, 자료에 가설을 얹어 재구성하는 작업이다</text>
+</svg></div>
+          <div class="schema-cap">HELMHOLTZ · UNCONSCIOUS INFERENCE · 1867</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Cognitive Science</div>
+              <div class="inf-body">현대 지각 이론의 시조. <strong>Gregory</strong>의 perception as hypothesis, <strong>Friston</strong>의 자유에너지 원리, 베이지안 뇌 가설이 모두 Helmholtz의 1867년 명제 위에 짜여 있다.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Art History</div>
+              <div class="inf-body"><strong>Gombrich</strong>의 〈Art and Illusion〉(1960)이 Helmholtz의 추론 개념으로 회화의 도식과 보는 방식을 분석. 미술사가 인지과학과 만나는 자리.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Marketing / UX</div>
+              <div class="inf-body">소비자의 첫 인상은 자료의 합이 아니라 추론의 결과. <strong>맥락이 같은 자료를 다른 의미로 만든다</strong>는 마케팅 원칙의 인지적 출처.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              카피의 첫 줄이 독자의 가설을 정한다. 같은 본문이 첫 줄에 따라 다른 의미가 된다. 디자이너가 한 장의 사진 옆에 무엇을 놓느냐로 그 사진이 보이는 결을 정한다. Helmholtz의 명제는 카피·디자인의 첫 줄·첫 컷 작업이 왜 그토록 중요한지를 한 문장으로 설명해준다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Gibson -->
+    <article class="thinker blue">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Gibson</span>
+            <span class="thinker-ko">제임스 깁슨</span>
+            <span class="thinker-years">1904–1979</span>
+          </div>
+          <div class="thinker-punch">감각은 환경에서 <em>불변량(invariants)</em>을 능동적으로 추출하는 일 — 어포던스(affordance)의 발견.</div>
+        </div>
+        <span class="thinker-tag">Ecological Perception · 1979</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>Gibson은 Helmholtz의 추론 모델에 정면으로 반대했다. 〈The Ecological Approach to Visual Perception〉(1979)에서 그는 망막의 자료가 결코 빈약하지 않다고 봤다. 동물이 환경 속에서 움직이는 동안, 빛의 흐름에는 <strong>불변량(invariants)</strong>이 풍부하게 들어 있다. 동물은 그 불변량을 직접 골라낸다. 추론할 필요가 없다.</p>
+          <p>이 시각에서 가장 유명한 개념이 <strong>어포던스(affordance)</strong>다. 의자는 "앉음의 어포던스"를, 손잡이는 "잡음의 어포던스"를 가진다. 어포던스는 사물 안에도 아닌, 동물 안에도 아닌, <strong>둘의 관계 안</strong>에 있다. 지각의 자리는 머릿속이 아니라 동물-환경 시스템 자체다. 이 시각이 UX 디자인의 모든 어휘를 다시 짰다.</p>
+          <div class="quote">"환경의 어포던스는 환경이 동물에게 제공하는 것이다, 좋든 나쁘든. 그것은 동물과 환경의 양쪽에 속해 있다." <span class="quote-src">— The Ecological Approach to Visual Perception, 1979</span></div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 머릿속 그림</div>
+<div class="schema" style="white-space: normal; padding: 32px; text-align: center;"><div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.3em; color: var(--text); margin-bottom: 8px; text-transform: uppercase;">GIBSON · AFFORDANCE</div><div style="font-size: 13px; color: var(--text-dim); margin-bottom: 24px;">동물과 환경 사이에 발생하는 행동 가능성</div><svg viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; max-width: 800px;" font-family="'Noto Sans KR', sans-serif" fill="#1a1a1a">
+  <!-- Animal -->
+  <circle cx="180" cy="160" r="80" fill="rgba(74,114,168,0.10)" stroke="#4a72a8" stroke-width="1.8"/>
+  <text x="180" y="148" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#4a72a8" font-weight="700">ANIMAL</text>
+  <text x="180" y="172" text-anchor="middle" font-size="13" font-weight="700">동물 · 신체</text>
+  <text x="180" y="190" text-anchor="middle" font-size="11" fill="#4a4845">손·다리·눈·필요</text>
+
+  <!-- Environment -->
+  <circle cx="620" cy="160" r="80" fill="rgba(74,142,74,0.10)" stroke="#4a8e4a" stroke-width="1.8"/>
+  <text x="620" y="148" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#4a8e4a" font-weight="700">ENVIRONMENT</text>
+  <text x="620" y="172" text-anchor="middle" font-size="13" font-weight="700">환경 · 사물</text>
+  <text x="620" y="190" text-anchor="middle" font-size="11" fill="#4a4845">면·끝·구멍·기울기</text>
+
+  <!-- Affordance band in middle -->
+  <rect x="260" y="120" width="280" height="80" fill="rgba(217,96,31,0.12)" stroke="#d9601f" stroke-width="1.8" rx="3"/>
+  <text x="400" y="148" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#d9601f" font-weight="700">AFFORDANCE</text>
+  <text x="400" y="172" text-anchor="middle" font-size="14" font-weight="700">어포던스 · 행동 가능성</text>
+  <text x="400" y="192" text-anchor="middle" font-size="11" fill="#4a4845">둘 사이의 관계로 발생</text>
+
+  <!-- arrows from both sides -->
+  <path d="M 240 160 L 260 160" stroke="#1a1a1a" stroke-width="1.5" fill="none"/>
+  <path d="M 260 160 L 252 155 M 260 160 L 252 165" stroke="#1a1a1a" stroke-width="1.5" fill="none"/>
+  <path d="M 560 160 L 540 160" stroke="#1a1a1a" stroke-width="1.5" fill="none"/>
+  <path d="M 540 160 L 548 155 M 540 160 L 548 165" stroke="#1a1a1a" stroke-width="1.5" fill="none"/>
+
+  <!-- Examples -->
+  <rect x="60" y="280" width="220" height="100" fill="#fff" stroke="#807e7a" stroke-width="1" rx="3"/>
+  <text x="170" y="305" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" letter-spacing="2" fill="#807e7a">예 1</text>
+  <text x="170" y="328" text-anchor="middle" font-size="13" font-weight="700">손잡이</text>
+  <text x="170" y="350" text-anchor="middle" font-size="11" fill="#4a4845">손이 있는 동물에게만</text>
+  <text x="170" y="368" text-anchor="middle" font-size="11" fill="#4a4845">"잡힘"의 어포던스</text>
+
+  <rect x="290" y="280" width="220" height="100" fill="#fff" stroke="#807e7a" stroke-width="1" rx="3"/>
+  <text x="400" y="305" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" letter-spacing="2" fill="#807e7a">예 2</text>
+  <text x="400" y="328" text-anchor="middle" font-size="13" font-weight="700">평평한 면</text>
+  <text x="400" y="350" text-anchor="middle" font-size="11" fill="#4a4845">엉덩이가 있는 동물에게</text>
+  <text x="400" y="368" text-anchor="middle" font-size="11" fill="#4a4845">"앉음"의 어포던스</text>
+
+  <rect x="520" y="280" width="220" height="100" fill="#fff" stroke="#807e7a" stroke-width="1" rx="3"/>
+  <text x="630" y="305" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" letter-spacing="2" fill="#807e7a">예 3</text>
+  <text x="630" y="328" text-anchor="middle" font-size="13" font-weight="700">버튼 모양</text>
+  <text x="630" y="350" text-anchor="middle" font-size="11" fill="#4a4845">손가락이 있는 사용자에게</text>
+  <text x="630" y="368" text-anchor="middle" font-size="11" fill="#4a4845">"누름"의 어포던스</text>
+
+  <!-- conclusion -->
+  <rect x="60" y="400" width="680" height="50" fill="rgba(74,114,168,0.07)" stroke="#4a72a8" stroke-width="1.5" rx="3"/>
+  <text x="400" y="430" text-anchor="middle" font-size="13" font-weight="700" fill="#4a72a8">★ 지각은 머릿속에서 일어나는 추론이 아니라 동물-환경 사이의 발생이다</text>
+</svg></div>
+          <div class="schema-cap">GIBSON · AFFORDANCE · 1979</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">UX / Product Design</div>
+              <div class="inf-body"><strong>Don Norman</strong>의 〈The Design of Everyday Things〉(1988)가 어포던스를 디자인의 핵심 어휘로 옮긴 다리. 모든 디지털 UI 디자인의 기본 어휘.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Embodied Cognition</div>
+              <div class="inf-body">4E 인지(embodied·embedded·extended·enactive)의 출발점. <strong>Varela</strong>·<strong>Clark</strong>·<strong>Chemero</strong>가 Gibson을 신경과학과 결합.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Architecture</div>
+              <div class="inf-body">공간이 행동을 제공한다는 시각. <strong>Christopher Alexander</strong>의 〈A Pattern Language〉가 어포던스 사상의 건축적 적용.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              제품 디자인 회의에서 "이 버튼은 누를 수 있어 보이는가"라고 물을 때, 우리는 Gibson의 어휘를 쓴다. 콘텐츠 디자인도 다르지 않다. 한 줄이 클릭의 어포던스를 갖는가, 한 단락이 스크롤의 어포던스를 갖는가. 카피·UI·인터랙션이 모두 어포던스를 만지는 작업이다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============ 05 · PHASE 4 — 지각의 구성 ============ -->
+<section id="p4" style="background:var(--bg-2);">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">05</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">PHASE 04 · 1970s → 2020s · 지각의 구성</div>
+        <h2>지각은 <em>가설</em>이고, 뇌는 <em>예측 기계</em>다</h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      Helmholtz의 무의식적 추론이 100년을 건너와서 두 단계의 도약을 했다. Gregory는 지각을 "가설"이라 명명했고, Friston은 그 가설을 베이지안 예측 부호화로 수학적으로 정리했다. 지각이 위에서 내려오는 예측과 아래서 올라오는 자료가 만나는 자리라는 명제가 21세기 마음 과학의 표준이 됐다. <strong>편집은 그 예측을 흔드는 작업</strong>이라 다시 정의할 수 있다.
+    </p>
+
+    <div class="phase-hero teal">
+      <div class="phase-era">PHASE 04 · 1970s → 2020s · 인지심리학 · 계산신경과학</div>
+      <h3>국면 4 · 위에서 내려오는 <em>예측</em>과 아래서 올라오는 <em>자료</em>의 만남</h3>
+      <p>지각은 한 방향이 아니다. 뇌는 끊임없이 다음 입력을 예측하고, 자료가 그 예측을 흔드는 만큼 갱신한다. 좋은 디자인·좋은 카피·좋은 글은 독자의 예측을 가볍게 흔들고 같은 결로 갱신해주는 작업이다.</p>
+      <div class="phase-q">핵심 질문 <strong>→</strong> 뇌가 매 순간 만들고 있는 예측을 편집은 어떻게 만지는가?</div>
+    </div>
+
+    <!-- Gregory -->
+    <article class="thinker teal">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Gregory</span>
+            <span class="thinker-ko">리처드 그레고리</span>
+            <span class="thinker-years">1923–2010</span>
+          </div>
+          <div class="thinker-punch">지각은 <em>가설(perception as hypothesis)</em>이다 — 뇌가 자료에 던지는 짐작.</div>
+        </div>
+        <span class="thinker-tag">Perception as Hypothesis · 1970s</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>Gregory는 〈Eye and Brain〉(1966)과 후속 논문들에서 Helmholtz의 추론 모델을 정교화했다. 그는 지각을 <strong>가설(hypothesis)</strong>이라 명명했다. 망막 자료가 들어오면 뇌는 "이게 무엇일까"의 여러 가설을 동시에 떠올리고, 그중 가장 그럴듯한 것을 선택한다. 가설이 자료에 맞지 않으면 다른 가설로 갈아탄다.</p>
+          <p>가장 유명한 증거가 <strong>네커 큐브(Necker cube)</strong>다. 같은 선화가 두 방향의 입체로 번갈아 보인다. 자료는 그대로인데 뇌가 두 가설 사이를 오간다. Gregory는 이를 "지각은 자료가 아니라 자료를 해석하는 가설이 결정한다"의 증거로 삼았다. 이 시각이 21세기 예측 부호화의 직접 전신이다.</p>
+          <div class="quote">"지각은 능동적이며, 가용한 자료로부터 외부 세계에 대한 가장 그럴듯한 짐작을 만드는 일이다." <span class="quote-src">— Eye and Brain, 1966</span></div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 머릿속 그림</div>
+<div class="schema" style="white-space: normal; padding: 32px; text-align: center;"><div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.3em; color: var(--text); margin-bottom: 8px; text-transform: uppercase;">PERCEPTION AS HYPOTHESIS</div><div style="font-size: 13px; color: var(--text-dim); margin-bottom: 24px;">같은 자료, 다른 가설, 다른 지각</div><svg viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; max-width: 800px;" font-family="'Noto Sans KR', sans-serif" fill="#1a1a1a">
+  <!-- Top: hypotheses -->
+  <rect x="80" y="60" width="200" height="80" fill="rgba(46,138,124,0.15)" stroke="#2e8a7c" stroke-width="1.8" rx="3"/>
+  <text x="180" y="88" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#2e8a7c" font-weight="700">HYPOTHESIS A</text>
+  <text x="180" y="112" text-anchor="middle" font-size="13" font-weight="700">가설 A</text>
+  <text x="180" y="130" text-anchor="middle" font-size="11" fill="#4a4845">큐브가 왼쪽 위로</text>
+
+  <rect x="520" y="60" width="200" height="80" fill="rgba(46,138,124,0.08)" stroke="#2e8a7c" stroke-width="1.5" rx="3"/>
+  <text x="620" y="88" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#2e8a7c">HYPOTHESIS B</text>
+  <text x="620" y="112" text-anchor="middle" font-size="13" font-weight="700">가설 B</text>
+  <text x="620" y="130" text-anchor="middle" font-size="11" fill="#4a4845">큐브가 오른쪽 아래로</text>
+
+  <!-- Down arrows -->
+  <g stroke="#2e8a7c" stroke-width="1.5" fill="none">
+    <path d="M 180 145 L 180 195"/>
+    <path d="M 180 195 L 175 188 M 180 195 L 185 188"/>
+    <path d="M 620 145 L 620 195"/>
+    <path d="M 620 195 L 615 188 M 620 195 L 625 188"/>
+  </g>
+
+  <!-- Same data -->
+  <rect x="280" y="200" width="240" height="80" fill="#fff" stroke="#1a1a1a" stroke-width="1.5" rx="3"/>
+  <text x="400" y="228" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#807e7a">RETINAL DATA</text>
+  <text x="400" y="252" text-anchor="middle" font-size="13" font-weight="700">같은 망막 자료</text>
+  <text x="400" y="270" text-anchor="middle" font-size="11" fill="#807e7a">네커 큐브 · 선화 그대로</text>
+
+  <!-- arrows from data to hypotheses (bidirectional) -->
+  <g stroke="#807e7a" stroke-width="1.2" stroke-dasharray="3,3" fill="none">
+    <path d="M 280 230 L 200 195"/>
+    <path d="M 520 230 L 600 195"/>
+  </g>
+
+  <!-- Down to percept -->
+  <path d="M 400 285 L 400 320" stroke="#1a1a1a" stroke-width="1.5" fill="none"/>
+  <path d="M 400 320 L 395 313 M 400 320 L 405 313" stroke="#1a1a1a" stroke-width="1.5" fill="none"/>
+
+  <!-- Percept varies -->
+  <rect x="200" y="325" width="400" height="60" fill="rgba(217,96,31,0.10)" stroke="#d9601f" stroke-width="1.8" rx="3"/>
+  <text x="400" y="352" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#d9601f" font-weight="700">PERCEPT · 지각</text>
+  <text x="400" y="375" text-anchor="middle" font-size="13" font-weight="700">선택된 가설에 따라 결과가 다르다</text>
+
+  <!-- conclusion -->
+  <rect x="60" y="405" width="680" height="40" fill="rgba(46,138,124,0.07)" stroke="#2e8a7c" stroke-width="1.5" rx="3"/>
+  <text x="400" y="430" text-anchor="middle" font-size="13" font-weight="700" fill="#2e8a7c">★ 지각은 자료가 아니라 자료에 맞춘 가설이 정한다</text>
+</svg></div>
+          <div class="schema-cap">GREGORY · PERCEPTION AS HYPOTHESIS · 1970s</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Cognitive Psychology</div>
+              <div class="inf-body">예측 부호화·베이지안 뇌 가설의 직접 전신. <strong>Marr</strong>의 시각 계산 이론, <strong>Rao & Ballard</strong>의 1999년 예측 부호화 논문이 Gregory의 가설 모델 위에 짜였다.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Visual Studies</div>
+              <div class="inf-body">착시·예술 감상·사진의 해석 모두 가설 선택의 문제로 다시 정리. <strong>Gombrich</strong>의 도식 이론과 같은 뿌리.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Design / Branding</div>
+              <div class="inf-body">"브랜드 인지는 가설 활성화"라는 시각의 뿌리. 광고의 첫 컷이 어떤 가설을 띄우느냐로 그 뒤 모든 정보의 의미가 정해진다.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              제목 한 줄이 본문의 의미를 정한다는 카피 격언의 인지적 근거. 독자의 뇌에 어떤 가설을 띄우는지에 따라 같은 본문이 다른 의미가 된다. Gregory는 그것이 착시가 아니라 모든 지각의 방식이라고 명시한 사람이다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Friston -->
+    <article class="thinker purple">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Friston</span>
+            <span class="thinker-ko">칼 프리스턴</span>
+            <span class="thinker-years">1959–</span>
+          </div>
+          <div class="thinker-punch">뇌는 <em>예측 기계</em>다 — 자유에너지 원리로 통합되는 21세기 마음의 수학.</div>
+        </div>
+        <span class="thinker-tag">Predictive Coding · 2010</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>Friston은 신경과학자이자 통계학자다. 〈The Free-Energy Principle〉(2010)에서 그는 뇌의 모든 작업을 단 하나의 원리로 통합하려 했다 — <strong>뇌는 자신의 예측 오차(prediction error)를 최소화하는 시스템</strong>이다. 위쪽 회로는 끊임없이 다음 입력을 예측하고, 아래쪽 회로에서 올라오는 실제 자료가 그 예측과 어긋날 때 오차 신호가 발생한다. 뇌는 두 가지 방법으로 이 오차를 줄인다 — 예측을 갱신하거나, 행동으로 세계를 바꾸거나.</p>
+          <p>이 원리가 무서운 이유는 인지·지각·정서·행동·학습이 모두 같은 한 수학으로 풀린다는 점이다. 지각은 예측의 갱신, 행동은 세계의 갱신, 학습은 예측 모델 자체의 갱신. 자유에너지 원리는 21세기 마음 과학의 가장 야심찬 통합 이론이고, AI의 능동 추론(active inference) 분야로도 직접 연결된다.</p>
+          <div class="quote">"뇌는 통계적 추론 기관이다. 자신의 감각 입력을 가장 잘 설명하는 모델을 끊임없이 만들고 갱신한다." <span class="quote-src">— Friston, The Free-Energy Principle, 2010</span></div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 머릿속 그림</div>
+<div class="schema" style="white-space: normal; padding: 32px; text-align: center;"><div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.3em; color: var(--text); margin-bottom: 8px; text-transform: uppercase;">PREDICTIVE CODING · FREE ENERGY PRINCIPLE</div><div style="font-size: 13px; color: var(--text-dim); margin-bottom: 24px;">예측 ↓ 자료 ↑ · 오차 최소화의 사이클</div><svg viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; max-width: 800px;" font-family="'Noto Sans KR', sans-serif" fill="#1a1a1a">
+  <!-- Prior model -->
+  <rect x="280" y="60" width="240" height="80" fill="rgba(126,90,152,0.15)" stroke="#7e5a98" stroke-width="1.8" rx="3"/>
+  <text x="400" y="88" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#7e5a98" font-weight="700">PRIOR MODEL · 사전 모델</text>
+  <text x="400" y="112" text-anchor="middle" font-size="13" font-weight="700">위쪽 회로의 예측 생성</text>
+  <text x="400" y="130" text-anchor="middle" font-size="11" fill="#807e7a">"다음에 무엇이 올까"</text>
+
+  <!-- prediction down arrow -->
+  <path d="M 350 145 L 350 215" stroke="#7e5a98" stroke-width="1.8" fill="none"/>
+  <path d="M 350 215 L 344 208 M 350 215 L 356 208" stroke="#7e5a98" stroke-width="1.8" fill="none"/>
+  <text x="335" y="185" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="10" fill="#7e5a98">예측</text>
+
+  <!-- error band -->
+  <rect x="80" y="220" width="640" height="100" fill="rgba(217,96,31,0.10)" stroke="#d9601f" stroke-width="1.8" rx="3"/>
+  <text x="400" y="248" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#d9601f" font-weight="700">PREDICTION ERROR · 예측 오차</text>
+  <text x="400" y="275" text-anchor="middle" font-size="14" font-weight="700">예측과 자료의 어긋남</text>
+  <text x="400" y="298" text-anchor="middle" font-size="12" fill="#4a4845">두 가지 방법으로 줄인다 · 예측 갱신 또는 행동</text>
+
+  <!-- data up arrow -->
+  <path d="M 450 405 L 450 325" stroke="#4a72a8" stroke-width="1.8" fill="none"/>
+  <path d="M 450 325 L 444 332 M 450 325 L 456 332" stroke="#4a72a8" stroke-width="1.8" fill="none"/>
+  <text x="465" y="370" text-anchor="start" font-family="'JetBrains Mono', monospace" font-size="10" fill="#4a72a8">자료</text>
+
+  <!-- sensory data -->
+  <rect x="280" y="410" width="240" height="80" fill="rgba(74,114,168,0.10)" stroke="#4a72a8" stroke-width="1.8" rx="3"/>
+  <text x="400" y="438" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#4a72a8" font-weight="700">SENSORY DATA · 감각 자료</text>
+  <text x="400" y="462" text-anchor="middle" font-size="13" font-weight="700">아래 회로의 입력</text>
+  <text x="400" y="480" text-anchor="middle" font-size="11" fill="#807e7a">실제로 들어온 신호</text>
+
+  <!-- update loop arrows -->
+  <g stroke="#7e5a98" stroke-width="1.2" stroke-dasharray="3,3" fill="none">
+    <path d="M 220 270 L 160 270 L 160 100 L 280 100"/>
+    <path d="M 280 100 L 273 96 M 280 100 L 273 104"/>
+  </g>
+  <text x="100" y="190" font-family="'JetBrains Mono', monospace" font-size="10" fill="#7e5a98">오차로 예측 갱신</text>
+</svg></div>
+          <div class="schema-cap">FRISTON · PREDICTIVE CODING · 2010</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Neuroscience</div>
+              <div class="inf-body">21세기 신경과학의 표준 프레임. <strong>Andy Clark</strong>의 〈Surfing Uncertainty〉(2016), <strong>Anil Seth</strong>의 〈Being You〉(2021)가 자유에너지 원리를 대중적으로 풀었다.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">AI</div>
+              <div class="inf-body"><strong>능동 추론(active inference)</strong> 분야의 토대. DeepMind와 인지과학을 잇는 다리. World model·simulation 기반 AI 연구의 이론적 출처.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Aesthetics</div>
+              <div class="inf-body"><strong>예술은 예측을 가지고 노는 일</strong>이라는 관점. 음악의 긴장과 해소, 농담의 펀치라인, 영화의 반전이 모두 예측 오차의 조절로 풀린다.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              좋은 카피는 독자의 예측을 가볍게 흔든 뒤 같은 결로 갱신해준다. 너무 안 흔들면 잡음으로 흘러가고, 너무 흔들면 거부된다. Friston의 수학은 이 작업의 정확한 위치를 가리킨다 — 예측 오차가 적당히 있을 때만 학습이 일어난다. 카피·디자인·교육·교습 모두 이 원리를 만진다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============ 06 · PHASE 5 — 인지·인식·생각·느낌 ============ -->
+<section id="p5">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">06</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">PHASE 05 · 1781 → 2011 · 인지·인식·생각·느낌</div>
+        <h2>두 갈래의 <em>생각</em>, 그리고 그 밑단의 <em>느낌</em></h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      위계가 더 위로 올라가면 인지·인식·생각·느낌의 자리가 나온다. Kant가 감성과 지성을 한 쌍으로 묶은 18세기 말의 정리부터, Kahneman의 시스템 1·2 구분, Damasio의 신체 표지 가설까지. <strong>생각은 한 결이 아니라 두 결로 흐르고, 그 둘은 느낌이라는 같은 강줄기에서 갈라진다</strong>는 것이 이 국면의 종합이다.
+    </p>
+
+    <div class="phase-hero pink">
+      <div class="phase-era">PHASE 05 · 1781 → 2011 · 철학 · 인지심리학 · 신경과학</div>
+      <h3>국면 5 · 감성과 지성, 빠름과 느림, 느낌과 추론</h3>
+      <p>같은 인간 안에서 두 갈래의 사고가 동시에 작동한다. 그 두 갈래는 따로 살지 않는다. 어떤 결정이든 두 갈래가 함께 들어간다. 감각과 개념이 함께, 직관과 분석이 함께, 느낌과 추론이 함께.</p>
+      <div class="phase-q">핵심 질문 <strong>→</strong> 생각은 한 종류인가, 여러 종류인가? 느낌은 생각의 반대인가, 생각의 토대인가?</div>
+    </div>
+
+    <!-- Kant -->
+    <article class="thinker pink">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Kant</span>
+            <span class="thinker-ko">임마누엘 칸트</span>
+            <span class="thinker-years">1724–1804</span>
+          </div>
+          <div class="thinker-punch"><em>직관 없는 개념은 공허하고, 개념 없는 직관은 맹목이다</em> — 감성과 지성의 두 결.</div>
+        </div>
+        <span class="thinker-tag">Sinnlichkeit + Verstand · 1781</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>Kant는 〈순수이성비판〉(1781)에서 인간 인식의 두 결을 처음으로 명료히 갈랐다. <strong>감성(Sinnlichkeit)</strong>은 세계가 우리에게 주어지는 자리, <strong>지성(Verstand)</strong>은 그 주어진 것을 개념으로 묶는 자리다. 감성이 자료를 가져오면 지성이 범주를 씌운다. 둘이 함께 작동할 때만 인식이 일어난다.</p>
+          <p>이 명제 위에 그가 적은 한 줄이 철학사의 명문이 됐다 — <strong>"직관 없는 개념은 공허하고, 개념 없는 직관은 맹목이다"</strong>. 정보가 아무리 많아도 그것을 묶는 개념이 없으면 의미가 없고, 개념이 아무리 정교해도 실제 자료가 없으면 빈말이 된다. 편집자가 매일 부딪히는 자료와 프레임의 관계가 이 한 줄에 다 들어 있다.</p>
+          <div class="quote">"Gedanken ohne Inhalt sind leer, Anschauungen ohne Begriffe sind blind. 사유에 내용이 없으면 공허하고, 직관에 개념이 없으면 맹목이다." <span class="quote-src">— 순수이성비판, B75</span></div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 머릿속 그림</div>
+<div class="schema" style="white-space: normal; padding: 32px; text-align: center;"><div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.3em; color: var(--text); margin-bottom: 8px; text-transform: uppercase;">SINNLICHKEIT + VERSTAND</div><div style="font-size: 13px; color: var(--text-dim); margin-bottom: 24px;">감성과 지성이 만나는 자리에 인식이 있다</div><svg viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; max-width: 800px;" font-family="'Noto Sans KR', sans-serif" fill="#1a1a1a">
+  <!-- Left column: Sinnlichkeit -->
+  <rect x="60" y="60" width="280" height="280" fill="rgba(194,87,135,0.08)" stroke="#c25787" stroke-width="1.5" rx="3"/>
+  <text x="200" y="92" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#c25787" font-weight="700">SINNLICHKEIT · 감성</text>
+  <text x="200" y="120" text-anchor="middle" font-size="14" font-weight="700">직관(Anschauung)</text>
+  <text x="200" y="140" text-anchor="middle" font-size="12" fill="#4a4845">시간·공간 위에 주어진 것</text>
+  <line x1="100" y1="160" x2="300" y2="160" stroke="#c4c2bd" stroke-dasharray="2,3"/>
+  <text x="200" y="185" text-anchor="middle" font-size="12" fill="#4a4845">색·소리·촉감 등</text>
+  <text x="200" y="208" text-anchor="middle" font-size="12" fill="#4a4845">감각 자료의 자리</text>
+  <text x="200" y="240" text-anchor="middle" font-size="11" fill="#807e7a">"개념 없는 직관은 맹목"</text>
+  <text x="200" y="280" text-anchor="middle" font-size="11" fill="#c25787" font-style="italic">→ 자료만 있고 뜻이 없다</text>
+
+  <!-- Right column: Verstand -->
+  <rect x="460" y="60" width="280" height="280" fill="rgba(46,138,124,0.08)" stroke="#2e8a7c" stroke-width="1.5" rx="3"/>
+  <text x="600" y="92" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#2e8a7c" font-weight="700">VERSTAND · 지성</text>
+  <text x="600" y="120" text-anchor="middle" font-size="14" font-weight="700">개념(Begriff)</text>
+  <text x="600" y="140" text-anchor="middle" font-size="12" fill="#4a4845">범주로 묶는 것</text>
+  <line x1="500" y1="160" x2="700" y2="160" stroke="#c4c2bd" stroke-dasharray="2,3"/>
+  <text x="600" y="185" text-anchor="middle" font-size="12" fill="#4a4845">인과·실체·필연 등</text>
+  <text x="600" y="208" text-anchor="middle" font-size="12" fill="#4a4845">선험적 범주의 자리</text>
+  <text x="600" y="240" text-anchor="middle" font-size="11" fill="#807e7a">"직관 없는 개념은 공허"</text>
+  <text x="600" y="280" text-anchor="middle" font-size="11" fill="#2e8a7c" font-style="italic">→ 뜻만 있고 자료가 없다</text>
+
+  <!-- Center bridge -->
+  <line x1="340" y1="200" x2="460" y2="200" stroke="#d9601f" stroke-width="1.8" stroke-dasharray="4,3"/>
+  <path d="M 340 200 L 350 195 M 340 200 L 350 205" stroke="#d9601f" stroke-width="1.8" fill="none"/>
+  <path d="M 460 200 L 450 195 M 460 200 L 450 205" stroke="#d9601f" stroke-width="1.8" fill="none"/>
+
+  <!-- Bottom conclusion -->
+  <rect x="60" y="375" width="680" height="60" fill="rgba(217,96,31,0.10)" stroke="#d9601f" stroke-width="1.8" rx="3"/>
+  <text x="400" y="400" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="3" fill="#d9601f">결론</text>
+  <text x="400" y="423" text-anchor="middle" font-size="14" font-weight="700">★ 두 결이 함께 작동할 때만 인식이 일어난다 — 자료와 프레임의 동시성</text>
+</svg></div>
+          <div class="schema-cap">KANT · TWO STEMS OF KNOWLEDGE · 1781</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Philosophy</div>
+              <div class="inf-body">독일 관념론(헤겔·셸링) 전체의 출발점. <strong>현상학</strong>(후설), <strong>해석학</strong>(가다머)이 모두 칸트의 두 결을 다시 풀어쓰며 자랐다.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Cognitive Science</div>
+              <div class="inf-body"><strong>Lakoff</strong>의 체화된 인지, <strong>Pinker</strong>의 마음의 모듈성, <strong>Spelke</strong>의 핵심 지식 이론이 모두 "선험 범주"의 현대적 변주.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Editorial</div>
+              <div class="inf-body">"자료만 있고 프레임이 없는 글" 또는 "프레임만 있고 자료가 없는 글"이라는 진단의 출처. 두 결의 균형이 좋은 편집의 한 기준.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              인터뷰 원고를 검토할 때 가장 흔한 두 가지 문제. 사실은 풍부한데 한 줄로 묶이지 않거나, 명제는 또렷한데 살아 있는 장면이 없거나. 칸트의 한 줄로 정확히 진단된다. 좋은 편집은 두 결 사이의 균형을 잡는 손이다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Kahneman -->
+    <article class="thinker blue">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Kahneman</span>
+            <span class="thinker-ko">대니얼 카너먼</span>
+            <span class="thinker-years">1934–2024</span>
+          </div>
+          <div class="thinker-punch">생각에는 두 시스템이 있다 — <em>빠른 직관(S1)</em>과 <em>느린 분석(S2)</em>.</div>
+        </div>
+        <span class="thinker-tag">System 1 · System 2 · 2011</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>Kahneman은 〈Thinking, Fast and Slow〉(2011)에서 50년의 인지심리학 연구를 한 그림으로 묶었다 — <strong>System 1</strong>은 빠르고 자동적이며 노력이 들지 않는 직관, <strong>System 2</strong>는 느리고 의식적이며 노력이 드는 분석이다. 우리는 대부분의 결정을 S1으로 하고, S2는 가끔 호출되며, 호출돼도 자주 S1의 결정을 사후 정당화하는 데 쓰인다.</p>
+          <p>이 구분은 칸트의 감성·지성의 짝과 완전히 같지는 않지만 강한 가족 유사성을 가진다. 차이는 Kahneman이 두 시스템 사이의 갈등·편향·오류를 실험으로 측정 가능한 자리로 옮긴 점이다. <strong>가용성 편향, 닻 효과, 손실 회피</strong> 같은 인지 편향이 S1의 작업 방식의 부산물로 정리됐다. 행동경제학의 노벨상은 이 작업에 주어진 것이다.</p>
+          <div class="quote">"우리는 시스템 1이 만들어낸 인상과 직관을 받아들이고, 그것을 시스템 2가 자기 의견인 양 보고한다." <span class="quote-src">— Thinking, Fast and Slow, 2011</span></div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 머릿속 그림</div>
+<div class="schema" style="white-space: normal; padding: 32px; text-align: center;"><div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.3em; color: var(--text); margin-bottom: 8px; text-transform: uppercase;">SYSTEM 1 / SYSTEM 2</div><div style="font-size: 13px; color: var(--text-dim); margin-bottom: 24px;">빠르고 자동적인 결과 느리고 분석적인 결</div><svg viewBox="0 0 800 480" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; max-width: 800px;" font-family="'Noto Sans KR', sans-serif" fill="#1a1a1a">
+  <!-- S1 -->
+  <rect x="60" y="60" width="320" height="220" fill="rgba(74,114,168,0.10)" stroke="#4a72a8" stroke-width="1.8" rx="3"/>
+  <text x="220" y="92" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#4a72a8" font-weight="700">SYSTEM 1</text>
+  <text x="220" y="120" text-anchor="middle" font-size="16" font-weight="700">빠른 사고 · 직관</text>
+  <line x1="100" y1="140" x2="340" y2="140" stroke="#c4c2bd" stroke-dasharray="2,3"/>
+  <text x="220" y="165" text-anchor="middle" font-size="12" fill="#4a4845">자동적 · 노력 ∅ · 항상 켜져 있음</text>
+  <text x="220" y="188" text-anchor="middle" font-size="12" fill="#4a4845">얼굴 알아보기 · 첫인상 · 위협 감지</text>
+  <text x="220" y="211" text-anchor="middle" font-size="12" fill="#4a4845">감정·은유·이야기 친화</text>
+  <text x="220" y="245" text-anchor="middle" font-size="11" fill="#807e7a">편향이 자라는 자리</text>
+  <text x="220" y="263" text-anchor="middle" font-size="11" fill="#4a72a8" font-style="italic">→ 카피·시각의 1차 작업장</text>
+
+  <!-- S2 -->
+  <rect x="420" y="60" width="320" height="220" fill="rgba(46,138,124,0.10)" stroke="#2e8a7c" stroke-width="1.8" rx="3"/>
+  <text x="580" y="92" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#2e8a7c" font-weight="700">SYSTEM 2</text>
+  <text x="580" y="120" text-anchor="middle" font-size="16" font-weight="700">느린 사고 · 분석</text>
+  <line x1="460" y1="140" x2="700" y2="140" stroke="#c4c2bd" stroke-dasharray="2,3"/>
+  <text x="580" y="165" text-anchor="middle" font-size="12" fill="#4a4845">의식적 · 노력 必 · 호출돼야 작동</text>
+  <text x="580" y="188" text-anchor="middle" font-size="12" fill="#4a4845">곱셈·논리 검토·규칙 추론</text>
+  <text x="580" y="211" text-anchor="middle" font-size="12" fill="#4a4845">언어·수식·절차 친화</text>
+  <text x="580" y="245" text-anchor="middle" font-size="11" fill="#807e7a">편향의 검토자</text>
+  <text x="580" y="263" text-anchor="middle" font-size="11" fill="#2e8a7c" font-style="italic">→ 리서치·기획의 본 자리</text>
+
+  <!-- Interaction arrow -->
+  <line x1="380" y1="170" x2="420" y2="170" stroke="#d9601f" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <path d="M 380 170 L 388 165 M 380 170 L 388 175" stroke="#d9601f" stroke-width="1.5" fill="none"/>
+  <path d="M 420 170 L 412 165 M 420 170 L 412 175" stroke="#d9601f" stroke-width="1.5" fill="none"/>
+
+  <!-- Issue band -->
+  <rect x="60" y="310" width="680" height="60" fill="#f8f6f1" stroke="#807e7a" stroke-width="1" stroke-dasharray="3,3" rx="3"/>
+  <text x="400" y="335" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#807e7a">관찰</text>
+  <text x="400" y="358" text-anchor="middle" font-size="13">S2가 호출돼도 보통 S1의 결정을 사후 정당화하는 데 쓰인다</text>
+
+  <!-- conclusion -->
+  <rect x="60" y="395" width="680" height="50" fill="rgba(217,96,31,0.10)" stroke="#d9601f" stroke-width="1.8" rx="3"/>
+  <text x="400" y="425" text-anchor="middle" font-size="13" font-weight="700" fill="#d9601f">★ 좋은 카피는 S1에 닿고, 좋은 설명은 S2에 닿는다 — 매체별로 자리가 다르다</text>
+</svg></div>
+          <div class="schema-cap">KAHNEMAN · DUAL PROCESS · 2011</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Behavioral Economics</div>
+              <div class="inf-body">행동경제학의 출발점. <strong>Thaler</strong>의 넛지, <strong>Ariely</strong>의 행동 디자인이 시스템 1·2 모델을 정책·제품 디자인에 옮겼다.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Advertising</div>
+              <div class="inf-body">광고 효과 측정의 새 어휘. "이 광고는 S1에 닿는가, S2에 닿는가"가 카피의 전략 분기점이 된다.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">UX</div>
+              <div class="inf-body">결제·구독 흐름의 분석 도구. <strong>마찰(friction)</strong>의 양이 S1·S2의 활성도를 정한다는 시각.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              카피 회의에서 "이건 너무 S2 톤이다, 좀 더 직관 쪽으로"라는 말은 이제 일상이다. 사용자 인터페이스에서도 마찬가지. 광고 헤드라인은 S1을, 약관 페이지는 S2를 노린다. Kahneman은 매체와 카피의 결을 두 시스템의 자리로 정확히 가르는 어휘를 줬다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Damasio -->
+    <article class="thinker green">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Damasio</span>
+            <span class="thinker-ko">안토니오 다마지오</span>
+            <span class="thinker-years">1944–</span>
+          </div>
+          <div class="thinker-punch">정서는 합리적 사고의 적이 아니라 <em>토대</em>다 — 신체 표지(somatic markers) 가설.</div>
+        </div>
+        <span class="thinker-tag">Somatic Markers · 1994</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>Damasio는 〈Descartes' Error〉(1994)에서 신경학 환자 사례로 인지의 결을 다시 짰다. 전두엽 복내측 부위가 손상된 환자들은 IQ도 정상이고 추론 능력도 멀쩡한데, 일상의 결정을 못 한다. 점심에 무엇을 먹을지 30분을 고민한다. Damasio는 이들에게서 빠진 것이 <strong>신체 표지(somatic marker)</strong>임을 짚었다.</p>
+          <p>모든 결정에는 그 결정의 결과를 미리 신체로 시뮬레이션하는 자동 작업이 깔려 있다. 좋은 결과는 좋은 신체 신호를, 나쁜 결과는 나쁜 신체 신호를 띄운다. 우리는 그 신호를 "직감"이라 부른다. 이 직감이 사라지면 합리적 추론만으로는 결정을 내릴 수 없다. <strong>정서가 합리의 적이 아니라 합리의 토대</strong>라는 한 줄. 데카르트 이후 350년 만에 마음과 몸의 자리가 다시 바뀌었다.</p>
+          <div class="quote">"이성은 데카르트가 생각한 것처럼 정서에서 독립한 순수한 것이 아니다. 좋은 결정에는 좋은 정서가 필요하다." <span class="quote-src">— Descartes' Error, 1994</span></div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 머릿속 그림</div>
+<div class="schema" style="white-space: normal; padding: 32px; text-align: center;"><div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.3em; color: var(--text); margin-bottom: 8px; text-transform: uppercase;">SOMATIC MARKERS · 신체 표지</div><div style="font-size: 13px; color: var(--text-dim); margin-bottom: 24px;">정서가 추론의 토대에서 작동하는 자리</div><svg viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; max-width: 800px;" font-family="'Noto Sans KR', sans-serif" fill="#1a1a1a">
+  <!-- Situation -->
+  <rect x="280" y="60" width="240" height="60" fill="#fff" stroke="#1a1a1a" stroke-width="1.5" rx="3"/>
+  <text x="400" y="88" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#807e7a">SITUATION</text>
+  <text x="400" y="108" text-anchor="middle" font-size="13" font-weight="700">결정 상황</text>
+
+  <!-- Two branches -->
+  <path d="M 350 125 L 200 165" stroke="#4a8e4a" stroke-width="1.5" fill="none"/>
+  <path d="M 200 165 L 207 158 M 200 165 L 200 156" stroke="#4a8e4a" stroke-width="1.5" fill="none"/>
+  <path d="M 450 125 L 600 165" stroke="#c14638" stroke-width="1.5" fill="none"/>
+  <path d="M 600 165 L 593 158 M 600 165 L 600 156" stroke="#c14638" stroke-width="1.5" fill="none"/>
+
+  <!-- Left: with marker -->
+  <rect x="60" y="170" width="280" height="240" fill="rgba(74,142,74,0.10)" stroke="#4a8e4a" stroke-width="1.8" rx="3"/>
+  <text x="200" y="200" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#4a8e4a" font-weight="700">WITH SOMATIC MARKER</text>
+  <text x="200" y="220" text-anchor="middle" font-size="13" font-weight="700">신체 표지가 작동</text>
+
+  <text x="200" y="255" text-anchor="middle" font-size="12" fill="#4a4845">결과를 신체로 시뮬레이션</text>
+  <text x="200" y="278" text-anchor="middle" font-size="12" fill="#4a4845">좋은 옵션 → 좋은 신호</text>
+  <text x="200" y="298" text-anchor="middle" font-size="12" fill="#4a4845">나쁜 옵션 → 나쁜 신호</text>
+
+  <line x1="100" y1="320" x2="300" y2="320" stroke="#c4c2bd" stroke-dasharray="2,3"/>
+
+  <text x="200" y="345" text-anchor="middle" font-size="12" fill="#4a4845">결정의 후보가 줄어든다</text>
+  <text x="200" y="370" text-anchor="middle" font-size="13" font-weight="700" fill="#4a8e4a">→ 빠른 결정 가능</text>
+  <text x="200" y="395" text-anchor="middle" font-size="11" fill="#807e7a">정상인의 결정 방식</text>
+
+  <!-- Right: without marker -->
+  <rect x="460" y="170" width="280" height="240" fill="rgba(193,70,56,0.08)" stroke="#c14638" stroke-width="1.8" rx="3"/>
+  <text x="600" y="200" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#c14638" font-weight="700">WITHOUT MARKER</text>
+  <text x="600" y="220" text-anchor="middle" font-size="13" font-weight="700">신체 표지 손상</text>
+
+  <text x="600" y="255" text-anchor="middle" font-size="12" fill="#4a4845">신체 시뮬레이션이 작동 안 함</text>
+  <text x="600" y="278" text-anchor="middle" font-size="12" fill="#4a4845">모든 옵션이 같은 무게</text>
+  <text x="600" y="298" text-anchor="middle" font-size="12" fill="#4a4845">직감의 가지치기 없음</text>
+
+  <line x1="500" y1="320" x2="700" y2="320" stroke="#c4c2bd" stroke-dasharray="2,3"/>
+
+  <text x="600" y="345" text-anchor="middle" font-size="12" fill="#4a4845">모든 옵션을 일일이 추론</text>
+  <text x="600" y="370" text-anchor="middle" font-size="13" font-weight="700" fill="#c14638">→ 결정 마비</text>
+  <text x="600" y="395" text-anchor="middle" font-size="11" fill="#807e7a">전두엽 손상 환자의 사례</text>
+
+  <!-- Conclusion -->
+  <rect x="60" y="430" width="680" height="70" fill="rgba(217,96,31,0.10)" stroke="#d9601f" stroke-width="1.8" rx="3"/>
+  <text x="400" y="455" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="3" fill="#d9601f">결론</text>
+  <text x="400" y="478" text-anchor="middle" font-size="14" font-weight="700">★ 데카르트의 오류 — 이성은 정서 없이 작동하지 않는다</text>
+  <text x="400" y="497" text-anchor="middle" font-size="12" fill="#4a4845">느낌은 사고의 적이 아니라 사고의 첫 가지치기</text>
+</svg></div>
+          <div class="schema-cap">DAMASIO · SOMATIC MARKER HYPOTHESIS · 1994</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Neuroscience</div>
+              <div class="inf-body">정서 신경과학의 출발점. <strong>LeDoux</strong>의 정서 회로 연구, <strong>Panksepp</strong>의 정서 시스템 분류, <strong>Barrett</strong>의 구성주의 정서 이론이 다마지오 위에서 자랐다.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Decision Theory</div>
+              <div class="inf-body">행동경제학·이성적 선택 이론의 보정. 직감이 단순한 잡음이 아니라 사전 가지치기의 신호임을 명시.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Embodied Cognition</div>
+              <div class="inf-body">4E 인지의 핵심 증거. <strong>몸 없이는 마음이 없다</strong>는 명제의 신경학적 근거. CC Part IV 신체화 인식 계보의 한 축.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              카피 회의에서 "느낌이 안 와요"라는 말은 가벼운 게 아니다. 그 말은 독자의 신체 표지가 활성화되지 않는다는 진단이고, Damasio의 가설로 보면 결정·기억·행동의 토대가 빠져 있다는 뜻이다. 좋은 카피는 신체 표지를 깨우는 글이다. 정서가 추론의 적이 아니라 추론의 토대라는 명제 위에 모든 설득 작업이 다시 정렬된다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============ 07 · PHASE 6 — 심상·표상·기억·상상 ============ -->
+<section id="p6" style="background:var(--bg-2);">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">07</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">PHASE 06 · 1970s → 2010s · 심상·표상·기억·상상</div>
+        <h2>같은 회로가 <em>본 것</em>·<em>기억한 것</em>·<em>상상한 것</em>을 다 만든다</h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      위계의 안쪽 깊은 자리. 외부에서 들어온 것이 아닌, 내부에서 만들어진 것들이 사는 자리다. Kosslyn은 심상이 단순한 비유가 아니라 시각 회로의 작업임을 실험으로 증명했고, Tulving은 기억의 결을 세 갈래로 갈랐고, Hassabis는 기억과 상상이 해마의 같은 회로에서 일어남을 신경영상으로 보였다. <strong>편집자의 시뮬레이션 라이브러리</strong>가 이 자리에서 짜인다.
+    </p>
+
+    <div class="phase-hero green">
+      <div class="phase-era">PHASE 06 · 1970s → 2010s · 인지심리학 · 신경과학</div>
+      <h3>국면 6 · 머릿속의 그림이 <em>실제로</em> 그림이다</h3>
+      <p>심상은 비유가 아니다. 시각 피질이 실제로 작동한다. 기억은 재생이 아니라 재구성이다. 상상은 미래의 시뮬레이션이고, 그 회로는 과거 기억의 회로와 같다. 이 세 발견이 합쳐지면 편집자가 매일 쓰는 도구의 신경학적 근거가 보인다.</p>
+      <div class="phase-q">핵심 질문 <strong>→</strong> 머릿속에서 그리고, 기억하고, 상상하는 일은 어떤 회로에서 일어나는가?</div>
+    </div>
+
+    <!-- Kosslyn -->
+    <article class="thinker green">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Kosslyn</span>
+            <span class="thinker-ko">스티븐 코슬린</span>
+            <span class="thinker-years">1948–</span>
+          </div>
+          <div class="thinker-punch">심상(mental imagery)은 시각 체계의 <em>실제 작업</em>이다 — 뇌가 그림을 진짜로 그린다.</div>
+        </div>
+        <span class="thinker-tag">Mental Imagery · 1980s</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>오랫동안 철학과 심리학은 "마음의 그림(mental image)"이 진짜 그림인지 말의 비유인지를 두고 다퉜다. Kosslyn은 〈Image and Mind〉(1980)와 후속 실험들로 이 논쟁을 한쪽으로 닫았다. <strong>심상은 진짜로 시각 피질에서 작동한다</strong>. 머릿속에서 큰 그림을 떠올린 뒤 디테일을 보려면 시간이 더 걸리고, 그림을 회전시키면 회전 각도에 비례해 시간이 든다. 신경영상은 심상 작업 동안 1차 시각 피질(V1)이 활성화됨을 보였다.</p>
+          <p>이 발견의 의미는 크다. 우리가 미래를 상상하거나, 과거 장면을 떠올리거나, 카피의 한 줄에서 풍경을 그릴 때, 뇌는 그것을 실제로 본다. 시각 디자인과 글쓰기가 다른 일이 아니라는 명제의 신경학적 토대가 여기에 있다. 보여주지 않아도 보여줄 수 있다 — 좋은 글이 그림을 띄우는 이유다.</p>
+          <div class="quote">"심상은 시각의 메아리가 아니라, 시각이 사용하는 같은 신경 회로의 다른 입력이다." <span class="quote-src">— Image and Mind, 1980</span></div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 머릿속 그림</div>
+<div class="schema" style="white-space: normal; padding: 32px; text-align: center;"><div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.3em; color: var(--text); margin-bottom: 8px; text-transform: uppercase;">PERCEPTION & IMAGERY · SAME CIRCUIT</div><div style="font-size: 13px; color: var(--text-dim); margin-bottom: 24px;">본 것과 떠올린 것이 같은 시각 회로를 쓴다</div><svg viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; max-width: 800px;" font-family="'Noto Sans KR', sans-serif" fill="#1a1a1a">
+  <!-- Two inputs -->
+  <rect x="60" y="60" width="220" height="70" fill="rgba(74,114,168,0.10)" stroke="#4a72a8" stroke-width="1.5" rx="3"/>
+  <text x="170" y="88" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#4a72a8" font-weight="700">EXTERNAL INPUT</text>
+  <text x="170" y="112" text-anchor="middle" font-size="13" font-weight="700">실제로 본 것</text>
+
+  <rect x="520" y="60" width="220" height="70" fill="rgba(74,142,74,0.10)" stroke="#4a8e4a" stroke-width="1.5" rx="3"/>
+  <text x="630" y="88" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#4a8e4a" font-weight="700">INTERNAL INPUT</text>
+  <text x="630" y="112" text-anchor="middle" font-size="13" font-weight="700">떠올린 것</text>
+
+  <!-- Arrows down to V1 -->
+  <g stroke="#1a1a1a" stroke-width="1.5" fill="none">
+    <path d="M 170 135 L 300 200"/>
+    <path d="M 300 200 L 292 196 M 300 200 L 295 207"/>
+    <path d="M 630 135 L 500 200"/>
+    <path d="M 500 200 L 508 196 M 500 200 L 505 207"/>
+  </g>
+
+  <!-- V1 same circuit -->
+  <rect x="240" y="200" width="320" height="100" fill="rgba(217,96,31,0.12)" stroke="#d9601f" stroke-width="1.8" rx="3"/>
+  <text x="400" y="230" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#d9601f" font-weight="700">V1 + ASSOCIATIVE CORTEX</text>
+  <text x="400" y="258" text-anchor="middle" font-size="14" font-weight="700">같은 시각 회로</text>
+  <text x="400" y="278" text-anchor="middle" font-size="11" fill="#4a4845">두 입력 모두 여기서 작업된다</text>
+  <text x="400" y="295" text-anchor="middle" font-size="11" fill="#807e7a">신경영상으로 확인됨</text>
+
+  <!-- Down to percept/image -->
+  <path d="M 400 305 L 400 340" stroke="#1a1a1a" stroke-width="1.5" fill="none"/>
+  <path d="M 400 340 L 395 333 M 400 340 L 405 333" stroke="#1a1a1a" stroke-width="1.5" fill="none"/>
+
+  <!-- Result -->
+  <rect x="240" y="345" width="320" height="60" fill="rgba(217,96,31,0.08)" stroke="#d9601f" stroke-width="1.5" rx="3"/>
+  <text x="400" y="372" text-anchor="middle" font-size="13" font-weight="700">PERCEPT 또는 MENTAL IMAGE</text>
+  <text x="400" y="392" text-anchor="middle" font-size="11" fill="#4a4845">결의 차이는 있지만 회로는 같다</text>
+
+  <!-- conclusion -->
+  <rect x="60" y="420" width="680" height="30" fill="rgba(74,142,74,0.07)" stroke="#4a8e4a" stroke-width="1.5" rx="3"/>
+  <text x="400" y="440" text-anchor="middle" font-size="12.5" font-weight="700" fill="#4a8e4a">★ 글이 그림을 띄울 수 있는 이유 · 보여주지 않아도 보여줄 수 있다</text>
+</svg></div>
+          <div class="schema-cap">KOSSLYN · MENTAL IMAGERY · 1980</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Cognitive Science</div>
+              <div class="inf-body">상상력 연구의 신경학적 토대. <strong>Pylyshyn</strong>과의 30년 논쟁(이미지 vs 명제)의 결착자.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Writing Theory</div>
+              <div class="inf-body">"보여주기와 들려주기(show, don't tell)"의 인지적 근거. 글이 시각을 깨운다는 명제의 신경학적 정당화.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">VR / XR</div>
+              <div class="inf-body">VR이 작동하는 이유. 외부와 내부 입력이 같은 회로를 쓰니, 충분히 정교한 시뮬레이션은 실재와 비슷하게 작동한다.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              카피의 한 줄이 풍경을 띄울 때, 뇌는 그 풍경을 진짜로 본다. Kosslyn의 연구가 그 사실의 신경학적 근거다. 좋은 카피라이터는 보여주지 않고 보여줄 수 있는 사람이다. AI가 글을 잘 짓는 시대에도, 한 줄이 독자의 시각 피질을 깨우는지 못 깨우는지가 결정적 차이로 남는다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Tulving -->
+    <article class="thinker yellow">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Tulving</span>
+            <span class="thinker-ko">엔델 툴빙</span>
+            <span class="thinker-years">1927–2023</span>
+          </div>
+          <div class="thinker-punch">기억은 한 종류가 아니다 — <em>에피소드·의미·절차</em>의 세 갈래.</div>
+        </div>
+        <span class="thinker-tag">Memory Systems · 1972</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>Tulving은 1972년 〈Episodic and Semantic Memory〉에서 기억을 두 결로 나눴고, 후속 연구에서 세 번째 결을 더했다. <strong>에피소드 기억(episodic)</strong>은 시간·장소가 박힌 개인적 사건의 기억(어제 점심에 누구와 뭘 먹었는지). <strong>의미 기억(semantic)</strong>은 사실의 기억(파리는 프랑스의 수도). <strong>절차 기억(procedural)</strong>은 몸에 박힌 기술(자전거 타기). 세 결은 다른 신경 회로에서 작동한다.</p>
+          <p>이 분류가 뜻하는 바는 크다. 같은 "기억해라"라는 지시가 자리에 따라 다른 시스템을 호출한다. 광고가 만들고 싶은 기억이 무엇인지에 따라 매체와 표현이 달라진다. 브랜드 메시지는 의미 기억으로 자리잡길 원하지만, 브랜드 경험은 에피소드 기억으로 박혀야 한다. 두 결의 짜임이 다르다.</p>
+          <div class="quote">"에피소드 기억과 의미 기억은 다른 두 시스템이며, 어느 한쪽이 손상돼도 다른 쪽은 멀쩡할 수 있다." <span class="quote-src">— Elements of Episodic Memory, 1983</span></div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 머릿속 그림</div>
+<div class="schema" style="white-space: normal; padding: 32px; text-align: center;"><div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.3em; color: var(--text); margin-bottom: 8px; text-transform: uppercase;">THREE MEMORY SYSTEMS</div><div style="font-size: 13px; color: var(--text-dim); margin-bottom: 24px;">에피소드 · 의미 · 절차의 세 갈래</div><svg viewBox="0 0 800 480" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; max-width: 800px;" font-family="'Noto Sans KR', sans-serif" fill="#1a1a1a">
+  <!-- Numbered list pattern -->
+  <!-- Item 1 -->
+  <circle cx="100" cy="100" r="22" fill="rgba(184,149,74,0.18)" stroke="#b8954a" stroke-width="1.8"/>
+  <text x="100" y="106" text-anchor="middle" font-size="14" font-weight="700" fill="#b8954a">1</text>
+  <rect x="140" y="68" width="600" height="80" fill="#fff" stroke="#b8954a" stroke-width="1.5" rx="3"/>
+  <text x="170" y="94" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#b8954a" font-weight="700">EPISODIC · 에피소드 기억</text>
+  <text x="170" y="118" font-size="14" font-weight="700">"어제 누구와 어디서 무엇을 했다"</text>
+  <text x="170" y="138" font-size="12" fill="#4a4845">시간·공간이 박힌 개인적 사건 · 해마 의존 · 재구성됨</text>
+
+  <!-- Item 2 -->
+  <circle cx="100" cy="220" r="22" fill="rgba(184,149,74,0.18)" stroke="#b8954a" stroke-width="1.8"/>
+  <text x="100" y="226" text-anchor="middle" font-size="14" font-weight="700" fill="#b8954a">2</text>
+  <rect x="140" y="188" width="600" height="80" fill="#fff" stroke="#b8954a" stroke-width="1.5" rx="3"/>
+  <text x="170" y="214" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#b8954a" font-weight="700">SEMANTIC · 의미 기억</text>
+  <text x="170" y="238" font-size="14" font-weight="700">"파리는 프랑스의 수도다"</text>
+  <text x="170" y="258" font-size="12" fill="#4a4845">사실·개념·언어 · 측두엽 분산 · 안정적</text>
+
+  <!-- Item 3 -->
+  <circle cx="100" cy="340" r="22" fill="rgba(184,149,74,0.18)" stroke="#b8954a" stroke-width="1.8"/>
+  <text x="100" y="346" text-anchor="middle" font-size="14" font-weight="700" fill="#b8954a">3</text>
+  <rect x="140" y="308" width="600" height="80" fill="#fff" stroke="#b8954a" stroke-width="1.5" rx="3"/>
+  <text x="170" y="334" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#b8954a" font-weight="700">PROCEDURAL · 절차 기억</text>
+  <text x="170" y="358" font-size="14" font-weight="700">자전거 타기 · 손글씨 · 악기 연주</text>
+  <text x="170" y="378" font-size="12" fill="#4a4845">몸에 박힌 기술 · 기저핵·소뇌 · 의식 없이 작동</text>
+
+  <!-- Conclusion -->
+  <rect x="60" y="410" width="680" height="50" fill="rgba(184,149,74,0.07)" stroke="#b8954a" stroke-width="1.5" rx="3"/>
+  <text x="400" y="440" text-anchor="middle" font-size="13" font-weight="700" fill="#b8954a">★ "기억해라"라는 지시가 자리에 따라 다른 시스템을 호출한다 — 매체·표현이 다른 이유</text>
+</svg></div>
+          <div class="schema-cap">TULVING · MEMORY SYSTEMS · 1972/1983</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Neuroscience</div>
+              <div class="inf-body">기억 신경과학의 표준 분류. <strong>Squire</strong>의 선언적·비선언적 기억 구분, <strong>해마-측두엽</strong> 회로 연구의 분류 토대.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Branding</div>
+              <div class="inf-body">브랜드 기억의 두 결 구분. 브랜드 사실(semantic)과 브랜드 경험(episodic)이 다른 매체와 표현을 요구한다는 자각.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Education</div>
+              <div class="inf-body">학습 디자인의 세 갈래. <strong>스토리텔링</strong>은 에피소드를, <strong>개념 정리</strong>는 의미를, <strong>실습</strong>은 절차를 만든다.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              카피 작업의 첫 질문 — "독자에게 어떤 기억으로 박히길 원하는가?" 에피소드로 박혀야 하면 한 장면이 필요하고, 의미로 박혀야 하면 한 명제가 필요하다. 같은 메시지라도 매체에 따라 어느 결로 박힐지가 달라진다. Tulving의 분류는 그 결정을 정확하게 해준다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Hassabis -->
+    <article class="thinker purple">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Hassabis</span>
+            <span class="thinker-ko">데미스 하사비스</span>
+            <span class="thinker-years">1976–</span>
+          </div>
+          <div class="thinker-punch">기억과 상상은 <em>같은 회로</em>다 — 해마는 과거와 미래를 함께 시뮬레이션한다.</div>
+        </div>
+        <span class="thinker-tag">Memory & Imagination · 2007</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>Hassabis는 신경과학자에서 AI 연구자로 옮겨간 인물이다(DeepMind 창립자). 2007년 〈Patients with hippocampal amnesia cannot imagine new experiences〉(Maguire와 공저)에서 그는 결정적 실험을 발표했다. <strong>해마 손상으로 새 기억을 만들지 못하는 환자들은 미래나 가상의 장면을 상상하지도 못한다</strong>. 기억과 상상이 같은 회로에서 작동한다는 직접 증거다.</p>
+          <p>이 발견은 마음의 풍경을 바꿨다. 해마는 "기억 저장소"가 아니라 <strong>장면 시뮬레이션 엔진</strong>이었다. 과거 재구성과 미래 상상이 같은 회로의 두 방향 작업이다. 우리가 어제를 떠올리는 일과 내일을 상상하는 일이 신경학적으로 같은 작업이다. 사용자의 인지 모델 메모리(해마=이야기 엔진)와 직접 닿는다.</p>
+          <div class="quote">"해마는 과거의 기록자이자 미래의 작가다. 같은 회로가 두 방향으로 작동한다." <span class="quote-src">— Hassabis & Maguire, 2007</span></div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 머릿속 그림</div>
+<div class="schema" style="white-space: normal; padding: 32px; text-align: center;"><div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.3em; color: var(--text); margin-bottom: 8px; text-transform: uppercase;">HIPPOCAMPUS · MEMORY × IMAGINATION</div><div style="font-size: 13px; color: var(--text-dim); margin-bottom: 24px;">과거 재구성과 미래 시뮬레이션이 같은 회로</div><svg viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; max-width: 800px;" font-family="'Noto Sans KR', sans-serif" fill="#1a1a1a">
+  <!-- Left: past -->
+  <rect x="60" y="80" width="240" height="120" fill="rgba(126,90,152,0.10)" stroke="#7e5a98" stroke-width="1.5" rx="3"/>
+  <text x="180" y="108" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#7e5a98" font-weight="700">PAST</text>
+  <text x="180" y="138" text-anchor="middle" font-size="15" font-weight="700">과거 · 어제</text>
+  <text x="180" y="162" text-anchor="middle" font-size="12" fill="#4a4845">기억의 재구성</text>
+  <text x="180" y="182" text-anchor="middle" font-size="11" fill="#807e7a">재생이 아닌 재구성</text>
+
+  <!-- Right: future -->
+  <rect x="500" y="80" width="240" height="120" fill="rgba(126,90,152,0.10)" stroke="#7e5a98" stroke-width="1.5" rx="3"/>
+  <text x="620" y="108" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#7e5a98" font-weight="700">FUTURE</text>
+  <text x="620" y="138" text-anchor="middle" font-size="15" font-weight="700">미래 · 내일</text>
+  <text x="620" y="162" text-anchor="middle" font-size="12" fill="#4a4845">상상의 시뮬레이션</text>
+  <text x="620" y="182" text-anchor="middle" font-size="11" fill="#807e7a">새 장면을 짓는 일</text>
+
+  <!-- Center: hippocampus -->
+  <ellipse cx="400" cy="140" rx="100" ry="60" fill="rgba(217,96,31,0.15)" stroke="#d9601f" stroke-width="1.8"/>
+  <text x="400" y="130" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#d9601f" font-weight="700">HIPPOCAMPUS</text>
+  <text x="400" y="155" text-anchor="middle" font-size="13" font-weight="700">해마</text>
+  <text x="400" y="175" text-anchor="middle" font-size="11" fill="#4a4845">장면 시뮬레이션 엔진</text>
+
+  <!-- Bidirectional arrows -->
+  <g stroke="#d9601f" stroke-width="1.5" stroke-dasharray="4,3" fill="none">
+    <path d="M 300 140 L 280 140"/>
+    <path d="M 300 140 L 292 135 M 300 140 L 292 145"/>
+    <path d="M 500 140 L 520 140"/>
+    <path d="M 500 140 L 508 135 M 500 140 L 508 145"/>
+  </g>
+
+  <!-- Evidence -->
+  <rect x="60" y="240" width="680" height="80" fill="#f8f6f1" stroke="#807e7a" stroke-width="1" stroke-dasharray="3,3" rx="3"/>
+  <text x="400" y="268" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#807e7a">EVIDENCE · 결정적 실험</text>
+  <text x="400" y="292" text-anchor="middle" font-size="13" font-weight="600">해마가 손상된 기억상실 환자는</text>
+  <text x="400" y="310" text-anchor="middle" font-size="13" font-weight="700" fill="#d9601f">미래나 가상의 장면을 상상하지도 못한다 (Hassabis 2007)</text>
+
+  <!-- conclusion -->
+  <rect x="60" y="340" width="680" height="80" fill="rgba(126,90,152,0.07)" stroke="#7e5a98" stroke-width="1.5" rx="3"/>
+  <text x="400" y="368" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="3" fill="#7e5a98">결론</text>
+  <text x="400" y="390" text-anchor="middle" font-size="14" font-weight="700">★ 기억은 저장이 아니라 시뮬레이션이고, 상상은 그 회로의 미래 방향 작업이다</text>
+  <text x="400" y="408" text-anchor="middle" font-size="12" fill="#4a4845">편집자의 시뮬레이션 라이브러리가 이 자리에서 짜인다</text>
+</svg></div>
+          <div class="schema-cap">HASSABIS · MEMORY & IMAGINATION · 2007</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Neuroscience</div>
+              <div class="inf-body">"기억 = 재생"이라는 통념을 뒤집은 발견. <strong>Schacter</strong>의 〈constructive memory〉, <strong>Buckner</strong>의 디폴트 모드 네트워크 연구와 한 묶음.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">AI</div>
+              <div class="inf-body">Hassabis 본인이 DeepMind를 세워 강화학습·world model 분야의 토대를 짠다. <strong>인간 인지 회로의 구조를 AI에 옮긴 한 사례</strong>.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Creative Practice</div>
+              <div class="inf-body">상상력 훈련이 곧 기억 훈련이라는 시각. 감각일지·미래 일기 같은 사용자 루틴의 신경학적 근거.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              사용자의 인지 모델 훈련 프레임에서 "해마 = 이야기·미래 시뮬레이션 엔진"이 핵심 명제다. Hassabis의 2007년 발견이 그 명제의 신경학적 출처. 편집자가 매일 쓰는 시뮬레이션 라이브러리(과거의 사례·은유·미래 시나리오)는 바로 이 회로 위에서 짜인다. 회로를 자주 돌리는 사람과 그렇지 않은 사람의 차이가 편집의 직감의 차이로 나타난다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============ 08 · PHASE 7 — 해석·종합·이해·추론 ============ -->
+<section id="p7">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">08</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">PHASE 07 · 1860s → 1960s · 해석·종합·이해·추론</div>
+        <h2>위계의 가장 윗단 — <em>의미를 짜는</em> 작용</h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      자료·정보·지식이 다 갖춰져도 마지막 작업이 남는다. 해석하고, 종합하고, 이해하고, 추론하는 일. Peirce는 추론의 세 갈래를 갈랐고, Gadamer는 이해의 해석학을 세웠고, Merleau-Ponty는 의미가 머리가 아니라 몸과 세계 사이에서 발생함을 보였다. <strong>편집자가 한 명제를 길어 올리는 작업</strong>이 이 자리에서 일어난다.
+    </p>
+
+    <div class="phase-hero blue">
+      <div class="phase-era">PHASE 07 · 1860s → 1960s · 기호학 · 해석학 · 현상학</div>
+      <h3>국면 7 · 추론은 <em>한 종류가 아니다</em>, 이해는 <em>지평의 융합</em>이다</h3>
+      <p>추론은 연역만이 아니다. 가추와 귀납이 함께 있다. 이해는 단순한 정보 처리가 아니다. 두 지평이 만나 한 자리를 만드는 일이다. 의미는 글자 안에 있지 않고, 글자와 독자의 만남에서 발생한다. 이 세 명제가 편집의 마지막 단을 짠다.</p>
+      <div class="phase-q">핵심 질문 <strong>→</strong> 한 줄의 의미가 어디서 발생하는가? 글 안인가, 독자 안인가, 둘 사이인가?</div>
+    </div>
+
+    <!-- Peirce -->
+    <article class="thinker blue">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Peirce</span>
+            <span class="thinker-ko">찰스 샌더스 퍼스</span>
+            <span class="thinker-years">1839–1914</span>
+          </div>
+          <div class="thinker-punch">추론은 세 갈래다 — <em>가추(abduction)·귀납(induction)·연역(deduction)</em>의 사이클.</div>
+        </div>
+        <span class="thinker-tag">Three Modes of Inference · 1903</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>Peirce는 미국 실용주의 철학자이자 기호학자다. 그가 가장 결정적으로 정리한 것은 추론의 세 갈래다. <strong>연역(deduction)</strong>은 일반 법칙에서 특수 결론을 끌어내는 일(모든 사람은 죽는다 → 소크라테스는 죽는다). <strong>귀납(induction)</strong>은 특수 사례들에서 일반 법칙을 추정하는 일(까마귀 100마리 다 검다 → 모든 까마귀는 검다). <strong>가추(abduction)</strong>는 놀라운 관찰에서 그것을 설명할 가설을 짐작하는 일(잔디가 젖었다 → 비가 왔다?).</p>
+          <p>Peirce의 결정적 통찰은 <strong>가추가 새 지식의 출발점</strong>이라는 것. 연역은 이미 아는 것에서 결론을 끌어낼 뿐이고, 귀납은 가설을 검증할 뿐이다. 가설 자체를 만드는 작업이 가추다. 탐정의 추리, 의사의 진단, 편집자의 한 줄 짚기가 모두 가추다. 편집은 풍부한 자료에서 한 명제를 길어 올리는 작업이고, 그 길어 올림이 가추의 동작이다.</p>
+          <div class="quote">"가추는 새로운 아이디어가 우리에게 오는 유일한 방식이다. 귀납은 결론에 도달하는 방식, 연역은 결론에서 나아가는 방식이다." <span class="quote-src">— Peirce, Collected Papers, 1903</span></div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 머릿속 그림</div>
+<div class="schema" style="white-space: normal; padding: 32px; text-align: center;"><div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.3em; color: var(--text); margin-bottom: 8px; text-transform: uppercase;">ABDUCTION · INDUCTION · DEDUCTION</div><div style="font-size: 13px; color: var(--text-dim); margin-bottom: 24px;">세 갈래 추론의 사이클</div><svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; max-width: 800px;" font-family="'Noto Sans KR', sans-serif" fill="#1a1a1a">
+  <!-- Item 1: Abduction -->
+  <circle cx="100" cy="100" r="22" fill="rgba(217,96,31,0.20)" stroke="#d9601f" stroke-width="1.8"/>
+  <text x="100" y="106" text-anchor="middle" font-size="14" font-weight="700" fill="#d9601f">A</text>
+  <rect x="140" y="68" width="600" height="80" fill="rgba(217,96,31,0.06)" stroke="#d9601f" stroke-width="1.5" rx="3"/>
+  <text x="170" y="94" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#d9601f" font-weight="700">ABDUCTION · 가추 ★</text>
+  <text x="170" y="118" font-size="14" font-weight="700">"이 놀라운 관찰을 설명할 가설은 무엇일까?"</text>
+  <text x="170" y="138" font-size="12" fill="#4a4845">새 아이디어가 들어오는 자리 · 편집·기획의 본 동작</text>
+
+  <!-- Item 2: Induction -->
+  <circle cx="100" cy="220" r="22" fill="rgba(74,114,168,0.18)" stroke="#4a72a8" stroke-width="1.8"/>
+  <text x="100" y="226" text-anchor="middle" font-size="14" font-weight="700" fill="#4a72a8">I</text>
+  <rect x="140" y="188" width="600" height="80" fill="#fff" stroke="#4a72a8" stroke-width="1.5" rx="3"/>
+  <text x="170" y="214" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#4a72a8" font-weight="700">INDUCTION · 귀납</text>
+  <text x="170" y="238" font-size="14" font-weight="700">"여러 사례에서 어떤 일반 법칙을 짐작할 수 있나?"</text>
+  <text x="170" y="258" font-size="12" fill="#4a4845">가설을 검증하는 자리 · 데이터 분석·통계의 본 동작</text>
+
+  <!-- Item 3: Deduction -->
+  <circle cx="100" cy="340" r="22" fill="rgba(46,138,124,0.18)" stroke="#2e8a7c" stroke-width="1.8"/>
+  <text x="100" y="346" text-anchor="middle" font-size="14" font-weight="700" fill="#2e8a7c">D</text>
+  <rect x="140" y="308" width="600" height="80" fill="#fff" stroke="#2e8a7c" stroke-width="1.5" rx="3"/>
+  <text x="170" y="334" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#2e8a7c" font-weight="700">DEDUCTION · 연역</text>
+  <text x="170" y="358" font-size="14" font-weight="700">"이 법칙에서 어떤 결론이 따라 나오나?"</text>
+  <text x="170" y="378" font-size="12" fill="#4a4845">결론을 끌어내는 자리 · 형식 논리·증명의 본 동작</text>
+
+  <!-- Cycle arrows -->
+  <g stroke="#807e7a" stroke-width="1.2" stroke-dasharray="3,3" fill="none">
+    <path d="M 100 122 L 100 198"/>
+    <path d="M 100 198 L 96 192 M 100 198 L 104 192"/>
+    <path d="M 100 242 L 100 318"/>
+    <path d="M 100 318 L 96 312 M 100 318 L 104 312"/>
+  </g>
+
+  <!-- Conclusion -->
+  <rect x="60" y="410" width="680" height="70" fill="rgba(217,96,31,0.07)" stroke="#d9601f" stroke-width="1.5" rx="3"/>
+  <text x="400" y="437" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="3" fill="#d9601f">결론</text>
+  <text x="400" y="459" text-anchor="middle" font-size="14" font-weight="700">★ 가추가 가설을 만들고, 귀납이 검증하고, 연역이 풀어쓴다</text>
+  <text x="400" y="477" text-anchor="middle" font-size="12" fill="#4a4845">편집·기획·검증의 사이클이 같은 구조로 돈다</text>
+</svg></div>
+          <div class="schema-cap">PEIRCE · THREE MODES OF INFERENCE · 1903</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Semiotics</div>
+              <div class="inf-body">기호학의 한 갈래(미국 실용주의 기호학)의 토대. <strong>Eco</strong>의 〈A Theory of Semiotics〉(1976)가 Peirce의 가추를 텍스트 해석에 적용.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Detective / Diagnosis</div>
+              <div class="inf-body">셜록 홈즈식 추리의 정확한 이름이 가추다. <strong>Ginzburg</strong>의 〈증거 패러다임〉(1979)이 의사·미술사가·탐정의 일을 같은 가추 동작으로 묶었다. CC Part XIII 추론의 계보 참조.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Design Thinking</div>
+              <div class="inf-body">디자인의 본 동작이 가추라는 자각. <strong>Roger Martin</strong>의 〈The Design of Business〉(2009)가 비즈니스에서의 가추를 명시.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              인터뷰 자료 한 뭉치를 앞에 두고 한 명제를 짚어내는 작업이 가추다. AI는 귀납과 연역에 강하지만, 가추 동작은 사람의 자리가 크다. 좋은 편집자는 자료 속에서 다른 사람이 못 본 한 가설을 길어 올린다. Peirce가 그 작업의 이름을 1903년에 정확히 박았다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Gadamer -->
+    <article class="thinker pink">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Gadamer</span>
+            <span class="thinker-ko">한스게오르크 가다머</span>
+            <span class="thinker-years">1900–2002</span>
+          </div>
+          <div class="thinker-punch">이해는 <em>지평의 융합(Horizontverschmelzung)</em>이다 — 두 지평이 만나 한 자리를 만든다.</div>
+        </div>
+        <span class="thinker-tag">Hermeneutics · 1960</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>Gadamer는 〈Wahrheit und Methode〉(1960)에서 해석학의 결정적 명제를 세웠다. 텍스트를 이해한다는 것은 그 안에 든 객관적 의미를 꺼내는 일이 아니다. 텍스트가 자기 시대의 <strong>지평(Horizont)</strong>을 가지고 있고, 독자는 자기 시대의 지평을 가지고 있다. 이해는 두 지평이 만나 새 자리를 만드는 일, 그가 <strong>지평의 융합(Horizontverschmelzung)</strong>이라 부른 작업이다.</p>
+          <p>이 시각이 뜻하는 바는 크다. 의미는 텍스트 안에 고정돼 있지 않다. 같은 텍스트가 다른 독자에게 다른 의미가 되는 것이 오류가 아니라 이해의 본 모습이다. 독자의 <strong>선이해(Vorverständnis)</strong>가 의미 구성에 들어간다. 편집자가 독자를 모르고 글을 만지면 안 되는 이유, 매체별로 같은 자료가 다른 의미가 되는 이유가 여기서 풀린다.</p>
+          <div class="quote">"이해는 늘 자기 자신을 다른 것에 적용하는 일이다. 이해되는 것은 자기 자신의 일이 된다." <span class="quote-src">— Wahrheit und Methode, 1960</span></div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 머릿속 그림</div>
+<div class="schema" style="white-space: normal; padding: 32px; text-align: center;"><div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.3em; color: var(--text); margin-bottom: 8px; text-transform: uppercase;">HORIZONTVERSCHMELZUNG · 지평의 융합</div><div style="font-size: 13px; color: var(--text-dim); margin-bottom: 24px;">두 지평이 만나 새 자리를 만드는 일</div><svg viewBox="0 0 800 480" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; max-width: 800px;" font-family="'Noto Sans KR', sans-serif" fill="#1a1a1a">
+  <!-- Text horizon -->
+  <ellipse cx="240" cy="180" rx="180" ry="100" fill="rgba(194,87,135,0.10)" stroke="#c25787" stroke-width="1.8"/>
+  <text x="240" y="120" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#c25787" font-weight="700">TEXT HORIZON</text>
+  <text x="240" y="160" text-anchor="middle" font-size="14" font-weight="700">텍스트의 지평</text>
+  <text x="240" y="185" text-anchor="middle" font-size="12" fill="#4a4845">저자의 시대·언어</text>
+  <text x="240" y="205" text-anchor="middle" font-size="12" fill="#4a4845">담겨 있는 의도</text>
+  <text x="240" y="230" text-anchor="middle" font-size="11" fill="#807e7a">고정된 자리</text>
+
+  <!-- Reader horizon -->
+  <ellipse cx="560" cy="180" rx="180" ry="100" fill="rgba(74,114,168,0.10)" stroke="#4a72a8" stroke-width="1.8"/>
+  <text x="560" y="120" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#4a72a8" font-weight="700">READER HORIZON</text>
+  <text x="560" y="160" text-anchor="middle" font-size="14" font-weight="700">독자의 지평</text>
+  <text x="560" y="185" text-anchor="middle" font-size="12" fill="#4a4845">자기 시대·경험</text>
+  <text x="560" y="205" text-anchor="middle" font-size="12" fill="#4a4845">선이해(Vorverständnis)</text>
+  <text x="560" y="230" text-anchor="middle" font-size="11" fill="#807e7a">움직이는 자리</text>
+
+  <!-- Overlap (fusion) -->
+  <path d="M 360 180 a 100 60 0 0 1 80 0" fill="none" stroke="none"/>
+  <ellipse cx="400" cy="180" rx="80" ry="60" fill="rgba(217,96,31,0.18)" stroke="#d9601f" stroke-width="1.8"/>
+  <text x="400" y="160" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" letter-spacing="2" fill="#d9601f" font-weight="700">FUSION</text>
+  <text x="400" y="185" text-anchor="middle" font-size="13" font-weight="700">지평의 융합</text>
+  <text x="400" y="205" text-anchor="middle" font-size="11" fill="#4a4845">의미가 발생</text>
+
+  <!-- Side note -->
+  <rect x="60" y="320" width="680" height="60" fill="#f8f6f1" stroke="#807e7a" stroke-width="1" stroke-dasharray="3,3" rx="3"/>
+  <text x="400" y="345" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#807e7a">시사점</text>
+  <text x="400" y="368" text-anchor="middle" font-size="13" font-weight="600">같은 텍스트가 다른 독자에게 다른 의미가 되는 것이 오류가 아니라 이해의 본 모습</text>
+
+  <!-- conclusion -->
+  <rect x="60" y="395" width="680" height="60" fill="rgba(194,87,135,0.07)" stroke="#c25787" stroke-width="1.5" rx="3"/>
+  <text x="400" y="420" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="3" fill="#c25787">결론</text>
+  <text x="400" y="443" text-anchor="middle" font-size="14" font-weight="700">★ 의미는 텍스트 안이 아니라 텍스트와 독자의 만남에서 발생한다</text>
+</svg></div>
+          <div class="schema-cap">GADAMER · FUSION OF HORIZONS · 1960</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Philosophy</div>
+              <div class="inf-body">20세기 후반 해석학의 표준. <strong>Ricoeur</strong>·<strong>Habermas</strong>·<strong>Vattimo</strong>가 모두 가다머 위에서 다른 길을 짠다.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Reader Response</div>
+              <div class="inf-body">문학 비평의 독자 반응 이론(Iser·Jauss)이 지평의 융합 개념을 직접 채용. 독자가 의미 생산에 참여한다는 명제의 토대.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Editorial / Translation</div>
+              <div class="inf-body">번역과 편집이 단순한 전달이 아니라 의미 구성의 일이라는 자각. <strong>매체별 편집·청자별 카피 톤 조정</strong>의 이론적 정당화.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              같은 카피가 인스타에서는 작동하고 링크드인에서는 작동하지 않는 일이 자주 있다. 가다머의 어휘로는 독자의 지평이 다르기 때문이다. 매체별 편집의 정당성이 여기 있다. AI에게 같은 프롬프트를 줘도 사람마다 다른 결과를 얻는 이유도 마찬가지 — 사용자의 지평이 출력의 의미에 들어간다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Merleau-Ponty -->
+    <article class="thinker green">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Merleau-Ponty</span>
+            <span class="thinker-ko">모리스 메를로퐁티</span>
+            <span class="thinker-years">1908–1961</span>
+          </div>
+          <div class="thinker-punch">의미는 머리가 아니라 <em>몸과 세계 사이</em>에서 발생한다 — 지각의 종합.</div>
+        </div>
+        <span class="thinker-tag">Phenomenology of Perception · 1945</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>메를로퐁티는 〈Phénoménologie de la perception〉(1945)에서 인식의 자리를 머리에서 몸으로 옮겼다. 데카르트적 전통은 의식이 세계를 표상한다고 했지만, 메를로퐁티는 의식이 몸으로 세계에 끼어 있다고 했다. <strong>지각은 종합(synthèse)</strong>이지만, 그 종합은 정신의 작업이 아니라 <strong>몸-세계 시스템의 발생</strong>이다.</p>
+          <p>이 시각의 핵심 어휘가 <strong>신체 도식(schéma corporel)</strong>이다. 우리는 자기 몸의 위치·기울기·움직임을 의식하지 않고 매 순간 안다. 이 신체 도식이 세계와 닿는 자리에서 의미가 발생한다. 후기 메를로퐁티는 더 나아가 <strong>살(la chair)</strong>이라는 개념으로 주체와 객체의 분리 자체를 해체한다. 의미는 둘이 같은 직물에서 짜인다는 것이다. CC Part IV 신체화 인식 계보와 직접 닿는다.</p>
+          <div class="quote">"세계는 내가 자기 생각으로 만드는 것이 아니라 내가 살고 있는 것이다." <span class="quote-src">— Phénoménologie de la perception, 1945</span></div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 머릿속 그림</div>
+<div class="schema" style="white-space: normal; padding: 32px; text-align: center;"><div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.3em; color: var(--text); margin-bottom: 8px; text-transform: uppercase;">PERCEPTION AS SYNTHESIS</div><div style="font-size: 13px; color: var(--text-dim); margin-bottom: 24px;">몸과 세계가 만나는 자리에서 의미가 발생</div><svg viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; max-width: 800px;" font-family="'Noto Sans KR', sans-serif" fill="#1a1a1a">
+  <!-- Body on left -->
+  <rect x="60" y="80" width="220" height="100" fill="rgba(74,142,74,0.10)" stroke="#4a8e4a" stroke-width="1.8" rx="3"/>
+  <text x="170" y="108" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#4a8e4a" font-weight="700">BODY · 몸</text>
+  <text x="170" y="135" text-anchor="middle" font-size="13" font-weight="700">신체 도식</text>
+  <text x="170" y="155" text-anchor="middle" font-size="12" fill="#4a4845">schéma corporel</text>
+  <text x="170" y="172" text-anchor="middle" font-size="11" fill="#807e7a">방향·기울기·움직임</text>
+
+  <!-- World on right -->
+  <rect x="520" y="80" width="220" height="100" fill="rgba(74,142,74,0.10)" stroke="#4a8e4a" stroke-width="1.8" rx="3"/>
+  <text x="630" y="108" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#4a8e4a" font-weight="700">WORLD · 세계</text>
+  <text x="630" y="135" text-anchor="middle" font-size="13" font-weight="700">살의 풍경</text>
+  <text x="630" y="155" text-anchor="middle" font-size="12" fill="#4a4845">la chair</text>
+  <text x="630" y="172" text-anchor="middle" font-size="11" fill="#807e7a">사물·면·결의 짜임</text>
+
+  <!-- Converging V -->
+  <path d="M 280 130 L 380 240" stroke="#4a8e4a" stroke-width="1.8" fill="none"/>
+  <path d="M 380 240 L 372 234 M 380 240 L 372 245" stroke="#4a8e4a" stroke-width="1.8" fill="none"/>
+  <path d="M 520 130 L 420 240" stroke="#4a8e4a" stroke-width="1.8" fill="none"/>
+  <path d="M 420 240 L 428 234 M 420 240 L 428 245" stroke="#4a8e4a" stroke-width="1.8" fill="none"/>
+
+  <!-- Synthesis -->
+  <rect x="260" y="240" width="280" height="80" fill="rgba(217,96,31,0.12)" stroke="#d9601f" stroke-width="1.8" rx="3"/>
+  <text x="400" y="268" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#d9601f" font-weight="700">SYNTHÈSE · 종합</text>
+  <text x="400" y="292" text-anchor="middle" font-size="14" font-weight="700">의미가 발생하는 자리</text>
+  <text x="400" y="312" text-anchor="middle" font-size="11" fill="#4a4845">둘 중 하나가 아니라 둘 사이</text>
+
+  <!-- Below: contrast with Cartesian -->
+  <rect x="60" y="345" width="680" height="50" fill="#f8f6f1" stroke="#807e7a" stroke-width="1" stroke-dasharray="3,3" rx="3"/>
+  <text x="400" y="370" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#807e7a">대조</text>
+  <text x="400" y="388" text-anchor="middle" font-size="12.5">데카르트 · 의식이 세계를 표상한다 / 메를로퐁티 · 몸이 세계에 끼어 있다</text>
+
+  <!-- conclusion -->
+  <rect x="60" y="408" width="680" height="40" fill="rgba(74,142,74,0.07)" stroke="#4a8e4a" stroke-width="1.5" rx="3"/>
+  <text x="400" y="432" text-anchor="middle" font-size="13" font-weight="700" fill="#4a8e4a">★ 의미는 둘이 같은 직물에서 짜인다 — 글의 의미도 독자의 몸 안에서 발생</text>
+</svg></div>
+          <div class="schema-cap">MERLEAU-PONTY · PERCEPTION AS SYNTHESIS · 1945</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Embodied Cognition</div>
+              <div class="inf-body">4E 인지의 출발점. <strong>Varela·Thompson·Rosch</strong>의 〈The Embodied Mind〉(1991)가 메를로퐁티를 신경과학과 결합. CC Part IV 신체화 인식 계보의 한 정점.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Phenomenology</div>
+              <div class="inf-body">후설의 의식 현상학을 몸 현상학으로 옮긴 다리. <strong>Levinas</strong>·<strong>Henry</strong>·<strong>Marion</strong>이 다른 길로 분기.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Performance / Dance</div>
+              <div class="inf-body">춤·연기·신체 훈련의 이론적 토대. <strong>Pina Bausch</strong>·<strong>Anne Bogart</strong>가 신체 도식의 어휘로 작업을 설명.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              한 줄의 카피가 독자의 호흡을 바꿀 때, 메를로퐁티의 명제가 작동하고 있다. 의미는 글자 안이 아니라 독자의 몸 안에서 발생한다. 좋은 글은 독자의 몸을 흔드는 글이다. 사용자의 소통 삼각 축(기호화·서사예술·뇌과학)에서 서사예술의 한 결이 메를로퐁티의 종합과 맞닿아 있다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============ 09 · PHASE 8 — 편집의 자리 ============ -->
+<section id="p8" style="background:var(--bg-2);">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num star">09</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">PHASE 08 · 1983 → 2026 · 편집의 자리 ★</div>
+        <h2>그리고 마지막 자리 — <em>편집자의 손</em></h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      앞의 7 국면이 그린 두 위계 위에서, 편집자는 어디에 자리잡는가. Tufte는 정보 디자인의 자리에서, 마츠오카 세이고는 의미 재조합의 자리에서, 사용자 자신은 크리에이티브 인 더 루프(CITL)의 자리에서 같은 동작을 다른 어휘로 짚었다. <strong>편집은 위계의 단을 옮기는 작업, 인간의 판단을 AI의 발산으로 보완하는 작업, 그리고 한 줄을 길어 올리는 작업의 결합</strong>이다.
+    </p>
+
+    <div class="phase-hero">
+      <div class="phase-era">PHASE 08 · 1983 → 2026 · 정보 디자인 · 편집공학 · CITL · <span class="star">★ ARRIVAL</span></div>
+      <h3>국면 8 · 위계의 어느 단을 <em>만지는가</em>의 결정</h3>
+      <p>편집은 빈 종이에 글을 쓰는 일이 아니라, 이미 흐르는 위계의 한 자리에 손을 얹는 일. 그 자리를 명시할 수 있는 사람과 모호하게 두는 사람의 작업이 다르다. 이 국면은 그 자리의 이름을 부르는 세 시도다.</p>
+      <div class="phase-q">핵심 질문 <strong>→</strong> 편집자가 매번 만지는 자리에 정확한 이름을 줄 수 있는가?</div>
+    </div>
+
+    <!-- Tufte -->
+    <article class="thinker">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Tufte</span>
+            <span class="thinker-ko">에드워드 터프티</span>
+            <span class="thinker-years">1942–</span>
+          </div>
+          <div class="thinker-punch">정보 디자인은 <em>잡음을 줄이는 작업</em>이다 — 데이터-잉크 비율의 한 공식.</div>
+        </div>
+        <span class="thinker-tag">Information Design · 1983</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>Tufte는 〈The Visual Display of Quantitative Information〉(1983)에서 정보 시각화의 가장 단단한 원칙을 세웠다. <strong>data-ink ratio(데이터-잉크 비율)</strong> — 한 그래프에서 데이터를 직접 표현하는 잉크가 전체 잉크의 어느 비율을 차지하는가. 이 비율을 높이는 것이 좋은 시각 정보의 표준이다.</p>
+          <p>이 명제의 의미는 시각 디자인을 넘어선다. <strong>chartjunk(차트 쓰레기)</strong>는 의미를 더하지 않는 모든 시각 요소를 말한다. 화려한 3D 효과, 불필요한 격자, 장식적 일러스트레이션. 이들은 잡음이다. 데이터에서 정보로 옮기는 작업의 본질이 잡음 제거임을 Tufte는 가장 또렷이 보였다. 카피·UI·매거진 레이아웃이 모두 같은 원칙으로 풀린다.</p>
+          <div class="quote">"가장 좋은 통계 그래픽은 가장 적은 잉크로 가장 많은 아이디어를 가장 작은 공간에 가장 짧은 시간 안에 전달하는 그래픽이다." <span class="quote-src">— The Visual Display of Quantitative Information, 1983</span></div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 머릿속 그림</div>
+<div class="schema" style="white-space: normal; padding: 32px; text-align: center;"><div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.3em; color: var(--text); margin-bottom: 8px; text-transform: uppercase;">DATA-INK RATIO</div><div style="font-size: 13px; color: var(--text-dim); margin-bottom: 24px;">잡음을 빼는 작업이 정보 디자인의 본질</div><svg viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; max-width: 800px;" font-family="'Noto Sans KR', sans-serif" fill="#1a1a1a">
+  <!-- Step 1: raw data -->
+  <rect x="60" y="80" width="180" height="100" fill="#f8f6f1" stroke="#807e7a" stroke-width="1.5" rx="3"/>
+  <text x="150" y="108" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#807e7a">RAW</text>
+  <text x="150" y="135" text-anchor="middle" font-size="13" font-weight="700">원자료</text>
+  <text x="150" y="158" text-anchor="middle" font-size="11" fill="#4a4845">정렬 안 된 수와 글</text>
+
+  <path d="M 240 130 L 290 130" stroke="#1a1a1a" stroke-width="1.5" fill="none"/>
+  <path d="M 290 130 L 282 125 M 290 130 L 282 135" stroke="#1a1a1a" stroke-width="1.5" fill="none"/>
+
+  <!-- Step 2: noisy chart -->
+  <rect x="290" y="80" width="180" height="100" fill="rgba(193,70,56,0.08)" stroke="#c14638" stroke-width="1.5" rx="3"/>
+  <text x="380" y="108" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#c14638">CHARTJUNK</text>
+  <text x="380" y="135" text-anchor="middle" font-size="13" font-weight="700">잡음 많은 차트</text>
+  <text x="380" y="158" text-anchor="middle" font-size="11" fill="#4a4845">3D·격자·장식</text>
+
+  <path d="M 470 130 L 520 130" stroke="#d9601f" stroke-width="1.5" fill="none"/>
+  <path d="M 520 130 L 512 125 M 520 130 L 512 135" stroke="#d9601f" stroke-width="1.5" fill="none"/>
+  <text x="495" y="118" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" fill="#d9601f">빼기</text>
+
+  <!-- Step 3: clean info -->
+  <rect x="520" y="80" width="200" height="100" fill="rgba(217,96,31,0.10)" stroke="#d9601f" stroke-width="1.8" rx="3"/>
+  <text x="620" y="108" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#d9601f" font-weight="700">CLEAN INFO</text>
+  <text x="620" y="135" text-anchor="middle" font-size="13" font-weight="700">단순한 정보</text>
+  <text x="620" y="158" text-anchor="middle" font-size="11" fill="#4a4845">데이터-잉크 비율 ↑</text>
+
+  <!-- ratio formula -->
+  <rect x="60" y="220" width="680" height="100" fill="#fff" stroke="#1a1a1a" stroke-width="1.5" rx="3"/>
+  <text x="400" y="245" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#807e7a">FORMULA</text>
+  <text x="400" y="278" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="18" font-weight="700">data-ink ratio = data ink / total ink</text>
+  <text x="400" y="302" text-anchor="middle" font-size="12" fill="#4a4845">이 비율을 높이는 모든 작업이 좋은 정보 디자인</text>
+
+  <!-- conclusion -->
+  <rect x="60" y="350" width="680" height="80" fill="rgba(217,96,31,0.07)" stroke="#d9601f" stroke-width="1.5" rx="3"/>
+  <text x="400" y="378" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="3" fill="#d9601f">결론</text>
+  <text x="400" y="400" text-anchor="middle" font-size="14" font-weight="700">★ 편집의 1차 작업은 더하는 일이 아니라 빼는 일</text>
+  <text x="400" y="418" text-anchor="middle" font-size="12" fill="#4a4845">잡음 빼기 → 신호 남기기 → 데이터 → 정보 단의 옮김</text>
+</svg></div>
+          <div class="schema-cap">TUFTE · DATA-INK RATIO · 1983</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Information Design</div>
+              <div class="inf-body">분야 자체를 세운 사람. <strong>스파크라인·소형 다중그래픽</strong> 같은 시각 어휘를 정립. 〈Envisioning Information〉(1990) 〈Beautiful Evidence〉(2006) 시리즈.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Editorial Layout</div>
+              <div class="inf-body"><strong>The Economist</strong>·<strong>Financial Times</strong>·<strong>NYT</strong>의 시각 보도 표준이 Tufte의 원칙 위에 짜였다. 매거진 인포그래픽의 기본 어휘.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">UX</div>
+              <div class="inf-body">대시보드·관리자 화면 디자인의 표준. <strong>"미니멀"이 미학이 아니라 정보 효율의 결과</strong>라는 시각.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              레이아웃 회의에서 "이 요소가 정보를 전하는가, 장식인가"를 물을 때 Tufte의 원칙을 쓴다. 카피에도 같은 원리가 작동한다. 의미를 더하지 않는 모든 문장은 잡음이다. AI가 글을 쉽게 길게 쓰는 시대에, 짧고 단단한 글의 가치가 다시 커진다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Matsuoka Seigow -->
+    <article class="thinker purple">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Matsuoka Seigow</span>
+            <span class="thinker-ko">마츠오카 세이고 · 松岡正剛</span>
+            <span class="thinker-years">1944–2024</span>
+          </div>
+          <div class="thinker-punch">편집은 <em>인지 작용 그 자체</em>다 — 편집공학(編集工学)이라는 한 학문의 시도.</div>
+        </div>
+        <span class="thinker-tag">Editorial Engineering · 1996</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>마츠오카 세이고는 일본의 편집자·사상가다. 〈知の編集工学〉(1996)에서 그는 편집을 출판 작업의 일종이 아니라 <strong>인지의 본 작용</strong>으로 다시 정의했다. 인간이 자료를 분해하고, 다시 짜고, 의미의 결을 잡는 모든 일이 편집이다. 출판인이 책을 만드는 일도, 디자이너가 레이아웃을 짜는 일도, 사고하는 사람이 머릿속에서 관계를 다시 짜는 일도 모두 같은 편집의 동작이다.</p>
+          <p>마츠오카는 편집의 작업을 여러 결로 분해했다. <strong>분해(分解)·연관(連関)·통합(統合)·변환(変換)·전치(轉置)</strong>. 자료를 잘게 나누고, 새 관계를 짓고, 한 명제로 묶고, 다른 매체로 옮기고, 자리를 바꾸는 작업. 모든 편집자가 매일 하는 일에 정확한 어휘를 줬다. 한국의 김정운이 〈에디톨로지〉(2014)에서 마츠오카의 편집공학을 한국말 자리로 옮겼다. CC Part XVII 편집의 계보의 한 정점이다.</p>
+          <div class="quote">"편집은 책을 만드는 일이 아니다. 정보를 다루는 모든 인지 작용의 이름이다." <span class="quote-src">— 知の編集工学, 1996</span></div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 머릿속 그림</div>
+<div class="schema" style="white-space: normal; padding: 32px; text-align: center;"><div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.3em; color: var(--text); margin-bottom: 8px; text-transform: uppercase;">EDITORIAL ENGINEERING · 편집공학</div><div style="font-size: 13px; color: var(--text-dim); margin-bottom: 24px;">편집은 다섯 결의 인지 작용</div><svg viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; max-width: 800px;" font-family="'Noto Sans KR', sans-serif" fill="#1a1a1a">
+  <!-- 5 boxes in a row -->
+  <rect x="60" y="100" width="135" height="120" fill="#fff" stroke="#7e5a98" stroke-width="1.5" rx="3"/>
+  <text x="127" y="128" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" letter-spacing="2" fill="#7e5a98" font-weight="700">01</text>
+  <text x="127" y="155" text-anchor="middle" font-size="13" font-weight="700">分解</text>
+  <text x="127" y="175" text-anchor="middle" font-size="12" fill="#4a4845">분해</text>
+  <text x="127" y="200" text-anchor="middle" font-size="11" fill="#807e7a">자료 나누기</text>
+
+  <rect x="205" y="100" width="135" height="120" fill="#fff" stroke="#7e5a98" stroke-width="1.5" rx="3"/>
+  <text x="272" y="128" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" letter-spacing="2" fill="#7e5a98" font-weight="700">02</text>
+  <text x="272" y="155" text-anchor="middle" font-size="13" font-weight="700">連関</text>
+  <text x="272" y="175" text-anchor="middle" font-size="12" fill="#4a4845">연관</text>
+  <text x="272" y="200" text-anchor="middle" font-size="11" fill="#807e7a">관계 짓기</text>
+
+  <rect x="350" y="100" width="135" height="120" fill="rgba(126,90,152,0.15)" stroke="#7e5a98" stroke-width="1.8" rx="3"/>
+  <text x="417" y="128" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" letter-spacing="2" fill="#7e5a98" font-weight="700">03 ★</text>
+  <text x="417" y="155" text-anchor="middle" font-size="13" font-weight="700">統合</text>
+  <text x="417" y="175" text-anchor="middle" font-size="12" fill="#4a4845">통합</text>
+  <text x="417" y="200" text-anchor="middle" font-size="11" fill="#807e7a">한 명제로 묶기</text>
+
+  <rect x="495" y="100" width="135" height="120" fill="#fff" stroke="#7e5a98" stroke-width="1.5" rx="3"/>
+  <text x="562" y="128" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" letter-spacing="2" fill="#7e5a98" font-weight="700">04</text>
+  <text x="562" y="155" text-anchor="middle" font-size="13" font-weight="700">変換</text>
+  <text x="562" y="175" text-anchor="middle" font-size="12" fill="#4a4845">변환</text>
+  <text x="562" y="200" text-anchor="middle" font-size="11" fill="#807e7a">매체 옮기기</text>
+
+  <rect x="640" y="100" width="135" height="120" fill="#fff" stroke="#7e5a98" stroke-width="1.5" rx="3"/>
+  <text x="707" y="128" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" letter-spacing="2" fill="#7e5a98" font-weight="700">05</text>
+  <text x="707" y="155" text-anchor="middle" font-size="13" font-weight="700">轉置</text>
+  <text x="707" y="175" text-anchor="middle" font-size="12" fill="#4a4845">전치</text>
+  <text x="707" y="200" text-anchor="middle" font-size="11" fill="#807e7a">자리 바꾸기</text>
+
+  <!-- Connecting arrows -->
+  <g stroke="#7e5a98" stroke-width="1.2" stroke-dasharray="3,3" fill="none">
+    <path d="M 195 160 L 205 160"/>
+    <path d="M 340 160 L 350 160"/>
+    <path d="M 485 160 L 495 160"/>
+    <path d="M 630 160 L 640 160"/>
+  </g>
+
+  <!-- Caption -->
+  <rect x="60" y="260" width="720" height="50" fill="#f8f6f1" stroke="#807e7a" stroke-width="1" stroke-dasharray="3,3" rx="3"/>
+  <text x="420" y="285" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" letter-spacing="2" fill="#807e7a">통합(統合)이 핵심 동작</text>
+  <text x="420" y="302" text-anchor="middle" font-size="12">여러 자료에서 한 명제를 길어 올리는 작업 · Peirce의 가추와 같은 자리</text>
+
+  <!-- Conclusion -->
+  <rect x="60" y="330" width="720" height="70" fill="rgba(126,90,152,0.07)" stroke="#7e5a98" stroke-width="1.5" rx="3"/>
+  <text x="420" y="357" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="3" fill="#7e5a98">결론</text>
+  <text x="420" y="380" text-anchor="middle" font-size="14" font-weight="700">★ 편집은 출판의 일이 아니라 인지 작용 자체의 이름이다</text>
+</svg></div>
+          <div class="schema-cap">MATSUOKA · EDITORIAL ENGINEERING · 1996</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">Editorial Theory</div>
+              <div class="inf-body">일본 출판·편집계의 한 정점. <strong>편집공학연구소(編集工学研究所)</strong>를 세워 30년간 후학을 키움. 일본 매거진 디자인의 한 결.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Korean Editology</div>
+              <div class="inf-body"><strong>김정운</strong>의 〈에디톨로지〉(2014)가 마츠오카의 편집공학을 한국말 자리로 옮긴 다리. 〈말하지 않고 말하기〉(2024)까지 이어지는 한국 에디토리얼 씽킹의 토대.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Knowledge Curation</div>
+              <div class="inf-body">디지털 시대 큐레이션의 어휘. 마츠오카의 다섯 결이 콘텐츠 큐레이션·아카이브·노트 시스템의 작업 분류로 그대로 옮겨진다.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              한 인터뷰 자료에 손을 댈 때, 마츠오카의 다섯 결로 작업을 점검할 수 있다. "지금 나는 분해 중인가, 연관 짓는 중인가, 통합 단계인가, 변환·전치 단계인가." 한 회의 한 단락에 한 단의 동작만 들어가도 작업이 또렷해진다. AI는 분해와 연관에 강하다. 통합과 변환에서 사람이 결정한다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- CITL · Creative in the Loop -->
+    <article class="thinker">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">CITL</span>
+            <span class="thinker-ko">Creative in the Loop · 자신의 도식</span>
+            <span class="thinker-years">2026</span>
+          </div>
+          <div class="thinker-punch">판단은 사람이, 발산은 도구가 — <em>인간이 위계의 어느 단을 만지는지 정한다</em>.</div>
+        </div>
+        <span class="thinker-tag">User's Atlas · 2026</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>마지막 카드는 학자의 이름이 아니다. 사용자 자신의 작업 도식이다. CC 시리즈 인덱스의 세 정체성 도식 중 하나, <strong>크리에이티브 인 더 루프(Creative in the Loop, CITL)</strong>가 이 국면의 결론이다. 맥락에서 기획으로, 기획에서 제작으로, 제작에서 발행으로, 발행에서 피드백으로, 다시 맥락으로 도는 한 바퀴. 두 다이아몬드(기획·제작)의 좌우 가장자리는 인간 판단의 자리, 중심부는 AI 증강의 자리다.</p>
+          <p>이 도식은 앞의 7 국면을 다 받아 한 자리에 모은다. Shannon의 신호·잡음 가르기는 AI가 1차로 해주고, 사람이 한 번 더 거른다. Polanyi의 암묵·명시 변환은 사람이 표출화의 손을 댄다. Gibson의 어포던스는 디자인이 만지고, Friston의 예측 오차는 카피가 만진다. Damasio의 신체 표지는 톤이 만지고, Hassabis의 시뮬레이션은 인터뷰가 깨운다. Peirce의 가추는 사람이 결정한다. <strong>이 도식이 인지의 위계 전체를 한 작업 흐름으로 묶는다</strong>.</p>
+          <div class="quote">"기술도 표현도 매체도 빠르게 바뀐다. 변하지 않는 것은 사람과 느낌이다. 사람이 어떻게 느끼고 생각하는지를 알면, 매번 바뀌는 매체 앞에서도 같은 기준으로 고를 수 있다." <span class="quote-src">— Creative Communicator Index, 2026</span></div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 머릿속 그림</div>
+<div class="schema" style="white-space: normal; padding: 32px; text-align: center;"><div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.3em; color: var(--text); margin-bottom: 8px; text-transform: uppercase;">CITL · CREATIVE IN THE LOOP</div><div style="font-size: 13px; color: var(--text-dim); margin-bottom: 24px;">인간 판단과 AI 증강의 한 사이클</div><svg viewBox="0 0 800 540" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; max-width: 800px;" font-family="'Noto Sans KR', sans-serif" fill="#1a1a1a">
+  <!-- 5 stages in cycle -->
+  <!-- Context (left) -->
+  <circle cx="120" cy="270" r="60" fill="rgba(46,138,124,0.10)" stroke="#2e8a7c" stroke-width="1.5"/>
+  <text x="120" y="262" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" letter-spacing="2" fill="#2e8a7c" font-weight="700">CONTEXT</text>
+  <text x="120" y="285" text-anchor="middle" font-size="13" font-weight="700">맥락</text>
+
+  <!-- Diamond 1: Plan -->
+  <polygon points="280,270 360,210 440,270 360,330" fill="rgba(194,87,135,0.08)" stroke="#c25787" stroke-width="1.5"/>
+  <text x="360" y="262" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" letter-spacing="2" fill="#c25787" font-weight="700">PLAN</text>
+  <text x="360" y="285" text-anchor="middle" font-size="13" font-weight="700">기획 ◆</text>
+
+  <!-- Diamond 2: Make -->
+  <polygon points="440,270 520,210 600,270 520,330" fill="rgba(194,87,135,0.08)" stroke="#c25787" stroke-width="1.5"/>
+  <text x="520" y="262" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" letter-spacing="2" fill="#c25787" font-weight="700">MAKE</text>
+  <text x="520" y="285" text-anchor="middle" font-size="13" font-weight="700">제작 ◆</text>
+
+  <!-- Publish -->
+  <circle cx="680" cy="270" r="60" fill="rgba(46,138,124,0.10)" stroke="#2e8a7c" stroke-width="1.5"/>
+  <text x="680" y="262" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" letter-spacing="2" fill="#2e8a7c" font-weight="700">PUBLISH</text>
+  <text x="680" y="285" text-anchor="middle" font-size="13" font-weight="700">발행</text>
+
+  <!-- Arrows -->
+  <g stroke="#1a1a1a" stroke-width="1.5" fill="none">
+    <path d="M 180 270 L 280 270"/>
+    <path d="M 600 270 L 620 270"/>
+    <path d="M 280 270 L 268 264 M 280 270 L 268 276"/>
+    <path d="M 620 270 L 612 264 M 620 270 L 612 276"/>
+  </g>
+
+  <!-- Feedback loop -->
+  <path d="M 680 330 Q 680 420 400 420 Q 120 420 120 330" stroke="#807e7a" stroke-width="1.2" stroke-dasharray="4,3" fill="none"/>
+  <path d="M 120 330 L 116 338 M 120 330 L 124 338" stroke="#807e7a" stroke-width="1.2" fill="none"/>
+  <text x="400" y="430" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" letter-spacing="2" fill="#807e7a">FEEDBACK → 새 맥락</text>
+
+  <!-- Top labels: human edges -->
+  <text x="320" y="190" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" letter-spacing="1" fill="#2e8a7c" font-weight="700">⟵ 인간 판단</text>
+  <text x="560" y="190" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" letter-spacing="1" fill="#2e8a7c" font-weight="700">인간 판단 ⟶</text>
+
+  <!-- Center labels: AI -->
+  <text x="360" y="358" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" letter-spacing="1" fill="#c25787">AI 증강</text>
+  <text x="520" y="358" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" letter-spacing="1" fill="#c25787">AI 증강</text>
+
+  <!-- Legend at top -->
+  <rect x="60" y="60" width="680" height="110" fill="#fff" stroke="#807e7a" stroke-width="1" rx="3"/>
+  <text x="100" y="88" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#807e7a" font-weight="700">두 다이아몬드의 결</text>
+
+  <line x1="100" y1="110" x2="115" y2="110" stroke="#2e8a7c" stroke-width="2.5"/>
+  <text x="125" y="115" font-size="12" fill="#4a4845"><tspan font-weight="700">좌우 가장자리</tspan> · 인간 판단 — 의도·방향·디렉팅·편집</text>
+
+  <line x1="100" y1="135" x2="115" y2="135" stroke="#c25787" stroke-width="2.5"/>
+  <text x="125" y="140" font-size="12" fill="#4a4845"><tspan font-weight="700">중심부</tspan> · AI 증강 — 리서치·아이디어 제안·시각화·시뮬레이션</text>
+
+  <text x="125" y="162" font-size="11.5" font-style="italic" fill="#807e7a">판단은 사람이, 발산은 도구가</text>
+
+  <!-- Conclusion -->
+  <rect x="60" y="465" width="680" height="60" fill="rgba(217,96,31,0.10)" stroke="#d9601f" stroke-width="1.8" rx="3"/>
+  <text x="400" y="490" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="3" fill="#d9601f">결론</text>
+  <text x="400" y="513" text-anchor="middle" font-size="14" font-weight="700">★ 이 도식이 인지의 위계 전체를 한 작업 흐름으로 묶는다</text>
+</svg></div>
+          <div class="schema-cap">CITL · USER'S ATLAS · 2026</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">CC Series</div>
+              <div class="inf-body">정체성 도식 3종(십자 도식·콘텐츠=그릇+내용물·CITL)의 한 축. 〈창작자 = 판단·디렉팅, AI = 발산·증강〉의 명시.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Editorial Practice</div>
+              <div class="inf-body">2026년 에디터의 표준 작업 흐름. AI 도구가 들어온 시대의 사람의 자리를 한 도식으로 박는다.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">Korean Editology</div>
+              <div class="inf-body">김정운의 에디톨로지·마츠오카의 편집공학에 이은 한 변주. <strong>한국말 자리의 인지·편집 도식</strong>으로 자라날 가능성.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              CITL은 사용자의 매일 작업 도식이다. 매 프로젝트의 시작에서 자기가 어느 자리에 있는지 도식 위에 점을 찍을 수 있다. 기획의 좌측 가장자리에 있는가, 제작의 중심부에 있는가. 그 자리가 정해지면 도구의 결정도 따라 정해진다. 인지의 위계 전체를 다룬 이 리포트가 마지막에 도착하는 자리, 그 자리는 자신의 작업 도식이다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============ 10 · THREADS ============ -->
+<section id="threads">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">10</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">6 CROSS-STRANDS</div>
+        <h2>8 국면을 가로지르는 <em>여섯 스레드</em></h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      여기까지 21명의 학자가 그린 두 위계의 지도. 그 위에 여섯 개의 스레드가 가로로 흐른다. 같은 질문이 다른 자리에서 다른 어휘로 답해지는 결을 짚는다.
+    </p>
+
+    <div class="threads-intro">
+      <p>스레드 1과 2는 두 위계의 평행과 잡음의 가르기. 스레드 3과 4는 인간의 안쪽 작업(시뮬레이션·추론). 스레드 5와 6은 그 작업이 편집의 자리에 와서 어떻게 매일의 동작이 되는가. <strong>편집이 어느 위계의 어느 단을 만지는가</strong>의 결정이 마지막 한 자리.</p>
+    </div>
+
+    <article class="thread-detail t1">
+      <div class="thread-head"><span class="num">THREAD 01</span><h4>두 위계의 평행</h4></div>
+      <div class="thread-chain">Shannon → Ackoff → Helmholtz → Kant → Tulving → Tufte</div>
+      <div class="thread-body">
+        바깥의 정보 위계(잡음·신호·데이터·정보·지식·지혜)와 안쪽의 인지 위계(감각·지각·인지·인식·심상·이해)가 한 단 한 단 마주 본다. <strong>위계의 한 단을 옮기는 일이 인간 쪽에도 같은 단의 작업을 부른다</strong>. 데이터에서 정보로 옮기는 작업은 지각에서 인지로 옮기는 작업과 같은 자리에서 일어난다. 이 평행이 무너지면 편집은 길을 잃는다.
+      </div>
+    </article>
+
+    <article class="thread-detail t2">
+      <div class="thread-head"><span class="num">THREAD 02</span><h4>잡음과 신호의 가르기, 편집의 1차 작용</h4></div>
+      <div class="thread-chain">Shannon → Bateson → Tufte → Matsuoka</div>
+      <div class="thread-body">
+        Shannon이 잡음과 신호를 갈랐고, Bateson은 정보가 "차이를 만드는 차이"임을 박았고, Tufte는 잡음을 빼는 일이 정보 디자인의 본질임을 보였고, Matsuoka는 분해·연관·통합의 첫 동작이 잡음 빼기임을 명시했다. <strong>편집의 1차 작업은 더하기가 아니라 빼기</strong>다. 한 자리에 100개 문장이 있을 때, 90개를 빼는 손이 좋은 편집자의 손이다.
+      </div>
+    </article>
+
+    <article class="thread-detail t3">
+      <div class="thread-head"><span class="num">THREAD 03</span><h4>심상·기억·상상의 같은 회로 — 시뮬레이션 라이브러리</h4></div>
+      <div class="thread-chain">Kosslyn → Tulving → Hassabis → Damasio</div>
+      <div class="thread-body">
+        Kosslyn이 심상이 시각 회로에서 진짜로 일어남을 보였고, Hassabis가 기억과 상상이 해마의 같은 회로임을 보였고, Damasio가 신체 표지가 사고의 토대임을 보였다. <strong>편집자의 직감은 자기 안에 쌓인 시뮬레이션 라이브러리의 결과</strong>다. 라이브러리가 풍부할수록 자료를 본 순간 자동으로 떠오르는 가설이 풍부하다. 감각일지·미래 일기·새 공간 루틴이 사적 취향이 아니라 라이브러리 훈련임을 보여준다.
+      </div>
+    </article>
+
+    <article class="thread-detail t4">
+      <div class="thread-head"><span class="num">THREAD 04</span><h4>추론 3축 = 편집·기획·검증의 사이클</h4></div>
+      <div class="thread-chain">Peirce → Matsuoka → CITL</div>
+      <div class="thread-body">
+        Peirce의 가추·귀납·연역이 편집의 일에 그대로 옮겨진다. <strong>가추는 한 명제를 짚어내는 일</strong>, <strong>귀납은 그 명제를 자료로 검증하는 일</strong>, <strong>연역은 그 명제를 카피·디자인의 결로 풀어쓰는 일</strong>. CITL의 두 다이아몬드가 이 사이클을 돌리는 자리다. AI는 귀납·연역에 강하고, 사람은 가추의 자리에 단단히 선다.
+      </div>
+    </article>
+
+    <article class="thread-detail t5">
+      <div class="thread-head"><span class="num">THREAD 05</span><h4>암묵→명시 변환, 카피·에디토리얼의 본 작업</h4></div>
+      <div class="thread-chain">Polanyi → Nonaka → Gadamer → Merleau-Ponty</div>
+      <div class="thread-body">
+        Polanyi가 암묵의 결을 명시했고, Nonaka의 SECI 사이클이 그 변환의 4단을 정리했다. 표출화(E)가 곧 카피·에디토리얼의 본 작업이다. <strong>인터뷰이가 가진 가장 값진 것은 보통 그가 아직 말로 옮기지 못한 것</strong>이고, 좋은 인터뷰어와 편집자는 그 결을 명시의 자리로 옮기는 산파다. 가다머의 지평 융합과 메를로퐁티의 종합이 그 옮김의 신체적·해석적 토대를 받쳐준다.
+      </div>
+    </article>
+
+    <article class="thread-detail t6">
+      <div class="thread-head"><span class="num">THREAD 06</span><h4>예측 부호화 관점에서 본 편집 — 사전 분포를 흔드는 손</h4></div>
+      <div class="thread-chain">Helmholtz → Gregory → Friston → Tufte</div>
+      <div class="thread-body">
+        Helmholtz의 무의식적 추론이 Gregory의 가설 모델로, 다시 Friston의 예측 부호화로 도약했다. 이 시각에서 보면 <strong>좋은 편집은 독자의 사전 분포를 가볍게 흔들고 같은 결로 갱신해주는 일</strong>이다. 너무 안 흔들면 잡음으로 흘러가고, 너무 흔들면 거부된다. Tufte의 데이터-잉크 비율도 같은 원리의 시각 적용 — 잡음을 빼서 예측 오차의 신호 대 잡음 비율을 높이는 일.
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============ 11 · NOW APPLICATION ============ -->
+<section id="now" style="background:var(--bg-2);">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num star">11</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">TODAY · APPLICATION</div>
+        <h2>오늘의 작업 — <em>위계의 어느 단을 만지는가</em></h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      이 모든 계보가 마지막에 도착하는 자리. 매일의 편집 회의·인터뷰·카피 작업·디자인 결정에서 "지금 나는 위계의 어디에 있는가"를 물을 수 있게 해주는 세 장의 체크리스트.
+    </p>
+
+    <div class="app-grid">
+      <div class="app-card">
+        <div class="tag">01 · COPY / EDITORIAL</div>
+        <h4>한 줄을 만질 때</h4>
+        <ul>
+          <li>이 문장은 데이터인가, 정보인가, 지식인가, 지혜인가 (Ackoff)</li>
+          <li>이 문장이 독자 안에서 어떤 차이를 만드는가 (Bateson)</li>
+          <li>잡음을 90% 빼고도 의미가 살아 있는가 (Tufte)</li>
+          <li>독자의 어떤 시뮬레이션을 깨우는가 (Kosslyn·Hassabis)</li>
+          <li>S1에 닿는 톤인가, S2에 닿는 톤인가 (Kahneman)</li>
+          <li>독자의 신체 표지를 활성화하는가 (Damasio)</li>
+          <li>가추로 짚은 한 명제가 있는가, 자료만 늘어놓았는가 (Peirce)</li>
+          <li>매체의 지평과 독자의 지평이 만나는 자리에서 짜인 글인가 (Gadamer)</li>
+        </ul>
+      </div>
+      <div class="app-card">
+        <div class="tag">02 · DESIGN / VISUAL</div>
+        <h4>비주얼을 만들 때</h4>
+        <ul>
+          <li>data-ink ratio를 높였는가, 장식이 잡음을 더했는가 (Tufte)</li>
+          <li>각 요소가 어포던스를 분명히 가지는가 (Gibson)</li>
+          <li>독자의 예측을 가볍게 흔드는가, 갱신해주는가 (Friston)</li>
+          <li>첫 컷이 띄우는 가설이 본문의 결과 맞는가 (Gregory)</li>
+          <li>감각·지각의 어느 단까지 디자인이 책임지는가 (Kant)</li>
+          <li>몸이 닿는 풍경을 만드는가, 머리만 닿는 도식인가 (Merleau-Ponty)</li>
+          <li>위계의 어느 단을 시각화하고 있는가, 한 단인가 두 단인가</li>
+        </ul>
+      </div>
+      <div class="app-card">
+        <div class="tag">03 · INTERVIEW / RESEARCH</div>
+        <h4>사용자를 들여다볼 때</h4>
+        <ul>
+          <li>사용자의 암묵을 명시로 옮기는 산파가 됐는가 (Polanyi)</li>
+          <li>SECI 사이클의 어느 단에서 작업이 멈춰 있는가 (Nonaka)</li>
+          <li>관찰의 가추로 한 명제를 길어 올렸는가, 자료만 쌓았는가 (Peirce)</li>
+          <li>사용자의 어떤 시뮬레이션을 깨워야 그가 더 말하는가 (Hassabis)</li>
+          <li>사용자의 신체 표지가 어디서 켜지는지 봤는가 (Damasio)</li>
+          <li>인터뷰는 송수신이 아니라 두 지평의 융합이라는 자세인가 (Gadamer)</li>
+          <li>나의 작업이 CITL의 어느 자리(맥락·기획·제작·발행)에 있는가</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Closing summary box -->
+    <div style="background:var(--bg-card); border:1px solid var(--border); border-left:4px solid var(--accent); padding:40px 44px; margin-top:48px;">
+      <div style="font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:0.25em; color:var(--accent); margin-bottom:12px;">FINAL CHECK</div>
+      <p style="font-size:16px; font-weight:700; color:var(--text); margin-bottom:14px; line-height:1.5;">한 작업이 끝나면 자신에게 묻는다 — "나는 위계의 어느 단을 만졌는가?"</p>
+      <p style="font-size:14px; color:var(--text-soft); line-height:1.85;">답이 한 줄로 나오면 작업이 끝난 것이다. 답이 모호하면 어딘가가 덜 익었다는 뜻이다. 데이터를 정보로 옮긴 작업인지, 정보를 지식으로 묶은 작업인지, 지식을 지혜의 결까지 끌고 간 작업인지. 그 자리를 한 줄로 말할 수 있으면, 다음 작업의 방향이 자동으로 따라온다.</p>
+    </div>
+
+  </div>
+</section>
+
+
+
+<!-- ============ ONE LINE ============ -->
+<section class="oneline">
+  <div class="oneline-inner">
+    <div class="oneline-k">ONE LINE SUMMARY</div>
+    <p class="oneline-main">
+      편집은 잡음에서 신호를 골라,<br/>
+      <em>데이터를 지혜의 결까지 옮기는</em> 일이다.<br/>
+      그 위계 어느 단을 만지는지 아는 손이 편집자의 손이다.
+    </p>
+    <div class="oneline-sig">Shannon이 잡음과 신호를 갈랐고, Bateson이 정보를 의미의 자리로 끌어올렸다.<br/>Polanyi와 Nonaka가 암묵과 명시를 잇고, Gibson과 Friston이 감각을 예측으로 풀었다.<br/>Kant·Kahneman·Damasio가 인지의 두 결을 짚고, Kosslyn·Tulving·Hassabis가 심상과 상상을 한 회로로 묶었다.<br/>Peirce·Gadamer·Merleau-Ponty가 해석과 이해의 다리를 놓았고, Tufte·Matsuoka가 편집을 인지 작업으로 명명했다.<br/>이 모두가 한 자리, 편집의 자리로 모인다.</div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="inner">
+    <div>
+      <h4>SERIES · CREATIVE COMMUNICATOR</h4>
+      <p>
+        <strong>Part III</strong> 뇌과학·해마·이야기<br/>
+        <strong>Part IV</strong> 신체화 인식 계보<br/>
+        <strong>Part V</strong> 인지의 위계와 편집의 자리 · Deep (본 문서)<br/>
+        <strong>Part VI</strong> 인식과 소통·움벨트<br/>
+        <strong>Part IX</strong> 상호주관성 계보<br/>
+        <strong>Part XIII</strong> 추론의 계보<br/>
+        <strong>Part XVII</strong> 편집의 계보
+      </p>
+    </div>
+    <div>
+      <h4>READING · 정보와 위계</h4>
+      <ul>
+        <li>Shannon, 〈A Mathematical Theory of Communication〉(1948)</li>
+        <li>Bateson, 〈Steps to an Ecology of Mind〉(1972)</li>
+        <li>Ackoff, 〈From Data to Wisdom〉(1989)</li>
+        <li>Polanyi, 〈The Tacit Dimension〉(1966)</li>
+        <li>Nonaka & Takeuchi, 〈The Knowledge-Creating Company〉(1995)</li>
+        <li>Tufte, 〈The Visual Display of Quantitative Information〉(1983)</li>
+      </ul>
+    </div>
+    <div>
+      <h4>READING · 인지와 마음</h4>
+      <ul>
+        <li>Kant, 〈순수이성비판〉(1781)</li>
+        <li>Kahneman, 〈Thinking, Fast and Slow〉(2011)</li>
+        <li>Damasio, 〈Descartes' Error〉(1994)</li>
+        <li>Tulving, 〈Elements of Episodic Memory〉(1983)</li>
+        <li>Friston, 〈The Free-Energy Principle〉(2010)</li>
+        <li>마츠오카 세이고, 〈知の編集工学〉(1996)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="colophon">
+    <span>© 2026 · 크리에이티브 커뮤니케이터 시리즈</span>
+    <span>PART V · DEEP · COGNITIVE HIERARCHY & EDITING</span>
+  </div>
+</footer>
+
+</body>
+</html>
