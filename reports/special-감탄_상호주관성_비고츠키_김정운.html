@@ -1,0 +1,1456 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>여섯 시선 + 하나의 감탄 — 비고츠키 · 상호주관성 · 김정운의 일곱 번째 태도 · Deep</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fdfcfa; --bg-2: #f4f1ec; --bg-card: #ffffff; --bg-card-2: #f8f6f1; --bg-code: #f4f1ec;
+    --text: #1a1a1a; --text-soft: #4a4845; --text-dim: #807e7a; --text-faint: #c4c2bd;
+    --accent: #d9601f; --accent-2: #e07530; --accent-dim: #b54e15;
+    --teal: #2e8a7c; --green: #4a8e4a; --purple: #7e5a98; --pink: #c25787; --blue: #4a72a8; --yellow: #b8954a; --red: #c14638;
+    --border: rgba(0,0,0,0.10); --border-2: rgba(0,0,0,0.16);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', -apple-system, sans-serif; font-weight: 400; line-height: 1.75; -webkit-font-smoothing: antialiased; }
+  a { color: var(--accent); text-decoration: none; }
+
+  .hero { padding: 110px 60px 140px; position: relative; overflow: hidden; border-bottom: 1px solid var(--border); }
+  .hero-inner { max-width: 1120px; margin: 0 auto; }
+  .hero-kicker { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.35em; color: var(--text-dim); margin-bottom: 80px; }
+  .hero h1 { font-weight: 900; font-size: clamp(40px, 5.5vw, 72px); line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 20px; }
+  .hero h1 em { font-style: normal; color: var(--accent); }
+  .hero-lead { max-width: 720px; font-size: 16px; color: var(--text-soft); line-height: 1.85; font-weight: 300; margin-top: 36px; }
+  .hero-meta { margin-top: 120px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; padding-top: 32px; border-top: 1px solid var(--border); }
+  .hero-meta .label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.25em; color: var(--text-dim); text-transform: uppercase; margin-bottom: 8px; }
+  .hero-meta .value { font-size: 17px; font-weight: 700; color: var(--text); }
+
+  nav.sticky { position: sticky; top: 0; background: rgba(253,252,250,0.92); backdrop-filter: blur(18px); border-bottom: 1px solid var(--border); z-index: 50; padding: 14px 60px; }
+  nav .nav-inner { max-width: 1120px; margin: 0 auto; display: flex; gap: 24px; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; }
+  nav a { color: var(--text-dim); white-space: nowrap; padding: 4px 0; border-bottom: 1px solid transparent; transition: all 0.2s; }
+  nav a:hover { color: var(--accent); }
+
+  section { padding: 100px 60px; }
+  .container { max-width: 1120px; margin: 0 auto; }
+  .sec-header { margin-bottom: 56px; display: flex; align-items: flex-start; gap: 32px; }
+  .sec-num { font-family: 'JetBrains Mono', monospace; font-size: 56px; font-weight: 700; color: var(--text-faint); line-height: 1; letter-spacing: -0.02em; flex-shrink: 0; }
+  .sec-num.star { color: var(--accent); }
+  .sec-title-wrap { flex: 1; padding-top: 8px; }
+  h2 { font-weight: 900; font-size: clamp(28px, 3.6vw, 44px); line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 16px; }
+  h2 em { font-style: normal; color: var(--accent); }
+  .sec-sub { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.2em; color: var(--text-dim); text-transform: uppercase; margin-top: 6px; margin-bottom: 22px; }
+  .sec-lead { font-size: 16px; color: var(--text-soft); max-width: 820px; line-height: 1.85; font-weight: 300; }
+  .sec-lead strong { color: var(--text); font-weight: 600; }
+
+  .intro-why { background: var(--bg-card); border: 1px solid var(--border); padding: 36px 40px; margin-top: 32px; }
+  .intro-why h3 { font-size: 18px; font-weight: 700; margin-bottom: 14px; }
+  .intro-why h3 span { color: var(--accent); font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; margin-right: 10px; }
+  .intro-why p { font-size: 14px; color: var(--text-soft); line-height: 1.85; margin-bottom: 10px; }
+
+  .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
+  .compare-card { background: var(--bg-card); border: 1px solid var(--border); padding: 32px; }
+  .compare-card h4 { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 14px; }
+  .compare-card.old h4 { color: var(--text-dim); }
+  .compare-card.new h4 { color: var(--accent); }
+  .compare-card .punch { font-size: 19px; font-weight: 700; margin-bottom: 14px; line-height: 1.4; }
+  .compare-card.new .punch { color: var(--accent-2); }
+  .compare-card p { font-size: 14px; color: var(--text-soft); line-height: 1.75; margin-bottom: 8px; }
+
+  .phase-hero { background: var(--bg-card); border: 1px solid var(--border); border-left: 4px solid var(--accent); padding: 40px 44px; margin-top: 48px; margin-bottom: 44px; }
+  .phase-hero.teal { border-left-color: var(--teal); }
+  .phase-hero.purple { border-left-color: var(--purple); }
+  .phase-hero.blue { border-left-color: var(--blue); }
+  .phase-hero.yellow { border-left-color: var(--yellow); }
+  .phase-hero.green { border-left-color: var(--green); }
+  .phase-hero.pink { border-left-color: var(--pink); }
+  .phase-era { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.25em; color: var(--text-dim); margin-bottom: 10px; }
+  .phase-era .star { color: var(--accent); margin-left: 8px; font-weight: 700; }
+  .phase-hero h3 { font-size: 26px; font-weight: 800; line-height: 1.3; margin-bottom: 14px; letter-spacing: -0.01em; }
+  .phase-hero h3 em { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; color: var(--accent); }
+  .phase-hero p { font-size: 15px; color: var(--text-soft); line-height: 1.85; margin-bottom: 10px; }
+  .phase-q { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-dim); margin-top: 24px; padding-top: 22px; border-top: 1px dashed var(--border-2); letter-spacing: 0.05em; line-height: 1.7; }
+  .phase-q strong { color: var(--accent-2); }
+
+  .thinker { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--accent); margin-bottom: 28px; overflow: hidden; box-shadow: 0 1px 2px rgba(0,0,0,0.03); }
+  .thinker.teal { border-left-color: var(--teal); }
+  .thinker.purple { border-left-color: var(--purple); }
+  .thinker.green { border-left-color: var(--green); }
+  .thinker.pink { border-left-color: var(--pink); }
+  .thinker.blue { border-left-color: var(--blue); }
+  .thinker.yellow { border-left-color: var(--yellow); }
+  .thinker.red { border-left-color: var(--red); }
+
+  .thinker-top { padding: 28px 36px 22px; display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: start; border-bottom: 1px solid var(--border); }
+  .thinker-id { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+  .thinker-name { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; letter-spacing: -0.01em; }
+  .thinker-ko { font-size: 15px; color: var(--text-dim); font-weight: 400; }
+  .thinker-years { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-dim); letter-spacing: 0.15em; }
+  .thinker-tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; padding: 6px 12px; background: rgba(217,96,31,0.10); color: var(--accent); text-transform: uppercase; white-space: nowrap; align-self: start; border: 1px solid rgba(217,96,31,0.28); }
+  .thinker.teal .thinker-tag { background: rgba(46,138,124,0.10); color: var(--teal); border-color: rgba(46,138,124,0.28); }
+  .thinker.purple .thinker-tag { background: rgba(126,90,152,0.10); color: var(--purple); border-color: rgba(126,90,152,0.28); }
+  .thinker.green .thinker-tag { background: rgba(74,142,74,0.10); color: var(--green); border-color: rgba(74,142,74,0.28); }
+  .thinker.blue .thinker-tag { background: rgba(74,114,168,0.10); color: var(--blue); border-color: rgba(74,114,168,0.28); }
+  .thinker.yellow .thinker-tag { background: rgba(184,149,74,0.10); color: var(--yellow); border-color: rgba(184,149,74,0.28); }
+  .thinker.pink .thinker-tag { background: rgba(194,87,135,0.10); color: var(--pink); border-color: rgba(194,87,135,0.28); }
+  .thinker.red .thinker-tag { background: rgba(193,70,56,0.10); color: var(--red); border-color: rgba(193,70,56,0.28); }
+
+  .thinker-punch { grid-column: 1 / -1; margin-top: 8px; font-size: 17px; font-weight: 600; line-height: 1.5; }
+  .thinker-punch em { font-style: normal; color: var(--accent-2); font-weight: 700; }
+  .thinker.teal .thinker-punch em { color: var(--teal); }
+  .thinker.purple .thinker-punch em { color: var(--purple); }
+  .thinker.green .thinker-punch em { color: var(--green); }
+  .thinker.blue .thinker-punch em { color: var(--blue); }
+  .thinker.yellow .thinker-punch em { color: var(--yellow); }
+  .thinker.pink .thinker-punch em { color: var(--pink); }
+
+  .thinker-body { padding: 32px 36px 36px; }
+  .block { margin-bottom: 36px; }
+  .block:last-child { margin-bottom: 0; }
+  .block-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.25em; color: var(--accent); text-transform: uppercase; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+  .block-label::before { content: ''; width: 18px; height: 1px; background: var(--accent); }
+  .thinker.teal .block-label, .thinker.teal .block-label::before { color: var(--teal); background: var(--teal); }
+  .thinker.purple .block-label, .thinker.purple .block-label::before { color: var(--purple); background: var(--purple); }
+  .thinker.green .block-label, .thinker.green .block-label::before { color: var(--green); background: var(--green); }
+  .thinker.blue .block-label, .thinker.blue .block-label::before { color: var(--blue); background: var(--blue); }
+  .thinker.yellow .block-label, .thinker.yellow .block-label::before { color: var(--yellow); background: var(--yellow); }
+  .thinker.pink .block-label, .thinker.pink .block-label::before { color: var(--pink); background: var(--pink); }
+  .thinker.teal .block-label { color: var(--teal); }
+  .thinker.purple .block-label { color: var(--purple); }
+  .thinker.green .block-label { color: var(--green); }
+  .thinker.blue .block-label { color: var(--blue); }
+  .thinker.yellow .block-label { color: var(--yellow); }
+  .thinker.pink .block-label { color: var(--pink); }
+
+  .block p { font-size: 14.5px; color: var(--text-soft); line-height: 1.85; margin-bottom: 10px; }
+  .block p strong { color: var(--text); font-weight: 600; }
+  .schema { background: var(--bg-code); border: 1px solid var(--border); padding: 28px 32px; margin: 22px 0; }
+  .schema-cap { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-dim); letter-spacing: 0.15em; margin-top: 8px; text-align: right; }
+
+  .influence { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 14px; }
+  .inf-item { padding: 16px 18px; background: var(--bg-card-2); border-left: 2px solid var(--accent); }
+  .thinker.teal .inf-item { border-left-color: var(--teal); }
+  .thinker.purple .inf-item { border-left-color: var(--purple); }
+  .thinker.green .inf-item { border-left-color: var(--green); }
+  .thinker.blue .inf-item { border-left-color: var(--blue); }
+  .thinker.yellow .inf-item { border-left-color: var(--yellow); }
+  .thinker.pink .inf-item { border-left-color: var(--pink); }
+  .inf-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--text-dim); text-transform: uppercase; margin-bottom: 6px; }
+  .inf-body { font-size: 13px; color: var(--text-soft); line-height: 1.7; }
+  .inf-body strong { color: var(--text); }
+
+  .echo { background: rgba(217,96,31,0.06); border: 1px solid rgba(217,96,31,0.20); padding: 22px 26px; margin-top: 18px; }
+  .thinker.teal .echo { background: rgba(46,138,124,0.07); border-color: rgba(46,138,124,0.22); }
+  .thinker.purple .echo { background: rgba(126,90,152,0.07); border-color: rgba(126,90,152,0.22); }
+  .thinker.green .echo { background: rgba(74,142,74,0.07); border-color: rgba(74,142,74,0.22); }
+  .thinker.blue .echo { background: rgba(74,114,168,0.07); border-color: rgba(74,114,168,0.22); }
+  .thinker.yellow .echo { background: rgba(184,149,74,0.07); border-color: rgba(184,149,74,0.22); }
+  .thinker.pink .echo { background: rgba(194,87,135,0.07); border-color: rgba(194,87,135,0.22); }
+  .echo-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.25em; color: var(--accent); text-transform: uppercase; margin-bottom: 8px; }
+  .thinker.teal .echo-label { color: var(--teal); }
+  .thinker.purple .echo-label { color: var(--purple); }
+  .thinker.green .echo-label { color: var(--green); }
+  .thinker.blue .echo-label { color: var(--blue); }
+  .thinker.yellow .echo-label { color: var(--yellow); }
+  .thinker.pink .echo-label { color: var(--pink); }
+  .echo-body { font-size: 14px; color: var(--text); line-height: 1.75; }
+
+  .quote { margin: 16px 0; padding: 14px 0 14px 20px; border-left: 3px solid var(--accent-dim); font-family: 'Nanum Myeongjo', serif; font-style: italic; font-size: 16px; color: var(--text); line-height: 1.75; }
+  .quote-src { display: block; margin-top: 8px; font-family: 'JetBrains Mono', monospace; font-style: normal; font-size: 10px; color: var(--text-dim); letter-spacing: 0.15em; }
+
+  .concepts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .concept-chip { font-family: 'JetBrains Mono', monospace; font-size: 11px; padding: 6px 12px; background: var(--bg-card-2); border: 1px solid var(--border); color: var(--text-soft); }
+  .concept-chip strong { color: var(--accent); font-weight: 600; margin-right: 6px; }
+  .thinker.teal .concept-chip strong { color: var(--teal); }
+  .thinker.purple .concept-chip strong { color: var(--purple); }
+  .thinker.green .concept-chip strong { color: var(--green); }
+  .thinker.blue .concept-chip strong { color: var(--blue); }
+  .thinker.yellow .concept-chip strong { color: var(--yellow); }
+
+  /* Six attitudes panel — catalog grid */
+  .attitudes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 28px; }
+  .att-card { background: var(--bg-card); border: 1px solid var(--border); border-top: 3px solid var(--accent); padding: 26px 24px; }
+  .att-card.a1 { border-top-color: var(--green); }
+  .att-card.a2 { border-top-color: var(--yellow); }
+  .att-card.a3 { border-top-color: var(--red); }
+  .att-card.a4 { border-top-color: var(--blue); }
+  .att-card.a5 { border-top-color: var(--purple); }
+  .att-card.a6 { border-top-color: var(--pink); }
+  .att-num { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.3em; color: var(--text-dim); margin-bottom: 8px; }
+  .att-card h4 { font-size: 18px; font-weight: 800; margin-bottom: 6px; }
+  .att-sub { font-family: 'Playfair Display', serif; font-style: italic; font-size: 12px; color: var(--accent); margin-bottom: 12px; }
+  .att-card.a1 .att-sub { color: var(--green); }
+  .att-card.a2 .att-sub { color: var(--yellow); }
+  .att-card.a3 .att-sub { color: var(--red); }
+  .att-card.a4 .att-sub { color: var(--blue); }
+  .att-card.a5 .att-sub { color: var(--purple); }
+  .att-card.a6 .att-sub { color: var(--pink); }
+  .att-card p { font-size: 12.5px; color: var(--text-soft); line-height: 1.7; margin-bottom: 8px; }
+  .att-card .att-figures { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-dim); letter-spacing: 0.1em; margin-top: 8px; }
+
+  /* 7th attitude card — emphasized */
+  .seventh { margin-top: 22px; background: rgba(217,96,31,0.06); border: 1.5px solid var(--accent); padding: 36px 40px; position: relative; }
+  .seventh::before { content: '+ 1'; position: absolute; top: -16px; right: 28px; background: var(--accent); color: white; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; padding: 4px 12px; }
+  .seventh .att-num { color: var(--accent); }
+  .seventh h4 { font-size: 22px; font-weight: 800; margin-bottom: 8px; color: var(--text); }
+  .seventh .att-sub { color: var(--accent); }
+  .seventh p { font-size: 13.5px; }
+
+  /* Thread detail */
+  .thread-detail { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--accent); padding: 28px 32px; margin-top: 20px; }
+  .thread-detail.t1 { border-left-color: var(--teal); }
+  .thread-detail.t2 { border-left-color: var(--purple); }
+  .thread-detail.t3 { border-left-color: var(--accent); }
+  .thread-detail.t4 { border-left-color: var(--yellow); }
+  .thread-detail.t5 { border-left-color: var(--blue); }
+  .thread-detail.t6 { border-left-color: var(--green); }
+  .thread-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 10px; flex-wrap: wrap; }
+  .thread-head .num { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: var(--text-dim); }
+  .thread-head h4 { font-size: 20px; font-weight: 800; }
+  .thread-chain { font-family: 'Playfair Display', serif; font-style: italic; font-size: 14px; color: var(--text-soft); margin-bottom: 14px; line-height: 1.5; }
+  .thread-body { font-size: 14px; color: var(--text-soft); line-height: 1.85; }
+  .thread-body strong { color: var(--text); }
+  .threads-intro { background: var(--bg-card); border: 1px solid var(--border); padding: 32px 36px; margin-top: 28px; }
+  .threads-intro p { font-size: 15px; color: var(--text-soft); line-height: 1.85; }
+  .threads-intro p strong { color: var(--accent); }
+
+  .art-flow { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-top: 32px; }
+  .art-step { background: var(--bg-card); border: 1px solid var(--border); padding: 24px 20px; }
+  .art-step:nth-child(1) { border-top: 3px solid var(--purple); }
+  .art-step:nth-child(2) { border-top: 3px solid var(--accent); }
+  .art-step:nth-child(3) { border-top: 3px solid var(--teal); }
+  .art-step:nth-child(4) { border-top: 3px solid var(--yellow); }
+  .art-step:nth-child(5) { border-top: 3px solid var(--blue); }
+  .art-step .seq { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.25em; color: var(--text-dim); margin-bottom: 10px; }
+  .art-step h4 { font-size: 16px; font-weight: 800; line-height: 1.3; margin-bottom: 6px; }
+  .art-step .art-sub { font-family: 'Playfair Display', serif; font-style: italic; font-size: 12px; color: var(--accent); margin-bottom: 12px; }
+  .art-step p { font-size: 12.5px; color: var(--text-soft); line-height: 1.7; }
+
+  .integrate-box { margin-top: 36px; background: var(--bg-card); border: 1px solid var(--border); padding: 44px; display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: center; }
+  .integrate-box h3 { font-size: 24px; font-weight: 800; line-height: 1.35; margin-bottom: 16px; }
+  .integrate-box h3 em { font-style: normal; color: var(--accent); }
+  .integrate-box p { font-size: 14px; color: var(--text-soft); line-height: 1.85; margin-bottom: 10px; }
+  .integrate-eq { font-family: 'JetBrains Mono', monospace; padding: 28px; background: var(--bg-code); border: 1px solid var(--border); font-size: 13.5px; line-height: 2.2; color: var(--text-soft); }
+  .integrate-eq .h { color: var(--accent); font-weight: 600; }
+  .integrate-eq .o { color: var(--text); font-weight: 700; }
+  .integrate-eq .c { color: var(--text-dim); }
+
+  .oneline { padding: 140px 60px; text-align: center; position: relative; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); overflow: hidden; }
+  .oneline::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(217,96,31,0.08), transparent 60%); }
+  .oneline-inner { max-width: 900px; margin: 0 auto; position: relative; }
+  .oneline-k { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.4em; color: var(--accent); margin-bottom: 36px; }
+  .oneline-main { font-size: clamp(22px, 2.8vw, 32px); font-weight: 700; line-height: 1.55; }
+  .oneline-main em { font-style: normal; color: var(--accent); }
+  .oneline-sig { margin-top: 44px; font-family: 'Playfair Display', serif; font-style: italic; color: var(--text-soft); font-size: 16px; line-height: 1.75; }
+
+  .app-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
+  .app-card { background: var(--bg-card); border: 1px solid var(--border); padding: 28px 30px; }
+  .app-card .tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.25em; color: var(--accent); text-transform: uppercase; margin-bottom: 12px; }
+  .app-card h4 { font-size: 18px; font-weight: 800; margin-bottom: 12px; line-height: 1.4; }
+  .app-card ul { list-style: none; padding: 0; }
+  .app-card li { font-size: 13px; color: var(--text-soft); padding: 6px 0; border-bottom: 1px dashed var(--border); line-height: 1.65; }
+  .app-card li:last-child { border-bottom: none; }
+  .app-card li::before { content: '▸ '; color: var(--accent); margin-right: 4px; }
+
+  footer { background: var(--bg-2); padding: 70px 60px 40px; border-top: 1px solid var(--border); }
+  footer .inner { max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 56px; }
+  footer h4 { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.25em; color: var(--accent); text-transform: uppercase; margin-bottom: 18px; }
+  footer p, footer li { font-size: 13px; color: var(--text-soft); line-height: 1.85; }
+  footer p strong { color: var(--text); }
+  footer ul { list-style: none; }
+  footer li { padding: 3px 0; }
+  footer li::before { content: '— '; color: var(--text-dim); }
+  footer .colophon { max-width: 1120px; margin: 52px auto 0; padding-top: 24px; border-top: 1px solid var(--border); font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--text-dim); display: flex; justify-content: space-between; }
+
+  @media (max-width: 960px) {
+    .hero, section, footer, nav.sticky { padding-left: 28px; padding-right: 28px; }
+    .sec-header { flex-direction: column; gap: 12px; }
+    .sec-num { font-size: 42px; }
+    .hero-meta { grid-template-columns: 1fr 1fr; }
+    .compare-grid, .integrate-box { grid-template-columns: 1fr; gap: 20px; }
+    .art-flow, .attitudes-grid { grid-template-columns: repeat(2, 1fr); }
+    .app-grid, .influence { grid-template-columns: 1fr; }
+    footer .inner { grid-template-columns: 1fr; gap: 32px; }
+    .thinker-top { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-kicker">VYGOTSKY · INTERSUBJECTIVITY · KIM JEONG-UN · DEEP · 2026</div>
+    <h1>여섯 시선<br/>+ 하나의 <em>감탄</em></h1>
+    <p class="hero-lead">
+      김정운의 〈말하지 않고 말하기〉(2025) 404쪽 *삶은 무엇인가* 챕터는 인간을 보는 여섯 개의 심리학적 줌렌즈를 펼친다 — 적응 · 조건화 · 충동 · 판단 · 의미 · 연결.
+      그리고 일곱 번째 자리를 자기 자신이 더한다 — <strong>감탄</strong>. 비고츠키의 사회·문화 심리학을 바탕으로, *내면의 선생님*은 어머니의 감탄이 내면화된 것이라는 명제.
+      이 리포트는 그 일곱 번째 자리를 정렬하고, *상호주관성*과 *칸트의 공통감*까지 한 줄로 꿴다.
+    </p>
+    <div class="hero-meta">
+      <div><div class="label">Source Book</div><div class="value">김정운 · 말하지 않고 말하기 (2025)</div></div>
+      <div><div class="label">Phases</div><div class="value">6 + 1 Lenses</div></div>
+      <div><div class="label">Core</div><div class="value">Vygotsky · Sensus Communis</div></div>
+      <div><div class="label">Series</div><div class="value">Special · External Book</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav class="sticky">
+  <div class="nav-inner">
+    <a href="#intro">00 · 들어가며</a>
+    <a href="#p1">01 · 여섯 시선</a>
+    <a href="#p2">02 · 비고츠키 ★</a>
+    <a href="#p3">03 · 상호주관성</a>
+    <a href="#p4">04 · 칸트 공통감 ★</a>
+    <a href="#p5">05 · 감탄과 인정</a>
+    <a href="#p6">06 · 합성 ★</a>
+    <a href="#threads">08 · 6 스레드</a>
+    <a href="#resonance">09 · 디자인 공명</a>
+    <a href="#now">10 · 오늘의 적용</a>
+  </div>
+</nav>
+
+<!-- 00 INTRO -->
+<section id="intro">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">00</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">WHY THIS LINEAGE</div>
+        <h2>존재의 근거는 <em>내면이 아니라 외부</em>에 있다</h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      김정운은 〈말하지 않고 말하기〉의 끝 챕터에서 *기존의 개인과 사회라는 이분법을 뒤집어야 한다*고 못 박는다.
+      개인이라는 존재는 타인 없이 존재할 수 없으며, *나라는 개인은 관계라는 바다 위에 떠 있는 섬*과 같다.
+      이 명제는 비고츠키의 한 줄과 만난다 — <strong>모든 고등 정신 기능은 먼저 사람 사이에서 나타나고, 그 다음에야 개인 내부의 심리적 수준으로 내면화된다.</strong>
+      여섯 시선이 모두 *개인 안*을 보는 동안, 일곱 번째 시선은 *개인과 개인 사이*를 본다. 그 사이에 *감탄*이 자란다.
+    </p>
+
+    <div class="intro-why" style="margin-top: 48px;">
+      <h3><span>CORE QUESTION</span>이 계보가 답하려는 한 줄</h3>
+      <p style="font-size: 17px; color: var(--text); font-weight: 600; line-height: 1.55; margin-top: 6px;">
+        내가 *나*인 이유는 어디에 있는가 — 내 안에 있는가, 우리 사이에 있는가?
+      </p>
+    </div>
+
+    <div class="compare-grid">
+      <div class="compare-card old">
+        <h4>전통적 답</h4>
+        <div class="punch">개인 → 사회로 *나아간다*</div>
+        <p>데카르트의 *생각하는 나*가 출발점. 개인이 먼저 존재하고, 그 개인들이 모여 사회가 만들어진다.</p>
+        <p>심리학의 여섯 시선(적응 · 조건화 · 충동 · 판단 · 의미 · 연결)도 결국 *한 개인 안*에서 작동하는 메커니즘을 본다. 연결조차 *내가 타인과 어떻게 연결되는가*의 문제로.</p>
+        <p>행복은 *내 안의 의미를 찾는 일*. 불안은 *내 안의 조건화를 풀어내는 일*. 모든 답이 *내 안*에 있다고 가정한다.</p>
+      </div>
+      <div class="compare-card new">
+        <h4>비고츠키-김정운의 뒤집기</h4>
+        <div class="punch">사회 → 개인으로 *내면화된다*</div>
+        <p>고등 정신 기능은 *먼저 사람 사이에서 나타난다*. 그것이 내면화되어야 비로소 *개인의 마음*이 생긴다. 어머니의 감탄이 내면화되어 *내면의 선생님*이 자라난다.</p>
+        <p>일곱 번째 시선 — **감탄**. 우리는 무언가에 감탄하며 압도되고, 동시에 *감탄받고 싶어 하는 인정 욕구*를 가진다. 이것이 존재의 메커니즘이다.</p>
+        <p>"나의 알음이 남들에게 다움으로 인정받는 것이 곧 아름다움" — 한국말의 직관이 칸트의 공통감과 만나는 자리.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 01 SIX ATTITUDES -->
+<section id="p1" style="background: var(--bg-2);">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">01</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">SIX PSYCHOLOGICAL LENSES</div>
+        <h2>여섯 시선 — 인간을 보는 <em>여섯 줌렌즈</em></h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      〈말하지 않고 말하기〉 404쪽에서 김정운은 *삶은 무엇인가*라는 질문에 대한 심리학의 여섯 답을 정리한다.
+      각 시선은 한 세기를 풍미한 학파의 압축이고, 동시에 *한 인간을 한 면*으로 환원한다.
+      이 여섯을 펼쳐둔 뒤에야 일곱 번째 자리가 또렷이 보인다 — *이 모두가 *개인 안*만 봤다*는 사실이.
+    </p>
+
+    <div class="attitudes-grid">
+      <div class="att-card a1">
+        <div class="att-num">ATTITUDE 01</div>
+        <h4>적응 · Adaptation</h4>
+        <div class="att-sub">뇌과학 · 진화심리학</div>
+        <p>인간은 *적응한 결과*다. 두려움·식욕·짝짓기·집단 충성 — 모두 수렵채집기 환경에서 *생존에 유리했던 회로*가 굳은 것.</p>
+        <p>오늘의 우울·불안도 *과거의 적응이 현재의 환경과 어긋난 자리*에서 발생한다.</p>
+        <div class="att-figures">E.O. WILSON · PINKER · BUSS · TOOBY</div>
+      </div>
+      <div class="att-card a2">
+        <div class="att-num">ATTITUDE 02</div>
+        <h4>조건화 · Conditioning</h4>
+        <div class="att-sub">행동주의</div>
+        <p>인간은 *자극과 반응의 묶음*이다. 파블로프의 종소리, 스키너의 비둘기. 보상과 처벌이 행동을 빚는다.</p>
+        <p>나의 습관·취향·반응은 *과거에 받은 강화의 누적*. 바꾸려면 *환경을 바꾸는* 수밖에 없다.</p>
+        <div class="att-figures">PAVLOV · WATSON · SKINNER</div>
+      </div>
+      <div class="att-card a3">
+        <div class="att-num">ATTITUDE 03</div>
+        <h4>충동 · Drive</h4>
+        <div class="att-sub">정신분석 · 무의식과 욕망</div>
+        <p>인간은 *의식하지 못하는 욕망*에 끌려다닌다. 이드 · 자아 · 초자아의 갈등. 어린 시절의 *외상*이 평생을 결정한다.</p>
+        <p>나의 선택은 합리적이지 않다. *내가 모르는 나*가 더 크다.</p>
+        <div class="att-figures">FREUD · JUNG · LACAN · KLEIN</div>
+      </div>
+      <div class="att-card a4">
+        <div class="att-num">ATTITUDE 04</div>
+        <h4>판단 · Judgment</h4>
+        <div class="att-sub">인지심리학 · 뇌과학</div>
+        <p>인간은 *생각하는 기계*다. 그런데 그 기계는 *시스템 1*(빠른 직관)과 *시스템 2*(느린 추론)로 갈라져 있다.</p>
+        <p>편향·휴리스틱·인지 부조화 — 우리는 합리적이지 않은 방식으로 합리화한다.</p>
+        <div class="att-figures">PIAGET · KAHNEMAN · TVERSKY · GIGERENZER</div>
+      </div>
+      <div class="att-card a5">
+        <div class="att-num">ATTITUDE 05</div>
+        <h4>의미 · Meaning</h4>
+        <div class="att-sub">실존주의 · 인본주의 심리학</div>
+        <p>인간은 *의미를 찾는 존재*다. 빅터 프랭클이 아우슈비츠에서 발견한 것 — *내 삶에 무엇을 *해주는가*가 아니라, 내가 삶에 무엇을 *주는가**.</p>
+        <p>매슬로의 자기실현, 로저스의 현재 경험. *통합적 실존*이 행복의 자리.</p>
+        <div class="att-figures">FRANKL · MASLOW · ROGERS · YALOM</div>
+      </div>
+      <div class="att-card a6">
+        <div class="att-num">ATTITUDE 06</div>
+        <h4>연결 · Connection</h4>
+        <div class="att-sub">사회심리학 · 공유</div>
+        <p>인간은 *사회적 동물*이다. 동조 · 복종 · 집단 극화 · 방관자 효과. 우리는 *남들 때문에 다르게 행동*한다.</p>
+        <p>밴두라의 사회적 학습 — 우리는 *모방으로* 배운다. 치알디니의 영향력 6원칙 — 우리는 *서로 끌리는 패턴* 안에 산다.</p>
+        <div class="att-figures">ASCH · MILGRAM · BANDURA · CIALDINI</div>
+      </div>
+    </div>
+
+    <div class="seventh">
+      <div class="att-num">ATTITUDE 07 · + 1</div>
+      <h4>감탄 · Wonder · 김정운의 일곱 번째</h4>
+      <div class="att-sub">비고츠키 사회·문화 심리학</div>
+      <p style="font-size: 14.5px; line-height: 1.85; margin-bottom: 12px;">
+        앞의 여섯이 모두 *개인 안*에서 작동하는 메커니즘을 본 자리라면, 일곱 번째는 *개인과 개인 사이*를 본다. 김정운이 비고츠키의 사회·문화 심리학을 끌어와 채우는 빈자리.
+      </p>
+      <p style="font-size: 14.5px; line-height: 1.85; margin-bottom: 12px;">
+        <strong>아이가 자랄 때 어머니의 감탄이 내면화되어, 자신의 변화와 성장을 함께 즐거워하는 *내면의 선생님*이 자라난다.</strong>
+        우리는 무언가에 감탄하며 압도되기도 하지만, 동시에 *감탄받고 싶어 하는 인정 욕구*도 가진다. 이 두 면이 모두 *나와 너 사이*에서만 발생한다.
+      </p>
+      <p style="font-size: 14.5px; line-height: 1.85;">
+        이 시선이 들어오면 *행복은 의미를 찾는 일*이 아니라 — *감탄을 주고받는 일*이 된다. 존재의 근거가 *내 안*이 아니라 *우리 사이*에 있다는 명제.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 02 VYGOTSKY -->
+<section id="p2">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num star">02</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">VYGOTSKY · 1896–1934 · MOSCOW</div>
+        <h2>비고츠키 — 모든 고등 정신 기능은 <em>먼저 사이에서</em> 나타난다</h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      레프 비고츠키(1896–1934)는 결핵으로 37년을 살았다. 스탈린 시대 소비에트 심리학자였고, 사후 수십 년간 그의 저작은 봉인되어 있었다. 1962년 〈사고와 언어〉 영역본이 나오면서 서구에 알려지기 시작했고, 1978년 〈Mind in Society〉가 출간되며 발달심리학·교육학에 거대한 파동을 만들었다.
+      그가 만든 한 명제 — <strong>"사회적 발달의 일반 법칙"(general genetic law of cultural development)</strong> — 이 김정운 일곱 번째 시선의 척추다.
+    </p>
+
+    <div class="phase-hero teal">
+      <div class="phase-era">1896 → 1934 · 모스크바 <span class="star">★ 사회·문화 심리학의 창시자</span></div>
+      <h3>"<em>모든 고등 정신 기능은 두 번 나타난다</em>" — 먼저 사람 사이에서, 그 다음에 한 사람 안에서</h3>
+      <p>
+        피아제는 *개인 아이*의 인지 발달 단계를 봤다. 비고츠키는 그것을 뒤집었다. <strong>아이의 발달을 결정하는 것은 *아이가 누구와 무엇을 같이 하느냐*다.</strong>
+        같이 하는 *것* — 언어, 도구, 기호 시스템 — 이 바로 *문화*다. 인간은 *문화적 도구를 매개로* 자기 자신을 만든다.
+      </p>
+      <p>
+        김정운의 핵심 변주 — 어머니의 감탄이 아이의 *자기에 대한 감탄*으로 내면화된다. *내면의 선생님*은 처음엔 *외부의 선생님*이었다. <strong>자아는 *사회적 만남이 내면화된 것*이다.</strong>
+      </p>
+      <div class="phase-q">
+        <strong>핵심 질문</strong> · 내 안에서 일어나는 *사고*는, 원래 누구와 누구의 *대화*였는가?
+      </div>
+    </div>
+
+    <div class="thinker teal">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Lev Vygotsky</span>
+            <span class="thinker-ko">레프 비고츠키</span>
+            <span class="thinker-years">1896–1934</span>
+          </div>
+          <div class="thinker-punch">자아는 <em>사회적 만남이 내면화된 것</em>이다. 내 안의 모든 생각은 원래 *사이에서* 일어난 대화다.</div>
+        </div>
+        <span class="thinker-tag">CULTURAL-HISTORICAL</span>
+      </div>
+      <div class="thinker-body">
+
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p><strong>사회적 발달의 일반 법칙</strong> — 모든 고등 정신 기능(주의 · 기억 · 개념 · 의지)은 *두 번* 나타난다. 처음엔 *사람과 사람 사이*(interpsychological)에서, 그 다음에 *한 사람 안*(intrapsychological)에서. 사회가 먼저, 개인이 그 뒤다.</p>
+          <p><strong>내적 언어(inner speech)</strong> — 비고츠키의 가장 도발적 명제. 아이는 *말하기 시작한 뒤*에야 *생각하기 시작한다*. 아이는 처음엔 *큰소리로* 자기에게 말한다(혼잣말). 그 혼잣말이 점점 안으로 들어가 *내적 언어*가 된다. <strong>"생각해서 말하는 것이 아니라, 말하기 때문에 생각한다."</strong> 데카르트의 *Cogito*를 정반대로 뒤집는 자리.</p>
+          <p><strong>근접 발달 영역 (ZPD, Zone of Proximal Development)</strong> — 아이가 *혼자 할 수 있는 것*과 *어른과 함께라면 할 수 있는 것* 사이의 영역. 진짜 학습은 그 사이에서만 일어난다. *능숙한 타자와의 협력*이 발달의 엔진이다. 김정운의 *어머니의 감탄*이 정확히 이 자리에서 작동한다.</p>
+          <p><strong>매개(mediation)</strong> — 인간은 환경에 *직접* 반응하지 않는다. 항상 *도구* 또는 *기호*를 사이에 둔다. 망치는 손과 못 *사이*에 있고, 단어는 마음과 세상 *사이*에 있다. 이 *매개*가 인간을 다른 동물과 구분한다.</p>
+          <div class="quote">
+            "모든 고등 정신 기능은 두 번 나타난다 — 처음엔 두 사람 사이의 카테고리로(interpsychological), 그 다음엔 한 사람 안의 카테고리로(intrapsychological)."
+            <span class="quote-src">VYGOTSKY · MIND IN SOCIETY · 1978</span>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 머릿속 그림</div>
+          <div class="schema" style="white-space: normal; padding: 32px; text-align: center;">
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.3em; color: var(--text); margin-bottom: 8px; text-transform: uppercase;">VYGOTSKY · SOCIAL → INDIVIDUAL</div>
+            <div style="font-size: 13px; color: var(--text-dim); margin-bottom: 24px;">사이에서 일어나던 것이 안으로 들어와 *자아*가 된다</div>
+            <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; max-width: 800px;" font-family="'Noto Sans KR', sans-serif" fill="#1a1a1a">
+              <!-- STEP 1: 사람 사이 -->
+              <text x="400" y="30" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="3" fill="#2e8a7c">STEP 1 · INTERPSYCHOLOGICAL</text>
+
+              <circle cx="240" cy="100" r="42" fill="#fff" stroke="#2e8a7c" stroke-width="1.8"/>
+              <text x="240" y="98" text-anchor="middle" font-size="11">어머니</text>
+              <text x="240" y="115" text-anchor="middle" font-size="11" fill="#807e7a">능숙한 타자</text>
+
+              <circle cx="560" cy="100" r="42" fill="#fff" stroke="#2e8a7c" stroke-width="1.8"/>
+              <text x="560" y="98" text-anchor="middle" font-size="11">아이</text>
+              <text x="560" y="115" text-anchor="middle" font-size="11" fill="#807e7a">학습자</text>
+
+              <!-- 양방향 화살표 -->
+              <path d="M285 100 L 515 100" stroke="#2e8a7c" stroke-width="1.5" stroke-dasharray="4,3"/>
+              <path d="M285 100 L 295 95 M 285 100 L 295 105" stroke="#2e8a7c" stroke-width="1.5" fill="none"/>
+              <path d="M515 100 L 505 95 M 515 100 L 505 105" stroke="#2e8a7c" stroke-width="1.5" fill="none"/>
+              <text x="400" y="85" text-anchor="middle" font-size="11" fill="#2e8a7c" font-weight="600">감탄 · 대화 · 도구 · 매개</text>
+              <text x="400" y="125" text-anchor="middle" font-size="10" fill="#807e7a" font-style="italic">두 사람 사이에서 일어나는 일</text>
+
+              <!-- STEP 2: 내면화 화살표 -->
+              <path d="M560 145 L 400 235" stroke="#7e5a98" stroke-width="2" stroke-dasharray="5,3"/>
+              <path d="M400 235 L 412 230 M 400 235 L 410 244" stroke="#7e5a98" stroke-width="2" fill="none"/>
+              <text x="500" y="195" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#7e5a98">INTERNALIZATION</text>
+              <text x="500" y="212" font-size="11" fill="#7e5a98">내면화</text>
+
+              <!-- STEP 2: 한 사람 안 -->
+              <text x="400" y="270" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="3" fill="#7e5a98">STEP 2 · INTRAPSYCHOLOGICAL</text>
+
+              <circle cx="400" cy="340" r="80" fill="rgba(126,90,152,0.10)" stroke="#7e5a98" stroke-width="1.8"/>
+              <text x="400" y="320" text-anchor="middle" font-size="13" font-weight="700">아이의 마음 안</text>
+              <!-- 내부 두 점 -->
+              <circle cx="370" cy="350" r="18" fill="rgba(126,90,152,0.20)" stroke="#7e5a98" stroke-width="1"/>
+              <text x="370" y="354" text-anchor="middle" font-size="10">내면의 선생님</text>
+              <circle cx="430" cy="350" r="18" fill="rgba(126,90,152,0.20)" stroke="#7e5a98" stroke-width="1"/>
+              <text x="430" y="354" text-anchor="middle" font-size="10">내면의 아이</text>
+              <text x="400" y="385" text-anchor="middle" font-size="11" fill="#807e7a" font-style="italic">사이의 대화가 *안의 대화*로</text>
+
+              <!-- 결론 -->
+              <rect x="60" y="430" width="680" height="60" fill="rgba(217,96,31,0.06)" stroke="#d9601f" stroke-width="1.5" rx="3"/>
+              <text x="400" y="456" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="3" fill="#d9601f">결론</text>
+              <text x="400" y="478" text-anchor="middle" font-size="14" font-weight="600">자아 = 사회적 만남이 내면화된 것. 안의 모든 생각은 원래 *사이의 대화*였다.</text>
+            </svg>
+          </div>
+          <div class="schema-cap">VYGOTSKY · GENERAL GENETIC LAW · 1931</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 근접 발달 영역 (ZPD)</div>
+          <div class="schema" style="white-space: normal; padding: 32px; text-align: center;">
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.3em; color: var(--text); margin-bottom: 8px; text-transform: uppercase;">ZONE OF PROXIMAL DEVELOPMENT</div>
+            <div style="font-size: 13px; color: var(--text-dim); margin-bottom: 24px;">학습이 일어나는 자리는 *혼자* 안과 *어른과 함께* 사이</div>
+            <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; max-width: 800px;" font-family="'Noto Sans KR', sans-serif" fill="#1a1a1a">
+              <!-- 동심원 3겹 -->
+              <circle cx="400" cy="210" r="160" fill="#f8f6f1" stroke="#807e7a" stroke-width="1" stroke-dasharray="3,3"/>
+              <text x="400" y="60" text-anchor="middle" font-size="12" fill="#807e7a" font-family="'JetBrains Mono', monospace" letter-spacing="2">AS YET BEYOND</text>
+              <text x="400" y="78" text-anchor="middle" font-size="11" fill="#807e7a" font-style="italic">아직 아예 못 하는 것</text>
+
+              <circle cx="400" cy="210" r="105" fill="rgba(46,138,124,0.10)" stroke="#2e8a7c" stroke-width="1.8"/>
+              <text x="400" y="120" text-anchor="middle" font-size="13" fill="#2e8a7c" font-weight="700" font-family="'JetBrains Mono', monospace" letter-spacing="2">ZPD</text>
+              <text x="400" y="138" text-anchor="middle" font-size="11" fill="#2e8a7c">어른과 함께라면 할 수 있는 것</text>
+
+              <circle cx="400" cy="210" r="55" fill="#fff" stroke="#1a1a1a" stroke-width="1.5"/>
+              <text x="400" y="208" text-anchor="middle" font-size="12" font-weight="700">ACTUAL</text>
+              <text x="400" y="226" text-anchor="middle" font-size="11" fill="#807e7a">혼자 할 수 있는 것</text>
+
+              <!-- 화살표 (확장) -->
+              <path d="M455 210 L 502 210" stroke="#d9601f" stroke-width="2"/>
+              <path d="M502 210 L 490 204 M 502 210 L 490 216" stroke="#d9601f" stroke-width="2" fill="none"/>
+              <text x="540" y="195" font-size="11" fill="#d9601f" font-family="'JetBrains Mono', monospace" letter-spacing="2">성장</text>
+              <text x="540" y="212" font-size="11" fill="#d9601f">현재 능력 → 확장</text>
+
+              <!-- 결론 -->
+              <rect x="60" y="350" width="680" height="60" fill="rgba(217,96,31,0.06)" stroke="#d9601f" stroke-width="1.5" rx="3"/>
+              <text x="400" y="376" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="3" fill="#d9601f">결론</text>
+              <text x="400" y="398" text-anchor="middle" font-size="14" font-weight="600">"진짜 학습은 *나 혼자*가 아니라 *능숙한 타자와의 협력* 안에서만 일어난다"</text>
+            </svg>
+          </div>
+          <div class="schema-cap">VYGOTSKY · ZPD · 1934</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">CONCEPTS · 파생 개념</div>
+          <div class="concepts">
+            <span class="concept-chip"><strong>INTERPSYCHOLOGICAL</strong>사이의 심리</span>
+            <span class="concept-chip"><strong>INTRAPSYCHOLOGICAL</strong>안의 심리</span>
+            <span class="concept-chip"><strong>INNER SPEECH</strong>내적 언어</span>
+            <span class="concept-chip"><strong>ZPD</strong>근접 발달 영역</span>
+            <span class="concept-chip"><strong>MEDIATION</strong>매개</span>
+            <span class="concept-chip"><strong>SCAFFOLDING</strong>비계 (Bruner의 후속)</span>
+            <span class="concept-chip"><strong>SEMIOTIC TOOLS</strong>기호적 도구</span>
+            <span class="concept-chip"><strong>CULTURAL-HISTORICAL</strong>문화·역사적</span>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">발달심리학</div>
+              <div class="inf-body"><strong>Jerome Bruner</strong>(scaffolding, 1976) · <strong>Barbara Rogoff</strong>(guided participation). 피아제 → 비고츠키 패러다임 전환.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">교육학</div>
+              <div class="inf-body">전 세계 교육과정의 핵심 가정. <strong>Reggio Emilia</strong> · 한국 발도르프 · 협력학습 모델의 이론적 기반.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">활동이론 (Activity Theory)</div>
+              <div class="inf-body"><strong>Engeström</strong>의 CHAT(Cultural-Historical Activity Theory). HCI · UX · 조직론에 깊이 침투. *도구가 활동을 빚는다*.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">TODAY'S ECHO · 오늘의 공명</div>
+          <div class="echo">
+            <div class="echo-label">NOW · 2026</div>
+            <div class="echo-body">
+              정찬휘님의 *언어화실* 작업이 정확히 비고츠키의 자리다. 〈나의 정의 / 시장의 정의 / 메타분석 제안〉 3중 구조 — *시장의 정의*는 *능숙한 타자들이 깔아둔 ZPD*이고, *나의 정의*는 그 안에서 본인이 잡아내는 새로운 자리다. **"AI가 *나의 정의*를 대신 채우지 않는다"**는 룰은 비고츠키의 *매개*를 정확히 따른 것 — AI는 도구지 대체가 아니다. 그리고 5/17 김주환 〈내면소통〉 별도 리포트의 *세 범주 소통능력*(자기조절·대인관계·자기동기)도 비고츠키의 *사이→안* 내면화 명제 위에 있다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 INTERSUBJECTIVITY -->
+<section id="p3" style="background: var(--bg-2);">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">03</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">INTERSUBJECTIVITY</div>
+        <h2>상호주관성 — <em>관계의 바다</em> 위에 떠 있는 섬</h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      비고츠키가 *발달*의 자리에서 본 것을, 현상학과 발달 신경과학은 *지각*의 자리에서 본다.
+      후설의 *내가 너를 안다는 것은 어떻게 가능한가*라는 질문이 출발점이고, 그 답으로 모인 네 사상가의 한 줄이 이 국면을 이룬다 — <strong>나는 너와 *함께* 비로소 나다.</strong>
+    </p>
+
+    <div class="phase-hero purple">
+      <div class="phase-era">1900s → 2020s <span class="star">★ 상호주관성 4 갈래</span></div>
+      <h3>"<em>나는 *우리* 안에서만 *나*다</em>" — 네 갈래의 같은 답</h3>
+      <p>
+        현상학(Husserl·Stein) · 발달 신경과학(Trevarthen) · 진화 인지(Tomasello) 네 갈래가 같은 결론에 이른다.
+        <strong>유아는 태어나는 순간부터 타자와 *조율*되어 있다.</strong> 신생아가 어머니의 얼굴 표정을 모방하는 것, 9개월 아기가 어머니의 시선을 따라가는 *공동주의(joint attention)*, *공유된 의도성(shared intentionality)*.
+      </p>
+      <p>
+        김정운의 *관계라는 바다*는 이 네 학자의 합성된 풍경이다. 그리고 그 바다 위에서만 *섬*이 떠 있다.
+      </p>
+      <div class="phase-q">
+        <strong>핵심 질문</strong> · *나*라는 자의식은 *언제* 그리고 *어떻게* 생기는가?
+      </div>
+    </div>
+
+    <div class="thinker purple">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Edmund Husserl</span>
+            <span class="thinker-ko">에드문트 후설</span>
+            <span class="thinker-years">1859–1938</span>
+          </div>
+          <div class="thinker-punch">의식은 항상 <em>무엇인가에 대한 의식</em>이다 — 그리고 그 무엇은 *공유된 세계*에 속한다.</div>
+        </div>
+        <span class="thinker-tag">PHENOMENOLOGY · FOUNDER</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p><strong>의식의 지향성(Intentionality)</strong> — 의식은 항상 *무엇에 대한* 의식이다. 빈 의식은 없다. 나는 *나무를 본다*, *어머니를 사랑한다*, *문제를 풀고 있다*. 의식은 늘 *대상을 향해 있다*.</p>
+          <p><strong>상호주관성(Intersubjectivity)</strong> — 후설이 〈데카르트적 성찰〉(1931) 다섯 번째 성찰에서 던진 가장 어려운 문제. *내가 너를 *너*로 인식한다는 것은 어떻게 가능한가?* 후설의 답: 우리는 *유사화 짝짓기(pairing)*를 통해 타자의 몸이 *나의 몸과 유사하다*는 것을 직접 본다. 그래서 그 몸 뒤에 *나와 같은 의식*이 있음을 *추론*하는 게 아니라 *지각*한다.</p>
+          <p><strong>생활세계(Lebenswelt)</strong> — 후설 말년의 개념. 우리가 사는 *공유된 의미 세계*. 과학이 분석하기 이전의 *원초적 경험의 지평*. 모든 객관성은 이 공유된 지평 위에서만 의미가 있다.</p>
+        </div>
+        <div class="block">
+          <div class="block-label">SCHEMA · 머릿속 그림</div>
+          <div class="schema" style="white-space: normal; padding: 32px; text-align: center;">
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.3em; color: var(--text); margin-bottom: 8px; text-transform: uppercase;">HUSSERL · PAIRING</div>
+            <div style="font-size: 13px; color: var(--text-dim); margin-bottom: 24px;">너를 알아보는 자리 — *유사화 짝짓기*</div>
+            <svg viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; max-width: 800px;" font-family="'Noto Sans KR', sans-serif" fill="#1a1a1a">
+              <!-- 나의 몸 -->
+              <ellipse cx="200" cy="160" rx="80" ry="100" fill="rgba(126,90,152,0.10)" stroke="#7e5a98" stroke-width="1.8"/>
+              <text x="200" y="155" text-anchor="middle" font-size="13" font-weight="700">나의 몸</text>
+              <text x="200" y="175" text-anchor="middle" font-size="11" fill="#807e7a">내가 직접 사는</text>
+
+              <!-- 너의 몸 -->
+              <ellipse cx="600" cy="160" rx="80" ry="100" fill="rgba(126,90,152,0.10)" stroke="#7e5a98" stroke-width="1.8"/>
+              <text x="600" y="155" text-anchor="middle" font-size="13" font-weight="700">너의 몸</text>
+              <text x="600" y="175" text-anchor="middle" font-size="11" fill="#807e7a">내 앞에 나타난</text>
+
+              <!-- 짝짓기 라인 -->
+              <path d="M280 130 L 520 130" stroke="#7e5a98" stroke-width="1.5" stroke-dasharray="3,2"/>
+              <path d="M280 160 L 520 160" stroke="#7e5a98" stroke-width="1.5" stroke-dasharray="3,2"/>
+              <path d="M280 190 L 520 190" stroke="#7e5a98" stroke-width="1.5" stroke-dasharray="3,2"/>
+              <text x="400" y="120" text-anchor="middle" font-size="11" fill="#7e5a98" font-family="'JetBrains Mono', monospace" letter-spacing="1">PAIRING · 유사화 짝짓기</text>
+
+              <!-- 결론 -->
+              <rect x="60" y="280" width="680" height="60" fill="rgba(126,90,152,0.06)" stroke="#7e5a98" stroke-width="1.5" rx="3"/>
+              <text x="400" y="306" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="3" fill="#7e5a98">결론</text>
+              <text x="400" y="328" text-anchor="middle" font-size="14" font-weight="600">너의 의식을 *추론*하지 않는다 — 나는 너를 *지각*한다</text>
+            </svg>
+          </div>
+          <div class="schema-cap">HUSSERL · CARTESIAN MEDITATIONS V · 1931</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="thinker pink">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Edith Stein</span>
+            <span class="thinker-ko">에디트 슈타인</span>
+            <span class="thinker-years">1891–1942</span>
+          </div>
+          <div class="thinker-punch">공감(Einfühlung)은 *추측*이 아니라 — <em>너의 경험을 *직접* 따라잡는 행위</em>다.</div>
+        </div>
+        <span class="thinker-tag">EMPATHY · 4 LAYERS</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>후설의 제자였던 에디트 슈타인은 박사논문 〈공감의 문제에 대하여〉(1917)에서 *공감(Einfühlung)*을 현상학적으로 풀었다. 슈타인은 후에 카멜회 수녀가 됐다가 아우슈비츠에서 살해당했다(1942). 사후 1998년 가톨릭 성인으로 시성됐다.</p>
+          <p>그녀의 핵심 공헌 — <strong>공감의 3단계</strong>:</p>
+          <p>· <strong>출현(Emergence)</strong> — 너의 표정·움직임이 갑자기 *내 앞에 나타난다*. 슬픔이 *얼굴 위에 떠 있다*.</p>
+          <p>· <strong>충만한 실현(Fulfilling explication)</strong> — 그 슬픔이 *내 안에서 살아난다*. 나는 너의 슬픔을 *나의 것처럼 사는*(미러링).</p>
+          <p>· <strong>대상화(Comprehensive objectification)</strong> — 다시 거리를 두고 *그것은 너의 슬픔*이라고 분리. 나는 *너의 슬픔에 대해* 안다.</p>
+          <p>공감은 *합리적 추론*도 *전염*도 아니다. 그것은 *너의 경험을 따라잡되 그것이 너의 것임을 잊지 않는* 특수한 의식 행위다.</p>
+        </div>
+        <div class="block">
+          <div class="block-label">SCHEMA · 머릿속 그림</div>
+          <div class="schema" style="white-space: normal; padding: 32px; text-align: center;">
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.3em; color: var(--text); margin-bottom: 8px; text-transform: uppercase;">STEIN · EMPATHY · 3 LAYERS</div>
+            <div style="font-size: 13px; color: var(--text-dim); margin-bottom: 24px;">너의 경험을 따라잡는 3단계</div>
+            <svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; max-width: 800px;" font-family="'Noto Sans KR', sans-serif" fill="#1a1a1a">
+              <!-- 번호 원 -->
+              <circle cx="80" cy="80" r="22" fill="#fff" stroke="#c25787" stroke-width="1.5"/>
+              <text x="80" y="86" text-anchor="middle" font-size="14" font-weight="700" fill="#c25787">1</text>
+              <rect x="120" y="55" width="620" height="50" fill="#fff" stroke="#c25787" stroke-width="1.5"/>
+              <text x="140" y="80" font-size="14" font-weight="700">출현 · Emergence</text>
+              <text x="140" y="98" font-size="11" fill="#807e7a">너의 슬픔이 너의 얼굴 위에 *떠 있다* — 갑자기 나에게 보인다</text>
+
+              <path d="M430 105 L 430 135" stroke="#c25787" stroke-width="1.5"/>
+              <path d="M430 135 L 425 128 M 430 135 L 435 128" stroke="#c25787" stroke-width="1.5" fill="none"/>
+
+              <circle cx="80" cy="160" r="22" fill="rgba(194,87,135,0.10)" stroke="#c25787" stroke-width="1.8"/>
+              <text x="80" y="166" text-anchor="middle" font-size="14" font-weight="700" fill="#c25787">2</text>
+              <rect x="120" y="135" width="620" height="50" fill="rgba(194,87,135,0.10)" stroke="#c25787" stroke-width="1.8"/>
+              <text x="140" y="160" font-size="14" font-weight="700">충만한 실현 · Fulfilling Explication</text>
+              <text x="140" y="178" font-size="11" fill="#807e7a">그 슬픔이 *내 안에서 살아난다* — 나는 너의 슬픔을 *나의 것처럼* 산다</text>
+
+              <path d="M430 185 L 430 215" stroke="#c25787" stroke-width="1.5"/>
+              <path d="M430 215 L 425 208 M 430 215 L 435 208" stroke="#c25787" stroke-width="1.5" fill="none"/>
+
+              <circle cx="80" cy="240" r="22" fill="#fff" stroke="#c25787" stroke-width="1.5"/>
+              <text x="80" y="246" text-anchor="middle" font-size="14" font-weight="700" fill="#c25787">3</text>
+              <rect x="120" y="215" width="620" height="50" fill="#fff" stroke="#c25787" stroke-width="1.5"/>
+              <text x="140" y="240" font-size="14" font-weight="700">대상화 · Comprehensive Objectification</text>
+              <text x="140" y="258" font-size="11" fill="#807e7a">다시 거리를 두고 *그것은 너의 슬픔이다*라고 분리 — 나는 *너에 대해* 안다</text>
+
+              <rect x="60" y="295" width="680" height="60" fill="rgba(217,96,31,0.06)" stroke="#d9601f" stroke-width="1.5" rx="3"/>
+              <text x="400" y="320" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="3" fill="#d9601f">결론</text>
+              <text x="400" y="343" text-anchor="middle" font-size="14" font-weight="600">공감 = 너의 경험을 따라잡되 *그것이 너의 것임을 잊지 않는* 의식 행위</text>
+            </svg>
+          </div>
+          <div class="schema-cap">STEIN · ON THE PROBLEM OF EMPATHY · 1917</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="thinker blue">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Colwyn Trevarthen</span>
+            <span class="thinker-ko">콜윈 트레바르텐</span>
+            <span class="thinker-years">b. 1931</span>
+          </div>
+          <div class="thinker-punch">신생아는 *태어나는 순간부터* 어머니와 <em>리듬으로 대화</em>한다.</div>
+        </div>
+        <span class="thinker-tag">PRIMARY INTERSUBJECTIVITY</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>에딘버러 대학의 발달 신경과학자 트레바르텐은 1970년대부터 신생아·영아를 마이크로 단위로 비디오 분석했다. 그가 발견한 것 — <strong>출생 후 몇 주 안에 영아는 어머니와 *수십 밀리초 단위의 리듬 교환*을 한다.</strong> 미소·발성·시선·몸 흔들림이 *대화의 박자*를 이룬다. 트레바르텐은 이를 *primary intersubjectivity*(1차 상호주관성)라고 불렀다.</p>
+          <p>약 9개월에 *secondary intersubjectivity*(2차 상호주관성)가 등장한다. 영아가 어머니의 *시선을 따라* 같은 대상을 본다(공동주의, joint attention). 셋이 함께 *한 대상*에 주의를 두는 순간 — 영아는 *세계가 우리에게 공유된 무엇*임을 알기 시작한다.</p>
+          <p>비고츠키의 *사이→안* 명제가 신경과학적으로 입증된 자리. 자아는 *생물학적으로* 처음부터 *관계 안에서* 만들어진다.</p>
+        </div>
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">애착 이론</div>
+              <div class="inf-body"><strong>Bowlby</strong>(1969) → <strong>Daniel Stern</strong> 〈유아의 대인 세계〉(1985) → 트레바르텐. 어머니-아이 *조율(attunement)*이 자아의 출발점.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">자폐 연구</div>
+              <div class="inf-body">자폐 스펙트럼의 핵심 특징이 *공동주의 결손*. 트레바르텐의 패러다임이 진단·중재 표준이 됨.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">UX · 영아 대상 디자인</div>
+              <div class="inf-body">*아이가 화면을 *함께 본다*고 느끼게 만들기*가 핵심. 인터랙티브 그림책 · 교육 앱 디자인의 토대.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="thinker green">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Michael Tomasello</span>
+            <span class="thinker-ko">마이클 토마셀로</span>
+            <span class="thinker-years">b. 1950</span>
+          </div>
+          <div class="thinker-punch">인간을 인간으로 만드는 것은 <em>공유된 의도성(shared intentionality)</em>이다 — 침팬지에게 없는 그 한 가지.</div>
+        </div>
+        <span class="thinker-tag">SHARED INTENTIONALITY</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>막스플랑크 진화인류학 연구소의 토마셀로는 1세 영아와 어린 침팬지의 행동을 같은 실험 설계로 비교해왔다. 거의 모든 인지 능력에서 둘은 비슷하다. 그런데 단 한 가지가 결정적으로 다르다 — <strong>공유된 의도성(shared intentionality)</strong>. 인간 영아는 *우리가 같은 목표를 함께 이루고 있다*는 사실을 안다. 침팬지는 그 사실을 *알지 못한다*.</p>
+          <p>토마셀로의 한 줄 — *문화는 *공유된 의도성* 위에 쌓인 누적의 결과*. 한 세대가 만든 도구를 다음 세대가 받아 *더 정교한 도구로* 만드는 *문화적 누적(ratchet effect)*은 침팬지에게서 일어나지 않는다. 왜냐하면 침팬지는 *같이 만들고 있다*는 사실을 공유하지 못하기 때문이다.</p>
+          <p>비고츠키의 명제가 진화적 시간축으로 확장되는 자리. *사이*에서 일어나는 일이 안으로 들어오는 것은 *발달*뿐 아니라 *진화*에서도 같은 메커니즘이다.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 KANT SENSUS COMMUNIS -->
+<section id="p4">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num star">04</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">KANT · SENSUS COMMUNIS</div>
+        <h2>칸트의 <em>공통감</em> — 미학과 윤리가 만나는 한 자리</h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      비고츠키와 상호주관성이 *심리학적*으로 *사이*의 자리를 그렸다면, 한 세기 전 칸트는 *철학적*으로 그 자리를 미리 박아두었다.
+      〈판단력 비판〉(1790) 제40절 — <strong>공통감(sensus communis)</strong>은 "감각의 평균"이 아니라, *내 판단이 *모든 인간*과 공유할 수 있는 자리에서 내려진다*는 가정. 미적 판단(*이것은 아름답다*)이 *주관적이면서 보편적*일 수 있는 근거.
+    </p>
+
+    <div class="phase-hero">
+      <div class="phase-era">1790 · 쾨니히스베르크 <span class="star">★ 미학·윤리·인식의 다리</span></div>
+      <h3>"<em>나의 판단은 *모든 사람*의 자리에 서서 내린 것이다</em>" — 그래야 그것이 *공유 가능한 판단*이다</h3>
+      <p>
+        칸트의 한 줄 — *미적 판단은 *개념 없이도 보편성을 주장*한다*. 내가 *이 그림은 아름답다*고 말할 때, 나는 그저 *내가 좋아한다*고 말하는 게 아니다. *너도 이것을 아름답게 *느껴야 한다**고 *기대한다*. 이 기대의 근거가 *공통감*이다.
+      </p>
+      <p>
+        공통감은 신비한 것이 아니다. 칸트의 정의에 따르면 — <strong>"내가 *모든 사람의 자리에 서서* 내 판단을 검토하는 능력"</strong>. 내가 *우리*의 자리에 서기 때문에, 내 판단은 *우리*가 공유할 수 있다.
+      </p>
+      <div class="phase-q">
+        <strong>핵심 질문</strong> · *나의 좋음*이 *우리의 좋음*이 될 수 있는 근거는 어디에 있는가?
+      </div>
+    </div>
+
+    <div class="thinker yellow">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Immanuel Kant</span>
+            <span class="thinker-ko">임마누엘 칸트</span>
+            <span class="thinker-years">1724–1804</span>
+          </div>
+          <div class="thinker-punch">공통감 — 내가 *모든 사람의 자리에 서서* 검토할 때, <em>나의 판단이 우리의 판단</em>이 된다.</div>
+        </div>
+        <span class="thinker-tag">SENSUS COMMUNIS</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>〈판단력 비판〉(1790)의 핵심 문제 — *미적 판단은 어떻게 *주관적이면서 보편적*일 수 있는가?* 내가 *이 일몰은 아름답다*고 말할 때, 나는 (a) *내 느낌*을 말하고 있지만 (b) 동시에 *너도 그렇게 느껴야 한다*고 *기대*한다. 이 기대의 근거는?</p>
+          <p>칸트의 답 — <strong>공통감(sensus communis aestheticus)</strong>. 미적 판단이 가능한 까닭은 우리 모두에게 *공통의 인지 능력*(상상력과 오성의 자유로운 유희)이 있고, 우리가 *그 능력의 보편적 작동*에 대해 *서로 같은 자리*에 설 수 있기 때문이다.</p>
+          <p>칸트의 공통감 정의 (제40절): "<em>다른 모든 사람의 표상 방식을 사유 속에서 *대신해 생각함*으로써(an die Stelle jedes anderen zu denken), 우리의 판단을 인간 이성 전체와 *맞춰보는* 능력.</em>"</p>
+          <p>이것이 *주관적 보편성*의 자리다. 미적 판단은 *개념 없이도 모든 사람에게 타당함을 주장한다*. 그 주장의 근거가 공통감이다.</p>
+          <div class="quote">
+            "취미 판단의 인식 능력들의 *주관적이고 보편적인 전달 가능성*은 공통감을 전제한다. 그러므로 공통감은 모든 사람에게 *가정될 수 있어야 한다*."
+            <span class="quote-src">KANT · CRITIQUE OF JUDGMENT · §21 · 1790</span>
+          </div>
+        </div>
+        <div class="block">
+          <div class="block-label">SCHEMA · 머릿속 그림</div>
+          <div class="schema" style="white-space: normal; padding: 32px; text-align: center;">
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.3em; color: var(--text); margin-bottom: 8px; text-transform: uppercase;">KANT · SENSUS COMMUNIS</div>
+            <div style="font-size: 13px; color: var(--text-dim); margin-bottom: 24px;">"이것은 아름답다" — 그 판단이 *우리의 판단*이 되는 자리</div>
+            <svg viewBox="0 0 800 480" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; max-width: 800px;" font-family="'Noto Sans KR', sans-serif" fill="#1a1a1a">
+              <!-- 동심원 4겹 -->
+              <circle cx="400" cy="220" r="190" fill="#f8f6f1" stroke="#807e7a" stroke-width="1" stroke-dasharray="3,3"/>
+              <text x="400" y="60" text-anchor="middle" font-size="11" fill="#807e7a">인간 이성 전체 · ALL HUMANITY</text>
+
+              <circle cx="400" cy="220" r="140" fill="rgba(184,149,74,0.06)" stroke="#b8954a" stroke-width="1.5"/>
+              <text x="400" y="110" text-anchor="middle" font-size="11" fill="#b8954a">공동체 · COMMUNITY</text>
+
+              <circle cx="400" cy="220" r="90" fill="rgba(184,149,74,0.12)" stroke="#b8954a" stroke-width="1.8"/>
+              <text x="400" y="155" text-anchor="middle" font-size="12" fill="#b8954a" font-weight="600">공통감 · SENSUS COMMUNIS</text>
+              <text x="400" y="175" text-anchor="middle" font-size="10" fill="#807e7a">"모든 사람의 자리에 서서"</text>
+
+              <circle cx="400" cy="220" r="42" fill="#fff" stroke="#1a1a1a" stroke-width="1.5"/>
+              <text x="400" y="222" text-anchor="middle" font-size="13" font-weight="700">나</text>
+              <text x="400" y="240" text-anchor="middle" font-size="10" fill="#807e7a">개별 주관</text>
+
+              <!-- 화살표 (나 → 공통감) -->
+              <path d="M400 280 L 400 312" stroke="#b8954a" stroke-width="2"/>
+              <path d="M400 312 L 395 304 M 400 312 L 405 304" stroke="#b8954a" stroke-width="2" fill="none"/>
+              <text x="460" y="300" font-size="11" fill="#b8954a" font-family="'JetBrains Mono', monospace" letter-spacing="1">REFLECT</text>
+
+              <text x="400" y="370" text-anchor="middle" font-size="11" fill="#807e7a">"이것은 아름답다"</text>
+              <text x="400" y="388" text-anchor="middle" font-size="12" fill="#b8954a" font-weight="600">→ 주관적이면서 보편적인 판단</text>
+
+              <!-- 결론 -->
+              <rect x="60" y="410" width="680" height="60" fill="rgba(217,96,31,0.06)" stroke="#d9601f" stroke-width="1.5" rx="3"/>
+              <text x="400" y="436" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="3" fill="#d9601f">결론</text>
+              <text x="400" y="458" text-anchor="middle" font-size="14" font-weight="600">공통감 = *나의 좋음*이 *우리의 좋음*이 될 수 있는 인지적 가정</text>
+            </svg>
+          </div>
+          <div class="schema-cap">KANT · CRITIQUE OF JUDGMENT · §40 · 1790</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="thinker red">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Hannah Arendt</span>
+            <span class="thinker-ko">한나 아렌트</span>
+            <span class="thinker-years">1906–1975</span>
+          </div>
+          <div class="thinker-punch">칸트가 미적 판단의 자리로 둔 공통감을 <em>정치적 판단</em>의 자리로 옮긴 사람.</div>
+        </div>
+        <span class="thinker-tag">POLITICAL TURN</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>한나 아렌트는 〈칸트 정치철학 강의〉(1970, 사후 1982 출간)에서 칸트의 공통감을 *정치적 판단의 모델*로 가져왔다. 우리는 *옳고 그름*에 대해 어떻게 *공유된 판단*을 내릴 수 있는가?</p>
+          <p>아렌트의 답 — <strong>확장된 사고방식(enlarged mentality)</strong>. 정치적 판단은 *남의 입장에 서서 *대신 생각*하는* 행위다. 이것은 공감이 아니다(공감은 동일시). 그것은 *내가 *나로 머물면서* 다른 모든 자리의 관점을 *사유 속에 방문*하는 것*이다.</p>
+          <p>아우슈비츠를 살아남은 유대인 철학자 아렌트가 〈예루살렘의 아이히만〉(1963)에서 *악의 평범성*을 진단할 때 — 그녀는 아이히만이 *바로 이 능력*을 결여했다고 봤다. 그는 *다른 자리에 서서 생각*하지 못했다. 그래서 그는 *생각하지 않는* 사람이었다. 악은 *공통감의 부재*에서 온다.</p>
+        </div>
+        <div class="block">
+          <div class="block-label">HUMANITIES IMPACT · 인문학적 영향력</div>
+          <div class="influence">
+            <div class="inf-item">
+              <div class="inf-label">정치철학</div>
+              <div class="inf-body"><strong>Jürgen Habermas</strong>의 *의사소통적 합리성* · <strong>Seyla Benhabib</strong>의 *상황적 일반화*. 칸트→아렌트의 직접 후예.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">디자인 윤리</div>
+              <div class="inf-body">*사용자의 자리에서 생각*하는 디자인 — <strong>참여 디자인(Participatory Design)</strong>, IDEO의 *Empathy*. 아렌트의 *확장된 사고*가 작업 원리로.</div>
+            </div>
+            <div class="inf-item">
+              <div class="inf-label">AI 윤리</div>
+              <div class="inf-body">알고리즘이 *모든 자리의 관점*을 *공정하게 대표*할 수 있는가? — 현대 AI 정렬(alignment) 논의의 깊은 뿌리.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 RECOGNITION AND WONDER -->
+<section id="p5" style="background: var(--bg-2);">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">05</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">RECOGNITION AND WONDER</div>
+        <h2>감탄과 인정 — <em>나의 알음</em>이 <em>다움</em>으로 인정받는 자리</h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      비고츠키와 칸트와 상호주관성이 *나는 너와 함께 비로소 나*라고 말했다면, 이 국면은 그 자리에서 일어나는 *인간의 가장 격렬한 운동*을 본다 — <strong>인정 욕구</strong>.
+      나는 감탄하며 압도되고, 동시에 감탄받고 싶어 한다. 이 양면이 모두 *사이*에서만 발생한다. 헤겔과 호네트가 철학적으로 정리한 자리를, 김정운이 *감탄*으로 한국어화한다.
+    </p>
+
+    <div class="thinker red">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">G.W.F. Hegel</span>
+            <span class="thinker-ko">헤겔</span>
+            <span class="thinker-years">1770–1831</span>
+          </div>
+          <div class="thinker-punch">자기 의식은 <em>다른 자기 의식에 의해 인정받음으로써만</em> 자기 자신이 된다.</div>
+        </div>
+        <span class="thinker-tag">RECOGNITION · ANERKENNUNG</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>〈정신현상학〉(1807) 제4장 *자기 의식*의 가장 유명한 단락 — *주인과 노예의 변증법*. 두 자기 의식이 만난다. 둘 다 *자기 자신*이 되려면 *상대방에게 인정받아야* 한다. 그래서 둘은 *목숨을 건 투쟁*에 들어간다.</p>
+          <p>한 쪽이 죽음을 두려워해 굴복하면 — 주인과 노예의 관계가 굳는다. 그런데 헤겔의 도발 — *결국 주인이 *노예가 된다**. 왜? 주인은 *노예에게* 인정받는데, 노예의 인정은 *진정한 인정이 아니다*(노예는 자유로운 자기 의식이 아니므로). 반면 노예는 *노동을 통해* 세계를 만들고, 그 노동 속에서 *자기 자신*을 발견한다.</p>
+          <p>핵심 명제 — <strong>"자기 의식은 인정된 자기 의식으로만 존재한다."</strong> 인간이 인간이 되는 자리는 *서로의 인정* 안에서다. 감탄받고 싶다는 욕구는 *우연한 욕망*이 아니라 *존재의 구조*다.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="thinker green">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Axel Honneth</span>
+            <span class="thinker-ko">악셀 호네트</span>
+            <span class="thinker-years">b. 1949</span>
+          </div>
+          <div class="thinker-punch">인정은 한 종류가 아니라 <em>세 차원</em>이다 — 사랑 · 권리 · 연대.</div>
+        </div>
+        <span class="thinker-tag">RECOGNITION · 3 SPHERES</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>프랑크푸르트 학파 3세대의 호네트는 〈인정 투쟁〉(1992)에서 헤겔을 현대 사회이론으로 옮겼다. 인정은 한 가지가 아니라 *세 차원*에서 일어나고, 각 차원의 결손은 다른 종류의 *훼손*을 낳는다.</p>
+          <p>· <strong>사랑(Liebe)</strong> — 가족·연인의 정서적 인정. 결손 시 *자기 신뢰*가 무너진다. (학대 · 방임)</p>
+          <p>· <strong>권리(Recht)</strong> — 법적·도덕적 평등의 인정. 결손 시 *자기 존중*이 무너진다. (차별 · 배제)</p>
+          <p>· <strong>연대(Solidarität)</strong> — 사회적 기여에 대한 인정. 결손 시 *자기 가치감*이 무너진다. (멸시 · 모욕)</p>
+          <p>호네트의 결론 — *불의(injustice)*는 *자원 분배의 문제*가 아니라 *인정의 문제*다. 사회 갈등의 본질은 *나에게 합당한 인정을 받지 못함*이다.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="thinker">
+      <div class="thinker-top">
+        <div>
+          <div class="thinker-id">
+            <span class="thinker-name">Kim Jeong-un</span>
+            <span class="thinker-ko">김정운</span>
+            <span class="thinker-years">2025 · 7th LENS</span>
+          </div>
+          <div class="thinker-punch">감탄 = 비고츠키의 <em>매개</em>가 *어머니의 표정과 목소리*로 살아 있는 자리.</div>
+        </div>
+        <span class="thinker-tag">WONDER · KIM'S 7TH</span>
+      </div>
+      <div class="thinker-body">
+        <div class="block">
+          <div class="block-label">CONCEPT · 핵심 개념</div>
+          <p>김정운이 〈말하지 않고 말하기〉에서 추가하는 일곱 번째 시선 — <strong>감탄(wonder)</strong>. 비고츠키의 사회·문화 심리학 + 헤겔·호네트의 인정 이론 + 한국 문화의 정서적 결을 묶은 자리.</p>
+          <p>핵심 메커니즘 — <strong>어머니의 감탄이 내면화되어 *내면의 선생님*이 자라난다.</strong> 아이가 처음 한 발을 떼는 순간 어머니가 *우와!*라고 감탄한다. 그 감탄은 아이의 *자기 자신에 대한 감탄*으로 내면화된다. 시간이 흘러 아이는 *자기의 성장과 변화를 같이 즐거워하는 내면의 자기*를 갖게 된다.</p>
+          <p>그리고 양면 — 우리는 *무언가에 감탄하며 압도되기도 하지만*, 동시에 *감탄받고 싶어 하는 인정 욕구*를 가진다. 김정운의 통찰 — *이 두 면이 한 메커니즘의 두 얼굴*이다. 감탄을 *주는 능력*과 *받고 싶은 욕구*는 같은 자리에서 자란다.</p>
+          <div class="quote">
+            "아이가 자랄 때 어머니의 감탄이 내면화되어, 자신의 변화와 성장을 함께 즐거워하는 *내면의 선생님*이 자라난다."
+            <span class="quote-src">KIM JEONG-UN · 말하지 않고 말하기 · 2025</span>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">SCHEMA · 머릿속 그림</div>
+          <div class="schema" style="white-space: normal; padding: 32px; text-align: center;">
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.3em; color: var(--text); margin-bottom: 8px; text-transform: uppercase;">WONDER · 감탄의 양면</div>
+            <div style="font-size: 13px; color: var(--text-dim); margin-bottom: 24px;">감탄을 *주는 자*와 *받고 싶은 자* — 같은 메커니즘의 두 얼굴</div>
+            <svg viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; max-width: 800px;" font-family="'Noto Sans KR', sans-serif" fill="#1a1a1a">
+              <!-- STEP 1: 어머니의 감탄 -->
+              <rect x="80" y="50" width="280" height="80" fill="rgba(217,96,31,0.10)" stroke="#d9601f" stroke-width="1.8"/>
+              <text x="220" y="80" text-anchor="middle" font-size="13" font-weight="700">어머니의 감탄</text>
+              <text x="220" y="100" text-anchor="middle" font-size="11" fill="#807e7a">"우와! 잘했다!"</text>
+              <text x="220" y="118" text-anchor="middle" font-size="11" fill="#807e7a">아이의 첫 걸음·첫 단어 앞에서</text>
+
+              <!-- 화살표 -->
+              <path d="M360 90 L 440 90" stroke="#d9601f" stroke-width="2" stroke-dasharray="5,3"/>
+              <path d="M440 90 L 428 84 M 440 90 L 428 96" stroke="#d9601f" stroke-width="2" fill="none"/>
+              <text x="400" y="75" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" letter-spacing="2" fill="#d9601f">INTERNALIZE</text>
+
+              <!-- STEP 2: 내면화 -->
+              <rect x="440" y="50" width="280" height="80" fill="rgba(217,96,31,0.10)" stroke="#d9601f" stroke-width="1.8"/>
+              <text x="580" y="80" text-anchor="middle" font-size="13" font-weight="700">내면의 선생님</text>
+              <text x="580" y="100" text-anchor="middle" font-size="11" fill="#807e7a">"나, 잘하고 있어!"</text>
+              <text x="580" y="118" text-anchor="middle" font-size="11" fill="#807e7a">자기 성장에 감탄하는 자기</text>
+
+              <!-- 분기 라인 -->
+              <path d="M400 140 L 400 180" stroke="#d9601f" stroke-width="1.5"/>
+              <path d="M250 180 L 550 180" stroke="#d9601f" stroke-width="1.5"/>
+              <path d="M250 180 L 250 220" stroke="#d9601f" stroke-width="1.5"/>
+              <path d="M550 180 L 550 220" stroke="#d9601f" stroke-width="1.5"/>
+              <text x="400" y="170" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#d9601f">두 얼굴로 분기</text>
+
+              <!-- LEFT: 감탄을 주는 능력 -->
+              <rect x="80" y="220" width="340" height="100" fill="#fff" stroke="#d9601f" stroke-width="1.5"/>
+              <text x="250" y="248" text-anchor="middle" font-size="14" font-weight="700">감탄을 *주는* 능력</text>
+              <text x="250" y="270" text-anchor="middle" font-size="11" fill="#807e7a">세상의 무엇에 *압도되는* 자리</text>
+              <text x="250" y="288" text-anchor="middle" font-size="11" fill="#807e7a">예술·자연·타인의 능력 앞에서</text>
+              <text x="250" y="306" text-anchor="middle" font-size="11" fill="#d9601f" font-style="italic">미적 경험의 출발점</text>
+
+              <!-- RIGHT: 감탄을 받고 싶은 욕구 -->
+              <rect x="430" y="220" width="290" height="100" fill="#fff" stroke="#d9601f" stroke-width="1.5"/>
+              <text x="575" y="248" text-anchor="middle" font-size="14" font-weight="700">감탄을 *받고 싶은* 욕구</text>
+              <text x="575" y="270" text-anchor="middle" font-size="11" fill="#807e7a">*인정 욕구*의 자리</text>
+              <text x="575" y="288" text-anchor="middle" font-size="11" fill="#807e7a">헤겔·호네트의 인정 이론</text>
+              <text x="575" y="306" text-anchor="middle" font-size="11" fill="#d9601f" font-style="italic">존재의 사회적 구조</text>
+
+              <!-- 결론 -->
+              <rect x="60" y="350" width="680" height="90" fill="rgba(217,96,31,0.06)" stroke="#d9601f" stroke-width="1.5" rx="3"/>
+              <text x="400" y="376" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="3" fill="#d9601f">결론</text>
+              <text x="400" y="402" text-anchor="middle" font-size="14" font-weight="600">감탄을 *주는 능력*과 *받고 싶은 욕구*는 한 메커니즘의 두 얼굴</text>
+              <text x="400" y="425" text-anchor="middle" font-size="13" fill="#4a4845">행복 = 두 면이 *서로 조율되는 순간*. 우울 = 둘 사이가 어그러진 자리.</text>
+            </svg>
+          </div>
+          <div class="schema-cap">KIM JEONG-UN · WONDER · 2025</div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">CHANHWI'S INSIGHT · 사용자의 한국어 통찰</div>
+          <div class="echo">
+            <div class="echo-label">YOUR PROPOSITION</div>
+            <div class="echo-body">
+              <strong>"나의 알음이 남들에게 다움으로 인정받는 것이 곧 아름다움"</strong>
+              <br/><br/>
+              이 한 줄이 이 챕터 전체의 한국말 등식이다. *알음*(知, 내가 가진 앎과 깨달음)이 *다움*(자기다움 · 정체성 · 가치)으로 *남들에게 인정받을 때* — 그 순간이 *아름다움*이다.
+              한국어의 음운적 직관 안에 *알음+다움=아름다움*이 박혀 있다는 발견은, 칸트 공통감이 *한국말에서 어떻게 살아 있는지*를 보여준다.
+              아름다움은 *고립된 내 감각*도 아니고 *외부의 객관적 속성*도 아니다. *나의 앎이 우리의 인정을 받는 자리* — 정확히 칸트가 *주관적 보편성*이라고 부른 자리.
+              김정운의 *감탄*과 칸트의 *공통감*과 한국말의 *아름다움*이 같은 한 자리를 가리킨다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 SYNTHESIS -->
+<section id="p6">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num star">06</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">SYNTHESIS · COMMUNICATION · HAPPINESS · BEING</div>
+        <h2>합성 — <em>의사소통 · 행복 · 존재</em>를 하나의 등식으로</h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      여섯 시선이 *개인 안*을 보고, 일곱 번째가 *사이*를 본다. 그 사이에서 *상호주관성*이 자라고, 그 위에 *공통감*이 가능해지고, 그 안에서 *인정*과 *감탄*이 일어난다.
+      이 모든 것이 하나로 묶일 때 — 의사소통은 *기술*이 아니라 *존재의 자리*이고, 행복은 *발견*이 아니라 *함께 짓는 일*이며, 존재는 *내 안*이 아니라 *우리 사이*에 있다.
+    </p>
+
+    <div class="integrate-box">
+      <div>
+        <h3>김정운의 <em>일곱 시선</em>을 통합한 한 등식</h3>
+        <p>여섯 시선은 *나의 내부*를 본다. 일곱 번째는 *우리의 사이*를 본다. 통합된 인간 이해는 *내부 메커니즘 × 사이 메커니즘*의 곱.</p>
+        <p>의사소통 = *사이*에서 일어나는 일. 행복 = *사이*가 *나의 내부*로 흘러들어와 응결되는 자리. 존재 = *우리의 사이*가 만든 *섬*.</p>
+      </div>
+      <div class="integrate-eq">
+        <span class="c">// 김정운의 통합 등식</span><br/>
+        <br/>
+        <span class="h">나의 내부</span>(자아) =<br/>
+        &nbsp;&nbsp;<span class="c">// 비고츠키</span><br/>
+        &nbsp;&nbsp;<span class="o">사이의 대화</span>가<br/>
+        &nbsp;&nbsp;<span class="o">내면화</span>된 것<br/>
+        <br/>
+        <span class="h">아름다움</span> =<br/>
+        &nbsp;&nbsp;<span class="c">// 칸트 · 한국말</span><br/>
+        &nbsp;&nbsp;<span class="o">나의 알음</span> ×<br/>
+        &nbsp;&nbsp;<span class="o">남의 다움 인정</span><br/>
+        <br/>
+        <span class="h">행복</span> =<br/>
+        &nbsp;&nbsp;<span class="c">// 김정운</span><br/>
+        &nbsp;&nbsp;감탄을 <span class="o">주는</span> ×<br/>
+        &nbsp;&nbsp;감탄을 <span class="o">받는</span>
+      </div>
+    </div>
+
+    <div class="phase-hero green" style="margin-top: 80px;">
+      <div class="phase-era">의사소통 · 행복 · 존재 <span class="star">★ 하나의 자리</span></div>
+      <h3>"<em>나는 *우리* 안에서만 *나*다</em>" — 일곱 시선이 합쳐진 한 줄</h3>
+      <p>
+        <strong>의사소통</strong>은 정보 전달 기술이 아니다. *사이에서 자아가 빚어지는 그 과정*이다. 그래서 잘 듣는 것이 곧 *너를 자라게 하는* 일이고, 잘 말하는 것이 곧 *나를 빚는* 일이다.
+      </p>
+      <p>
+        <strong>행복</strong>은 의미를 *발견*하는 일이 아니다(실존주의의 일면). 감탄을 *주고받는* 일이다. 누군가에게 진심으로 *우와!* 하는 순간과, 누군가의 *우와!*를 받는 순간 — 그 두 순간이 행복의 자리.
+      </p>
+      <p>
+        <strong>존재</strong>는 내 안의 *코기토*가 아니다. *관계의 바다 위에 떠 있는 섬*이다. 섬은 *바다와 함께* 존재하지, *바다 없이* 존재할 수 없다.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 08 SIX THREADS -->
+<section id="threads" style="background: var(--bg-2);">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">08</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">SIX THREADS</div>
+        <h2>여섯 갈래로 꿰는 <em>한 줄기</em></h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      비고츠키에서 칸트까지, 후설에서 김정운까지 — 6국면을 가로로 꿰는 6 스레드. 한 스레드는 한 질문이고, 그 질문이 학자를 가로지르며 변주된다.
+    </p>
+
+    <div class="threads-intro">
+      <p>
+        스레드는 <strong>국면을 가로로 꿰는 같은 자리</strong>다. 비고츠키 · 후설 · 슈타인 · 트레바르텐 · 토마셀로 · 칸트 · 아렌트 · 헤겔 · 호네트 · 김정운이 *같은 질문에 어떻게 다른 답*을 했는지.
+      </p>
+    </div>
+
+    <div class="thread-detail t1">
+      <div class="thread-head">
+        <span class="num">THREAD 01</span>
+        <h4>개인 vs 관계 — 존재의 *근거*는 어디?</h4>
+      </div>
+      <div class="thread-chain">데카르트 코기토 → 비고츠키 사이→안 → 후설 상호주관성 → 김정운 관계의 바다</div>
+      <p class="thread-body">
+        데카르트는 *내 안*을 봤다. 비고츠키는 *사이*를 봤다. 후설은 *공유된 의미 지평*을 봤다. 김정운은 *관계라는 바다*를 봤다. <strong>같은 질문의 답이 *안에서 사이로* 이동한 100년의 흐름.</strong> 5/17 김주환 〈내면소통〉의 *자기조절·대인관계·자기동기* 세 범주도 이 흐름 안에 있다.
+      </p>
+    </div>
+
+    <div class="thread-detail t2">
+      <div class="thread-head">
+        <span class="num">THREAD 02</span>
+        <h4>언어가 사고를 만드는가? — *말하기 때문에 생각한다*</h4>
+      </div>
+      <div class="thread-chain">사피어-워프 → 하이데거 "언어는 존재의 집" → 비고츠키 내적 언어 → 김의래 시각언어</div>
+      <p class="thread-body">
+        20세기의 언어적 전환(linguistic turn). *사고가 언어로 표현된다*가 아니라 *언어가 사고를 *가능하게 한다**. 비고츠키가 발달심리학적으로 이 명제를 증명한 자리. <strong>아이는 *말하기 시작한 뒤*에야 *생각하기 시작한다*.</strong> 5/19 김의래 특강의 *시각언어 = 랑그에 속하지 않는 기표*도 이 흐름의 한 변주 — *말할 수 없는 것들*도 *시각 언어로* 작동한다.
+      </p>
+    </div>
+
+    <div class="thread-detail t3">
+      <div class="thread-head">
+        <span class="num">THREAD 03</span>
+        <h4>의미 vs 감탄 — 행복은 *발견*인가 *함께 짓는 일*인가?</h4>
+      </div>
+      <div class="thread-chain">실존주의(프랭클) → 인본주의(매슬로) → 비고츠키 사회적 자아 → 김정운 감탄</div>
+      <p class="thread-body">
+        실존주의는 *내 삶의 의미를 *발견*하라*고 했다. 인본주의는 *자기 실현*을 말했다. 둘 다 *개인 안*의 답을 찾았다. 김정운의 일곱 번째 시선은 다른 답을 준다 — <strong>행복은 *감탄을 주고받는 일*</strong>. 내 안의 의미만으로는 행복이 안 된다. 누군가가 나의 알음을 *다움*으로 인정해야 비로소 *아름다움*이 된다.
+      </p>
+    </div>
+
+    <div class="thread-detail t4">
+      <div class="thread-head">
+        <span class="num">THREAD 04</span>
+        <h4>인정 vs 존재 — 감탄받고 싶음은 *욕망*인가 *구조*인가?</h4>
+      </div>
+      <div class="thread-chain">헤겔 자기 의식 → 호네트 3차원 인정 → 트레바르텐 1차 상호주관성 → 김정운 감탄</div>
+      <p class="thread-body">
+        헤겔: *자기 의식은 인정된 자기 의식으로만 존재한다*. 호네트: *불의는 자원이 아니라 인정의 문제*. 트레바르텐: *신생아도 이미 *인정받는 위치*에 있다*. 김정운: *감탄받고 싶음은 욕망이 아니라 구조*. <strong>인정 욕구는 *우연한 약점*이 아니라 *인간이 인간인 자리*</strong>.
+      </p>
+    </div>
+
+    <div class="thread-detail t5">
+      <div class="thread-head">
+        <span class="num">THREAD 05</span>
+        <h4>미학 vs 윤리 — *공통감*이 이어주는 두 영역</h4>
+      </div>
+      <div class="thread-chain">칸트 미적 공통감 → 아렌트 정치적 판단 → 호네트 인정 윤리 → 한국말 *아름다움*</div>
+      <p class="thread-body">
+        칸트는 *미적 판단*의 자리에서 공통감을 발견했다(*이것은 아름답다*). 아렌트는 그것을 *정치적 판단*의 자리로 옮겼다(*이것은 옳다*). 호네트는 *인정의 윤리*로 확장했다(*이 사람은 합당하게 대우받았다*). 한국말은 한 음운에서 둘을 묶었다 — <strong>*나의 알음 + 다움 = 아름다움*.</strong> 미학과 윤리는 *공통감*이라는 같은 자리에서 만난다.
+      </p>
+    </div>
+
+    <div class="thread-detail t6">
+      <div class="thread-head">
+        <span class="num">THREAD 06</span>
+        <h4>6 vs 7 — *일곱 번째*를 더한 자리의 의미</h4>
+      </div>
+      <div class="thread-chain">6 시선의 합 → 김정운의 +1 → 사회·문화 심리학의 자리매김</div>
+      <p class="thread-body">
+        김정운이 *적응·조건화·충동·판단·의미·연결* 여섯 시선 위에 *감탄*을 더한 것은 *부족분 채우기*가 아니다. <strong>여섯 시선이 *모두 개인 안*을 본다는 한계*를 *드러내는* 작업이다.</strong> 일곱 번째 시선이 들어오는 순간, 앞의 여섯이 *어디서 멈췄는지*가 보인다. 연결조차도 *내가 타인과 어떻게 연결되는가*만 봤지, *우리 사이의 자리* 자체는 보지 않았다. *감탄*이 그 자리를 본다.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 09 RESONANCE -->
+<section id="resonance">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">09</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">DESIGN · COMMUNICATION RESONANCE</div>
+        <h2>의사소통·디자인 실무와의 <em>공명</em></h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      이 100년 어휘가 한국 디자이너·에디터·커뮤니케이터의 실무에서 어떻게 *내려오는지*를 5단계 흐름으로.
+    </p>
+
+    <div class="art-flow">
+      <div class="art-step">
+        <div class="seq">STEP 01</div>
+        <h4>듣기</h4>
+        <div class="art-sub">Vygotsky · ZPD</div>
+        <p>상대의 *혼자 못 하는 자리*를 듣는다. 거기서만 새 학습이 일어난다. *능숙한 타자*가 되는 출발점.</p>
+      </div>
+      <div class="art-step">
+        <div class="seq">STEP 02</div>
+        <h4>공감</h4>
+        <div class="art-sub">Stein · 3 Layers</div>
+        <p>출현 → 충만한 실현 → 대상화. *너의 슬픔을 내 것처럼 살되, 그것이 너의 것임을 잊지 않는다.*</p>
+      </div>
+      <div class="art-step">
+        <div class="seq">STEP 03</div>
+        <h4>판단</h4>
+        <div class="art-sub">Kant · Sensus Communis</div>
+        <p>*모든 사람의 자리에 서서* 내 디자인을 검토한다. 그래야 *주관적이면서 보편적*인 결정이 된다.</p>
+      </div>
+      <div class="art-step">
+        <div class="seq">STEP 04</div>
+        <h4>감탄 주기</h4>
+        <div class="art-sub">Kim · Wonder Giving</div>
+        <p>동료·사용자·작품에 *우와!*. 미적 경험은 *압도되는* 데서 시작한다. 진심의 감탄이 *내면의 선생님*을 자라게 한다.</p>
+      </div>
+      <div class="art-step">
+        <div class="seq">STEP 05</div>
+        <h4>감탄 받기</h4>
+        <div class="art-sub">Honneth · Recognition</div>
+        <p>*나의 알음*이 *다움*으로 인정받는 자리. 인정 욕구는 약점이 아니라 *존재의 구조*. 거절하지 말 것.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 NOW -->
+<section id="now" style="background: var(--bg-2);">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num star">10</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">TODAY · APPLICATION</div>
+        <h2>오늘의 적용 — 정찬휘 작업으로 옮기는 <em>네 체크리스트</em></h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      비고츠키 · 칸트 · 김정운의 100년 어휘가 정찬휘님의 실무 결정에서 어떻게 작동하는가.
+      *언어화실 · CC 시리즈 · 66DAYS · ANTIEGG · 토닷토*를 일곱 번째 시선으로 다시 비춰본다.
+    </p>
+
+    <div class="app-grid">
+      <div class="app-card">
+        <div class="tag">FOR · 언어화실 · CC 시리즈</div>
+        <h4>비고츠키의 매개</h4>
+        <ul>
+          <li><strong>ZPD 잡기</strong> — *시장의 정의*(능숙한 타자가 깔아둔 자리)와 *나의 정의*(혼자 잡아낸 자리) 사이의 *근접 발달 영역*이 진짜 학습의 자리. AI는 그 사이의 *매개*지 *대체*가 아니다.</li>
+          <li><strong>내적 언어 자각</strong> — 글을 쓸 때 *생각해서 쓰는 게* 아니라 *쓰기 때문에 생각한다*. ANTIEGG 5/15 〈우리말의 멋을 짓는 일〉이 *멋짓·멋지음*과 만난 자리도 이 메커니즘.</li>
+          <li><strong>매개 도구 의식</strong> — 옵시디언, MEMORY.md, lineage 스킬, 단일 HTML 토이. 이 모두가 비고츠키가 말한 *문화적 도구*. 도구가 사고를 빚는다.</li>
+          <li><strong>능숙한 타자가 되기</strong> — 친구가 보낸 강의 메모(5/19 김의래)나 책(5/21 김정운) 같은 외부 자극이 본인의 ZPD를 확장한다. *받기*도 디자인의 일.</li>
+        </ul>
+      </div>
+      <div class="app-card">
+        <div class="tag">FOR · 66DAYS · 식식데이즈 · 토닷토</div>
+        <h4>감탄의 메커니즘</h4>
+        <ul>
+          <li><strong>감탄 주는 디자인</strong> — 66DAYS 식식데이즈 ASCII 박물관 오브제는 *참여자에게 우와!를 일으키는* 디자인이다. 김정운의 *어머니의 감탄*이 시스템 차원으로 작동.</li>
+          <li><strong>감탄 받는 자리 인정</strong> — 정찬휘님의 작업이 *남들에게 다움으로 인정받기*를 욕망하는 것은 *약점이 아니다*. 헤겔·호네트가 말한 *존재의 구조*. 그 욕망을 *공정하게 추구*하는 게 디자이너의 윤리.</li>
+          <li><strong>내면의 선생님 키우기</strong> — 매주 한 도구씩 만들 때마다 *우와, 이게 됐네*를 본인이 본인에게 말하는 자리. 그 말이 다음 도구의 *능숙한 타자*가 된다.</li>
+          <li><strong>토닷토의 *토해내기*</strong> — 5/16 결정의 자리. 한 단어가 *재료 + 동작 + 표현* 셋을 호명한 것은 *공통감*이 한국말 안에서 작동한 사례.</li>
+        </ul>
+      </div>
+      <div class="app-card">
+        <div class="tag">FOR · 글쓰기 · 카피</div>
+        <h4>아름다움의 한국어 등식</h4>
+        <ul>
+          <li><strong>나의 알음 + 다움 = 아름다움</strong> — 본인이 발견한 한국말 등식. 글의 모든 한 줄이 *내가 알게 된 것*을 *나다운 결로* 풀어내는지 자문.</li>
+          <li><strong>칸트적 판단</strong> — *내가 좋아하는 것*과 *모두에게 호소해야 하는 것* 사이의 긴장. 공통감은 *모두가 좋아할 것*이 아니라 *모두의 자리에 서서 검토한 것*.</li>
+          <li><strong>아렌트의 확장된 사고</strong> — 카피를 쓸 때 *다른 자리에 서서 *대신 생각하기**. ANTIEGG 독자, 66DAYS 참여자, 멀리 있는 친구의 자리.</li>
+          <li><strong>감탄의 호명</strong> — 글의 한 자리에서 *독자가 *우와* 할 자리*를 의식적으로 짓기. 그것이 의미 부여 이전의 미적 경험의 시작.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="integrate-box" style="margin-top: 56px;">
+      <div>
+        <h3>한 주의 모든 의사소통 위에 놓인 <em>한 질문</em></h3>
+        <p>비고츠키·칸트·김정운이 같은 자리에서 묻는 질문 — <strong>"지금 이 자리에서 *우리 사이*에 무엇이 일어나고 있는가?"</strong></p>
+        <p>이 한 질문이 카톡 메시지, 회의 한 문장, 카피 한 줄, 디자인 결정 한 번, 강의 듣기, 책 읽기 — 모든 의사소통의 미시 결정 위에 놓인다.</p>
+        <p>5/17 〈내면소통〉 · 5/19 김의래 시각언어 · 5/21 김정운 〈말하지 않고 말하기〉. 다섯 날 사이에 세 명의 한국 학자가 같은 자리를 다른 어휘로 가리켰다 — *존재의 근거는 *사이*에 있다*. 그리고 그 사이에서 *나의 알음*이 *우리의 다움*으로 자라난다.</p>
+      </div>
+      <div class="integrate-eq">
+        <span class="c">// 모든 의사소통 결정 앞에서</span><br/>
+        <br/>
+        <span class="h">ask</span>(<br/>
+        &nbsp;&nbsp;<span class="c">"지금 이 자리에서</span><br/>
+        &nbsp;&nbsp;<span class="c">&nbsp;우리 사이에</span><br/>
+        &nbsp;&nbsp;<span class="c">&nbsp;무엇이</span><br/>
+        &nbsp;&nbsp;<span class="c">&nbsp;일어나고 있는가?"</span><br/>
+        );<br/>
+        <br/>
+        <span class="h">→</span> <span class="o">감탄을 주기</span><br/>
+        <span class="h">→</span> <span class="o">감탄을 받기</span><br/>
+        <span class="h">→</span> <span class="o">사이가 자란다</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ONE LINE -->
+<section class="oneline">
+  <div class="oneline-inner">
+    <div class="oneline-k">ONE LINE · KIM JEONG-UN'S 7TH</div>
+    <div class="oneline-main">
+      "나라는 개인은 <em>관계라는 바다</em> 위에 떠 있는 섬이다."<br/>
+      섬은 바다와 함께 있지, 바다 없이 존재할 수 없다.<br/>
+      그리고 그 바다 위에서 <em>감탄</em>이 자란다.
+    </div>
+    <div class="oneline-sig">
+      — 2026-05-21 · 김정운 〈말하지 않고 말하기〉(2025) 404쪽<br/>
+      비고츠키 · 후설 · 슈타인 · 트레바르텐 · 토마셀로 · 칸트 · 아렌트 · 헤겔 · 호네트의 한 줄 합성
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="inner">
+    <div>
+      <h4>About</h4>
+      <p>이 문서는 정찬휘가 2026-05-21 김정운 〈말하지 않고 말하기〉(2025) 404쪽 *삶은 무엇인가* 챕터를 1차 자료로 정리해 lineage 스킬로 빌드한 것입니다. 김정운의 6+1 태도 구조 위에, 비고츠키·후설·슈타인·트레바르텐·토마셀로·칸트·아렌트·헤겔·호네트의 학계 인용을 더해 6국면으로 재구성.</p>
+      <p style="margin-top: 10px;"><strong>출처</strong> · 김정운 〈말하지 않고 말하기〉(2025) + Vygotsky 〈Mind in Society〉(1978) + Kant 〈Critique of Judgment〉(1790) + Arendt 〈Lectures on Kant's Political Philosophy〉(1982) + Honneth 〈인정 투쟁〉(1992) + Stein 〈On the Problem of Empathy〉(1917) + Tomasello 〈Why We Cooperate〉(2009).</p>
+      <p style="margin-top: 10px;"><strong>사용자 통찰</strong> · *"나의 알음+다움=아름다움"*은 정찬휘 본인이 이 챕터를 읽으며 도달한 한국말 등식. 김정운 책에 명시되지 않은 한국어 음운적 직관의 새로운 자리.</p>
+    </div>
+    <div>
+      <h4>다음으로 읽기</h4>
+      <ul>
+        <li>김정운 〈말하지 않고 말하기〉(2025) — 책 전체</li>
+        <li>비고츠키 〈사고와 언어〉 · 〈Mind in Society〉</li>
+        <li>칸트 〈판단력 비판〉 (백종현 옮김)</li>
+        <li>한나 아렌트 〈칸트 정치철학 강의〉</li>
+        <li>악셀 호네트 〈인정 투쟁〉 (문성훈 옮김)</li>
+        <li>토마셀로 〈Why We Cooperate〉</li>
+      </ul>
+    </div>
+    <div>
+      <h4>관련 작업</h4>
+      <ul>
+        <li>5/17 김주환 〈내면소통〉 별도 리포트 (자기조절·대인관계·자기동기)</li>
+        <li>5/19 김의래 시각언어 특강 리포트 (상호주관성과 합의)</li>
+        <li>CC 시리즈 Part 9 〈상호주관성 계보〉 (본진)</li>
+        <li>communication_framework_triangle (기호화 × 서사예술 × 뇌과학)</li>
+        <li>언어화실 · 〈나의 정의 / 시장의 정의 / 메타분석 제안〉 3중 구조</li>
+        <li>감각일지 5/16 토닷토 〈토해내기〉</li>
+      </ul>
+    </div>
+  </div>
+  <div class="colophon">
+    <span>SPECIAL · EXTERNAL BOOK · 2026-05-21</span>
+    <span>LINEAGE SKILL · v1.0 · CC INTEGRATION TBD</span>
+  </div>
+</footer>
+
+</body>
+</html>

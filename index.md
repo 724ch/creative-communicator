@@ -2,7 +2,7 @@
 title: Creative Communicator · Archive Sense Laboratory
 hero_kicker: ARCHIVE SENSE · LABORATORY · 2026~
 hero_tagline: An archive in search of better language for human connection
-meta_duration: 30 Deep Reports
+meta_duration: 31 Deep Reports
 meta_span: 2026-04-17 → ongoing
 meta_format: ~150 KB · 11 sections each
 meta_author: 정찬휘 · Chanhwi Jeong
@@ -169,179 +169,189 @@ HERO → INTRO → 5~8 PHASE → 6 THREADS → RESONANCE → APPLICATION → ONE
 정보의 위계(잡음·신호·데이터·정보·지식·지혜)와 인지의 위계(감각·지각·인지·인식·심상·해석·추론)가 평행하게 흐르다 편집의 자리에서 만난다. Shannon·Bateson·DIKW·Polanyi·Nonaka·Gibson·Helmholtz·Gregory·Friston·Kant·Kahneman·Damasio·Kosslyn·Tulving·Hassabis·Peirce·Gadamer·Merleau-Ponty·Tufte·Matsuoka·CITL의 8 국면 21 학자. **편집은 그 위계의 어느 단을 만지는가의 결정**.
 
 ## Part VI
+- color: pink
+- date: 2026-05-26
+- file: reports/06.몸과_디자인_온톨로지.html
+- title: 몸과 디자인 · 체화된 창조성의 온톨로지
+- sub: From Kalokagathia to Soma Design
+- meta: 6 PHASES · 6 THREADS · 17 THINKERS · DEEP
+
+체육과 디자인이 만나는 자리. 그리스 칼로카가티아 → 르네상스 비트루비우스 → 바우하우스 체조 → 메를로퐁티의 살 → 다마지오 체성 표지 → 회크의 소마 디자인까지 2500년 17 사상가. **디자이너의 몸이 첫번째 프로토타입이다**. Part IV의 인식론 자리를 디자인 실천의 자리로 옮긴 짝작품.
+
+## Part VII
 - color: blue
 - date: 2026-04-20
-- file: reports/06.인식과_소통_움벨트.html
+- file: reports/07.인식과_소통_움벨트.html
 - title: 인식과 소통 · 움벨트
 - sub: Same World, Different Umwelten
 - meta: 6 PHASES · 6 THREADS
 
 위크스퀼의 **움벨트**·게슈탈트·예측 부호화. 같은 세상이 사람마다 다르게 인식되는 9 단층, 그리고 카피·디자인의 통과 지점.
 
-## Part VII
+## Part VIII
 - color: red
 - date: 2026-04-28
-- file: reports/07.시간과_공간의_스키마.html
+- file: reports/08.시간과_공간의_스키마.html
 - title: 시간과 공간의 스키마
 - sub: How Mental Coordinates Were Built
 - meta: 7 PHASES · 6 THREADS
 
 인간이 시간을 공간으로 사고하는 방식. 칸트·민코프스키·인지언어학·해마 격자세포까지. **좌표가 만들어지는 신경·언어·문화의 결합**.
 
-## Part VIII
+## Part IX
 - color: accent
 - date: 2026-05-07
-- file: reports/08.기억_시간_공간_계보.html
+- file: reports/09.기억_시간_공간_계보.html
 - title: 기억·시간·공간 계보
 - sub: From Simonides' Palace to the Hippocampus
 - meta: 6 PHASES · 6 THREADS · 10 THINKERS
 
 시미오니데스의 method of loci(BCE 5C)에서 O'Keefe·Moser의 장소세포·격자세포(2014 노벨상)까지. **기억이 시간·공간을 한 회로로 묶는 자리**. 아우구스티누스, 베르그송, 후설, 프루스트, 바슐라르가 한 신경 회로의 다른 표현임을 보인다.
 
-## Part IX
+## Part X
 - color: green
 - date: 2026-05-11
-- file: reports/09.상호주관성_계보.html
+- file: reports/10.상호주관성_계보.html
 - title: 상호주관성 계보 ★
 - sub: 120 Years of Bridge-Building Between Subjects
 - meta: 6 PHASES · 6 THREADS · 13 THINKERS · DEEP
 
 김정운 〈말하지 않고 말하기〉(2024)에서 만난 한 단어. **두 의식 사이가 어떻게 가능한가**의 120년 다리 짓기. 후설의 짝짓기 → 비고츠키의 사회 발달 → 하버마스의 의사소통 합리성 → 메를로퐁티의 살 → 갈레세의 거울 뉴런 → 프리스턴의 동기화 → 김정운의 간(間). **메시지는 단어 안이 아니라 둘 사이의 활력 곡선에 있다.**
 
-## Part X
+## Part XI
 - color: purple
 - date: 2026-05-07
-- file: reports/10.인간과_기호_기호학_리서치.html
+- file: reports/11.인간과_기호_기호학_리서치.html
 - title: 인간과 기호 · 기호학 리서치
 - sub: 시각 기호의 보편적 지각 메커니즘
 - meta: 5 PARTS · FRUTIGER × 기호학
 
 Adrian Frutiger의 시선으로 본 **시각 기호의 5층 분석**. 점·선·면의 기호학적 재해석 / 분류 체계 / 묘사에서 추상으로의 진화 / 모든 문명이 같은 기호를 만드는 이유 / 몸이 기호를 읽는 생리학적 기반.
 
-## Part XI
+## Part XII
 - color: accent
 - date: 2026-03
-- file: reports/11.도형_상징_리서치.html
+- file: reports/12.도형_상징_리서치.html
 - title: 도형 상징 리서치
 - sub: 점·선·면·원·방·각의 의미
 - meta: 6 CHAPTERS · 점·선·면·원·방·각
 
 원방각(圓方角) 한국 우주론과 칸딘스키의 점·선·면이 만나는 자리. **왜 전 세계가 같은 도형에 같은 의미를 부여하는가**. 6장 구조로 풀어내는 기본 도형의 문화·신화·인지심리학적 보편 상징 체계.
 
-## Part XII
+## Part XIII
 - color: blue
 - date: 2026-05-07
-- file: reports/12.스키마_유형학.html
+- file: reports/13.스키마_유형학.html
 - title: 스키마 유형학
 - sub: 도식적 사고의 완전한 지도
 - meta: SCHEMA TYPOLOGY · 도식 분류
 
 스키마(schema) = 머릿속에서 정보를 잡아두는 골격. **도식적 사고의 유형들을 완전한 지도로** 분류한다. 도식이 인지를 어떻게 단축시키는지의 카탈로그.
 
-## Part XIII
+## Part XIV
 - color: green
 - date: 2026-04-28
-- file: reports/13.추론의_계보.html
+- file: reports/14.추론의_계보.html
 - title: 추론(Reasoning)의 계보
 - sub: The Cognitive Circuit Behind Editing Sense
 - meta: 6 PHASES · 6 THREADS
 
 가추·유추·은유·환유·베이지안·내러티브로 짜인 에디팅 판단력의 **6 부품 회로**. Peirce·Hofstadter·Lakoff·Kahneman·Bruner·Ginzburg.
 
-## Part XIV
+## Part XV
 - color: accent
 - date: 2026-05-06
-- file: reports/14.수학적_사고의_7가지_동작.html
+- file: reports/15.수학적_사고의_7가지_동작.html
 - title: 수학적 사고의 7가지 동작
 - sub: From Calculation to Cognitive Move
 - meta: 7 MOVES · 6 THREADS · 14 THINKERS
 
 피타고라스에서 그로텐디크까지, 수학자들이 머릿속에서 실제로 하는 **7가지 사고 동작**(추상화·공리화·일반화·동형사상·불변량·반례·재정의)을 크리에이티브 작업과 페어링.
 
-## Part XV
+## Part XVI
 - color: blue
 - date: 2026-04-22
-- file: reports/15.현대사상_인식론_계보.html
+- file: reports/16.현대사상_인식론_계보.html
 - title: 현대사상 인식론 계보
 - sub: 400 Years of Deconstructing the "I"
 - meta: 7 PHASES · 6 THREADS
 
 데카르트 이후 400년의 여정. **"나"가 어떻게 구성되는가**를 해체해온 여정. 칸트·다윈·마르크스·프로이트·게슈탈트·예측 뇌까지 7국면.
 
-## Part XVI
+## Part XVII
 - color: accent
 - date: 2026-05-07
-- file: reports/16.창작자의_9가지_동작.html
+- file: reports/17.창작자의_9가지_동작.html
 - title: 창작자의 9가지 동작
 - sub: From Observing to Reframing
 - meta: 9 MOVES · 6 THREADS · 18 MAKERS
 
 Berger·Vignelli·Bresson·Tufte·LeWitt·Anderson·Eames·Eno·Duchamp·Cage 등 18명의 메이커를 통해 추출한 **관찰·추상·압축·패턴화·배치·리듬·결합·큐레이션·재정의** 9가지 보편 창작 동작. 각 동작에 수학 렌즈 페어링.
 
-## Part XVII
+## Part XVIII
 - color: pink
 - date: 2026-05-08
-- file: reports/17.편집의_계보.html
+- file: reports/18.편집의_계보.html
 - title: 편집의 계보 ★
 - sub: From Abstraction to Editorial Thinking
 - meta: 8 PHASES · 6 THREADS · 17 THINKERS · DEEP
 
 추상화의 등장에서 한국의 에디토리얼 씽킹까지. **편집은 사고다라는 한 명제의 100년 변주**. 칸딘스키·말레비치·바우하우스(이텐·클레·모홀리-나기)·에이젠슈테인·벤야민·비트겐슈타인·오틀레·루만·뒤샹·케이지·들뢰즈·마노비치·마츠오카 세이고·杉浦康平·김정운·최혜진. 분해와 재조합이 8 매체에서 어떻게 변주됐는가의 인지 지도.
 
-## Part XVIII
+## Part XIX
 - color: accent
 - date: 2026-04-29
-- file: reports/18.디자인사_바우하우스_계보.html
+- file: reports/19.디자인사_바우하우스_계보.html
 - title: 디자인사 & 바우하우스 계보
 - sub: From Painting to Composition
 - meta: 7 PHASES · 6 THREADS
 
 사진의 등장·인상파·세잔·칸딘스키·말레비치·바우하우스. **그리기에서 구성하기로** 옮겨간 100년. 한글 모더니즘과의 공명까지.
 
-## Part XIX
+## Part XX
 - color: dark
 - date: 2026-04-29
-- file: reports/19.타이포그래피_아키타입.html
+- file: reports/20.타이포그래피_아키타입.html
 - title: 타이포그래피 아키타입
 - sub: Classification → Combination
 - meta: 7 PHASES · 6 THREADS · 8 ARCHETYPES
 
 트라야누스 비문에서 K-Hybrid 폰트까지, 2,000년 글자 양식이 만든 **8 역사적 원형**. 분류가 폐기된 시대의 결합 큐레이션.
 
-## Part XX
+## Part XXI
 - color: accent
 - date: 2026-05-07
-- file: reports/20.무카이_디자인학.html
+- file: reports/21.무카이_디자인학.html
 - title: 무카이 슈타로 〈디자인학〉
 - sub: 13 Constellations Atlas
 - meta: 13 CONSTELLATIONS · 220+ KEYWORDS · DEEP
 
 무카이 슈타로 〈デザイン学〉(1996/2009)의 13 별자리 구조 그대로. Peirce 애브덕션부터 Ruskin '생의 부'까지, 220+ 독일어·일본어·한국어 키워드와 별자리 간 광선들을 한 평면에 펼친 인지 지도. 제3의 모데르네(아이허 로티스) 명명 + 동서 다리(Furi=Gestus, Trübe=陰翳).
 
-## Part XXI
+## Part XXII
 - color: dark
 - date: 2026-05
-- file: reports/21.현대디자인_5국가_계보.html
+- file: reports/22.현대디자인_5국가_계보.html
 - title: 현대디자인 5국가 계보
 - sub: Modern Design · 5 Nations Lineage
 - meta: 5 NATIONS · 15 MAKERS · DEEP
 
 바우하우스 이후 100년. **유럽·미국·일본·중국·한국 다섯 풍경의 모던 디자인** 계보. 같은 그리드를 받았지만 다른 답을 만든 다섯 나라의 거장 15명 4-블록 분석 + 한글 deep-dive + K-Boom의 5가지 구조적 원인.
 
-## Part XXII
+## Part XXIII
 - color: accent
 - date: 2026-05
-- file: reports/22.한국디자인_다음_10년.html
+- file: reports/23.한국디자인_다음_10년.html
 - title: 한국 디자인 다음 10년 ★
 - sub: Korean Design · 2026 → 2036
 - meta: 7 SCENARIOS · 5 RISKS · 3 ACTIONS · DEEP
 
 Part XXI 5국 계보의 후속. _"한국이 다음 10년의 시각 문법을 쓰고 있을지도 모른다"_를 가설로 두고 푸는 시나리오 지도. **2026년 한국이 손에 쥔 7 자산 + 다음 10년의 7 결정적 질문 + 7 시나리오 + 5 위험 + 3 행동 + 2036 가상 회고 4종**. 양식으로 끝나느냐, 문법으로 도약하느냐의 분기점.
 
-## Part XXIII
+## Part XXIV
 - color: accent
 - date: 2026-05-26
-- file: reports/23.한국고유사상사_풍류도에서_동학까지.html
+- file: reports/24.한국고유사상사_풍류도에서_동학까지.html
 - title: 한국 고유 사상사 — 풍류에서 씨알까지 ★
 - sub: Korean Indigenous Thought · 1300 Years
 - meta: 6 CURRENTS · 14 VOICES · 6 THREADS · DEEP
@@ -349,70 +359,70 @@ Part XXI 5국 계보의 후속. _"한국이 다음 10년의 시각 문법을 쓰
 
 전범선 『한국사 테라피』(2024)와 함석헌 『뜻으로 본 한국역사』(1962)를 따라간 1300년 사상의 강. **최치원의 풍류 → 원효의 화쟁 → 퇴계·율곡의 이기론 → 동학의 인내천 → 함석헌의 씨알 → 김지하의 율려 → 전범선의 한국사 테라피**, 6 국면 14 자리 + 包含/不二/人乃天/한글/고난과 뜻/歌舞遊 6 스레드. Part XXII 〈한국 디자인 다음 10년〉의 사상사적 후방. 2026 미중 패권·한류·AI 시대의 세 적용 카드.
 
-## Part XXIV
+## Part XXV
 - color: green
 - date: 2026-05-07
-- file: reports/24.기하학적_드로잉_방법론.html
+- file: reports/25.기하학적_드로잉_방법론.html
 - title: 기하학적 드로잉 방법론
 - sub: 기본 형태로 세상을 그리는 법
 - meta: 3 BASIC FORMS · METHODOLOGY
 
 원·삼각형·사각형. **세 기본 도형이 모든 형상의 골격**임을 분해하는 드로잉 방법론. 다이어그램 라이브러리(75장) 큐레이션 작업의 사상적 토대.
 
-## Part XXV
+## Part XXVI
 - color: green
 - date: 2026-05-07
-- file: reports/25.기하학적_조형원리_실무적용.html
+- file: reports/26.기하학적_조형원리_실무적용.html
 - title: 기하학적 조형원리 실무적용
 - sub: 도형에서 작업물로
 - meta: 실무 매뉴얼 · METHODOLOGY → APPLICATION
 
 Part XXIV(드로잉 방법론)의 **실무 적용 자매**. 기본 도형의 원리를 실제 작업(포스터·UI·다이어그램·로고 시스템)으로 옮기는 방법론.
 
-## Part XXVI
+## Part XXVII
 - color: green
 - date: 2026-03
-- file: reports/26.조형원리_소스아카이브.html
+- file: reports/27.조형원리_소스아카이브.html
 - title: 조형원리 소스아카이브
 - sub: 5축 소스 인용집
 - meta: 5 AXES · SOURCE ARCHIVE
 
 Part XXIV·XXIV의 사상적 후방을 받치는 소스 아카이브. **5축 구조**(바우하우스 교육과정 / 한국 조형원리 계보 / 현대 디자인 시스템 / 에디톨로지 실천 / 윤여경 〈디자인 읽기〉)로 정렬된 인용·발췌·계보 자료집.
 
-## Part XXVII
+## Part XXVIII
 - color: yellow
 - date: 2026-04-17
-- file: reports/27.광고사_카피_역사.html
+- file: reports/28.광고사_카피_역사.html
 - title: 광고사 & 카피 역사
 - sub: Advertising · From Myth to Algorithm
 - meta: 5 PHASES · 6 THREADS
 
 신화·종교·산업혁명·매스미디어·디지털·AI까지, 광고가 **인간을 학습해온 200년**의 사상사. 카피·매체·소비자 인지의 변천.
 
-## Part XXVIII
+## Part XXIX
 - color: pink
 - date: 2026-04-18
-- file: reports/28.카피라이팅_프레임워크.html
+- file: reports/29.카피라이팅_프레임워크.html
 - title: 카피라이팅 프레임워크
 - sub: 12 Working Parts of a Copy
 - meta: 5 PHASES · 6 THREADS
 
 AIDA·PAS·4P부터 현대 D2C 카피·숏폼까지. **작동하는 카피의 12 부품**. 각 프레임이 어떤 인지 회로를 자극하는지 분해.
 
-## Part XXIX
+## Part XXX
 - color: pink
 - date: 2026-05-07
-- file: reports/29.숏폼_프레임워크.html
+- file: reports/30.숏폼_프레임워크.html
 - title: 숏폼·릴스 프레임워크
 - sub: 3초에서 60초까지의 설득 공학
 - meta: 15 FRAMEWORKS · DEEP
 
 3초 후크에서 60초 마무리까지. **틱톡·릴스·쇼츠 시대의 15개 작동 프레임워크**. 후크 5종 + 본문 5종 + 마무리 5종.
 
-## Part XXX
+## Part XXXI
 - color: accent
 - date: 2026-05-26
-- file: reports/30.종교적_메시지의_보편_메커니즘.html
+- file: reports/31.종교적_메시지의_보편_메커니즘.html
 - title: 종교적 메시지의 보편 메커니즘 ★
 - sub: Religious Message Mechanics · 22 Figures · 12 Mechanics
 - meta: 8 PHASES · 22 FIGURES · 12 MECHANICS · DEEP

@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026 Q2 월간 요약 — 3월 발견 · 4월 명명 · 5월 척추 · Meta Analysis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fdfcfa; --bg-2: #f4f1ec; --bg-card: #ffffff; --bg-card-2: #f8f6f1; --bg-code: #f4f1ec;
+    --text: #1a1a1a; --text-soft: #4a4845; --text-dim: #807e7a; --text-faint: #c4c2bd;
+    --accent: #d9601f; --accent-2: #e07530; --accent-dim: #b54e15;
+    --teal: #2e8a7c; --green: #4a8e4a; --purple: #7e5a98; --pink: #c25787; --blue: #4a72a8; --yellow: #b8954a; --red: #c14638;
+    --border: rgba(0,0,0,0.10); --border-2: rgba(0,0,0,0.16);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', -apple-system, sans-serif; font-weight: 400; line-height: 1.75; -webkit-font-smoothing: antialiased; }
+  a { color: var(--accent); text-decoration: none; }
+
+  .hero { padding: 110px 60px 140px; position: relative; overflow: hidden; border-bottom: 1px solid var(--border); }
+  .hero-inner { max-width: 1180px; margin: 0 auto; }
+  .hero-kicker { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.35em; color: var(--text-dim); margin-bottom: 80px; }
+  .hero h1 { font-weight: 900; font-size: clamp(40px, 5.5vw, 76px); line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 20px; }
+  .hero h1 em { font-style: normal; color: var(--accent); }
+  .hero-lead { max-width: 760px; font-size: 17px; color: var(--text-soft); line-height: 1.85; font-weight: 300; margin-top: 36px; }
+  .hero-meta { margin-top: 110px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; padding-top: 32px; border-top: 1px solid var(--border); }
+  .hero-meta .label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.25em; color: var(--text-dim); text-transform: uppercase; margin-bottom: 8px; }
+  .hero-meta .value { font-size: 17px; font-weight: 700; }
+
+  nav.sticky { position: sticky; top: 0; background: rgba(253,252,250,0.92); backdrop-filter: blur(18px); border-bottom: 1px solid var(--border); z-index: 50; padding: 14px 60px; }
+  nav .nav-inner { max-width: 1180px; margin: 0 auto; display: flex; gap: 24px; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; }
+  nav a { color: var(--text-dim); white-space: nowrap; padding: 4px 0; border-bottom: 1px solid transparent; transition: all 0.2s; }
+  nav a:hover { color: var(--accent); }
+
+  section { padding: 100px 60px; }
+  .container { max-width: 1180px; margin: 0 auto; }
+  .sec-header { margin-bottom: 56px; display: flex; align-items: flex-start; gap: 32px; }
+  .sec-num { font-family: 'JetBrains Mono', monospace; font-size: 56px; font-weight: 700; color: var(--text-faint); line-height: 1; flex-shrink: 0; }
+  .sec-num.star { color: var(--accent); }
+  .sec-title-wrap { flex: 1; padding-top: 8px; }
+  h2 { font-weight: 900; font-size: clamp(28px, 3.6vw, 44px); line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 16px; }
+  h2 em { font-style: normal; color: var(--accent); }
+  .sec-sub { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.2em; color: var(--text-dim); text-transform: uppercase; margin-top: 6px; margin-bottom: 22px; }
+  .sec-lead { font-size: 16px; color: var(--text-soft); max-width: 820px; line-height: 1.85; font-weight: 300; }
+  .sec-lead strong { color: var(--text); font-weight: 600; }
+
+  .schema { background: var(--bg-code); border: 1px solid var(--border); padding: 28px 32px; margin: 22px 0; }
+  .schema-cap { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-dim); letter-spacing: 0.15em; margin-top: 8px; text-align: right; }
+
+  /* ============ 3-Month Columns ============ */
+  .month-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .month-card { background: var(--bg-card); border: 1px solid var(--border); padding: 32px 28px; position: relative; }
+  .month-card.mar { border-top: 4px solid var(--blue); }
+  .month-card.apr { border-top: 4px solid var(--purple); }
+  .month-card.may { border-top: 4px solid var(--accent); }
+  .month-num { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.3em; color: var(--text-dim); margin-bottom: 12px; }
+  .month-card h3 { font-size: 28px; font-weight: 900; margin-bottom: 6px; letter-spacing: -0.01em; }
+  .month-card.mar h3 em { font-style: normal; color: var(--blue); }
+  .month-card.apr h3 em { font-style: normal; color: var(--purple); }
+  .month-card.may h3 em { font-style: normal; color: var(--accent); }
+  .month-tag { font-family: 'Playfair Display', serif; font-style: italic; font-size: 14px; margin-bottom: 24px; }
+  .month-card.mar .month-tag { color: var(--blue); }
+  .month-card.apr .month-tag { color: var(--purple); }
+  .month-card.may .month-tag { color: var(--accent); }
+
+  .event-list { list-style: none; padding: 0; margin: 16px 0; }
+  .event-list li { padding: 10px 0; border-bottom: 1px dashed var(--border); font-size: 13.5px; color: var(--text-soft); line-height: 1.6; }
+  .event-list li:last-child { border-bottom: none; }
+  .event-date { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-dim); letter-spacing: 0.1em; margin-right: 8px; }
+  .event-list li strong { color: var(--text); font-weight: 600; }
+  .event-list li.star { background: rgba(217,96,31,0.04); border-left: 2px solid var(--accent); padding-left: 10px; }
+  .month-card.mar .event-list li.star { border-left-color: var(--blue); background: rgba(74,114,168,0.04); }
+  .month-card.apr .event-list li.star { border-left-color: var(--purple); background: rgba(126,90,152,0.04); }
+  .month-card.may .event-list li.star { border-left-color: var(--accent); background: rgba(217,96,31,0.04); }
+
+  .month-stats { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--border); display: flex; gap: 18px; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-dim); letter-spacing: 0.1em; }
+  .month-stats strong { color: var(--text); font-size: 14px; font-weight: 700; display: block; font-family: 'Noto Sans KR', sans-serif; letter-spacing: 0; }
+
+  /* ============ Seed-Fruit Chain Cards ============ */
+  .chain-list { display: flex; flex-direction: column; gap: 14px; margin-top: 28px; }
+  .chain-row { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--accent); padding: 22px 28px; display: grid; grid-template-columns: 1.3fr 60px 1.3fr 90px; gap: 20px; align-items: center; }
+  .chain-row.major { border-left-width: 5px; background: rgba(217,96,31,0.04); }
+  .chain-seed, .chain-fruit { font-size: 14.5px; color: var(--text); line-height: 1.5; }
+  .chain-seed { color: var(--text-soft); }
+  .chain-seed strong, .chain-fruit strong { color: var(--text); font-weight: 700; }
+  .chain-seed .date, .chain-fruit .date { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-dim); letter-spacing: 0.1em; display: block; margin-bottom: 4px; }
+  .chain-arrow { text-align: center; font-family: 'JetBrains Mono', monospace; color: var(--accent); font-size: 22px; font-weight: 700; }
+  .chain-dist { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-dim); letter-spacing: 0.15em; text-align: right; }
+  .chain-dist strong { color: var(--accent); font-size: 16px; font-weight: 700; display: block; font-family: 'Noto Sans KR', sans-serif; }
+
+  /* ============ Inflection Points Timeline ============ */
+  .inflect-timeline { background: var(--bg-card); border: 1px solid var(--border); padding: 36px 32px; margin-top: 32px; overflow-x: auto; }
+  .inflect-timeline svg { width: 100%; min-width: 900px; height: auto; display: block; }
+
+  .inflect-detail { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 28px; }
+  .inflect-card { background: var(--bg-card); border: 1px solid var(--border); border-top: 3px solid var(--accent); padding: 24px 26px; }
+  .inflect-card.n1 { border-top-color: var(--blue); }
+  .inflect-card.n2 { border-top-color: var(--purple); }
+  .inflect-card.n3 { border-top-color: var(--purple); }
+  .inflect-card.n4 { border-top-color: var(--accent); }
+  .inflect-card.n5 { border-top-color: var(--accent); }
+  .inflect-card.n6 { border-top-color: var(--accent); }
+  .inflect-card .num { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.3em; color: var(--text-dim); margin-bottom: 8px; }
+  .inflect-card .date { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent); font-weight: 700; letter-spacing: 0.1em; margin-bottom: 8px; }
+  .inflect-card h4 { font-size: 17px; font-weight: 800; margin-bottom: 12px; line-height: 1.4; }
+  .inflect-card .ba { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 12.5px; color: var(--text-soft); }
+  .inflect-card .ba-before { padding: 10px 12px; background: #f8f6f1; border-left: 2px solid var(--text-dim); }
+  .inflect-card .ba-after { padding: 10px 12px; background: rgba(217,96,31,0.06); border-left: 2px solid var(--accent); }
+  .inflect-card .ba-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.2em; color: var(--text-dim); margin-bottom: 4px; }
+
+  /* ============ People Map ============ */
+  .people-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 28px; }
+  .people-card { background: var(--bg-card); border: 1px solid var(--border); padding: 32px; }
+  .people-card h3 { font-size: 18px; font-weight: 800; margin-bottom: 16px; color: var(--accent); font-family: 'JetBrains Mono', monospace; letter-spacing: 0.1em; text-transform: uppercase; }
+  .people-card.trio h3 { color: var(--purple); }
+  .person { padding: 14px 0; border-bottom: 1px dashed var(--border); }
+  .person:last-child { border-bottom: none; }
+  .person-name { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+  .person-ko { font-size: 13px; color: var(--text-dim); margin-bottom: 6px; }
+  .person-role { font-size: 13px; color: var(--text-soft); line-height: 1.6; }
+
+  /* ============ Pattern Cards ============ */
+  .pattern-list { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 28px; }
+  .pattern-card { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--accent); padding: 24px 28px; }
+  .pattern-card.p1 { border-left-color: var(--blue); }
+  .pattern-card.p2 { border-left-color: var(--teal); }
+  .pattern-card.p3 { border-left-color: var(--purple); }
+  .pattern-card.p4 { border-left-color: var(--accent); }
+  .pattern-card.p5 { border-left-color: var(--green); grid-column: 1 / -1; }
+  .pattern-card .num { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.3em; color: var(--text-dim); margin-bottom: 8px; }
+  .pattern-card h4 { font-size: 18px; font-weight: 800; margin-bottom: 10px; line-height: 1.4; }
+  .pattern-card p { font-size: 13.5px; color: var(--text-soft); line-height: 1.7; }
+  .pattern-card p em { font-style: italic; color: var(--accent); }
+  .pattern-card.p1 p em { color: var(--blue); }
+  .pattern-card.p2 p em { color: var(--teal); }
+  .pattern-card.p3 p em { color: var(--purple); }
+  .pattern-card.p5 p em { color: var(--green); }
+
+  /* ============ Stats Grid ============ */
+  .stats-table { background: var(--bg-card); border: 1px solid var(--border); padding: 0; margin-top: 28px; overflow: hidden; }
+  .stats-table table { width: 100%; border-collapse: collapse; }
+  .stats-table th, .stats-table td { padding: 16px 20px; text-align: left; border-bottom: 1px solid var(--border); font-size: 14px; }
+  .stats-table th { background: var(--bg-card-2); font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: var(--text-dim); text-transform: uppercase; font-weight: 500; }
+  .stats-table td.metric { color: var(--text); font-weight: 600; }
+  .stats-table td.val { font-family: 'JetBrains Mono', monospace; font-weight: 700; }
+  .stats-table td.val.major { color: var(--accent); }
+  .stats-table tr:last-child td { border-bottom: none; }
+
+  /* ============ Keyword Cloud ============ */
+  .kw-cloud { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; align-items: baseline; }
+  .kw { padding: 8px 14px; background: var(--bg-card); border: 1px solid var(--border); font-family: 'JetBrains Mono', monospace; color: var(--text-soft); }
+  .kw.w5 { font-size: 22px; font-weight: 700; color: var(--accent); border-color: var(--accent); background: rgba(217,96,31,0.06); }
+  .kw.w4 { font-size: 18px; font-weight: 600; }
+  .kw.w3 { font-size: 15px; }
+  .kw.w2 { font-size: 13px; color: var(--text-dim); }
+
+  /* ============ Empty Slots ============ */
+  .empty-list { background: var(--bg-card); border: 1px dashed var(--border-2); padding: 28px 32px; margin-top: 24px; }
+  .empty-list ul { list-style: none; padding: 0; }
+  .empty-list li { font-size: 14px; color: var(--text-soft); padding: 8px 0; border-bottom: 1px dashed var(--border); line-height: 1.65; }
+  .empty-list li:last-child { border-bottom: none; }
+  .empty-list li::before { content: '○ '; color: var(--text-dim); margin-right: 4px; }
+  .empty-list li strong { color: var(--text); }
+
+  /* ============ Q3 Bridge ============ */
+  .bridge-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 28px; }
+  .bridge-card { background: var(--bg-card); border: 1px solid var(--border); padding: 28px 30px; }
+  .bridge-card h4 { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: var(--accent); margin-bottom: 14px; text-transform: uppercase; }
+  .bridge-card ul { list-style: none; padding: 0; }
+  .bridge-card li { font-size: 13.5px; color: var(--text-soft); padding: 7px 0; border-bottom: 1px dashed var(--border); line-height: 1.65; }
+  .bridge-card li:last-child { border-bottom: none; }
+  .bridge-card li::before { content: '▸ '; color: var(--accent); margin-right: 4px; }
+  .bridge-card li strong { color: var(--text); }
+
+  /* ============ TOP 3 per Month ============ */
+  .top3-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 28px; }
+  .top3-col { background: var(--bg-card); border: 1px solid var(--border); padding: 28px 26px; }
+  .top3-col.mar { border-top: 3px solid var(--blue); }
+  .top3-col.apr { border-top: 3px solid var(--purple); }
+  .top3-col.may { border-top: 3px solid var(--accent); }
+  .top3-col h3 { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.2em; margin-bottom: 18px; color: var(--text-dim); }
+  .top3-col ol { padding-left: 22px; }
+  .top3-col ol li { font-size: 13.5px; color: var(--text-soft); padding: 8px 0; line-height: 1.6; }
+  .top3-col ol li strong { color: var(--text); }
+
+  /* ============ One Line ============ */
+  .oneline { padding: 140px 60px; text-align: center; position: relative; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); overflow: hidden; }
+  .oneline::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(217,96,31,0.08), transparent 60%); }
+  .oneline-inner { max-width: 900px; margin: 0 auto; position: relative; }
+  .oneline-k { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.4em; color: var(--accent); margin-bottom: 36px; }
+  .oneline-main { font-size: clamp(22px, 2.8vw, 32px); font-weight: 700; line-height: 1.55; }
+  .oneline-main em { font-style: normal; color: var(--accent); }
+  .oneline-sig { margin-top: 44px; font-family: 'Playfair Display', serif; font-style: italic; color: var(--text-soft); font-size: 16px; line-height: 1.75; }
+
+  footer { background: var(--bg-2); padding: 70px 60px 40px; border-top: 1px solid var(--border); }
+  footer .inner { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 56px; }
+  footer h4 { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.25em; color: var(--accent); text-transform: uppercase; margin-bottom: 18px; }
+  footer p, footer li { font-size: 13px; color: var(--text-soft); line-height: 1.85; }
+  footer ul { list-style: none; }
+  footer li { padding: 3px 0; }
+  footer li::before { content: '— '; color: var(--text-dim); }
+  footer .colophon { max-width: 1180px; margin: 52px auto 0; padding-top: 24px; border-top: 1px solid var(--border); font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--text-dim); display: flex; justify-content: space-between; }
+
+  @media (max-width: 960px) {
+    .hero, section, footer, nav.sticky { padding-left: 28px; padding-right: 28px; }
+    .sec-header { flex-direction: column; gap: 12px; }
+    .sec-num { font-size: 42px; }
+    .hero-meta { grid-template-columns: 1fr 1fr; }
+    .month-grid, .top3-grid { grid-template-columns: 1fr; }
+    .people-grid, .pattern-list, .bridge-grid { grid-template-columns: 1fr; }
+    .chain-row { grid-template-columns: 1fr; gap: 8px; }
+    .inflect-detail { grid-template-columns: 1fr; }
+    footer .inner { grid-template-columns: 1fr; gap: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-kicker">2026 Q2 MONTHLY META-ANALYSIS · MAR · APR · MAY</div>
+    <h1>발견 → 명명 → <em>척추</em><br/>의 세 달 곡선</h1>
+    <p class="hero-lead">
+      3월 디학(디자인학교) 입학으로 시작된 어휘 폭발이 → 4월 한국말 음운으로 정체성을 *명명*하는 단계를 거쳐 → 5월 라인업·워크플로우·생산 양식 세 *척추*를 만든 분기.
+      세 달 60+ 감각일지 엔트리를 가로질러 발견한 <strong style="color:var(--text)">8개 씨앗-결실 사슬</strong>과 <strong style="color:var(--text)">6개 변곡점</strong>, 그리고 가장 강한 한 사슬 — <strong style="color:var(--accent)">그·ㄹ → 아름+다움 → 알음+다움</strong> 51일 진화.
+    </p>
+    <div class="hero-meta">
+      <div><div class="label">Coverage</div><div class="value">2026-03-16 → 05-21</div></div>
+      <div><div class="label">Entries</div><div class="value">~68 (3월 30 · 4월 20 · 5월 18)</div></div>
+      <div><div class="label">Chains</div><div class="value">8 Seed→Fruit</div></div>
+      <div><div class="label">Inflection</div><div class="value">6 Major Points</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav class="sticky">
+  <div class="nav-inner">
+    <a href="#intro">00 · 한 줄</a>
+    <a href="#months">01 · 세 달</a>
+    <a href="#chain">02 · 씨앗→결실 ★</a>
+    <a href="#evolve">03 · 51일 진화 ★</a>
+    <a href="#inflect">04 · 6 변곡점</a>
+    <a href="#people">05 · 인물 지도</a>
+    <a href="#patterns">06 · 5 패턴</a>
+    <a href="#stats">07 · 통계 · 키워드</a>
+    <a href="#bridge">08 · Q3 다리</a>
+    <a href="#top3">09 · TOP 3</a>
+  </div>
+</nav>
+
+<!-- 00 INTRO -->
+<section id="intro">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">00</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">ONE LINE · 3-MONTH CURVE</div>
+        <h2>한 줄 — <em>발견 → 명명 → 척추</em>의 세 단계</h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      엔트리 수는 줄지만 *밀도는 늘었다*. 3월에 한 날 11 엔트리(3/22)가 폭발하던 자리가, 5월에는 *척추 한 줄*에 응축됨.
+      세 달이 각자 다른 *학습 모드*에 있었다는 사실이 메타분석의 가장 큰 발견.
+    </p>
+
+    <div class="schema" style="white-space: normal; padding: 36px; text-align: center; margin-top: 40px;">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.3em; color: var(--text); margin-bottom: 8px; text-transform: uppercase;">3-MONTH ARC</div>
+      <div style="font-size: 13px; color: var(--text-dim); margin-bottom: 28px;">받아안는 달 → 이름 붙이는 달 → 척추를 세우는 달</div>
+      <svg viewBox="0 0 1000 320" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; max-width: 1000px;" font-family="'Noto Sans KR', sans-serif" fill="#1a1a1a">
+        <!-- baseline -->
+        <line x1="80" y1="240" x2="920" y2="240" stroke="#c4c2bd" stroke-width="1"/>
+
+        <!-- March block (blue) -->
+        <rect x="80" y="160" width="280" height="80" fill="rgba(74,114,168,0.10)" stroke="#4a72a8" stroke-width="1.8"/>
+        <text x="220" y="195" text-anchor="middle" font-size="20" font-weight="800">3월</text>
+        <text x="220" y="220" text-anchor="middle" font-size="14" fill="#4a72a8" font-weight="600">발견 · DISCOVERY</text>
+        <text x="220" y="270" text-anchor="middle" font-size="12" fill="#807e7a">환경 진입 · 어휘 폭발</text>
+        <text x="220" y="288" text-anchor="middle" font-size="11" fill="#807e7a">디학 입학 · 스키마 50선 · 그·ㄹ</text>
+
+        <!-- April block (purple, slightly higher) -->
+        <rect x="370" y="120" width="280" height="120" fill="rgba(126,90,152,0.10)" stroke="#7e5a98" stroke-width="1.8"/>
+        <text x="510" y="155" text-anchor="middle" font-size="20" font-weight="800">4월</text>
+        <text x="510" y="180" text-anchor="middle" font-size="14" fill="#7e5a98" font-weight="600">명명 · NAMING</text>
+        <text x="510" y="270" text-anchor="middle" font-size="12" fill="#807e7a">정체성 결정 · 단어 장악</text>
+        <text x="510" y="288" text-anchor="middle" font-size="11" fill="#807e7a">아름+다움 · 언어화실 · 퍼스 귀추</text>
+
+        <!-- May block (accent, highest + emphasized) -->
+        <rect x="660" y="60" width="280" height="180" fill="rgba(217,96,31,0.10)" stroke="#d9601f" stroke-width="2.2"/>
+        <text x="800" y="100" text-anchor="middle" font-size="20" font-weight="800">5월</text>
+        <text x="800" y="125" text-anchor="middle" font-size="14" fill="#d9601f" font-weight="700">척추 · SPINE</text>
+        <text x="800" y="270" text-anchor="middle" font-size="12" fill="#807e7a">라인업 응결 · 워크플로우 굳음</text>
+        <text x="800" y="288" text-anchor="middle" font-size="11" fill="#807e7a">3 척추 결정 · 한국 학자 트리오</text>
+
+        <!-- Arrows -->
+        <path d="M360 200 L 370 200" stroke="#1a1a1a" stroke-width="1.5"/>
+        <path d="M370 200 L 360 195 M 370 200 L 360 205" stroke="#1a1a1a" stroke-width="1.5" fill="none"/>
+        <path d="M650 180 L 660 180" stroke="#1a1a1a" stroke-width="1.5"/>
+        <path d="M660 180 L 650 175 M 660 180 L 650 185" stroke="#1a1a1a" stroke-width="1.5" fill="none"/>
+
+        <!-- top label -->
+        <text x="500" y="35" text-anchor="middle" font-family="'Playfair Display', serif" font-style="italic" font-size="14" fill="#807e7a">밀도와 응결력이 단계적으로 상승</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- 01 THREE MONTHS -->
+<section id="months" style="background: var(--bg-2);">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">01</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">THREE MONTHS</div>
+        <h2>세 달 — <em>각자의 학습 모드</em></h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      각 달의 핵심 사건을 카드로. ★ = 분기 횡단 사슬의 *씨앗* 또는 *결실* 자리.
+    </p>
+
+    <div class="month-grid">
+      <div class="month-card mar">
+        <div class="month-num">MONTH 01 · MARCH</div>
+        <h3>3월 — <em>발견</em></h3>
+        <div class="month-tag">받아안는 달 · DISCOVERY</div>
+        <ul class="event-list">
+          <li><span class="event-date">3/16</span> SMR 위클리 인터뷰 — "구구절절함을 믿어보자"</li>
+          <li><span class="event-date">3/19</span> 윤여경 교수 첫 만남 — 도식을 빌려 세계 보기</li>
+          <li class="star"><span class="event-date">3/22</span> <strong>디학 수업 시작</strong> (정대인 선생) — 10주 과정</li>
+          <li><span class="event-date">3/22</span> 한 날 11 엔트리 폭발 — 리쾨르·공진화·리추얼·스키마 50선</li>
+          <li><span class="event-date">3/26</span> CC 세계관 캐러셀 — 시간 역전 구조</li>
+          <li class="star"><span class="event-date">3/31</span> <strong>★ 그·ㄹ → 글·그림·그리다</strong> — 한국말 음운 첫 진입</li>
+          <li><span class="event-date">3/31</span> 점·선·면 기호학 첫 정리</li>
+        </ul>
+        <div class="month-stats">
+          <div><strong>~30</strong>엔트리</div>
+          <div><strong>0</strong>스킬</div>
+          <div><strong>0</strong>토이</div>
+        </div>
+      </div>
+
+      <div class="month-card apr">
+        <div class="month-num">MONTH 02 · APRIL</div>
+        <h3>4월 — <em>명명</em></h3>
+        <div class="month-tag">이름 붙이는 달 · NAMING</div>
+        <ul class="event-list">
+          <li><span class="event-date">4/01</span> ANTIEGG 4월 〈본질〉 기획 + 좋은 콘텐츠 ≠ 조회수</li>
+          <li class="star"><span class="event-date">4/03</span> <strong>★ "이미 하고 있는 것에 이름을 붙여"</strong> — 정체성 결정</li>
+          <li class="star"><span class="event-date">4/03</span> <strong>★ 아름다움 = 아름 + 다움</strong> 첫 등장</li>
+          <li><span class="event-date">4/06</span> CC 경계 재설정 + 하반기 조직 진입 전략</li>
+          <li class="star"><span class="event-date">4/10</span> <strong>★ 언어화실 등장</strong> — 단어 장악 선언</li>
+          <li><span class="event-date">4/12</span> 콘텐츠 서브에이전트 팀 → 커리어 포지셔닝</li>
+          <li><span class="event-date">4/16</span> 멘토 상담 — CC 다음 스텝</li>
+          <li class="star"><span class="event-date">4/23</span> <strong>★ 퍼스 귀추법 발견</strong> + 한 줄 카피 미시 결정</li>
+          <li><span class="event-date">4/25</span> 점토 관찰 훈련 — 5개 스키마 교체</li>
+        </ul>
+        <div class="month-stats">
+          <div><strong>~20</strong>엔트리</div>
+          <div><strong>0</strong>스킬</div>
+          <div><strong>0</strong>토이</div>
+        </div>
+      </div>
+
+      <div class="month-card may">
+        <div class="month-num">MONTH 03 · MAY</div>
+        <h3>5월 — <em>척추</em></h3>
+        <div class="month-tag">척추 세우는 달 · SPINE</div>
+        <ul class="event-list">
+          <li class="star"><span class="event-date">5/03</span> <strong>★ Gemini 윤리 자가중단</strong> → 라인업 반경</li>
+          <li class="star"><span class="event-date">5/06</span> <strong>★ 노정석 루프 → 두 스킬 탄생</strong> (note-meta · language-lab)</li>
+          <li><span class="event-date">5/07</span> 학습 라이브러리 vol.1 + 거장 시리즈 6편</li>
+          <li><span class="event-date">5/08</span> CC 25부 7카테고리 재구성</li>
+          <li class="star"><span class="event-date">5/14</span> <strong>★ lineage 스킬 v1</strong> — 생산 양식 표준</li>
+          <li><span class="event-date">5/15</span> ANTIEGG 〈자립〉 + 멋짓·멋지음 발견</li>
+          <li><span class="event-date">5/16</span> Melt · Dotraster · TypeGrid + 토닷토</li>
+          <li><span class="event-date">5/17</span> 김주환 〈내면소통〉</li>
+          <li><span class="event-date">5/19</span> 김의래 시각언어 lineage</li>
+          <li class="star"><span class="event-date">5/21</span> <strong>★ 김정운 + 나의 알음+다움=아름다움</strong></li>
+        </ul>
+        <div class="month-stats">
+          <div><strong>18</strong>엔트리</div>
+          <div><strong>4</strong>스킬</div>
+          <div><strong>5</strong>토이</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 SEED-FRUIT CHAINS -->
+<section id="chain">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num star">02</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">SEED → FRUIT CHAINS · 8 LINES</div>
+        <h2>씨앗과 결실 — 세 달을 가로지르는 <em>8개 사슬</em></h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      3·4월에 깔린 씨앗이 5월에 결실로 도착한 사슬 8개. 진화 거리(일수)가 길수록 *오래 잠복한* 명제다.
+      가장 강한 사슬(별표 ★)은 다음 섹션에서 SVG로 따로 다룬다.
+    </p>
+
+    <div class="chain-list">
+      <div class="chain-row major">
+        <div class="chain-seed">
+          <span class="date">3/31 · MAR ★</span>
+          <strong>그·ㄹ → 글·그림</strong><br/>
+          머리 안('그') → 형태화('ㄹ') → 눈앞('이')
+        </div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-fruit">
+          <span class="date">5/21 · MAY ★</span>
+          <strong>나의 알음+다움=아름다움</strong><br/>
+          김정운 책 리포트 명제 V로 격상
+        </div>
+        <div class="chain-dist"><strong>51일</strong>3원 구조의 추상도 누적</div>
+      </div>
+
+      <div class="chain-row major">
+        <div class="chain-seed">
+          <span class="date">4/03 · APR ★</span>
+          <strong>아름다움 = 아름 + 다움</strong><br/>
+          나의 아름이 남들의 다움으로
+        </div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-fruit">
+          <span class="date">5/21 · MAY ★</span>
+          <strong>알음+다움 (아름→알음)</strong><br/>
+          미학 → 인식론으로 진화
+        </div>
+        <div class="chain-dist"><strong>48일</strong>같은 등식의 추상도 상승</div>
+      </div>
+
+      <div class="chain-row">
+        <div class="chain-seed">
+          <span class="date">4/10 · APR</span>
+          <strong>언어화실 등장</strong><br/>
+          내가 쓰는 단어를 장악한다는 선언
+        </div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-fruit">
+          <span class="date">5/06 · MAY</span>
+          <strong>language-lab 스킬</strong><br/>
+          3중 정의 구조의 재사용 도구화
+        </div>
+        <div class="chain-dist"><strong>26일</strong>선언 → 스킬</div>
+      </div>
+
+      <div class="chain-row">
+        <div class="chain-seed">
+          <span class="date">3/22 · MAR</span>
+          <strong>스키마 다이어그램 50선</strong><br/>
+          인류 개념 모형 카탈로그
+        </div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-fruit">
+          <span class="date">5/14 · MAY</span>
+          <strong>lineage 스킬 v1</strong><br/>
+          4-블록 딥다이브 + SVG 도식 표준
+        </div>
+        <div class="chain-dist"><strong>53일</strong>관찰 → 생산 양식</div>
+      </div>
+
+      <div class="chain-row">
+        <div class="chain-seed">
+          <span class="date">4/23 · APR</span>
+          <strong>퍼스 귀추법 발견</strong><br/>
+          디자인 씽킹의 사상적 정체
+        </div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-fruit">
+          <span class="date">5/19 · MAY</span>
+          <strong>김의래 강의 가추법 흡수</strong><br/>
+          *이미 준비된 채로* 받아안음
+        </div>
+        <div class="chain-dist"><strong>26일</strong>사전 흡수 → 본격 흡수</div>
+      </div>
+
+      <div class="chain-row">
+        <div class="chain-seed">
+          <span class="date">3/22 · MAR</span>
+          <strong>디학 수업 시작</strong><br/>
+          학습 환경 진입 (교실)
+        </div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-fruit">
+          <span class="date">5/19 · MAY</span>
+          <strong>디자인사학회 김의래 강의</strong><br/>
+          학습 환경 확장 (학회)
+        </div>
+        <div class="chain-dist"><strong>58일</strong>교실 → 학계 네트워크</div>
+      </div>
+
+      <div class="chain-row">
+        <div class="chain-seed">
+          <span class="date">4/01 · APR</span>
+          <strong>ANTIEGG 4월 〈본질〉</strong><br/>
+          상상력의 자동화 주제 기획
+        </div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-fruit">
+          <span class="date">5/03 + 5/15 · MAY</span>
+          <strong>5월 마감 + 6월 〈자립〉 기획</strong><br/>
+          매체 트랙 안정화
+        </div>
+        <div class="chain-dist"><strong>32~44일</strong>월간 매체 리듬</div>
+      </div>
+
+      <div class="chain-row">
+        <div class="chain-seed">
+          <span class="date">3/26 · MAR</span>
+          <strong>CC 세계관 캐러셀</strong><br/>
+          미래→과거→현재 시간 역전
+        </div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-fruit">
+          <span class="date">5/08 + 5/10 · MAY</span>
+          <strong>25부 7카테고리 + 도식 3종 합본</strong><br/>
+          시리즈 구조 정착
+        </div>
+        <div class="chain-dist"><strong>43~45일</strong>발산 → 구조화</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 51-DAY EVOLUTION -->
+<section id="evolve" style="background: var(--bg-2);">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num star">03</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">51-DAY EVOLUTION · KOREAN PHONEME → AESTHETICS → EPISTEMOLOGY</div>
+        <h2>분기의 가장 강한 사슬 — <em>그·ㄹ → 아름+다움 → 알음+다움</em></h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      한 단어가 두 달에 걸쳐 *세 번 진화*. 처음엔 *음운*(그·ㄹ), 다음엔 *미학*(아름+다움), 마지막엔 *인식론*(알음+다움).
+      추상도가 한 단계씩 올라가며 같은 *3원 구조*를 다른 자리로 옮겼다. 이 진화 자체가 사용자의 학습 방식을 드러냄 — <strong>한 번 잡힌 구조를 *추상도를 높이며* 다시 박는 패턴</strong>. 일회성 영감이 아닌 누적되는 사상.
+    </p>
+
+    <div class="schema" style="white-space: normal; padding: 36px; text-align: center; margin-top: 40px;">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.3em; color: var(--text); margin-bottom: 8px; text-transform: uppercase;">3-STAGE ABSTRACTION CHAIN</div>
+      <div style="font-size: 13px; color: var(--text-dim); margin-bottom: 28px;">같은 3원 구조가 음운 → 미학 → 인식론으로 추상도 누적</div>
+      <svg viewBox="0 0 1000 680" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; max-width: 1000px;" font-family="'Noto Sans KR', sans-serif" fill="#1a1a1a">
+
+        <!-- STAGE 1: 3/31 그·ㄹ (BLUE) -->
+        <text x="170" y="50" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#4a72a8">STAGE 1 · 2026-03-31</text>
+        <text x="170" y="72" text-anchor="middle" font-size="14" fill="#4a72a8" font-weight="700">음운 PHONEME</text>
+
+        <rect x="60" y="100" width="220" height="280" fill="rgba(74,114,168,0.06)" stroke="#4a72a8" stroke-width="1.8"/>
+
+        <text x="170" y="135" text-anchor="middle" font-size="13" font-weight="700">그·ㄹ → 글·그림</text>
+
+        <rect x="90" y="155" width="160" height="50" fill="#fff" stroke="#4a72a8" stroke-width="1"/>
+        <text x="170" y="180" text-anchor="middle" font-size="13" font-weight="700">'그'</text>
+        <text x="170" y="198" text-anchor="middle" font-size="11" fill="#807e7a">머리 안의 의미</text>
+
+        <path d="M170 210 L 170 235" stroke="#4a72a8" stroke-width="1.5"/>
+        <path d="M170 235 L 165 228 M 170 235 L 175 228" stroke="#4a72a8" stroke-width="1.5" fill="none"/>
+
+        <rect x="90" y="240" width="160" height="50" fill="#fff" stroke="#4a72a8" stroke-width="1"/>
+        <text x="170" y="265" text-anchor="middle" font-size="13" font-weight="700">'ㄹ'</text>
+        <text x="170" y="283" text-anchor="middle" font-size="11" fill="#807e7a">형태로 꺼내는 행위</text>
+
+        <path d="M170 295 L 170 320" stroke="#4a72a8" stroke-width="1.5"/>
+        <path d="M170 320 L 165 313 M 170 320 L 175 313" stroke="#4a72a8" stroke-width="1.5" fill="none"/>
+
+        <rect x="90" y="325" width="160" height="50" fill="rgba(74,114,168,0.10)" stroke="#4a72a8" stroke-width="1.8"/>
+        <text x="170" y="350" text-anchor="middle" font-size="13" font-weight="700">'이'</text>
+        <text x="170" y="368" text-anchor="middle" font-size="11" fill="#807e7a">눈앞의 형태</text>
+
+        <!-- CONNECTING ARROW 1→2 -->
+        <path d="M280 240 L 370 240" stroke="#d9601f" stroke-width="2" stroke-dasharray="6,3"/>
+        <path d="M370 240 L 360 234 M 370 240 L 360 246" stroke="#d9601f" stroke-width="2" fill="none"/>
+        <text x="325" y="225" text-anchor="middle" font-size="11" fill="#d9601f" font-family="'JetBrains Mono', monospace" letter-spacing="1">+3일</text>
+        <text x="325" y="260" text-anchor="middle" font-size="11" fill="#d9601f" font-style="italic">미학으로 확장</text>
+
+        <!-- STAGE 2: 4/03 아름+다움 (PURPLE) -->
+        <text x="500" y="50" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#7e5a98">STAGE 2 · 2026-04-03</text>
+        <text x="500" y="72" text-anchor="middle" font-size="14" fill="#7e5a98" font-weight="700">미학 AESTHETICS</text>
+
+        <rect x="390" y="100" width="220" height="280" fill="rgba(126,90,152,0.06)" stroke="#7e5a98" stroke-width="1.8"/>
+
+        <text x="500" y="135" text-anchor="middle" font-size="13" font-weight="700">아름다움 = 아름 + 다움</text>
+
+        <rect x="420" y="155" width="160" height="50" fill="#fff" stroke="#7e5a98" stroke-width="1"/>
+        <text x="500" y="180" text-anchor="middle" font-size="13" font-weight="700">아름</text>
+        <text x="500" y="198" text-anchor="middle" font-size="11" fill="#807e7a">발신자의 주관·표현</text>
+
+        <path d="M500 210 L 500 235" stroke="#7e5a98" stroke-width="1.5"/>
+        <path d="M500 235 L 495 228 M 500 235 L 505 228" stroke="#7e5a98" stroke-width="1.5" fill="none"/>
+
+        <rect x="420" y="240" width="160" height="50" fill="#fff" stroke="#7e5a98" stroke-width="1"/>
+        <text x="500" y="265" text-anchor="middle" font-size="13" font-weight="700">+ 다움</text>
+        <text x="500" y="283" text-anchor="middle" font-size="11" fill="#807e7a">수신자의 인정</text>
+
+        <path d="M500 295 L 500 320" stroke="#7e5a98" stroke-width="1.5"/>
+        <path d="M500 320 L 495 313 M 500 320 L 505 313" stroke="#7e5a98" stroke-width="1.5" fill="none"/>
+
+        <rect x="420" y="325" width="160" height="50" fill="rgba(126,90,152,0.10)" stroke="#7e5a98" stroke-width="1.8"/>
+        <text x="500" y="350" text-anchor="middle" font-size="13" font-weight="700">아름다움</text>
+        <text x="500" y="368" text-anchor="middle" font-size="11" fill="#807e7a">주관 → 보편 연결</text>
+
+        <!-- CONNECTING ARROW 2→3 -->
+        <path d="M610 240 L 700 240" stroke="#d9601f" stroke-width="2" stroke-dasharray="6,3"/>
+        <path d="M700 240 L 690 234 M 700 240 L 690 246" stroke="#d9601f" stroke-width="2" fill="none"/>
+        <text x="655" y="225" text-anchor="middle" font-size="11" fill="#d9601f" font-family="'JetBrains Mono', monospace" letter-spacing="1">+48일</text>
+        <text x="655" y="260" text-anchor="middle" font-size="11" fill="#d9601f" font-style="italic">인식론으로 확장</text>
+
+        <!-- STAGE 3: 5/21 알음+다움 (ACCENT) -->
+        <text x="830" y="50" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#d9601f">STAGE 3 · 2026-05-21</text>
+        <text x="830" y="72" text-anchor="middle" font-size="14" fill="#d9601f" font-weight="700">인식론 EPISTEMOLOGY</text>
+
+        <rect x="720" y="100" width="220" height="280" fill="rgba(217,96,31,0.08)" stroke="#d9601f" stroke-width="2.2"/>
+
+        <text x="830" y="135" text-anchor="middle" font-size="13" font-weight="700">알음+다움=아름다움</text>
+
+        <rect x="750" y="155" width="160" height="50" fill="#fff" stroke="#d9601f" stroke-width="1.2"/>
+        <text x="830" y="180" text-anchor="middle" font-size="13" font-weight="700">알음 (知)</text>
+        <text x="830" y="198" text-anchor="middle" font-size="11" fill="#807e7a">앎·인지·깨달음</text>
+
+        <path d="M830 210 L 830 235" stroke="#d9601f" stroke-width="1.5"/>
+        <path d="M830 235 L 825 228 M 830 235 L 835 228" stroke="#d9601f" stroke-width="1.5" fill="none"/>
+
+        <rect x="750" y="240" width="160" height="50" fill="#fff" stroke="#d9601f" stroke-width="1.2"/>
+        <text x="830" y="265" text-anchor="middle" font-size="13" font-weight="700">+ 다움</text>
+        <text x="830" y="283" text-anchor="middle" font-size="11" fill="#807e7a">남의 인정·공통감</text>
+
+        <path d="M830 295 L 830 320" stroke="#d9601f" stroke-width="1.5"/>
+        <path d="M830 320 L 825 313 M 830 320 L 835 313" stroke="#d9601f" stroke-width="1.5" fill="none"/>
+
+        <rect x="750" y="325" width="160" height="50" fill="rgba(217,96,31,0.15)" stroke="#d9601f" stroke-width="2.2"/>
+        <text x="830" y="350" text-anchor="middle" font-size="13" font-weight="700">아름다움</text>
+        <text x="830" y="368" text-anchor="middle" font-size="11" fill="#807e7a">칸트 공통감 + 김정운 감탄</text>
+
+        <!-- ABSTRACTION LADDER (right side) -->
+        <line x1="970" y1="380" x2="970" y2="135" stroke="#d9601f" stroke-width="1.5"/>
+        <path d="M970 135 L 965 145 M 970 135 L 975 145" stroke="#d9601f" stroke-width="1.5" fill="none"/>
+        <text x="980" y="260" font-family="'JetBrains Mono', monospace" font-size="10" letter-spacing="2" fill="#d9601f" transform="rotate(-90 980 260)">ABSTRACTION ↑</text>
+
+        <!-- BOTTOM: PATTERN BOX -->
+        <rect x="60" y="430" width="880" height="80" fill="rgba(217,96,31,0.06)" stroke="#d9601f" stroke-width="1.5" rx="3"/>
+        <text x="500" y="458" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="3" fill="#d9601f">동일 구조 · 다른 자리</text>
+        <text x="500" y="485" text-anchor="middle" font-size="14" font-weight="600">3원 구조 ('A → 매개 → B')가 *세 추상층*에서 다시 박힌 자리</text>
+
+        <!-- BOTTOM: INSIGHT BOX -->
+        <rect x="60" y="540" width="880" height="120" fill="rgba(217,96,31,0.04)" stroke="#d9601f" stroke-width="1.5" rx="3"/>
+        <text x="500" y="568" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="3" fill="#d9601f">학습 방식의 사인</text>
+        <text x="500" y="598" text-anchor="middle" font-size="14" font-weight="600">"한 번 잡힌 구조를 *추상도를 높이며* 다시 박는다"</text>
+        <text x="500" y="622" text-anchor="middle" font-size="13" fill="#4a4845">일회성 영감이 아니라 *누적되는 사상*</text>
+        <text x="500" y="644" text-anchor="middle" font-size="12" fill="#807e7a" font-style="italic">— 분기 메타분석의 가장 강한 한 발견</text>
+      </svg>
+    </div>
+    <div class="schema-cap">3-MONTH ARC · ABSTRACTION LADDER · KOREAN ETYMOLOGY</div>
+  </div>
+</section>
+
+<!-- 04 INFLECTION POINTS -->
+<section id="inflect">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">04</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">6 INFLECTION POINTS</div>
+        <h2>핵심 변곡점 — <em>이전과 이후가 다른 자리</em> 여섯</h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      세 *명제 변곡점*(#1·2·3)과 세 *룰 변곡점*(#4·5·6). 명제가 먼저 깔리고 룰이 따라온 *분기 순서*.
+    </p>
+
+    <div class="inflect-timeline">
+      <svg viewBox="0 0 1100 220" xmlns="http://www.w3.org/2000/svg" font-family="'Noto Sans KR', sans-serif" fill="#1a1a1a">
+        <!-- baseline timeline -->
+        <line x1="40" y1="120" x2="1060" y2="120" stroke="#c4c2bd" stroke-width="1"/>
+
+        <!-- Month labels -->
+        <text x="200" y="200" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#4a72a8">MARCH</text>
+        <text x="550" y="200" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#7e5a98">APRIL</text>
+        <text x="900" y="200" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#d9601f">MAY</text>
+
+        <!-- Inflection points -->
+        <!-- 1: 3/22 -->
+        <circle cx="180" cy="120" r="10" fill="#4a72a8" stroke="#fff" stroke-width="2"/>
+        <text x="180" y="100" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" fill="#4a72a8" font-weight="700">3/22</text>
+        <text x="180" y="155" text-anchor="middle" font-size="11" font-weight="600">디학 시작</text>
+        <text x="180" y="170" text-anchor="middle" font-size="9" fill="#807e7a">환경 진입</text>
+
+        <!-- 2: 4/03 -->
+        <circle cx="430" cy="120" r="10" fill="#7e5a98" stroke="#fff" stroke-width="2"/>
+        <text x="430" y="100" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" fill="#7e5a98" font-weight="700">4/03</text>
+        <text x="430" y="155" text-anchor="middle" font-size="11" font-weight="600">이름 붙이기</text>
+        <text x="430" y="170" text-anchor="middle" font-size="9" fill="#807e7a">정체성 결정</text>
+
+        <!-- 3: 4/10 -->
+        <circle cx="540" cy="120" r="10" fill="#7e5a98" stroke="#fff" stroke-width="2"/>
+        <text x="540" y="100" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" fill="#7e5a98" font-weight="700">4/10</text>
+        <text x="540" y="155" text-anchor="middle" font-size="11" font-weight="600">언어화실</text>
+        <text x="540" y="170" text-anchor="middle" font-size="9" fill="#807e7a">단어 장악</text>
+
+        <!-- 4: 5/03 -->
+        <circle cx="780" cy="120" r="10" fill="#d9601f" stroke="#fff" stroke-width="2"/>
+        <text x="780" y="100" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" fill="#d9601f" font-weight="700">5/03</text>
+        <text x="780" y="155" text-anchor="middle" font-size="11" font-weight="600">윤리 자가중단</text>
+        <text x="780" y="170" text-anchor="middle" font-size="9" fill="#807e7a">라인업 반경</text>
+
+        <!-- 5: 5/06 -->
+        <circle cx="850" cy="120" r="10" fill="#d9601f" stroke="#fff" stroke-width="2"/>
+        <text x="850" y="100" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" fill="#d9601f" font-weight="700">5/06</text>
+        <text x="850" y="155" text-anchor="middle" font-size="11" font-weight="600">노정석 루프</text>
+        <text x="850" y="170" text-anchor="middle" font-size="9" fill="#807e7a">워크플로우 척추</text>
+
+        <!-- 6: 5/14 -->
+        <circle cx="970" cy="120" r="10" fill="#d9601f" stroke="#fff" stroke-width="2"/>
+        <text x="970" y="100" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" fill="#d9601f" font-weight="700">5/14</text>
+        <text x="970" y="155" text-anchor="middle" font-size="11" font-weight="600">lineage v1</text>
+        <text x="970" y="170" text-anchor="middle" font-size="9" fill="#807e7a">생산 표준</text>
+
+        <!-- legend bottom labels -->
+        <rect x="40" y="40" width="160" height="36" fill="none" stroke="#4a72a8" stroke-width="1" stroke-dasharray="2,2"/>
+        <text x="120" y="62" text-anchor="middle" font-size="11" fill="#4a72a8">명제 변곡점 (3개)</text>
+
+        <rect x="780" y="40" width="280" height="36" fill="none" stroke="#d9601f" stroke-width="1" stroke-dasharray="2,2"/>
+        <text x="920" y="62" text-anchor="middle" font-size="11" fill="#d9601f">룰 변곡점 (3개)</text>
+      </svg>
+    </div>
+
+    <div class="inflect-detail">
+      <div class="inflect-card n1">
+        <div class="num">POINT 01 · 명제</div>
+        <div class="date">2026-03-22</div>
+        <h4>디학 수업 시작 — 환경 진입</h4>
+        <div class="ba">
+          <div class="ba-before"><div class="ba-label">BEFORE</div>독학·자기 학습</div>
+          <div class="ba-after"><div class="ba-label">AFTER</div>학습 환경 + 외부 어휘 폭발</div>
+        </div>
+      </div>
+      <div class="inflect-card n2">
+        <div class="num">POINT 02 · 명제</div>
+        <div class="date">2026-04-03</div>
+        <h4>"이미 하고 있는 것에 이름을 붙여"</h4>
+        <div class="ba">
+          <div class="ba-before"><div class="ba-label">BEFORE</div>직업명에 매달림</div>
+          <div class="ba-after"><div class="ba-label">AFTER</div>이미 있는 행위에 이름 부여</div>
+        </div>
+      </div>
+      <div class="inflect-card n3">
+        <div class="num">POINT 03 · 명제</div>
+        <div class="date">2026-04-10</div>
+        <h4>언어화실 등장</h4>
+        <div class="ba">
+          <div class="ba-before"><div class="ba-label">BEFORE</div>단어를 *쓰는* 사람</div>
+          <div class="ba-after"><div class="ba-label">AFTER</div>단어를 *장악하는* 사람</div>
+        </div>
+      </div>
+      <div class="inflect-card n4">
+        <div class="num">POINT 04 · 룰</div>
+        <div class="date">2026-05-03</div>
+        <h4>Gemini 윤리 자가중단</h4>
+        <div class="ba">
+          <div class="ba-before"><div class="ba-label">BEFORE</div>도구의 *기술적 한계*가 정함</div>
+          <div class="ba-after"><div class="ba-label">AFTER</div>도구의 *윤리적 한 줄*이 정함</div>
+        </div>
+      </div>
+      <div class="inflect-card n5">
+        <div class="num">POINT 05 · 룰</div>
+        <div class="date">2026-05-06</div>
+        <h4>노정석 루프 → 두 스킬 탄생</h4>
+        <div class="ba">
+          <div class="ba-before"><div class="ba-label">BEFORE</div>AI = 답 구하는 도구</div>
+          <div class="ba-after"><div class="ba-label">AFTER</div>AI = *구조를 비추는* 도구</div>
+        </div>
+      </div>
+      <div class="inflect-card n6">
+        <div class="num">POINT 06 · 룰</div>
+        <div class="date">2026-05-14</div>
+        <h4>lineage 스킬 v1</h4>
+        <div class="ba">
+          <div class="ba-before"><div class="ba-label">BEFORE</div>매번 처음부터 잡는 리포트</div>
+          <div class="ba-after"><div class="ba-label">AFTER</div>패턴을 *외부화한* 재사용 도구</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 PEOPLE MAP -->
+<section id="people" style="background: var(--bg-2);">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">05</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">PEOPLE · ENVIRONMENT MAP</div>
+        <h2>분기의 <em>인물·환경 지도</em></h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      디학 환경이 *교실*에서 *학회*로 한 단계 넓어진 자리. 그리고 5월 후반 *한국 학자 트리오*가 *같은 명제*를 다른 어휘로 도착시킨 자리.
+    </p>
+
+    <div class="people-grid">
+      <div class="people-card">
+        <h3>디학 인물 — 환경의 다리</h3>
+        <div class="person">
+          <div class="person-name">정대인 선생님</div>
+          <div class="person-ko">디학 수업 강사 · 웹 × AI × 디자인</div>
+          <div class="person-role">3/22 수업 시작. 10주 토요일 과정의 메인 강사. 웹 만들기·AI 통합 실험의 장.</div>
+        </div>
+        <div class="person">
+          <div class="person-name">윤여경 선생님</div>
+          <div class="person-ko">디학 수업 · 시각기호학 · 한국말 음운</div>
+          <div class="person-role">3/19 첫 만남, 3/31 *그·ㄹ → 글·그림* 대화. 4/07·4/14 수업. <strong>분기 가장 강한 사슬의 출발점.</strong></div>
+        </div>
+        <div class="person">
+          <div class="person-name">Kim Eui-rae</div>
+          <div class="person-ko">김의래 · 대전대 커뮤니케이션학과 정책이사</div>
+          <div class="person-role">5/10 디자인사학회 특강 〈말할 수 없는 것들의 언어〉. 친구가 보낸 자료 → 5/19 별도 lineage 리포트로 흡수. 디학 환경의 *학회 차원 확장*.</div>
+        </div>
+      </div>
+
+      <div class="people-card trio">
+        <h3>한국 학자 트리오 — 5월 후반 응결</h3>
+        <div class="person">
+          <div class="person-name">Kim Joo-hwan</div>
+          <div class="person-ko">김주환 · 연세대 · 〈내면소통〉</div>
+          <div class="person-role">5/17 별도 리포트. <strong>마음근력</strong>(자기조절·대인관계·자기동기). 심리학·뇌과학 자리.</div>
+        </div>
+        <div class="person">
+          <div class="person-name">Kim Eui-rae</div>
+          <div class="person-ko">김의래 · 시각언어 다섯 명제</div>
+          <div class="person-role">5/19 별도 리포트. <strong>이미지 사건 · 행위소 · 형태는 의도를 따른다</strong>. 디자인 학 자리 (트리오 가운데).</div>
+        </div>
+        <div class="person">
+          <div class="person-name">Kim Jeong-un</div>
+          <div class="person-ko">김정운 · 문화심리학자 · 〈말하지 않고 말하기〉</div>
+          <div class="person-role">5/21 별도 리포트. <strong>감탄 · 관계의 바다 위의 섬</strong>. 문화심리학 자리.</div>
+        </div>
+        <div class="person" style="background: rgba(126,90,152,0.06); padding: 14px; border-left: 3px solid var(--purple);">
+          <div class="person-name" style="color: var(--purple);">공통 명제</div>
+          <div class="person-role" style="font-size: 14px; color: var(--text); font-weight: 600;">*존재의 근거는 사이에 있다* — 셋 모두 같은 자리를 다른 어휘로</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 PATTERNS -->
+<section id="patterns">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">06</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">5 META PATTERNS</div>
+        <h2>분기의 <em>다섯 메타 패턴</em></h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      세 달을 가로지르는 발견된 패턴 다섯. 패턴 5(카피라이팅이 디자인을 견인)는 분기 전체에서 다섯 차례 확인되며 *가장 강함*.
+    </p>
+
+    <div class="pattern-list">
+      <div class="pattern-card p1">
+        <div class="num">PATTERN 01</div>
+        <h4>한 구조의 <em>추상도 누적</em></h4>
+        <p>3/31 그·ㄹ (음운) → 4/03 아름+다움 (미학) → 5/21 알음+다움 (인식론). 같은 *3원 구조*가 음운 → 미학 → 인식론으로 추상도 한 단계씩 상승.</p>
+      </div>
+      <div class="pattern-card p2">
+        <div class="num">PATTERN 02</div>
+        <h4>디학 환경이 <em>학계로</em> 확장</h4>
+        <p>3/22 디학 수업 → 5/19 디자인사학회 특강(김의래). 환경이 *교실*에서 *학회*로 한 단계 넓어짐. 디학이 그 다리.</p>
+      </div>
+      <div class="pattern-card p3">
+        <div class="num">PATTERN 03</div>
+        <h4>외부 자료 → <em>별도 리포트</em> → 흡수 보류</h4>
+        <p>4/23 퍼스 귀추법 (4월 일지) → 5/19 김의래 special- → 5/21 김정운 special-. 흡수 결정의 *시간 간격*이 정확도를 보장.</p>
+      </div>
+      <div class="pattern-card p4">
+        <div class="num">PATTERN 04</div>
+        <h4>명명 → 룰 → 도구의 <em>3단 순서</em></h4>
+        <p>4월 명명(정체성·언어화실) → 5월 룰(세 척추) → 5월 도구(스킬 4·토이 5). 명명 없이 룰이 안 박히고, 룰 없이 도구가 산발.</p>
+      </div>
+      <div class="pattern-card p5">
+        <div class="num">PATTERN 05 · STRONGEST</div>
+        <h4>카피라이팅이 <em>디자인을 견인</em>한다</h4>
+        <p>3/22 SMR "구구절절함을 믿어보자" → 4/23 한 줄 카피의 미시 결정 → 5/15 멋짓 → 5/16 Melt 컨셉 단어 → 5/21 알음+다움. <strong>한 줄·한 단어가 시스템 전체를 정렬한다</strong>는 패턴이 분기 전체에서 다섯 차례 확인. 분기의 *가장 강한* 횡단 패턴.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 STATS + KEYWORDS -->
+<section id="stats" style="background: var(--bg-2);">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">07</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">QUARTERLY STATISTICS · KEYWORD CLOUD</div>
+        <h2>분기 <em>통계</em>와 키워드 무게</h2>
+      </div>
+    </div>
+
+    <div class="stats-table">
+      <table>
+        <thead>
+          <tr><th>지표</th><th>3월</th><th>4월</th><th>5월</th><th>분기 합계</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="metric">감각일지 엔트리</td><td class="val">~30</td><td class="val">~20</td><td class="val">18</td><td class="val major">~68</td></tr>
+          <tr><td class="metric">새 스킬 (자체 제작)</td><td class="val">0</td><td class="val">0</td><td class="val">4</td><td class="val major">4</td></tr>
+          <tr><td class="metric">새 단일 HTML 토이</td><td class="val">0</td><td class="val">0</td><td class="val">5</td><td class="val major">5</td></tr>
+          <tr><td class="metric">새 lineage 리포트 (special-)</td><td class="val">0</td><td class="val">0</td><td class="val">3</td><td class="val major">3</td></tr>
+          <tr><td class="metric">외부 학자 본격 디깅</td><td class="val">리쾨르·발레리</td><td class="val">퍼스</td><td class="val">거장 6 + 트리오 3</td><td class="val major">11+</td></tr>
+          <tr><td class="metric">한국말 새 명제 발견</td><td class="val">1 (그·ㄹ)</td><td class="val">1 (아름+다움)</td><td class="val">3 (멋짓·토해내기·알음+다움)</td><td class="val major">5</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="margin-top: 36px; font-size: 14.5px; color: var(--text-soft); line-height: 1.85;">
+      엔트리 수는 줄지만 *밀도는 늘었다*. 3월 한 날 11 엔트리(3/22)가 폭발하던 자리가 5월에 *척추 한 줄*에 응축됨. 동시에 *결과물의 종류*(스킬·토이·리포트)가 5월에 등장하기 시작 — 4월까지는 *학습 자체*, 5월부터 *학습의 결정화*.
+    </p>
+
+    <div class="sec-header" style="margin-top: 80px; margin-bottom: 24px;">
+      <div class="sec-title-wrap">
+        <div class="sec-sub">KEYWORD CLOUD · 빈도 + 무게</div>
+        <h2>분기 키워드 — <em>관통하는 어휘</em></h2>
+      </div>
+    </div>
+
+    <div class="kw-cloud">
+      <span class="kw w5">디학 수업</span>
+      <span class="kw w5">한국말 어원</span>
+      <span class="kw w5">CC 시리즈</span>
+      <span class="kw w4">퍼스</span>
+      <span class="kw w4">언어화실</span>
+      <span class="kw w4">상호주관성</span>
+      <span class="kw w4">스키마</span>
+      <span class="kw w4">단일 HTML 토이</span>
+      <span class="kw w3">이미지 사건</span>
+      <span class="kw w3">캐러셀</span>
+      <span class="kw w3">ANTIEGG</span>
+      <span class="kw w3">멘토</span>
+      <span class="kw w3">릴스</span>
+      <span class="kw w2">거장 시리즈</span>
+      <span class="kw w2">아카이브 감각</span>
+      <span class="kw w2">디자인 씽킹</span>
+      <span class="kw w2">66DAYS</span>
+    </div>
+
+    <p style="margin-top: 28px; font-size: 14.5px; color: var(--text-soft); line-height: 1.85;">
+      <strong>관찰</strong>: <em style="color: var(--accent); font-style: normal; font-weight: 600;">디학·한국말·CC</em>는 세 달 관통 (가장 두꺼움). <em style="color: var(--text); font-style: normal; font-weight: 600;">캐러셀·릴스</em>는 3·4월에 강하다가 5월에 <em style="color: var(--accent); font-style: normal; font-weight: 600;">단일 HTML 토이</em>로 무게가 옮겨감 — 시각 발산의 채널이 *인스타*에서 *단일 파일 도구*로 이동.
+    </p>
+  </div>
+</section>
+
+<!-- 08 EMPTY + BRIDGE -->
+<section id="bridge">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">08</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">EMPTY SLOTS · Q2 → Q3 BRIDGE</div>
+        <h2>비어 있는 자리와 <em>Q3로 넘어가는 다리</em></h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      비어 있는 자리는 다음 달의 *해야 할 자리*. 분기가 깔아둔 명시·비명시 자리 모두 6월에 채울 후보.
+    </p>
+
+    <div class="empty-list">
+      <h3 style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.2em; color: var(--text-dim); margin-bottom: 18px; text-transform: uppercase;">비어 있는 자리 — 분기 안에서 의도적으로 채워지지 않은 곳</h3>
+      <ul>
+        <li><strong>3월</strong> 캐러셀·CC가 폭발하던 시기에 *스몰툴 라인업*은 0개</li>
+        <li><strong>4월</strong> *언어화실*이 등장했지만 *스킬*로 외부화되지 않음 (5/06에서야)</li>
+        <li><strong>5월</strong> ANTIEGG는 매달 마감되지만 *6월 본문*은 아직 미완</li>
+        <li><strong>분기 전반</strong> *동아일보·에스콰이어 매체 작업*이 일지에 약하게 기록됨 (5월 누락 분석에서 발견)</li>
+      </ul>
+    </div>
+
+    <div class="bridge-grid" style="margin-top: 48px;">
+      <div class="bridge-card">
+        <h4>명시적으로 박혀 있는 다음 결정</h4>
+        <ul>
+          <li><strong>6월 ANTIEGG 〈자립〉 본문</strong> — 5/15 기획 완료, 본문 보완</li>
+          <li><strong>한국 학자 트리오 메타 리포트</strong> — 5/17·5/19·5/21 세 리포트 통합 후속</li>
+          <li><strong>Part 11 〈한국말 인지 · 최봉영〉</strong> 인큐베이션 → 본격화 가능</li>
+          <li><strong>Part 20 후속 〈무사시노 학파 후예〉</strong> (하라 켄야·후카사와 나오토) 가설</li>
+          <li><strong>6/10 이후 프로젝트 단위 전환</strong> — 캐시플로우/장기 포지셔닝 분리</li>
+        </ul>
+      </div>
+      <div class="bridge-card">
+        <h4>분기가 깔아둔 비명시 자리</h4>
+        <ul>
+          <li><strong>단일 HTML 토이 5개 누적</strong> → *공개 발행* 임계점 도달</li>
+          <li><strong>학습 시스템 검증 완료</strong> (note-meta + language-lab + lineage) → vessel의 첫 자산</li>
+          <li><strong>한국 학자 트리오</strong> → CC 시리즈에 *한국어 사상 축* 4축으로 추가 가능</li>
+          <li><strong>세 한국말 명제</strong> (멋짓·토해내기·알음+다움) → 본인 *사상 어휘집*의 첫 자리</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 09 TOP 3 PER MONTH -->
+<section id="top3" style="background: var(--bg-2);">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">09</div>
+      <div class="sec-title-wrap">
+        <div class="sec-sub">TOP 3 PER MONTH</div>
+        <h2>월별 <em>가장 결정적인</em> 세 자리</h2>
+      </div>
+    </div>
+    <p class="sec-lead">
+      각 달에서 *없었다면 다음이 안 왔을* 결정적 엔트리 셋씩.
+    </p>
+
+    <div class="top3-grid">
+      <div class="top3-col mar">
+        <h3>MARCH · TOP 3</h3>
+        <ol>
+          <li><strong>3/22 디학 수업 시작</strong> — 환경 진입 (전체 분기의 출발점)</li>
+          <li><strong>3/31 그·ㄹ → 글·그림·그리다</strong> — 한국말 음운 첫 진입 (5/21 명제의 진짜 씨앗)</li>
+          <li><strong>3/22 스키마 다이어그램 50선</strong> — lineage 스킬의 사상적 기반</li>
+        </ol>
+      </div>
+      <div class="top3-col apr">
+        <h3>APRIL · TOP 3</h3>
+        <ol>
+          <li><strong>4/03 이름 붙이기 + 아름+다움</strong> — 정체성 결정 + 등식 첫 등장</li>
+          <li><strong>4/10 언어화실</strong> — 단어 장악 선언 + 5/06 스킬화의 직접 씨앗</li>
+          <li><strong>4/23 퍼스 귀추법</strong> — 디자인 씽킹의 사상적 정체 + 5/19 흡수의 사전 준비</li>
+        </ol>
+      </div>
+      <div class="top3-col may">
+        <h3>MAY · TOP 3</h3>
+        <ol>
+          <li><strong>5/14 lineage 스킬 v1</strong> — 생산 양식 표준 (분기 전체의 *대표 산출물*)</li>
+          <li><strong>5/21 김정운 + 알음+다움=아름다움</strong> — 한국 학자 트리오 응결 + 본인 명제 격상</li>
+          <li><strong>5/16 Melt</strong> — 단일 HTML 토이 라인업의 *컨셉 단어 패턴* 첫 사례</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ONE LINE -->
+<section class="oneline">
+  <div class="oneline-inner">
+    <div class="oneline-k">ONE LINE · Q2 META</div>
+    <div class="oneline-main">
+      3월에 <em>받아안았고</em>,<br/>
+      4월에 <em>이름 붙였으며</em>,<br/>
+      5월에 <em>척추를 세웠다</em>.
+    </div>
+    <div class="oneline-sig">
+      — Q3는 이 척추 위에 *발행*과 *깊은 정의*를 더하는 자리.<br/>
+      분기의 모든 작업이 이미 그 다음을 향해 정렬되어 있다.
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="inner">
+    <div>
+      <h4>About</h4>
+      <p>2026-03-16 → 05-21 사이 60+ 감각일지 엔트리를 가로질러 분기 흐름을 메타분석한 비주얼 리포트. 마크다운 원본은 옵시디언 vault의 <strong>아카이브 감각 노트(2026)_월간요약_3-5월.md</strong>.</p>
+      <p style="margin-top: 10px;"><strong>출처</strong> · 3개월 감각일지 원본 직접 통독 + 핵심 엔트리 발췌 + 씨앗-결실 사슬 8개 직접 매핑.</p>
+      <p style="margin-top: 10px;"><strong>가장 강한 발견</strong> · <em style="color: var(--accent); font-weight: 600; font-style: normal;">그·ㄹ → 아름+다움 → 알음+다움</em> 51일 진화 (음운 → 미학 → 인식론). 한 구조의 추상도 누적이 사용자 학습 방식의 사인.</p>
+    </div>
+    <div>
+      <h4>원본 일지</h4>
+      <ul>
+        <li>아카이브 감각 노트 (2026-03-31)</li>
+        <li>아카이브 감각 노트 (2026-04)</li>
+        <li>아카이브 감각 노트 (2026-05)</li>
+      </ul>
+    </div>
+    <div>
+      <h4>후속 메타분석 후보</h4>
+      <ul>
+        <li>Q3 월간 요약 (6·7·8월)</li>
+        <li>한국말 명제 사슬 단독 lineage</li>
+        <li>단일 HTML 토이 라인업 카탈로그 vessel</li>
+        <li>반기 요약 (1·2월 + Q2)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="colophon">
+    <span>SPECIAL · QUARTERLY META · 2026-05-21</span>
+    <span>LINEAGE SKILL · v1.0 · Q2 SUMMARY</span>
+  </div>
+</footer>
+
+</body>
+</html>
