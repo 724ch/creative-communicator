@@ -2,12 +2,12 @@
 title: Creative Communicator · Archive Sense Laboratory
 hero_kicker: ARCHIVE SENSE · LABORATORY · 2026~
 hero_tagline: An archive in search of better language for human connection
-meta_duration: 31 Deep Reports
+meta_duration: 32 Deep Reports
 meta_span: 2026-04-17 → ongoing
 meta_format: ~150 KB · 11 sections each
 meta_author: 정찬휘 · Chanhwi Jeong
 footer_copy: © 2026 · 정찬휘 (Chanhwi Jeong) · Creative Communicator Series
-footer_version: INDEX · v1.4 · 2026-05-26
+footer_version: INDEX · v1.5 · 2026-05-26
 ---
 
 # HERO
@@ -49,7 +49,7 @@ footer_version: INDEX · v1.4 · 2026-05-26
 
 <p>크리에이티브는 내 안에 있는 것을 밖으로 꺼내는 일.<br/>커뮤니케이션은 그것이 다른 사람 안까지 닿도록 소통하는 일.<br/>이 둘이 한 바퀴를 잘 돌 때 사람과 사람 사이에 연결감이 생긴다. 그게 내가 정의하는 크리에이티브 커뮤니케이터다.</p>
 
-<p>이 시리즈는 그 정의를 30개 영역에서 풀어낸 노트다. 감각·인식의 보편성(Part 1–17)에서 시작해 디자인·매체·실무의 응용(Part 18–23)으로 이어지고, 영향력·설득의 깊은 도구함(Part 30~)으로 확장한다. 아카이브 센스(Archive Sense)라는 더 큰 작업의 한 갈래로, 나만의 지식 체계와 생각의 골격을 짓는 실험실이자 보관소다. 계속 갱신되고, 완결된 결론보다 다음 질문을 부르는 자리에 가깝다.</p>
+<p>이 시리즈는 그 정의를 32개 영역에서 풀어낸 노트다. 감각·인식의 보편성(Part 1–17)에서 시작해 디자인·매체·실무의 응용(Part 18–30)으로 이어지고, 영향력·설득의 깊은 도구함(Part 31~)으로 확장한다. 아카이브 센스(Archive Sense)라는 더 큰 작업의 한 갈래로, 나만의 지식 체계와 생각의 골격을 짓는 실험실이자 보관소다. 계속 갱신되고, 완결된 결론보다 다음 질문을 부르는 자리에 가깝다.</p>
 
 ---
 
@@ -67,7 +67,7 @@ footer_version: INDEX · v1.4 · 2026-05-26
 
 "왜 이 글꼴인가", "왜 이 카피톤인가", "왜 이 구도인가"에 답할 수 있는 디자이너와 그렇지 못한 디자이너의 거리는 압도적이다. 답할 수 있다는 것은, 자기 결정의 출처를 사상사·양식사 안에 둘 수 있다는 뜻이다.
 
-**이 시리즈는 그 어휘를 30개 영역에서 모으는 작업**이다. 동시에 그 모은 결과를 한 사람의 시각언어로 다시 짜는 큐레이션 작업이기도 하다.
+**이 시리즈는 그 어휘를 32개 영역에서 모으는 작업**이다. 동시에 그 모은 결과를 한 사람의 시각언어로 다시 짜는 큐레이션 작업이기도 하다.
 
 ## Card 2
 - title: 주제 선정 기준
@@ -85,7 +85,7 @@ footer_version: INDEX · v1.4 · 2026-05-26
 모든 리포트의 <em>공통 골격</em>
 
 ## Lead
-29개 리포트는 같은 11-섹션 골격, 같은 카드 4-블록 구조, 같은 디자인 토큰 위에 짜여 있다. 이 일관성 자체가 시리즈의 메시지다. **인지 부품들은 다르지만, 그것을 보는 시각언어는 하나다.**
+32개 리포트는 같은 11-섹션 골격, 같은 카드 4-블록 구조, 같은 디자인 토큰 위에 짜여 있다. 이 일관성 자체가 시리즈의 메시지다. **인지 부품들은 다르지만, 그것을 보는 시각언어는 하나다.**
 
 ## Card 1
 - title: 11-섹션 골격
@@ -110,13 +110,13 @@ HERO → INTRO → 5~8 PHASE → 6 THREADS → RESONANCE → APPLICATION → ONE
 # REPORTS
 
 ## Sub
-29 DEEP REPORTS
+32 DEEP REPORTS
 
 ## H2
-스물아홉 개의 <em>인지 부품</em>
+서른두 개의 <em>인지 부품</em>
 
 ## Lead
-각 리포트는 단독으로 읽을 수 있는 한 권의 책이자, 시리즈 안에서 다른 28개와 공명한다. 클릭해서 들어가면 5~8국면 × 학자 카드 × SCHEMA × 6 스레드의 풀 리포트.
+각 리포트는 단독으로 읽을 수 있는 한 권의 책이자, 시리즈 안에서 다른 31개와 공명한다. 클릭해서 들어가면 5~8국면 × 학자 카드 × SCHEMA × 6 스레드의 풀 리포트.
 
 ## Part I
 - color: yellow
@@ -430,15 +430,26 @@ AIDA·PAS·4P부터 현대 D2C 카피·숏폼까지. **작동하는 카피의 12
 
 2,800년 메시지 공학의 해부. 4성인(예수·부처·공자·소크라테스), 사도신경·5기둥·만트라, 사도 바울 편지 네트워크, 성찬·묵주·좌선, 조로아스터 이원론·묵시 종말, 선·수피·퀘이커 침묵, 루터의 인쇄 바이럴, 풍류·동학·원불교의 한반도 종합. 22 인물에서 추출한 **12 보편 메커니즘**과 6 영역 브랜딩 워크북. 신규 카테고리 **H · 영향력·설득**의 첫 자리. 광고사(XXVII)·카피 12 프레임(XXVIII)의 상류 보고서.
 
+## Part XXXII
+- color: red
+- date: 2026-05-26
+- file: reports/32.정치_프로파간다의_해부.html
+- title: 정치 프로파간다의 해부 ★
+- sub: Political Propaganda · 14 Cases · Immune Checklist
+- meta: 7 PHASES · 14 CASES · 12 MECHANICS · DEEP
+- star: true
+
+Part XXXI과 짝을 이루는 어두운 거울. 같은 12 도구가 정치 동원·학살·전체주의로 향할 때 무엇이 일어났는지의 130년 분석. 진영을 가르지 않는다. **이론**(Le Bon·Bernays) · **좌익 전체주의**(Lenin·Eisenstein) · **우익 전체주의**(Goebbels·Riefenstahl) · **민주국가 프로파간다**(CPI·OWI) · **동아시아**(일본 황국·마오 문혁·북한 주체) · **학살 미디어**(르완다 RTLM·미얀마 페북) · **디지털 시대**(Cambridge Analytica·러시아 IRA·중국 50센트) 7 국면 14 사례. 도착점은 **민주사회 면역 체크리스트 6 영역**.
+
 ---
 
 # THREADS
 
 ## H2
-30부를 가로지르는 <em>여섯 강줄기</em>
+32부를 가로지르는 <em>여섯 강줄기</em>
 
 ## Lead
-각 리포트는 독립이지만, 서로 같은 질문을 다른 언어로 묻는다. 시리즈 전체를 가로질러 흐르는 6 메타 스레드를 따라가면 29 부품이 어떻게 한 회로를 이루는지 보인다.
+각 리포트는 독립이지만, 서로 같은 질문을 다른 언어로 묻는다. 시리즈 전체를 가로질러 흐르는 6 메타 스레드를 따라가면 32 부품이 어떻게 한 회로를 이루는지 보인다.
 
 ## Thread 1
 - name: 위계의 결구조 ★
@@ -472,9 +483,9 @@ AIDA·PAS·4P부터 현대 D2C 카피·숏폼까지. **작동하는 카피의 12
 
 ## Thread 6
 - name: 메시지 공학의 상류 ★
-- parts: PART XXX · (XXXI · XXXII 예정)
+- parts: PART XXXI · XXXII · (XXXIII 예정)
 
-광고 200년 학습의 상류에는 종교 2,500년 학습이 있다. **Part XXX**가 4성인부터 동학까지 22 인물의 메시지 디자인에서 12 보편 메커니즘을 추출한다. 카테고리 H · 영향력·설득의 첫 자리, 정치 프로파간다(XXXI)·근대 글로벌 영향력자(XXXII)와 짝을 이룰 예정.
+광고 200년 학습의 상류에는 종교 2,500년 학습이 있다. **Part XXXI**(종교)이 4성인부터 동학까지 22 인물의 메시지 디자인에서 12 보편 메커니즘을 추출하고, **Part XXXII**(정치 프로파간다)가 같은 12 도구의 어두운 응용을 좌익·우익·민주국가·동아시아·학살·디지털 7 국면 14 사례로 풀어 짝을 이룬다. 카테고리 H · 영향력·설득의 두 축. 후속 후보는 근대 글로벌 영향력자(XXXIII).
 
 ---
 
@@ -499,7 +510,7 @@ AIDA·PAS·4P부터 현대 D2C 카피·숏폼까지. **작동하는 카피의 12
 ## Row 3
 - label: Verification
 
-핵심 인용·연도·인물 관계는 **출처 점검 후 게재**를 원칙으로 한다. 다만 28 Part × 평균 18 학자 카드 × 4 블록의 분량에서 모든 미세 사실을 검증할 수는 없다. *발견된 오류는 갱신·재발행한다.* 발견 시 제보 환영.
+핵심 인용·연도·인물 관계는 **출처 점검 후 게재**를 원칙으로 한다. 다만 32 Part × 평균 18 학자 카드 × 4 블록의 분량에서 모든 미세 사실을 검증할 수는 없다. *발견된 오류는 갱신·재발행한다.* 발견 시 제보 환영.
 
 ## Row 4
 - label: Limits
@@ -524,7 +535,7 @@ AIDA·PAS·4P부터 현대 D2C 카피·숏폼까지. **작동하는 카피의 12
 # FOOTER
 
 ## Left
-**Creative Communicator**<br/>29-Part Lineage of the Creative Mind<br/><br/>2026-04-17 → ongoing<br/>Updated weekly · Light tone · BRAUN palette
+**Creative Communicator**<br/>32-Part Lineage of the Creative Mind<br/><br/>2026-04-17 → ongoing<br/>Updated weekly · Light tone · BRAUN palette
 
 ## Contact
 - 정찬휘 · Chanhwi Jeong
